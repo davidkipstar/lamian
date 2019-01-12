@@ -61,9 +61,10 @@ class Statemachine:
         bids = orderbook_df['bids'] # prices decreasing from index 0 to index 1
         return asks,bids 
     
-    def find_price(self, compensate_orders, minimum_liquidity=0 ):
+    def find_price(self, orderbook, compensate_orders, minimum_liquidity=0 ):
         """
           Computes spread and computes optimal ask/bid
+          orderbook is either bids or asks as generated from update
 
         """
         satoshi = Decimal('0.00000001')
@@ -110,10 +111,10 @@ class Statemachine:
         return opt_price_rounded
     
 
-    def create_buy_order(self, market, tsize_bid, account, optimal_bid):
+    def create_buy_order(self, tsize_bid, optimal_bid):
        
         try:
-            order = market.buy(price = optimal_bid, amount = tsize_bid, account = account, returnOrderId = True, expiration = 60) 
+            order = self.market.buy(price = optimal_bid, amount = tsize_bid, account = self.account, returnOrderId = True, expiration = 60) 
             #logging.info('Buy Order: {} for {} has id {}'.format(optimal_bid,tsize_bid,order))
             return order
     
@@ -121,10 +122,10 @@ class Statemachine:
             #logging.warning('Failed buying!!')
             return 0    
         
-    def create_sell_order(market, tsize_ask, account, optimal_ask):
+    def create_sell_order(self, tsize_ask, optimal_ask):
        # make sure order is not place within asks
         try:
-            order = market.sell(price = optimal_ask, amount = tsize_ask, account = account, returnOrderId = True, expiration = 60) 
+            order = self.market.sell(price = optimal_ask, amount = tsize_ask, account = self.account, returnOrderId = True, expiration = 60) 
             #logging.info('Sell Order: {} for {} has id {}'.format(optimal_ask,tsize_ask,order))
             return order
         except Exception as e:
@@ -132,30 +133,30 @@ class Statemachine:
             
             return 0    
             
-    def cancel_order(market, account, order): # pass return of create_order as input
+    def cancel_order(self, account, order): # pass return of create_order as input
     
         try:
-            market.cancel(order['orderid'], account) # hier string ersetzen durch test order id
+            self.market.cancel(order['orderid'], self.account) # hier string ersetzen durch test order id
             return True
         except Exception as e:
             #logging.warning('Failed to cancel order')
             return False
             
     
-    def get_open_orders(market, account):
+    def get_open_orders(self):
         #open_orders = market.accountopenorders(account = account)
         try:
-            account.refresh()
+            self.account.refresh()
             # change this back to market.accountopenorders to avoid getting orders for all assets!
             #open_orders = account.openorders
-            open_orders = market.accountopenorders(account = account)
+            open_orders = self.market.accountopenorders(account = self.account)
             return open_orders
         except Exception as e:
             return False
 
-    def get_accounttrades(market, account):
+    def get_accounttrades(self):
         try:
-            t = market.accounttrades(account = account)
+            t = self.market.accounttrades(account = self.account)
             return t
         except Exception as e:
             return False
@@ -171,9 +172,11 @@ class Statemachine:
         return d
     
     
-    def accountbalance(acc, quotecur, basecur, tsize_bid, tsize_ask):
+    def accountbalance(self,):
     
-        balance_l = acc.balances
+        balance_l = self.account.balances
+        basecur = self.basecur
+        quotecur = self.quotecur
         baseidx = 0
         quoteidx = 0
         baseidx_found = False
@@ -198,9 +201,9 @@ class Statemachine:
         return baseamount, quoteamount
 
 
-    def cancel_all_orders(market, account):
+    def cancel_all_orders(self):
     
-            orders = market.accountopenorders(account)
+            orders = self.market.accountopenorders(account)
             print((len(orders), 'open orders to cancel'))
             if len(orders):
                 attempt = 1  
@@ -209,7 +212,7 @@ class Statemachine:
                     order_list.append(order['id'])
                 while attempt:
                     try:
-                        details = market.cancel(order_list, account)
+                        details = self.market.cancel(order_list, self.account)
                         print (details)
                         attempt = 0
                         return True
