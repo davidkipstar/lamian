@@ -5,7 +5,7 @@ import pandas as pd
 from bitshares import BitShares
 from bitshares.account import Account
 from bitshares.market import Market
-
+from decimal import *
 
 class Statemachine:
 
@@ -39,8 +39,13 @@ class Statemachine:
         self.currency_pair = self.quotecur + ':' + self.basecur
         self.bitshares = BitShares() # Auto node selection as no specific node is given
         self.market = Market(currency_pair)
-            
+        self.satoshi = Decimal('0.00000001')
+        self.increment = Decimal(0.00000001).quantize(satoshi, ROUND_DOWN)
         
+        # More settings - where to put??
+        getcontext().prec = 28
+        getcontext().rounding = 'ROUND_UP'
+
         
         #asign kwargs  
         for key,value in kwargs.items():
