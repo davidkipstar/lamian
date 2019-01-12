@@ -16,7 +16,7 @@ class Statemachine:
     """
     _orderids = []
     _workers = []
-    def __init__(self, pwd, account_str,side ,**kwargs):
+    def __init__(self, quotecur, pwd, account_str,side ,**kwargs):
         #side = True is buy, side = False is sell
         self.instance = BitShares()    
         self.instance.wallet.unlock(pwd)
@@ -30,10 +30,18 @@ class Statemachine:
             self.opposite_side = (kwargs['start_tsize_ask'],kwargs['th_ask'])
         else:
             self.opposite_side = (kwargs['start_tsize_bid'],kwargs['th_bid'])
+        
         self.state = None
         self.side = side
         self.orderid = None  
-
+        self.quotecur = quotecur
+        self.basecur = 'BRIDGE.BTC'
+        self.currency_pair = self.quotecur + ':' + self.basecur
+        self.bitshares = BitShares() # Auto node selection as no specific node is given
+        self.market = Market(currency_pair)
+            
+        
+        
         #asign kwargs  
         for key,value in kwargs.items():
             setattr(self,key,value)
@@ -41,7 +49,7 @@ class Statemachine:
     def run(self):
         self.get_state().run()
 
-    def update(self)
+    def update(self):
         """
             Process orderbook:
 
@@ -73,29 +81,154 @@ class Statemachine:
     
         d = {'quote': quote_v, 'price': price_v, 'obrevenue': obrevenue_v, 'ownrevenue': ownrevenue_v}
         df = pd.DataFrame(d)
+        
+        # In case we already have active orders, account for them
+        if(compensate_orders):
+            dropidx = (df['price'] == price_before) & (df['quote'] == tsize)
+            df = df.drop(df.index[dropidx]) # overwrite
+            
+        # Get first bound
         df['obrevenue_cumsum'] = df['obrevenue'].cumsum()
         idx = df.index[df['obrevenue_cumsum'] > df['ownrevenue']].tolist()
         opt_price = df['price'][idx[0]]
         opt_price_rounded = opt_price.quantize(satoshi)
-        return opt_price_rounded
+       
+        # Get second bound if liquidity requirement
+        if(minimum_liquidity):
 
-
-    def state1(self):
-        #
-        up = self.update()
-        price = self.find_price([])
-        print("Optimal price @ {}".format(price))
-        price2 = self.find_price()
-
+            dfsub = df[(df['price'] <= opt_price)]
+            dfsub = dfsub.reset_index()
+            dfsub = dfsub.drop('obrevenue_cumsum', axis = 1) # clean up first, just to make sure
+            dfsub['obrevenue_cumsum'] = dfsub['obrevenue'].cumsum() # once again reassign
+            dfsub['xtimes_ownrevenue'] = dfsub['ownrevenue'] * 2
+            lower_bound = dfsub.index[dfsub['obrevenue_cumsum'] > dfsub['xtimes_ownrevenue']].tolist()
+            # now this is the lower bound. Combine them to find the optimal price
         
-    return d
+        # overwrite optimal price
+        opt_price = dfsub['price'][lower_bound[0]]
+        
+        return opt_price_rounded
+    
+
+    def create_buy_order(self, market, tsize_bid, account, optimal_bid):
+       
+        try:
+            order = market.buy(price = optimal_bid, amount = tsize_bid, account = account, returnOrderId = True, expiration = 60) 
+            #logging.info('Buy Order: {} for {} has id {}'.format(optimal_bid,tsize_bid,order))
+            return order
+    
+        except Exception as e:
+            #logging.warning('Failed buying!!')
+            return 0    
+        
+    def create_sell_order(market, tsize_ask, account, optimal_ask):
+       # make sure order is not place within asks
+        try:
+            order = market.sell(price = optimal_ask, amount = tsize_ask, account = account, returnOrderId = True, expiration = 60) 
+            #logging.info('Sell Order: {} for {} has id {}'.format(optimal_ask,tsize_ask,order))
+            return order
+        except Exception as e:
+            #logging.warning('Failed selling!!')
+            
+            return 0    
+            
+    def cancel_order(market, account, order): # pass return of create_order as input
+    
+        try:
+            market.cancel(order['orderid'], account) # hier string ersetzen durch test order id
+            return True
+        except Exception as e:
+            #logging.warning('Failed to cancel order')
+            return False
+            
+    
+    def get_open_orders(market, account):
+        #open_orders = market.accountopenorders(account = account)
+        try:
+            account.refresh()
+            # change this back to market.accountopenorders to avoid getting orders for all assets!
+            #open_orders = account.openorders
+            open_orders = market.accountopenorders(account = account)
+            return open_orders
+        except Exception as e:
+            return False
+
+    def get_accounttrades(market, account):
+        try:
+            t = market.accounttrades(account = account)
+            return t
+        except Exception as e:
+            return False
+    
+        def state1(self):
+            #
+            up = self.update()
+            price = self.find_price([])
+            print("Optimal price @ {}".format(price))
+            price2 = self.find_price()
+    
+            
+        return d
+    
+    
+    def accountbalance(acc, quotecur, basecur, tsize_bid, tsize_ask):
+    
+        balance_l = acc.balances
+        baseidx = 0
+        quoteidx = 0
+        baseidx_found = False
+        quoteidx_found = False
+        for i in range(len(balance_l)):
+            ele = balance_l[i]
+            sym = ele['symbol']
+            if(sym == basecur):
+                baseidx = i
+                baseamount = balance_l[baseidx]['amount']
+                baseidx_found = True
+            if(sym == quotecur):
+                quoteidx = i
+                quoteamount = balance_l[quoteidx]['amount']
+                quoteidx_found = True
+            
+            if(baseidx_found == False):
+                baseamount = None # BREAK
+            if(quoteidx_found == False):
+                quoteamount = 0
+    
+        return baseamount, quoteamount
+
+
+    def cancel_all_orders(market, account):
+    
+            orders = market.accountopenorders(account)
+            print((len(orders), 'open orders to cancel'))
+            if len(orders):
+                attempt = 1  
+                order_list = []      
+                for order in orders:
+                    order_list.append(order['id'])
+                while attempt:
+                    try:
+                        details = market.cancel(order_list, account)
+                        print (details)
+                        attempt = 0
+                        return True
+                    except:
+                        print((attempt, 'cancel failed', order_list))
+                        attempt += 1
+                        if attempt > 10:
+                            print ('cancel aborted')
+                            return False
+                        pass    
+    
+    
     
         up = update(market, th_bid, th_ask, tsize_bid, tsize_ask)
         test_ask = check_spread(up['asks'], th_ask, init_tsize_ask)
         test_bid = check_spread(up['bids'], th_bid, init_tsize_bid)
         spread = (test_ask - test_bid)/test_bid
         spread = spread.quantize(satoshi)
-            print('Spread: {:_<5f}'.format(spread))
+        print('Spread: {:_<5f}'.format(spread))
             
     
             all_open_orders = len(get_open_orders(market, acc))
