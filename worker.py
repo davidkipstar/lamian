@@ -21,7 +21,9 @@ class Worker(Manager):
         self.q = q
         self.signup()
         self.price_bid = None 
+        print("hello")
         self.market = Market(self.quotecur + ':' + self.basecur)
+
 
     def signup(self):
         try:
