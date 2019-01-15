@@ -6,57 +6,11 @@ from bitshares import BitShares
 from bitshares.account import Account
 from bitshares.market import Market
 
-#from worker import Worker 
+from utils import *
 
 from multiprocessing import Queue, Process
 import multiprocessing
-
-class Manager:
-    _currencies = {}
-    
-    def __init__(self, credentials):
-        self.instance = BitShares()   
-        self.q = Queue()
-        self.workers = []
-        self.orderids = []
-        self.currencies = {}
-
-        with open(credentials) as f:
-            d = json.load(f)
-            for key, value in d.items():
-                setattr(self, key, value)
-
-    def add_worker(self,filename):
-        w = Worker(filename, self.q)
-        if getattr(w,'basecur') in self.currencies.keys():
-            self.currencies[getattr(w,'basecur')].append(w)
-        else:
-            self.currencies[getattr(w, 'basecur')] = [w]
-        #self.workers.append(w)
-        print("Added worker")
-    
-    def start(self):
-        #this could be state 1: joining the market
-        for currency, workers in self.currencies.items():
-            for worker in workers:
-                worker.state = None
-                p = Process(target=Worker.run,args=(worker,))
-                p.daemon = True
-                p.start()
-    
-    def manage(self):
-        #queue
-        while True:
-            x = self.q.get()
-            #got signal from 
-            #filter state 
-            #apply strategy
-            #continue or adjust
-            print(x)
-"""
-
-"""
-
+from manager import Manager
 
 class Worker(Manager):
 
@@ -66,6 +20,7 @@ class Worker(Manager):
         self.state = None
         self.q = q
         self.signup()
+        self.price_bid = None 
         self.market = Market(self.quotecur + ':' + self.basecur)
 
     def signup(self):
@@ -90,12 +45,7 @@ class Worker(Manager):
             j = json.load(f)
             for key, value in j.items():
                 setattr(self, key, value)
-        
-        #register to global Manager
-        #if j['basecur'] in Manager._currencies.keys():
-        #    super()._currencies[j['basecur']].append(self)
-        #else:
-        #    super()._currencies[j['basecur']] = [self]
+    
 
     """
     From here on helpers function which do not process orderbook
@@ -154,44 +104,89 @@ class Worker(Manager):
             print("Error getting open orders: {}".format(e))
             return None
 
-    #
-    def accountbalance(self):
-        balance_l = self.account.balances
-        basecur = self.basecur
-        quotecur = self.quotecur
-        baseidx = 0
-        quoteidx = 0
-        baseidx_found = False
-        quoteidx_found = False
-        for i in range(len(balance_l)):
-            ele = balance_l[i]
-            sym = ele['symbol']
-            if(sym == basecur):
-                baseidx = i
-                baseamount = balance_l[baseidx]['amount']
-                baseidx_found = True
-            if(sym == quotecur):
-                quoteidx = i
-                quoteamount = balance_l[quoteidx]['amount']
-                quoteidx_found = True
-            if(baseidx_found == False):
-                baseamount = None 
-            if(quoteidx_found == False):
-                quoteamount = 0
-    
-        return baseamount, quoteamount
+
+    def state0(self):
+        #
+        try:
+            asks, bids = self.update()
+
+            test_ask = find_price(asks, self.th_ask, self.init_tsize_ask)
+            test_bid = find_price(bids, self.th_bid, self.init_tsize_bid)
+
+            spread = (test_ask - test_bid)/test_bid
+            spread = spread.quantize(satoshi)
+
+            if spread > self.spread_th_bid:\
+                self.q.put({'spread':spread})
+                return True
+        finally:
+            return False 
+
+
+    def state1(self, orderid, tsize_bid):
+        # track of our own order
+        asks, bids = self.update()
+
+        #test_ask = find_price(asks, self.th_ask, self.init_tsize_ask)
+        test_bid = find_price(bids, self.th_bid, tsize_bid, compensate_orders=True)
+
+        #check for deviation between 
+        bid_deviation = abs(update_prices_bid - price_bid)
+        
+        #
+        open_orders = self.get_open_orders()
+        if len(open_orders)==1:
+            if bid_deviation > Decimal('0.0000000099'):
+                self.q.put({'error':bid_deviation})
+                raise ValueError("Price to high")
+            else:
+                return True
+        elif len(open_orders) > 1:
+            self.q.put({'error':"too many orders"})
+            raise ValueError("Too many open orders, found {}".format(len(open_orders)))
+        else:
+            #dunno of filed expired or shit
+
+            self.q.put({'error':"not enough orders"})
+            raise ValueError("No open order found")
+
+
+        except Exception as e:
+            print("Error: {}".format(e))
+        finally:
+            return False
+
 
     def apply_strategy(self):
         try:
             #1 Checking spread
             if self.state == 0:
-                pass
+                while not self.state0():
+                    #nothing to do
+                    pass
+                #the real deal
+                asks,bids = self.update()
+                tsize_bid = convert_to_quote(asks, bids)
+                new_price = find_price(bids, self.th_bid, tsize_bid)
+                #create order
+
+                order_id = self.create_buy_order(tsize_bid, new_price)
                 
+                self.q.put({'order':order})
+                if(order_id):
+                    #success
+                    self.state = 1 #change state 
+                else:
+                    print("Critical Error: order not places succesfully" )     
+                    self.state = 0
+
             #2 Checking open_order
             if self.state ==1:
-                pass
-            
-            raise ValueError("Fick dick")
+                while not self.state1():
+                    #nthng to do 
+                    pass
+                #check if filed 
+                self.state = 0
 
         except Exception as e:
             print("Error in state {} with message {}".format(self.state, e))    
@@ -200,29 +195,22 @@ class Worker(Manager):
             return True
         #Finally Order filled
 
-        print("Apply in state {}".format(self.state))
-        self.state += 1
-        if self.state == 10: return False
-        else: return True
-        #asign report 
-
     @staticmethod
     def run(self):
         """
         If state is None it is initialized
         """
         try:
-            if self.state:
-                print("Rejoining... not implemented")
-                self.strategy = Strategy()
-            else:
-                for i in range(2):
-                    self.state = i
-                    if self.apply_strategy():
-                        print("Switching to state {}".format(i))
-                        self.state += 1
-                        #create info for manager
-                        self.q.put(getattr(self,'quotecur'))
-            
+            if not self.state:
+                self.state = 0            
+            while self.state not None:
+                if self.apply_strategy():
+                    #done with one round
+
+                    self.q.put({'Success':"Done"})
+                    
         except Exception as e:
             print("Exception in run {}".format(e))
+        
+        finally:
+            pass

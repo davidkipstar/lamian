@@ -1,0 +1,17 @@
+{
+    "basecur" : "BRIDGE.LCC",
+    "quotecur" : "BRIDGE.BTC",
+    "start_tsize_bid": 0,
+    "start_tsize_ask": 0,
+    "max_tsize_bid"  : 0.0001,
+    "max_tsize_ask"  : 10,
+    "th_bid" : 0.5, 
+    "th_ask" : 2,
+    "max_orders" : 2,
+    "spread_th_ask"   : 0.02,
+    "spread_th_bid"   : 0.05,
+    "sleeptime" : 0.5,
+    "orderbooklimit" : 25,
+    "buy_cancelled" : 1,
+    "sell_cancelled" : 0
+}
