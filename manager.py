@@ -164,8 +164,8 @@ class Worker(Manager):
         try:
             asks, bids = self.update()
             satoshi = Decimal('0.00000001')
-            test_ask = find_price(asks, self.th_ask, self.start_tsize_ask)
-            test_bid = find_price(bids, self.th_bid, self.start_tsize_bid)
+            test_ask = find_price(asks, getattr(self, 'th_ask'), getattr(self, 'start_tsize_ask'))
+            test_bid = find_price(bids, getattr(self, 'th_bid'), getattr(self, 'start_tsize_bid'))
 
             spread = (test_ask - test_bid)/test_bid
             spread = spread.quantize(satoshi)
@@ -221,7 +221,10 @@ class Worker(Manager):
             try:
                 if i: print("Reconnecnting try nmbr {}".format(i))
                 self.signup()
-                self.market = Market(self.quotecur + ':' + self.basecur)
+                self.market = Market(getattr(self,'quotecur') + ':' + getattr(self,'basecur'))
+                self.market.bitshares.wallet.unlock(getattr(self,'pw'))
+                if self.market.bitshares.wallet.unlocked(): break;
+                else: raise ValueError("Connecting failed")
             except Exception as e:
                 print("Error in connecting to node {}".format(e))
         return True
@@ -243,17 +246,16 @@ class Worker(Manager):
                 #the real deal
                 asks,bids = self.update()
                 tsize_bid = convert_to_quote(asks, bids)
-                new_price = find_price(bids, self.th_bid, tsize_bid)
+                new_price = find_price(bids, getattr(self, 'th_bid'), tsize_bid)
                 #create order
                 order_id = self.create_buy_order(tsize_bid, new_price)
                 self.order_ids.append(order_id)
                 d = {'order':order_id,
                       'price': new_price,
                       'tsize': tsize_bid}
-                self.q.put({self.quotecur : d})
-
                 
-                self.q.put({'order':order_id})
+                self.q.put({getattr(self, 'quotecur') : d})
+
                 if(order_id):
                     #success
                     self.state = 1 #change state 
@@ -263,7 +265,7 @@ class Worker(Manager):
 
             #2 Checking open_order
             if self.state ==1:
-                while not self.state1():
+                while not self.state1(order_id, tsize_bid):
                     time.sleep(10)
                     #nthng to do 
                     pass
@@ -286,6 +288,7 @@ class Worker(Manager):
             if not self.state:
                 self.state = 0  
             while self.state is not None:
+                #when state is 1 orderid need to be added to object
                 if self.apply_strategy():
                     #done with one round
 
