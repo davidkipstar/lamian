@@ -14,7 +14,9 @@ import multiprocessing
 
 class Manager:
     _currencies = {}
+    _balances = {}
     _instance = None
+    
     def __init__(self, credentials):
         #Connecting to API server: 'wss://eu-west-3.bts.crypto-bridge.org/'
         witness_url = 'wss://eu-west-2.bts.crypto-bridge.org'
@@ -31,9 +33,16 @@ class Manager:
             d = json.load(f)
             for key, value in d.items():
                 setattr(self, key, value)
+        self.signup()
+        self.coinbalance()
 
-    def add_worker(self,filename):
-        w = Worker(filename, self.q)
+    def signup(self):
+
+        self.account = Account(self.acc)
+
+    def add_worker(self,filename, tsize=0):
+        #
+        w = Worker(filename, self.q, tsize)
         if getattr(w,'basecur') in self.currencies.keys():
             self.currencies[getattr(w,'basecur')].append(w)
         else:
@@ -41,6 +50,23 @@ class Manager:
         #self.workers.append(w)
         print("Added worker")
     
+    def compare(self, BUY_COIN, SELL_COIN):
+        # check all balances
+
+        while len(SELL_COIN) and 'BRIDGE.BTC' not in SELL_COIN:
+            x = self.q.get()
+            if 'order' in x.keys():
+                print(" Received order {} for {} at {}".format(x.values))
+                #assume we bought for btc
+                SELL_COIN = ['BRIDGE.BTC']
+            elif 'spread' in x.keys():
+                print("Spread at {}".format(x['spread']))
+            else:
+                print(x)
+        #we filled order
+        #do smth here
+        return [], SELL_COIN 
+
     def start(self):
         #this could be state 1: joining the market
         for currency, workers in self.currencies.items():
@@ -49,26 +75,40 @@ class Manager:
                 p = Process(target=Worker.run,args=(worker,))
                 p.daemon = True
                 p.start()
-    
-    def manage(self):
-        #queue
-        while True:
-            x = self.q.get()
-            for key, value in x.items():
-                print(key,value )
-"""
 
-"""
+    def coinbalance(self, quotecur=None):
+        
+        if quotecur:
+            balance_l = self.account.balances
+            quoteidx = 0
+            quoteidx_found = False
+            for i in range(len(balance_l)):
+                ele = balance_l[i]
+                sym = ele['symbol']
+
+                if(sym == quotecur):
+                    quoteidx = i
+                    quoteamount = balance_l[quoteidx]['amount']
+                    quoteidx_found = True
+                
+                if(quoteidx_found == False):
+                    quoteamount = 0
+            return quoteamount
+        return quotecur
+
+
+
 
 class Worker(Manager):
 
-    def __init__(self, filename, q):
+    def __init__(self, filename, q, tsize):
         super().__init__('credentials.json')
         self.settings(filename)
         self.state = None
         self.q = q
         self.price_bid = None 
         self.order_ids = []
+        self.tsize = tsize
         if self.establish_connection():
             print("Ready to go ")
         else:
@@ -182,13 +222,13 @@ class Worker(Manager):
             return False 
 
 
-    def state1(self, orderid, tsize_bid):
+    def state1(self, orderid):
         try:
             # track of our own order
             asks, bids = self.update()
 
             #test_ask = find_price(asks, self.th_ask, self.init_tsize_ask)
-            test_bid = find_price(bids, self.th_bid, tsize_bid, compensate_orders=True)
+            test_bid = find_price(bids, self.th_bid, self.tsize_bid, compensate_orders=True)
 
             #check for deviation between 
             bid_deviation = abs(update_prices_bid - price_bid)
@@ -245,7 +285,7 @@ class Worker(Manager):
                     pass
                 #the real deal
                 asks,bids = self.update()
-                tsize_bid = convert_to_quote(asks, bids)
+                tsize_bid = convert_to_quote(asks, bids, self.tsize)
                 new_price = find_price(bids, getattr(self, 'th_bid'), tsize_bid)
                 #create order
                 order_id = self.create_buy_order(tsize_bid, new_price)
@@ -288,7 +328,7 @@ class Worker(Manager):
             if not self.state:
                 self.state = 0  
             while self.state is not None:
-                #when state is 1 orderid need to be added to object
+                #when state is 1 orderid and tsize of order need to be added to object
                 if self.apply_strategy():
                     #done with one round
 

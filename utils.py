@@ -50,13 +50,13 @@ def find_price(orderbook, th, tsize, compensate_orders = False , minimum_liquidi
         
         return opt_price_rounded
 
-def convert_to_quote(asks, bids, btc_tsize=0.01):
+def convert_to_quote(asks, bids, basecur_amount): #btc_tsize = basecur amount  
     # 
     #
     lowest_ask = asks[0]['price']
     highest_bid = bids[0]['price']
     midprice = 0.5 * (lowest_ask + highest_bid)
-    init_bid = btc_tsize/midprice
+    init_bid = basecur_amount/midprice
     
     return init_bid
 
