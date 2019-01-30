@@ -12,6 +12,10 @@ from utils import *
 from multiprocessing import Queue, Process
 import multiprocessing
 
+class Proxy:
+    pass
+
+
 class Manager:
     _currencies = {}
     _balances = {}
@@ -19,30 +23,32 @@ class Manager:
     
     def __init__(self, credentials):
         #Connecting to API server: 'wss://eu-west-3.bts.crypto-bridge.org/'
+        #Proxy
         witness_url = 'wss://eu-west-2.bts.crypto-bridge.org'
-        if Manager._instance is None:
-            self.instance = BitShares(instance=witness_url)   
-        else:
-            print("Instance running on {}".format(witness_url))
+        self.instance = BitShares(instance=witness_url)    
+        self.balances = {}
         self.q = Queue()
         self.workers = []
         self.orderids = []
         self.currencies = {}
-
-        with open(credentials) as f:
-            d = json.load(f)
-            for key, value in d.items():
-                setattr(self, key, value)
-        self.signup()
-        self.coinbalance()
-
+    #Insert to proxy
     def signup(self):
+        try:
+            with open('credentials.json') as f:
+                d = json.load(f)
+                for key, value in d.items():
+                    setattr(self, key, value)
 
-        self.account = Account(self.acc)
+            self.account = Account(self.acc)
+            self.account.refresh()
+        except Exception as e:
+            print("E: {}".format(e))
+        finally:
+            return self
 
-    def add_worker(self,filename, tsize=0):
+    def add_worker(self,filename, tsize,btc=True):
         #
-        w = Worker(filename, self.q, tsize)
+        w = Worker(filename, self.q, tsize,btc=btc)
         if getattr(w,'basecur') in self.currencies.keys():
             self.currencies[getattr(w,'basecur')].append(w)
         else:
@@ -50,22 +56,6 @@ class Manager:
         #self.workers.append(w)
         print("Added worker")
     
-    def compare(self, BUY_COIN, SELL_COIN):
-        # check all balances
-
-        while len(SELL_COIN) and 'BRIDGE.BTC' not in SELL_COIN:
-            x = self.q.get()
-            if 'order' in x.keys():
-                print(" Received order {} for {} at {}".format(x.values))
-                #assume we bought for btc
-                SELL_COIN = ['BRIDGE.BTC']
-            elif 'spread' in x.keys():
-                print("Spread at {}".format(x['spread']))
-            else:
-                print(x)
-        #we filled order
-        #do smth here
-        return [], SELL_COIN 
 
     def start(self):
         #this could be state 1: joining the market
@@ -76,67 +66,127 @@ class Manager:
                 p.daemon = True
                 p.start()
 
-    def coinbalance(self, quotecur=None):
-        
-        if quotecur:
-            balance_l = self.account.balances
-            quoteidx = 0
-            quoteidx_found = False
-            for i in range(len(balance_l)):
-                ele = balance_l[i]
-                sym = ele['symbol']
+    def initial_balance(self):
+        #
+        try:
+            #
+            self.account.refresh()
+            my_coins = self.account.balances
+            print("balance    : {}".format(my_coins))
 
-                if(sym == quotecur):
-                    quoteidx = i
-                    quoteamount = balance_l[quoteidx]['amount']
-                    quoteidx_found = True
-                
-                if(quoteidx_found == False):
-                    quoteamount = 0
-            return quoteamount
-        return quotecur
+            self.balances = dict(zip(map(lambda x: getattr(x,'symbol'),my_coins),my_coins))
+
+            #
+        except Exception as e:
+            print("Error {}".format(e))
 
 
+#            local_dir = os.listdir(os.getcwd())
+#            for crypto_asset in balances:
+#                crypto = crypto_asset.symbol+'.json'
+#                if crypto in local_dir:
+#                    # we have settings and cash
+#                    for other_crypto in local_dir: #LCC.json    
+
+    def pick_sellcoins(self, blacklist= ['BRIDGE.BTC','BRIDGE.BTS'],min_capital=0.00000001):
+        #
+        my_coins = []
+        for coin in self.balances.values():
+            if coin.symbol not in blacklist and coin.amount > min_capital:
+                print("Added {} with balance {}".format(coin.symbol, coin.amount))
+                my_coins.append(coin)
+        return dict(zip(map(lambda x: getattr(x,'symbol'),my_coins),my_coins))
+
+    def coinbalance(self, quotecur):
+        """
+          Withdrawls balance for one currency 
+          If quotecur is None check all 
+        """
+        try:
+            #maybe check for quote in some place
+            if quotecur:
+                balance_l = self.account.balances
+                quoteidx = 0
+                quoteidx_found = False
+                for i in range(len(balance_l)):
+                    ele = balance_l[i]
+                    sym = ele['symbol']
+
+                    if(sym == quotecur):
+                        quoteidx = i
+                        quoteamount = balance_l[quoteidx]['amount']
+                        quoteidx_found = True
+                    
+                    if(quoteidx_found == False):
+                        quoteamount = 0
+                print("Coinbalance for {} is {}".format(quotecur,quoteamount))
+                #
+                return quoteamount
+            else:
+                #Initial
+                raise ValueError("Quotecur not found")
 
 
-class Worker(Manager):
 
-    def __init__(self, filename, q, tsize):
-        super().__init__('credentials.json')
+        except Exception as e:
+            print("E in coinbalance : {}".format(e))
+
+    def listen(self):
+        #
+        return True
+
+
+
+class Worker:
+
+    def __init__(self, filename, q, tsize, btc=True):
         self.settings(filename)
-        self.state = None
+        witness_url = 'wss://eu-west-2.bts.crypto-bridge.org'
+        self.instance = BitShares(instance=witness_url)      
         self.q = q
         self.price_bid = None 
         self.order_ids = []
-        self.tsize = tsize
+        self.state = None
+        
+        #init_start
+        self.signup()
+
         if self.establish_connection():
             print("Ready to go ")
+        #
+        if btc:
+            # Buy
+            asks,bids = self.update()
+            self.tsize = convert_to_quote(asks, bids, tsize)
         else:
-            print("error no connection established")
+            # Sell
+            self.tsize = tsize
+        
+        
     def signup(self):
         try:
-            #load settings and unlock wallet
-            self.instance = BitShares()
-            self.instance.wallet.unlock(getattr(self,'pw'))
-            if self.instance.wallet.unlocked():
-                print("Unlocking wallet was successfull")
-                self.acc = Account(getattr(self,'acc'), bitshares_instance=self.instance, full = True)
-            else:
-                raise ValueError("Unlocking not succesfull, check credentials.json")
+            with open('credentials.json') as f:
+                d = json.load(f)
+                for key, value in d.items():
+                    setattr(self, key, value)
 
-            #join market
-
+            self.account = Account(self.acc)
+            self.account.refresh()
         except Exception as e:
-            print("Error: {}".format(e))
-    
+            print("E: {}".format(e))
+
 
     def settings(self, filename):
         # pose boundary on settings here if wanted
-        with open(filename) as f:
+        print('Filename : {}'.format(filename))
+        base, quote = filename.split(':')
+        with open('standard-settings.json') as f:
             j = json.load(f)
             for key, value in j.items():
                 setattr(self, key, value)
-    
+        setattr(self, 'basecur', base)
+        setattr(self, 'quotecur', quote)
+        
 
     """
     From here on helpers function which do not process orderbook

@@ -1,36 +1,41 @@
 import os 
 import time 
 
+from utils import *
 
 from manager import Worker
 from manager import Manager
 
 if __name__ == '__main__':
 
+    #setup 
     m = Manager('credentials.json')
-    SELLING = Manager._balances.keys()
-    BUYING = []
-    directory = os.listdir(os.getcwd())
+    m.signup()
+    m.initial_balance()
+
+    sellcoins = m.pick_sellcoins()
+    print(sellcoins)
+    #sell_markets = [
     
-    try:
-        while len(BUY_COIN) and len(SELL_COIN):
-            pairs = [(x,y) for x in BUY_COIN for y in SELL_COIN]    
-            
-            for buy, sell in pairs:
-                f_name = '-'.join([,sell])+'.json' 
-                if f_name in directory:
-                    m.add_worker(f_name, tsize=tsizes[buy])
-                    print("Send worker with {} {} to buy some {}".format())
-            m.start()
-            tsizes = m.compute_table(pairs)
-            NEW_SELL_COIN = m.compare(SELL_COIN, **tsizes)
-            time.sleep(20)
-            if 'BRIDGE.BTC' in NEW_SELL_COIN:
-                pass 
-            else:
-                SELL_COIN.extend(NEW_SELL_COIN)
-                print("Selling coins: ",SELL_COIN)
+    # 
+    #for coin in sellcoins.values():
+    #    market = 'BRIDGE.BTC:BRIDGE.'+ getattr(coin,'symbol')
+    #    m.add_worker(market, sellcoins[coin.symbol].amount - 0.00001, btc=False)
 
+    btcbalance = m.balances['BRIDGE.BTC']
+    buycoins = ['XMR','LCC','BCO','XRP']
+    for coin in buycoins:
+        market = 'BRIDGE.{}:BRIDGE.BTC'.format(coin)
+        tsize = 0.000001
+        m.add_worker(market, tsize)
+        #check if true
+        btcbalance = btcbalance - tsize
 
-    except Exception as e:
-        print("Error {}".format(e))
+    m.start()
+
+    while m.listen():
+        #
+        x = m.q.get()
+        print(x)
+
+    
