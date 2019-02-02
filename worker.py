@@ -6,48 +6,63 @@ from bitshares import BitShares
 from bitshares.account import Account
 from bitshares.market import Market
 
+#from worker import Worker 
 from utils import *
 
 from multiprocessing import Queue, Process
 import multiprocessing
-from manager import Manager
 
-class Worker(Manager):
 
-    def __init__(self, filename, q):
-        super().__init__('credentials.json')
+class Worker:
+
+    def __init__(self, filename, q, tsize, btc=True):
         self.settings(filename)
-        self.state = None
+        witness_url = 'wss://eu-west-2.bts.crypto-bridge.org'
+        self.instance = BitShares(instance=witness_url)      
         self.q = q
-        self.signup()
         self.price_bid = None 
-        print("hello")
-        self.market = Market(self.quotecur + ':' + self.basecur)
+        self.order_ids = []
+        self.state = None
+        
+        #init_start
+        self.signup()
 
-
+        if self.establish_connection():
+            print("Ready to go ")
+        #
+        if btc:
+            # Buy
+            asks,bids = self.update()
+            self.tsize = convert_to_quote(asks, bids, tsize)
+        else:
+            # Sell
+            self.tsize = tsize
+        
+        
     def signup(self):
         try:
-            #load settings and unlock wallet
-            self.instance.wallet.unlock(getattr(self,'pw'))
-            if self.instance.wallet.unlocked():
-                print("Unlocking wallet was successfull")
-                self.acc = Account(getattr(self,'acc'), bitshares_instance=self.instance, full = True)
-            else:
-                raise ValueError("Unlocking not succesfull, check credentials.json")
+            with open('credentials.json') as f:
+                d = json.load(f)
+                for key, value in d.items():
+                    setattr(self, key, value)
 
-            #join market
-
+            self.account = Account(self.acc)
+            self.account.refresh()
         except Exception as e:
-            print("Error: {}".format(e))
-    
+            print("E: {}".format(e))
+
 
     def settings(self, filename):
         # pose boundary on settings here if wanted
-        with open(filename) as f:
+        print('Filename : {}'.format(filename))
+        base, quote = filename.split(':')
+        with open('standard-settings.json') as f:
             j = json.load(f)
             for key, value in j.items():
                 setattr(self, key, value)
-    
+        setattr(self, 'basecur', base)
+        setattr(self, 'quotecur', quote)
+        
 
     """
     From here on helpers function which do not process orderbook
@@ -56,12 +71,15 @@ class Worker(Manager):
 
     #fetch orderbook
     def update(self):
-        orderbook_df = pd.DataFrame(self.market.orderbook(self.orderbooklimit))
+        try:
+            orderbook_df = pd.DataFrame(self.market.orderbook(self.orderbooklimit))
 
-        asks = orderbook_df['asks'] # prices increasing from index 0 to index 1
-        bids = orderbook_df['bids'] # prices decreasing from index 0 to index 1
-        return asks,bids 
-
+            asks = orderbook_df['asks'] # prices increasing from index 0 to index 1
+            bids = orderbook_df['bids'] # prices decreasing from index 0 to index 1
+            return asks,bids 
+        except Exception as e:
+            print("Error : {}".format(e))
+            return None, None
     #place buy order
     def create_buy_order(self, tsize_bid, optimal_bid):
         try:
@@ -111,70 +129,102 @@ class Worker(Manager):
         #
         try:
             asks, bids = self.update()
-
-            test_ask = find_price(asks, self.th_ask, self.init_tsize_ask)
-            test_bid = find_price(bids, self.th_bid, self.init_tsize_bid)
+            satoshi = Decimal('0.00000001')
+            test_ask = find_price(asks, getattr(self, 'th_ask'), getattr(self, 'start_tsize_ask'))
+            test_bid = find_price(bids, getattr(self, 'th_bid'), getattr(self, 'start_tsize_bid'))
 
             spread = (test_ask - test_bid)/test_bid
             spread = spread.quantize(satoshi)
 
-            if spread > self.spread_th_bid:\
+            print("Spread@{}".format(spread))
+            if spread > self.spread_th_bid:
                 self.q.put({'spread':spread})
                 return True
+            else:
+                self.q.put({'small_spread':spread})
+        except Exception as e:
+            print("Error in state0: {}".format(e))
         finally:
             return False 
 
 
-    def state1(self, orderid, tsize_bid):
-        # track of our own order
-        asks, bids = self.update()
+    def state1(self, orderid):
+        try:
+            # track of our own order
+            asks, bids = self.update()
 
-        #test_ask = find_price(asks, self.th_ask, self.init_tsize_ask)
-        test_bid = find_price(bids, self.th_bid, tsize_bid, compensate_orders=True)
+            #test_ask = find_price(asks, self.th_ask, self.init_tsize_ask)
+            test_bid = find_price(bids, self.th_bid, self.tsize_bid, compensate_orders=True)
 
-        #check for deviation between 
-        bid_deviation = abs(update_prices_bid - price_bid)
-        
-        #
-        open_orders = self.get_open_orders()
-        if len(open_orders)==1:
-            if bid_deviation > Decimal('0.0000000099'):
-                self.q.put({'error':bid_deviation})
-                raise ValueError("Price to high")
+            #check for deviation between 
+            bid_deviation = abs(update_prices_bid - price_bid)
+            
+            #
+            open_orders = self.get_open_orders()
+            if len(open_orders)==1:
+                if bid_deviation > Decimal('0.0000000099'):
+                    self.q.put({'error':bid_deviation})
+                    raise ValueError("Price to high")
+                else:
+                    return True
+            elif len(open_orders) > 1:
+                self.q.put({'error':"too many orders"})
+                raise ValueError("Too many open orders, found {}".format(len(open_orders)))
             else:
-                return True
-        elif len(open_orders) > 1:
-            self.q.put({'error':"too many orders"})
-            raise ValueError("Too many open orders, found {}".format(len(open_orders)))
-        else:
-            #dunno of filed expired or shit
+                #dunno of filed expired or shit
 
-            self.q.put({'error':"not enough orders"})
-            raise ValueError("No open order found")
-
+                self.q.put({'error':"not enough orders"})
+                raise ValueError("No open order found")
 
         except Exception as e:
             print("Error: {}".format(e))
         finally:
             return False
 
+    def establish_connection(self):
+        try:
+            time.sleep(5)
+            for i in range(5):
+                if i: print("Reconnecnting to try nmbr {}".format(i))
+                self.signup()
+                self.market = Market(getattr(self,'quotecur') + ':' + getattr(self,'basecur'))
+                self.market.bitshares.wallet.unlock(getattr(self,'pw'))
+                if self.market.bitshares.wallet.unlocked(): 
+                    return True
+                else:
+                    time.sleep(5)
+        except Exception as e:
+            print("Error in connecting to node {}".format(e))
+        finally:
+            return False
+
 
     def apply_strategy(self):
         try:
+
+            if not self.establish_connection():
+                raise ValueError("No connection established")
+
             #1 Checking spread
             if self.state == 0:
                 while not self.state0():
                     #nothing to do
+                    #print("HALLO")
+                    time.sleep(10)
                     pass
                 #the real deal
                 asks,bids = self.update()
-                tsize_bid = convert_to_quote(asks, bids)
-                new_price = find_price(bids, self.th_bid, tsize_bid)
+                tsize_bid = convert_to_quote(asks, bids, self.tsize)
+                new_price = find_price(bids, getattr(self, 'th_bid'), tsize_bid)
                 #create order
-
                 order_id = self.create_buy_order(tsize_bid, new_price)
+                self.order_ids.append(order_id)
+                d = {'order':order_id,
+                      'price': new_price,
+                      'tsize': tsize_bid}
                 
-                self.q.put({'order':order})
+                self.q.put({getattr(self, 'quotecur') : d})
+
                 if(order_id):
                     #success
                     self.state = 1 #change state 
@@ -184,7 +234,8 @@ class Worker(Manager):
 
             #2 Checking open_order
             if self.state ==1:
-                while not self.state1():
+                while not self.state1(order_id, tsize_bid):
+                    time.sleep(10)
                     #nthng to do 
                     pass
                 #check if filed 
@@ -204,8 +255,9 @@ class Worker(Manager):
         """
         try:
             if not self.state:
-                self.state = 0            
-            while self.state not None:
+                self.state = 0  
+            while self.state is not None:
+                #when state is 1 orderid and tsize of order need to be added to object
                 if self.apply_strategy():
                     #done with one round
 

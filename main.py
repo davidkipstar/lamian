@@ -3,7 +3,7 @@ import time
 
 from utils import *
 
-from manager import Worker
+from worker import Worker
 from manager import Manager
 
 if __name__ == '__main__':
@@ -18,18 +18,21 @@ if __name__ == '__main__':
     #sell_markets = [
     
     # 
-    #for coin in sellcoins.values():
-    #    market = 'BRIDGE.BTC:BRIDGE.'+ getattr(coin,'symbol')
-    #    m.add_worker(market, sellcoins[coin.symbol].amount - 0.00001, btc=False)
+    for coin in sellcoins.values():
+        market = 'BRIDGE.BTC:BRIDGE.'+ getattr(coin,'symbol')
+        m.add_worker(market, sellcoins[coin.symbol].amount - 0.00001, btc=False)
 
     btcbalance = m.balances['BRIDGE.BTC']
+    
+    """
     buycoins = ['XMR','LCC','BCO','XRP']
     for coin in buycoins:
         market = 'BRIDGE.{}:BRIDGE.BTC'.format(coin)
-        tsize = 0.000001
+        tsize = 0.0000001
         m.add_worker(market, tsize)
         #check if true
         btcbalance = btcbalance - tsize
+    """
 
     m.start()
 
