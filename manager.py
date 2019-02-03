@@ -1,6 +1,7 @@
 import json
 import time 
 import pandas as pd
+import sys
 
 from bitshares import BitShares
 from bitshares.account import Account
@@ -252,6 +253,7 @@ class Worker:
     def state0(self):
         #
         try:
+            print('entering state0')
             asks, bids = self.update()
             satoshi = Decimal('0.00000001')
             test_ask = find_price(asks, getattr(self, 'th_ask'), getattr(self, 'start_tsize_ask'))
@@ -261,19 +263,26 @@ class Worker:
             spread = spread.quantize(satoshi)
 
             print("Spread@{}".format(spread))
+            print('overwriting self.spread_th_bid for testing purposes')
+            self.spread_th_bid = 0.02
             if spread > self.spread_th_bid:
                 self.q.put({'spread':spread})
                 return True
             else:
                 self.q.put({'small_spread':spread})
         except Exception as e:
-            print("Error in state0: {}".format(e))
-        finally:
-            return False 
+            #print("Error in state0: {}".format(e))
+            print('Error in state0 on line {}'.format(sys.exc_info()[-1].tb_lineno), type(e).__name__, e)
+        #finally:
+        # Don't use finally because we would overwrite the return True 
+        # if spread is large enough
+        return False 
 
 
     def state1(self, orderid):
         try:
+            print('entering state1')
+            
             # track of our own order
             asks, bids = self.update()
 
@@ -322,23 +331,38 @@ class Worker:
 
     def apply_strategy(self):
         try:
-
+            print('starting to apply strategy')
             if not self.establish_connection():
                 raise ValueError("No connection established")
 
             #1 Checking spread
-            if self.state == 0:
-                while not self.state0():
+            if self.state == 0 or not self.state0():
+                
+                """
+                self.state0() could be not initiated or scanning for spread
+                however, if it is true, we start to try and set ordres
+                
+                """
+                
+#            if self.state == 0:
+#                while not self.state0():
                     #nothing to do
-                    #print("HALLO")
-                    time.sleep(10)
-                    pass
+                print("sleeping in apply strategy")
+                time.sleep(1)
+                pass
+            
+            if(self.state0()):
+                order_id = None # default 
+            
+                print('just defined order_id')
+            
                 #the real deal
                 asks,bids = self.update()
                 tsize_bid = convert_to_quote(asks, bids, self.tsize)
                 new_price = find_price(bids, getattr(self, 'th_bid'), tsize_bid)
                 #create order
-                order_id = self.create_buy_order(tsize_bid, new_price)
+                print('would set order here')
+                #order_id = self.create_buy_order(tsize_bid, new_price)
                 self.order_ids.append(order_id)
                 d = {'order':order_id,
                       'price': new_price,
@@ -346,7 +370,7 @@ class Worker:
                 
                 self.q.put({getattr(self, 'quotecur') : d})
 
-                if(order_id):
+                if(order_id is not None):
                     #success
                     self.state = 1 #change state 
                 else:
@@ -363,7 +387,8 @@ class Worker:
                 self.state = 0
 
         except Exception as e:
-            print("Error in state {} with message {}".format(self.state, e))    
+            #print("Error in state {} with message {}".format(self.state, e))    
+            print('Error on line {}'.format(sys.exc_info()[-1].tb_lineno), type(e).__name__, e)
         finally:
             print("Strategy completed")
             return True
@@ -385,7 +410,7 @@ class Worker:
                     self.q.put({'Success':"Done"})
                     
         except Exception as e:
-            print("Exception in run {}".format(e))
-        
+            #print("Exception in run {}".format(e))
+            print('Error on line {}'.format(sys.exc_info()[-1].tb_lineno), type(e).__name__, e)
         finally:
             pass
