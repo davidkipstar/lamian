@@ -23,10 +23,10 @@ if __name__ == '__main__':
     #    m.add_worker(market, sellcoins[coin.symbol].amount - 0.00001, btc=False)
 
     btcbalance = m.balances['BRIDGE.BTC']
-    buycoins = ['XMR','LCC','BCO','XRP']
+    buycoins = ['LRM', 'LPC']
     for coin in buycoins:
         market = 'BRIDGE.{}:BRIDGE.BTC'.format(coin)
-        tsize = 0.000001
+        tsize = 0.001
         m.add_worker(market, tsize)
         #check if true
         btcbalance = btcbalance - tsize
