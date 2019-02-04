@@ -5,6 +5,7 @@ import pandas as pd
 from bitshares import BitShares
 from bitshares.account import Account
 from bitshares.market import Market
+from bitshares.asset import Asset
 
 #from worker import Worker 
 from utils import *
@@ -13,62 +14,62 @@ from multiprocessing import Queue, Process
 import multiprocessing
 
 
-class Worker:
-
-    def __init__(self, filename, q, tsize, btc=True):
-        self.settings(filename)
-        witness_url = 'wss://eu-west-2.bts.crypto-bridge.org'
-        self.instance = BitShares(instance=witness_url)      
-        self.q = q
-        self.price_bid = None 
-        self.order_ids = []
-        self.state = None
-        
-        #init_start
-        self.signup()
-
-        if self.establish_connection():
-            print("Ready to go ")
-        #
-        if btc:
-            # Buy
-            asks,bids = self.update()
-            self.tsize = convert_to_quote(asks, bids, tsize)
-        else:
-            # Sell
-            self.tsize = tsize
-        
-        
-    def signup(self):
-        try:
+class Proxy:
+    _instance = None
+    _queue = None
+    _pwd = None
+    def __init__(self):
+        if Proxy._instance is None:
             with open('credentials.json') as f:
                 d = json.load(f)
                 for key, value in d.items():
                     setattr(self, key, value)
-
             self.account = Account(self.acc)
             self.account.refresh()
-        except Exception as e:
-            print("E: {}".format(e))
+            Proxy._pwd = self.pw
+            witness_url = 'wss://eu-west-2.bts.crypto-bridge.org'
+            Proxy._instance = BitShares(instance=witness_url)      
+        if Proxy._queue is None:
+            Proxy._queue = Queue()   
+    
+
+    def put(self,event):
+        #process event here
+        Proxy._queue.put(event)
+
+    @staticmethod
+    def getQueue():
+        #get event
+        return Proxy._queue.get()
+    @staticmethod
+    def getPwd():
+        return Proxy._pwd
+    @staticmethod
+    def getInstance():
+        return Proxy._instance
+
+class Worker(Proxy):
+
+    def __init__(self, qcoin, bcoin, **kwargs):
+        """
 
 
-    def settings(self, filename):
-        # pose boundary on settings here if wanted
-        print('Filename : {}'.format(filename))
-        base, quote = filename.split(':')
-        with open('standard-settings.json') as f:
-            j = json.load(f)
-            for key, value in j.items():
-                setattr(self, key, value)
-        setattr(self, 'basecur', base)
-        setattr(self, 'quotecur', quote)
+        kwargs are or ordered dict?
+        strategy:
+          -- state 0: Wait for Conditioin (large spread)
+          -- state 1: Take Action (place order)
+          -- state 2: Track Action (readjust order or quit)
+        """
+        super().__init__()
+        #time.sleep(3)
+        self.market = Market(
+                qcoin,
+                bcoin,
+                bitshares_instance = Proxy._instance)
         
-
-    """
-    From here on helpers function which do not process orderbook
-    helpers function
-    """
-
+        self.market.bitshares.wallet.unlock(self.getPwd())
+        self.strategy = kwargs 
+   
     #fetch orderbook
     def update(self):
         try:
@@ -80,6 +81,7 @@ class Worker:
         except Exception as e:
             print("Error : {}".format(e))
             return None, None
+    
     #place buy order
     def create_buy_order(self, tsize_bid, optimal_bid):
         try:
@@ -125,78 +127,8 @@ class Worker:
             return None
 
 
-    def state0(self):
-        #
-        try:
-            asks, bids = self.update()
-            satoshi = Decimal('0.00000001')
-            test_ask = find_price(asks, getattr(self, 'th_ask'), getattr(self, 'start_tsize_ask'))
-            test_bid = find_price(bids, getattr(self, 'th_bid'), getattr(self, 'start_tsize_bid'))
-
-            spread = (test_ask - test_bid)/test_bid
-            spread = spread.quantize(satoshi)
-
-            print("Spread@{}".format(spread))
-            if spread > self.spread_th_bid:
-                self.q.put({'spread':spread})
-                return True
-            else:
-                self.q.put({'small_spread':spread})
-        except Exception as e:
-            print("Error in state0: {}".format(e))
-        finally:
-            return False 
 
 
-    def state1(self, orderid):
-        try:
-            # track of our own order
-            asks, bids = self.update()
-
-            #test_ask = find_price(asks, self.th_ask, self.init_tsize_ask)
-            test_bid = find_price(bids, self.th_bid, self.tsize_bid, compensate_orders=True)
-
-            #check for deviation between 
-            bid_deviation = abs(update_prices_bid - price_bid)
-            
-            #
-            open_orders = self.get_open_orders()
-            if len(open_orders)==1:
-                if bid_deviation > Decimal('0.0000000099'):
-                    self.q.put({'error':bid_deviation})
-                    raise ValueError("Price to high")
-                else:
-                    return True
-            elif len(open_orders) > 1:
-                self.q.put({'error':"too many orders"})
-                raise ValueError("Too many open orders, found {}".format(len(open_orders)))
-            else:
-                #dunno of filed expired or shit
-
-                self.q.put({'error':"not enough orders"})
-                raise ValueError("No open order found")
-
-        except Exception as e:
-            print("Error: {}".format(e))
-        finally:
-            return False
-
-    def establish_connection(self):
-        try:
-            time.sleep(5)
-            for i in range(5):
-                if i: print("Reconnecnting to try nmbr {}".format(i))
-                self.signup()
-                self.market = Market(getattr(self,'quotecur') + ':' + getattr(self,'basecur'))
-                self.market.bitshares.wallet.unlock(getattr(self,'pw'))
-                if self.market.bitshares.wallet.unlocked(): 
-                    return True
-                else:
-                    time.sleep(5)
-        except Exception as e:
-            print("Error in connecting to node {}".format(e))
-        finally:
-            return False
 
 
     def apply_strategy(self):
@@ -268,3 +200,12 @@ class Worker:
         
         finally:
             pass
+
+
+if __name__ == '__main__':
+    #
+    base = Asset('BRIDGE.BTC')
+    quote = Asset('BRIDGE.LCC')
+    w = Worker(quote, base)
+    Worker.run(w, strategy)
+    #

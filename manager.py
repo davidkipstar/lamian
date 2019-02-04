@@ -14,11 +14,11 @@ import multiprocessing
 
 from worker import Worker
 
-class Proxy:
-    pass
+
 
 
 class Manager:
+
     _currencies = {}
     _balances = {}
     _instance = None
@@ -33,6 +33,7 @@ class Manager:
         self.workers = []
         self.orderids = []
         self.currencies = {}
+
     #Insert to proxy
     def signup(self):
         try:
@@ -58,6 +59,17 @@ class Manager:
         #self.workers.append(w)
         print("Added worker")
     
+    
+    def settings(self, filename):
+        # pose boundary on settings here if wanted
+        print('Filename : {}'.format(filename))
+        base, quote = filename.split(':')
+        with open('standard-settings.json') as f:
+            j = json.load(f)
+            for key, value in j.items():
+                setattr(self, key, value)
+        setattr(self, 'basecur', base)
+        setattr(self, 'quotecur', quote)
 
     def start(self):
         #this could be state 1: joining the market
@@ -82,13 +94,6 @@ class Manager:
         except Exception as e:
             print("Error {}".format(e))
 
-
-#            local_dir = os.listdir(os.getcwd())
-#            for crypto_asset in balances:
-#                crypto = crypto_asset.symbol+'.json'
-#                if crypto in local_dir:
-#                    # we have settings and cash
-#                    for other_crypto in local_dir: #LCC.json    
 
     def pick_sellcoins(self, blacklist= ['BRIDGE.BTC','BRIDGE.BTS'],min_capital=0.00000001):
         #
