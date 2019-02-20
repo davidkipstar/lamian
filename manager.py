@@ -51,7 +51,7 @@ class Manager:
 
     def add_worker(self,filename, tsize,btc=True):
         #
-        w = Worker(filename, self.q, tsize,btc=btc)
+        w = Worker(filename, self.q, tsize, btc=btc)
         if getattr(w,'basecur') in self.currencies.keys():
             self.currencies[getattr(w,'basecur')].append(w)
         else:
@@ -62,6 +62,7 @@ class Manager:
 
     def start(self):
         #this could be state 1: joining the market
+        # Below we can use all worker functions and settings from the input file
         for currency, workers in self.currencies.items():
             for worker in workers:
                 worker.state = None
@@ -91,7 +92,7 @@ class Manager:
 #                    # we have settings and cash
 #                    for other_crypto in local_dir: #LCC.json    
 
-    def pick_sellcoins(self, blacklist= ['BRIDGE.BTC','BRIDGE.BTS'],min_capital=0.00000001):
+    def pick_sellcoins(self, blacklist= ['BRIDGE.BTC','BTS'],min_capital=0.00000001):
         #
         my_coins = []
         for coin in self.balances.values():
@@ -138,8 +139,6 @@ class Manager:
         #
         return True
 
-<<<<<<< HEAD
-=======
 
 
 class Worker:
@@ -163,8 +162,10 @@ class Worker:
             # Buy
             asks,bids = self.update()
             self.tsize = convert_to_quote(asks, bids, tsize)
+            print(self.tsize)
         else:
             # Sell
+            print('notbtc')
             self.tsize = tsize
         
         
@@ -418,4 +419,3 @@ class Worker:
             print('Error on line {}'.format(sys.exc_info()[-1].tb_lineno), type(e).__name__, e)
         finally:
             pass
->>>>>>> 01037431fcdd646f47cbfba554a993cabeb6e000

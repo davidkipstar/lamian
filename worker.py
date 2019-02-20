@@ -217,8 +217,9 @@ class Worker:
                 tsize_bid = convert_to_quote(asks, bids, self.tsize)
                 new_price = find_price(bids, getattr(self, 'th_bid'), tsize_bid)
                 #create order
-                order_id = self.create_buy_order(tsize_bid, new_price)
-                self.order_ids.append(order_id)
+                #order_id = self.create_buy_order(tsize_bid, new_price)
+                #self.order_ids.append(order_id)
+                print('worker: would set order here')
                 d = {'order':order_id,
                       'price': new_price,
                       'tsize': tsize_bid}

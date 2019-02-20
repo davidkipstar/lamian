@@ -18,34 +18,55 @@ if __name__ == '__main__':
     #sell_markets = [
     
     # 
-    for coin in sellcoins.values():
-        market = 'BRIDGE.BTC:BRIDGE.'+ getattr(coin,'symbol')
-        m.add_worker(market, sellcoins[coin.symbol].amount - 0.00001, btc=False)
+#    for coin in sellcoins.values():
+#        market = 'BRIDGE.BTC:BRIDGE.'+ getattr(coin,'symbol')
+#        print(market)
+        #m.add_worker(market, sellcoins[coin.symbol].amount - 0.00001, btc=False)
 
     btcbalance = m.balances['BRIDGE.BTC']
-<<<<<<< HEAD
+
+    buycoins = ['LCC', 'LPC']
+    for coin in buycoins:
+        
+        try:
+            # Check if we actually have this coin
+            m.balances['BRIDGE.{}'.format(coin)]
+        except Exception as e:
+            continue;
+        
+        # 
+        market = 'BRIDGE.{}:BRIDGE.BTC'.format(coin)
+        print(market)
+        tsize = 0.001
+
+        m.add_worker(market, tsize)
+        #check if true
+        btcbalance = btcbalance - tsize
+        time.sleep(1)
+
     
     """
     buycoins = ['XMR','LCC','BCO','XRP']
     for coin in buycoins:
         market = 'BRIDGE.{}:BRIDGE.BTC'.format(coin)
         tsize = 0.0000001
-=======
+
     buycoins = ['LRM', 'LPC']
     for coin in buycoins:
         market = 'BRIDGE.{}:BRIDGE.BTC'.format(coin)
         tsize = 0.001
->>>>>>> 01037431fcdd646f47cbfba554a993cabeb6e000
+
         m.add_worker(market, tsize)
         #check if true
         btcbalance = btcbalance - tsize
-    """
+"""
 
-    m.start()
+    
+m.start()
 
-    while m.listen():
-        #
-        x = m.q.get()
-        print(x)
+while m.listen():
+    #
+    x = m.q.get()
+    print(x)
 
     
