@@ -18,10 +18,10 @@ if __name__ == '__main__':
     #sell_markets = [
     
     # 
-#    for coin in sellcoins.values():
-#        market = 'BRIDGE.BTC:BRIDGE.'+ getattr(coin,'symbol')
-#        print(market)
-        #m.add_worker(market, sellcoins[coin.symbol].amount - 0.00001, btc=False)
+    for coin in sellcoins.values():
+        market = 'BRIDGE.BTC:'+ getattr(coin,'symbol')
+        print(market)
+        m.add_worker(market, sellcoins[coin.symbol].amount - 0.00001, btc=False)
 
     btcbalance = m.balances['BRIDGE.BTC']
 

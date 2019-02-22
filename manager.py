@@ -45,7 +45,7 @@ class Manager:
             self.account = Account(self.acc)
             self.account.refresh()
         except Exception as e:
-            print("E: {}".format(e))
+            print('Error on line {}'.format(sys.exc_info()[-1].tb_lineno), type(e).__name__, e)
         finally:
             return self
 
@@ -82,7 +82,7 @@ class Manager:
 
             #
         except Exception as e:
-            print("Error {}".format(e))
+            print('Error on line {}'.format(sys.exc_info()[-1].tb_lineno), type(e).__name__, e)
 
 
 #            local_dir = os.listdir(os.getcwd())
@@ -92,7 +92,7 @@ class Manager:
 #                    # we have settings and cash
 #                    for other_crypto in local_dir: #LCC.json    
 
-    def pick_sellcoins(self, blacklist= ['BRIDGE.BTC','BTS'],min_capital=0.00000001):
+    def pick_sellcoins(self, blacklist= ['BRIDGE.BTC','BTS', 'DEEX', 'FRESHCOIN', 'LIQPAY', 'READMEMO'],min_capital=0.00000001):
         #
         my_coins = []
         for coin in self.balances.values():
@@ -133,7 +133,7 @@ class Manager:
 
 
         except Exception as e:
-            print("E in coinbalance : {}".format(e))
+            print('Error on line {}'.format(sys.exc_info()[-1].tb_lineno), type(e).__name__, e)
 
     def listen(self):
         #
@@ -330,7 +330,7 @@ class Worker:
                 if self.market.bitshares.wallet.unlocked(): break;
                 else: raise ValueError("Connecting failed")
             except Exception as e:
-                print("Error in connecting to node {}".format(e))
+                print('Error on line {}'.format(sys.exc_info()[-1].tb_lineno), type(e).__name__, e)
         return True
 
 
