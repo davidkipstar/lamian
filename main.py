@@ -1,6 +1,8 @@
 import os 
 import time 
 
+os.chdir('/home/julian/prg/lamian')
+
 from utils import *
 
 from worker import Worker
@@ -18,10 +20,15 @@ if __name__ == '__main__':
     #sell_markets = [
     
     # 
+    #allowed_sellcoins =  ['LRM', 'LGS']
+    
     for coin in sellcoins.values():
+
         market = 'BRIDGE.BTC:'+ getattr(coin,'symbol')
         print(market)
         m.add_worker(market, sellcoins[coin.symbol].amount - 0.00001, btc=False)
+
+
 
     btcbalance = m.balances['BRIDGE.BTC']
 
@@ -37,7 +44,7 @@ if __name__ == '__main__':
         # 
         market = 'BRIDGE.{}:BRIDGE.BTC'.format(coin)
         print(market)
-        tsize = 0.001
+        tsize = 0.01
 
         m.add_worker(market, tsize)
         #check if true

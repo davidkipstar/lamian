@@ -13,7 +13,7 @@ from utils import *
 from multiprocessing import Queue, Process
 import multiprocessing
 
-from worker import Worker
+
 
 class Proxy:
     pass
@@ -92,7 +92,7 @@ class Manager:
 #                    # we have settings and cash
 #                    for other_crypto in local_dir: #LCC.json    
 
-    def pick_sellcoins(self, blacklist= ['BRIDGE.BTC','BTS', 'DEEX', 'FRESHCOIN', 'LIQPAY', 'READMEMO'],min_capital=0.00000001):
+    def pick_sellcoins(self, blacklist= ['BRIDGE.BTC','BTS', 'DEEX', 'FRESHCOIN', 'LIQPAY', 'READMEMO', 'TRUMPTWEET'],min_capital=1):
         #
         my_coins = []
         for coin in self.balances.values():
@@ -144,6 +144,7 @@ class Manager:
 class Worker:
 
     def __init__(self, filename, q, tsize, btc=True):
+        self.btc = btc
         self.settings(filename)
         witness_url = 'wss://eu-west-2.bts.crypto-bridge.org'
         self.instance = BitShares(instance=witness_url)      
@@ -151,6 +152,8 @@ class Worker:
         self.price_bid = None 
         self.order_ids = []
         self.state = None
+        
+
         
         #init_start
         self.signup()
@@ -162,12 +165,16 @@ class Worker:
             # Buy
             asks,bids = self.update()
             self.tsize = convert_to_quote(asks, bids, tsize)
-            print(self.tsize)
+            print('current buy tsize:', self.tsize)
         else:
             # Sell
             print('notbtc')
             self.tsize = tsize
+            print('current sell tsize:', self.tsize)
         
+        # For Spread estimation
+        print('overwriting standard start_tsize_bid and standard start_tsize_ask')
+        self.start_tsize_bid, self.start_tsize_ask = self.tsize, self.tsize        
         
     def signup(self):
         try:
@@ -190,8 +197,12 @@ class Worker:
             j = json.load(f)
             for key, value in j.items():
                 setattr(self, key, value)
-        setattr(self, 'basecur', base)
-        setattr(self, 'quotecur', quote)
+#        if(self.btc):
+        setattr(self, 'basecur', quote)
+        setattr(self, 'quotecur', base)
+#        else:
+#            setattr(self, 'basecur', base)
+#            setattr(self, 'quotecur', quote)
         
 
     """
@@ -202,8 +213,9 @@ class Worker:
     #fetch orderbook
     def update(self):
         try:
-            orderbook_df = pd.DataFrame(self.market.orderbook(self.orderbooklimit))
-
+            orderbook_df = pd.DataFrame(self.market.orderbook(self.orderbooklimit)) # 
+            warning('iterate orderbooklimit!')
+            #print('self.market', self.market)
             asks = orderbook_df['asks'] # prices increasing from index 0 to index 1
             bids = orderbook_df['bids'] # prices decreasing from index 0 to index 1
             return asks,bids 
@@ -261,15 +273,17 @@ class Worker:
             print('entering state0')
             asks, bids = self.update()
             satoshi = Decimal('0.00000001')
-            test_ask = find_price(asks, getattr(self, 'th_ask'), getattr(self, 'start_tsize_ask'))
-            test_bid = find_price(bids, getattr(self, 'th_bid'), getattr(self, 'start_tsize_bid'))
+            #test_ask = find_price(asks, getattr(self, 'th_ask'), getattr(self, 'start_tsize_ask'))
+            #test_bid = find_price(bids, getattr(self, 'th_bid'), getattr(self, 'start_tsize_bid'))
+            test_ask = find_price(asks, self.th_ask, self.start_tsize_ask)
+            test_bid = find_price(bids, self.th_bid, self.start_tsize_bid)
 
             spread = (test_ask - test_bid)/test_bid
             spread = spread.quantize(satoshi)
 
             print("Spread@{}".format(spread))
-            print('overwriting self.spread_th_bid for testing purposes')
-            self.spread_th_bid = 0.02
+            #print('overwriting self.spread_th_bid for testing purposes')
+            #self.spread_th_bid = 0.02
             if spread > self.spread_th_bid:
                 self.q.put({'spread':spread})
                 return True
@@ -326,6 +340,7 @@ class Worker:
                 if i: print("Reconnecnting try nmbr {}".format(i))
                 self.signup()
                 self.market = Market(getattr(self,'quotecur') + ':' + getattr(self,'basecur'))
+                #print('signing up in market:', getattr(self, 'quotecur'), ':', getattr(self, 'basecur'))
                 self.market.bitshares.wallet.unlock(getattr(self,'pw'))
                 if self.market.bitshares.wallet.unlocked(): break;
                 else: raise ValueError("Connecting failed")
@@ -367,7 +382,7 @@ class Worker:
                 new_price = find_price(bids, getattr(self, 'th_bid'), tsize_bid)
                 #create order
                 print('would set order here')
-                #order_id = self.create_buy_order(tsize_bid, new_price)
+                order_id = self.create_buy_order(tsize_bid, new_price)
                 self.order_ids.append(order_id)
                 d = {'order':order_id,
                       'price': new_price,
