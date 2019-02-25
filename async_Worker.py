@@ -48,7 +48,7 @@ class Worker(Manager):
     def get_orderbook(self):
         market = super().get_market(self.market_string)
         try:
-            orderbook_df = pd.DataFrame(self.market.orderbook(self.orderbooklimit)) # 
+            orderbook_df = pd.DataFrame(market.orderbook(self.orderbooklimit)) # 
             asks = orderbook_df['asks'] # prices increasing from index 0 to index 1
             bids = orderbook_df['bids'] # prices decreasing from index 0 to index 1
             return asks,bids 
@@ -63,10 +63,12 @@ class Worker(Manager):
             print("Worker: {} .... running in state {} loop {}".format(self.market_string, self.strategy.state, i)) 
             current_state = self.strategy.state
             asks, bids = self.get_orderbook()  
+            print(asks)
+            print(bids)
             for order in self.orders:
                 print("Open order {}".format(order))
             #state machine table
-            if current_state ==0:
+            if current_state == 0:
                 price = self.strategy.state0(asks, bids)
                 if price:
                     order = super().buy(self.market_string, price, self.tsize)
