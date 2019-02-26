@@ -21,6 +21,7 @@ class Worker(Manager):
         setattr(self, 'basecur', base)
         setattr(self, 'quotecur', quote)
 
+        self.orderbooklimit = 25
         self.price_bid = None 
         self.orders = []
         self.state = None
@@ -33,12 +34,28 @@ class Worker(Manager):
         else:
             asks,bids = self.get_orderbook()
             self.tsize = convert_to_quote(asks, bids, tsize)
-        
+            
+            
+                        
+        """
+        get_orderbook:
+        This function only returns the orderbook if a minimum amount of 
+        25 orders exists on both sides of the market. 
+        Hence, if the condition is not satisfied, the market is automatically
+        regarded as too illiquid to trade.
+        """
+                    
     def get_orderbook(self):
         market = super().get_market(self.market_string)
-        asks, bids = update(market)
-        return asks, bids
-        
+        try:
+            orderbook_df = pd.DataFrame(market.orderbook(self.orderbooklimit)) # 
+            asks = orderbook_df['asks'] # prices increasing from index 0 to index 1
+            bids = orderbook_df['bids'] # prices decreasing from index 0 to index 1
+            return asks,bids 
+        except Exception as e:
+            print("Update failed, market is too illiquid: {}".format(e))
+            return None, None            
+    
     def run(self):
         i = 0
         while True:
@@ -46,10 +63,12 @@ class Worker(Manager):
             print("Worker: {} .... running in state {} loop {}".format(self.market_string, self.strategy.state, i)) 
             current_state = self.strategy.state
             asks, bids = self.get_orderbook()  
+            print(asks)
+            print(bids)
             for order in self.orders:
                 print("Open order {}".format(order))
             #state machine table
-            if current_state ==0:
+            if current_state == 0:
                 price = self.strategy.state0(asks, bids)
                 if price:
                     order = super().buy(self.market_string, price, self.tsize)

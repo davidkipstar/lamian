@@ -29,7 +29,7 @@ for coin in buycoins:
     btcbalance = btcbalance - tsize
     time.sleep(1)
 """
-coin= 'LCC'
+coin= 'GIN'
 market = 'BRIDGE.BTC:BRIDGE.{}'.format(coin)
 tsize = 0.0001
 w = Worker(market, tsize,th = 0.002)

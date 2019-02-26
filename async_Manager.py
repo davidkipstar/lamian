@@ -41,11 +41,12 @@ class Manager:
         market = self.get_market(market_key)
         print("Market unlocked {}".format(market.bitshares.wallet.unlocked()))
         print("Account unlocked {}".format(self.account.bitshares.wallet.unlocked()))
-        order = market.buy(price = price, 
-                            amount = amount, 
-                            returnOrderId = True, 
-                            account = self.account,
-                            expiration = 60)
+#        order = market.buy(price = price, 
+#                            amount = amount, 
+#                            returnOrderId = True, 
+#                            account = self.account,
+#                            expiration = 60)
+        print('would buy here')
         
         d = {'orderid' : 123,
                     'price' : price,
