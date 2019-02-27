@@ -28,12 +28,14 @@ class CheckSpread:
             return 0
             
     def state1(self, asks, order):
-
-        order_price = order['price']
-        #check if order still in orderbook
-        estimated_price = find_price(asks, self.th, self.tsize, compensate_orders=True)
+        estimated_price = find_price(asks, 
+                                        self.th, 
+                                        self.tsize, 
+                                        previous_order=order)
         # 5% diviation
-        if abs(estimated_price - order_price)/order_price > 0.95:
+        order_price = order['price']
+        
+        if abs(float(estimated_price) - order_price)/order_price > 0.95:
             self.state = 0 
         else:
             self.state = 1

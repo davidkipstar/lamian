@@ -1,6 +1,7 @@
 import json
 import time 
 import pandas as pd
+import numpy as np
 import sys
 
 from bitshares import BitShares
@@ -16,11 +17,11 @@ class Manager:
      - balance
     """
     markets = {}
-    
+    orders = {}
+        
     def __init__(self):    
         self.instance = BitShares(witness_url = 'wss://eu-west-2.bts.crypto-bridge.org')    
         self.balances = {}
-        self.orders = {}
         self.signup()
         self.balance()
         
@@ -35,6 +36,15 @@ class Manager:
                                 bitshares_instance = self.instance)
         self.account.bitshares.wallet.unlock(getattr(self,'pw'))
 
+    def order_active(self,order):
+        #
+        print(Manager.orders)
+        if order['order'] in Manager.orders.keys():
+            #check if order active
+            return np.random.choice([True,True,True,False])
+        else:
+            Manager.orders[order['order']] = order
+            return True
 
     def buy(self, market_key, price, amount):
         #blockchain_instance
@@ -48,10 +58,9 @@ class Manager:
 #                            expiration = 60)
         print('would buy here')
         
-        d = {'orderid' : 123,
-                    'price' : price,
+        d = {'price' : float(price),
                     'amount' : amount,
-                    'order': order}
+                    'order': 1}
         return d      #self.orders[order['orderid']] = market
 
     def cancel(self, order):

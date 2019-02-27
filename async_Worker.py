@@ -29,23 +29,20 @@ class Worker(Manager):
         self.market_string = market
         
         if btc:
-            self.tsize = tsize
-        
-        else:
             asks,bids = self.get_orderbook()
             self.tsize = convert_to_quote(asks, bids, tsize)
+        else:
+            self.tsize = tsize            
             
-            
-                        
+    
+    def get_orderbook(self):       
         """
-        get_orderbook:
         This function only returns the orderbook if a minimum amount of 
         25 orders exists on both sides of the market. 
         Hence, if the condition is not satisfied, the market is automatically
         regarded as too illiquid to trade.
         """
-                    
-    def get_orderbook(self):
+                
         market = super().get_market(self.market_string)
         try:
             orderbook_df = pd.DataFrame(market.orderbook(self.orderbooklimit)) # 
@@ -63,8 +60,6 @@ class Worker(Manager):
             print("Worker: {} .... running in state {} loop {}".format(self.market_string, self.strategy.state, i)) 
             current_state = self.strategy.state
             asks, bids = self.get_orderbook()  
-            print(asks)
-            print(bids)
             for order in self.orders:
                 print("Open order {}".format(order))
             #state machine table
@@ -75,13 +70,8 @@ class Worker(Manager):
                     self.orders.append(order)
             if current_state == 1:
                 order = self.orders[-1]
-                if order['orderid'] ==0:
-                    print("Error placing order")
-                else:
-                    print("Worker: {} order {} placed,  amount: {}  price: {}".format(self.market_string, 
-                                                                                        order['orderid'],
-                                                                                        order['amount'],
-                                                                                        order['price']))
+                if super().order_active(order):
                     self.strategy.state1(asks, self.orders[-1])
-
+                else:
+                    self.strategy.state = 0
             time.sleep(3)
