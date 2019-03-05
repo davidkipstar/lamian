@@ -51,23 +51,26 @@ class Manager:
         market = self.get_market(market_key)
         print("Market unlocked {}".format(market.bitshares.wallet.unlocked()))
         print("Account unlocked {}".format(self.account.bitshares.wallet.unlocked()))
-#        order = market.buy(price = price, 
-#                            amount = amount, 
-#                            returnOrderId = True, 
-#                            account = self.account,
-#                            expiration = 60)
-        print('would buy here')
-        
+        order = market.buy(price = price,
+                            amount = amount,
+                            returnOrderId = True,
+                            account = self.account,
+                            expiration = 60)
+
         d = {'price' : float(price),
                     'amount' : amount,
-                    'order': 1}
+                    'order': order}
         return d      #self.orders[order['orderid']] = market
 
-    def cancel(self, order):
+    def cancel(self, order, market_key):
+        # cancel is used in buy for test reasons, so define it beforehand
         try:
-            self.orders[order['orderid']].cancel(order['orderid'], self.account)
+            market = self.get_market(market_key)
+            market.cancel(order['order']['orderid'], self.account)
+            return True
         except Exception as e:
             print("Error during cancellation! Order_id: {}".format(order['orderid']))
+            return False
 
     def balance(self):
         self.account.refresh()

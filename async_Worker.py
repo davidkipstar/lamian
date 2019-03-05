@@ -66,7 +66,15 @@ class Worker(Manager):
             if current_state == 0:
                 price = self.strategy.state0(asks, bids)
                 if price:
-                    order = super().buy(self.market_string, price, self.tsize)
+                    test_order = super().buy(self.market_string, price, self.tsize)
+                    if test_order:
+                        print('order is set, trying to cancel')
+                        test_cancel = self.cancel(test_order, self.market_string)
+                        if test_cancel:
+                            print('cancellation succesful')
+                        else:
+                            print('couldnt cancel order, abort mission!!! Require manual cancellation!')
+
                     self.orders.append(order)
             if current_state == 1:
                 order = self.orders[-1]
