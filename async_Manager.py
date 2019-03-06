@@ -82,7 +82,7 @@ class Manager:
         return d      #self.orders[order['orderid']] = market
 
     def cancel(self, order, market_key):
-        # cancel is used in buy for test reasons, so define it beforehand
+        # cancelling specific order
         try:
             market = self.get_market(market_key)
             market.cancel(order['order']['orderid'], self.account)
@@ -90,6 +90,42 @@ class Manager:
         except Exception as e:
             print("Error during cancellation! Order_id: {}".format(order['orderid']))
             return False
+
+    def cancel_all_orders(self, market_key, order_list):
+        """
+        So far this function cancels all orders for a specific market.
+        However, it is desirable to manually pass a list of orderids that are supposed to be cancelled.
+        This is currently under construction as we also need to manually pass the markets OR retrieve them
+        via their asset id from the order
+
+        TODO order_list
+        """
+        if not order_list:
+
+            # Create list of orders to be cancelled, depending on a specific market
+            # TODO we are actually signing up twice in the same market because get_market_open_orders requires a market too
+            market = self.get_market(market_key)
+            orders = self.get_market_open_orders(market_key)
+            print((len(orders), 'open orders to cancel'))
+            if len(orders):
+                attempt = 1
+                order_list = []
+                for order in orders:
+                    order_list.append(order['id'])
+
+            while attempt:
+                try:
+                    details = market.cancel(order_list, self.account)
+                    print(details)
+                    attempt = 0
+                    return True
+                except:
+                    print((attempt, 'cancel failed', order_list))
+                    attempt += 1
+                    if attempt > 3:
+                        print('cancel aborted')
+                        return False
+                    pass
 
     def balance(self):
         self.account.refresh()
