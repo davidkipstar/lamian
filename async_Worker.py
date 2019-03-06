@@ -74,8 +74,8 @@ class Worker(Manager):
                             print('cancellation succesful')
                         else:
                             print('couldnt cancel order, abort mission!!! Require manual cancellation!')
-
-                    self.orders.append(order)
+                    self.orders.append(test_order)
+                    print('tracked orders:', self.orders)
             if current_state == 1:
                 order = self.orders[-1]
                 if super().order_active(order):
