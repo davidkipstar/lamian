@@ -7,16 +7,19 @@ from async_Worker import Worker
 
 #setup 
 m = Manager()
+
 """
 sellcoins = m.pick_sellcoins()
 print(sellcoins)
 
 for coin in sellcoins.values():
     market = 'BRIDGE.BTC:'+ getattr(coin,'symbol')
-    Worker(market, sellcoins[coin.symbol].amount - 0.00001, btc=False)
-    time.sleep(1)
+    w = Worker(market, sellcoins[coin.symbol].amount - 0.00001, th = 0.01,btc=False)
+    #time.sleep(1)
 
+"""
 
+"""
 btcbalance = m.balances['BRIDGE.BTC']
 buycoins = ['LCC', 'LPC']
 
@@ -29,9 +32,19 @@ for coin in buycoins:
     btcbalance = btcbalance - tsize
     time.sleep(1)
 """
+
+"""
+# sell
+sellcoin = 'LCC'
+market = 'BRIDGE.BTC:BRIDGE.{}'.format(sellcoin)
+w = Worker(market, 12.490714 - 0.00001, btc=False)
+w.run()
+
+"""
+
 #BUY
-coin= 'GIN'
+coin= 'PARQ'
 market = 'BRIDGE.{}:BRIDGE.BTC'.format(coin)
-tsize = 0.0001
+tsize = 0.0000001
 w = Worker(market, tsize,th = 0.0138)
 w.run()

@@ -12,6 +12,7 @@ from utils import *
 from Strategy import CheckSpread
 from async_Manager import Manager
 
+
 class Worker(Manager):
 
     def __init__(self, market, tsize, th = 0.05,btc=True):
@@ -67,14 +68,24 @@ class Worker(Manager):
                 price = self.strategy.state0(asks, bids)
                 if price:
                     test_order = super().buy(self.market_string, price, self.tsize)
-                    if test_order:
+                    self.order_active(test_order)  # send to manager
+
+                    # Test recent functions
+                    a = self.get_all_open_orders()
+                    b = self.get_asset_open_orders(self.market_string)
+                    c = self.cancel_all_orders(self.market_string)
+                    print(a, b, c)
+
+                    # Instantly cancel order, for testing!
+                    if test_order and not c:
                         print('order is set, trying to cancel')
                         test_cancel = self.cancel(test_order, self.market_string)
                         if test_cancel:
                             print('cancellation succesful')
                         else:
                             print('couldnt cancel order, abort mission!!! Require manual cancellation!')
-                    self.orders.append(test_order)
+
+                    self.orders.append(test_order) # on worker side
                     print('tracked orders:', self.orders)
             if current_state == 1:
                 order = self.orders[-1]

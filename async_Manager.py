@@ -17,14 +17,14 @@ class Manager:
      - balance
     """
     markets = {}
-    orders = {}
+    orders = []
         
     def __init__(self):    
         self.instance = BitShares(witness_url = 'wss://eu-west-2.bts.crypto-bridge.org')    
         self.balances = {}
         self.signup()
         self.balance()
-        
+        self.all_open_orders = self.get_all_open_orders()
 
     def signup(self):
 
@@ -46,7 +46,7 @@ class Manager:
             print('Could not retrieve open orders!')
             return False
 
-    def get_market_open_orders(self, market_key):
+    def get_all_open_orders(self):
         # Retrieves open orders for ALL assets
         try:
             self.account.refresh()
@@ -56,13 +56,13 @@ class Manager:
             print('Could not retrieve open orders!')
             return False
 
-    def order_active(self,order):
-        #
+    def order_active(self, order):
+        # TODO actually static
         print(Manager.orders)
-        if order['order'] in Manager.orders.keys():
+        if order in Manager.orders:
             return False   # no new order added
         else:
-            Manager.orders[order['order']] = order
+            Manager.orders.append(order)
             return True
 
     def buy(self, market_key, price, amount):
@@ -91,7 +91,7 @@ class Manager:
             print("Error during cancellation! Order_id: {}".format(order['orderid']))
             return False
 
-    def cancel_all_orders(self, market_key, order_list):
+    def cancel_all_orders(self, market_key, order_list = None):
         """
         So far this function cancels all orders for a specific market.
         However, it is desirable to manually pass a list of orderids that are supposed to be cancelled.
@@ -105,7 +105,7 @@ class Manager:
             # Create list of orders to be cancelled, depending on a specific market
             # TODO we are actually signing up twice in the same market because get_market_open_orders requires a market too
             market = self.get_market(market_key)
-            orders = self.get_market_open_orders(market_key)
+            orders = self.get_asset_open_orders(market_key)
             print((len(orders), 'open orders to cancel'))
             if len(orders):
                 attempt = 1
@@ -146,7 +146,7 @@ class Manager:
             print(Manager.markets[market_key])
             return Manager.markets[market_key]
 
-    def pick_sellcoins(self, blacklist= ['BRIDGE.BTC','BTS', 'DEEX', 'FRESHCOIN', 'LIQPAY', 'READMEMO'],min_capital=0.00000001):
+    def pick_sellcoins(self, blacklist=['BRIDGE.BTC','BTS', 'DEEX', 'FRESHCOIN', 'LIQPAY', 'READMEMO'],min_capital=0.00000001):
         #
         my_coins = []
         for coin in self.balances.values():
