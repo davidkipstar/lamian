@@ -34,14 +34,33 @@ class Manager:
                 setattr(self, key, value)
         self.account = Account(getattr(self, 'acc'),
                                 bitshares_instance = self.instance)
-        self.account.bitshares.wallet.unlock(getattr(self,'pw'))
+        self.account.bitshares.wallet.unlock(getattr(self, 'pw'))
+
+    def get_asset_open_orders(self, market_key):
+        # Retrieves open orders for SPECIFIC market
+        try:
+            market = self.get_market(market_key)
+            open_orders = market.accountopenorders(account=self.account)
+            return open_orders
+        except Exception as e:
+            print('Could not retrieve open orders!')
+            return False
+
+    def get_market_open_orders(self, market_key):
+        # Retrieves open orders for ALL assets
+        try:
+            self.account.refresh()
+            open_orders = self.account.openorders
+            return open_orders
+        except Exception as e:
+            print('Could not retrieve open orders!')
+            return False
 
     def order_active(self,order):
         #
         print(Manager.orders)
         if order['order'] in Manager.orders.keys():
-            #check if order active
-            return np.random.choice([True,True,True,False])
+            return False   # no new order added
         else:
             Manager.orders[order['order']] = order
             return True
