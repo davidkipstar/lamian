@@ -81,7 +81,7 @@ class Worker(Manager):
                         print('order is set, trying to cancel')
                         test_cancel = self.cancel(test_order, self.market_string)
                         if test_cancel:
-                            print('cancellation succesful')
+                            print('cancellation successful')
                         else:
                             print('couldnt cancel order, abort mission!!! Require manual cancellation!')
 

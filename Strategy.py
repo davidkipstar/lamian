@@ -14,7 +14,6 @@ class CheckSpread:
     def state0(self, asks, bids):
         #input is orde
         price_estimated = find_price(asks, getattr(self, 'th'), getattr(self, 'tsize'))
-        
         price = lambda x: +Decimal(x['price']).quantize(CheckSpread.satoshi)
         price_v = bids.apply(price)
         price_bid = price_v[0].quantize(CheckSpread.satoshi)
@@ -32,6 +31,7 @@ class CheckSpread:
                                         self.th, 
                                         self.tsize, 
                                         previous_order=order)
+        print('estimated_price', estimated_price)
         # 5% diviation
         order_price = order['price']
         
