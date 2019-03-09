@@ -146,7 +146,7 @@ class Manager:
             print(Manager.markets[market_key])
             return Manager.markets[market_key]
 
-    def pick_sellcoins(self, whitelist=['LCC'], min_capital=0.00000001):
+    def pick_sellcoins(self, whitelist=['BRIDGE.LCC'], min_capital=0.00000001):
     #
         my_coins = []
         for coin in self.balances.values():
