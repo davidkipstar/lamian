@@ -146,14 +146,14 @@ class Manager:
             print(Manager.markets[market_key])
             return Manager.markets[market_key]
 
-    def pick_sellcoins(self, blacklist=['BRIDGE.BTC','BTS', 'DEEX', 'FRESHCOIN', 'LIQPAY', 'READMEMO'],min_capital=0.00000001):
-        #
+    def pick_sellcoins(self, whitelist=['LCC'], min_capital=0.00000001):
+    #
         my_coins = []
         for coin in self.balances.values():
-            if coin.symbol not in blacklist and coin.amount > min_capital:
+            if coin.symbol in whitelist and coin.amount > min_capital:
                 print("Added {} with balance {}".format(coin.symbol, coin.amount))
                 my_coins.append(coin)
-        return dict(zip(map(lambda x: getattr(x,'symbol'),my_coins),my_coins))
+        return dict(zip(map(lambda x: getattr(x, 'symbol'), my_coins), my_coins))
 
     def coinbalance(self, quotecur):
         """

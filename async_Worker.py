@@ -28,6 +28,11 @@ class Worker(Manager):
         self.state = None
         self.strategy = CheckSpread(tsize=tsize,th=th)
         self.market_string = market
+        self.max_open_orders = 1
+        # Below: Depends on Manager input
+        self.keep_buying = None
+        self.do_cancel = None
+        self.amount_open_orders = None
         
         if btc:
             asks,bids = self.get_orderbook()
@@ -60,37 +65,47 @@ class Worker(Manager):
             i += 1
             print("Worker: {} .... running in state {} loop {}".format(self.market_string, self.strategy.state, i)) 
             current_state = self.strategy.state
-            asks, bids = self.get_orderbook()  
+            asks, bids = self.get_orderbook()
+            self.amount_open_orders = len(super().get_asset_open_orders(self.market_string))
+
             for order in self.orders:
                 print("Open order {}".format(order))
+
             #state machine table
             if current_state == 0:
                 price = self.strategy.state0(asks, bids)
-                if price:
+                if price and self.amount_open_orders < self.max_open_orders:
                     test_order = super().buy(self.market_string, price, self.tsize)
                     self.order_active(test_order)  # send to manager
-
-                    # Test recent functions
-                    a = self.get_all_open_orders()
-                    b = self.get_asset_open_orders(self.market_string)
-                    c = self.cancel_all_orders(self.market_string)
-                    print(a, b, c)
-
-                    # Instantly cancel order, for testing!
-                    if test_order and not c:
-                        print('order is set, trying to cancel')
-                        test_cancel = self.cancel(test_order, self.market_string)
-                        if test_cancel:
-                            print('cancellation successful')
-                        else:
-                            print('couldnt cancel order, abort mission!!! Require manual cancellation!')
-
                     self.orders.append(test_order) # on worker side
                     print('tracked orders:', self.orders)
+                    current_state = 1
+
             if current_state == 1:
                 order = self.orders[-1]
-                if super().order_active(order):
+                # self.keep_buying muss vom Manager runterkommuniziert werden!
+                if self.keep_buying:  #super().order_active(order):
                     self.strategy.state1(asks, self.orders[-1])
                 else:
                     self.strategy.state = 0
-            time.sleep(3)
+
+            time.sleep(1)
+
+            """                 
+
+                                # Test recent functions
+                                a = self.get_all_open_orders()
+                                b = self.get_asset_open_orders(self.market_string)
+                                c = self.cancel_all_orders(self.market_string)
+                                print(a, b, c)
+
+                                # Instantly cancel order, for testing!
+                                if test_order and not c:
+                                    print('order is set, trying to cancel')
+                                    test_cancel = self.cancel(test_order, self.market_string)
+                                    if test_cancel:
+                                        print('cancellation successful')
+                                    else:
+                                        print('couldnt cancel order, abort mission!!! Require manual cancellation!')
+
+            """
