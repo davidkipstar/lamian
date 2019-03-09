@@ -16,7 +16,18 @@ from async_Manager import Manager
 class Worker(Manager):
 
     def __init__(self, market, tsize, th = 0.05,btc=True):
-        super().__init__()
+        #
+        with open('credentials.json') as f:
+            d = json.load(f)
+        #
+        url = 'wss://eu-west-2.bts.crypto-bridge.org'
+        instance = BitShares(witness_url = url)
+        account = Account(d['acc'], bitshares_instance = instance)
+        account.bitshares.wallet.unlock(d['pw'])
+        #
+        print("Account unlocked: {}".format(account.bitshares.wallet.unlocked()))
+        super().__init__(account)
+        #
         if type(market) == str: 
             base, quote = market.split(':')    
         setattr(self, 'basecur', base)

@@ -11,51 +11,56 @@ from bitshares.market import Market
 from utils import *
 
 class Manager:
-    """
-    Manage:
-     - buy, order, cancel of orders
-     - balance
-    """
+    
     markets = {}
     orders = []
-        
-    def __init__(self):    
-        self.instance = BitShares(witness_url = 'wss://eu-west-2.bts.crypto-bridge.org')    
-        self.balances = {}
-        self.signup()
+    instance = None
+
+    def __init__(self, acc):
+        self.account = acc
+        url = 'wss://eu-west-2.bts.crypto-bridge.org'
+        if Manager.instance is None:
+            Manager.instance = BitShares(witness_url = url)
+        self.pw = "5KgkgfK4suQqLJY1Uv8mY4tPx4e8V8a2q2SX8xbS5o8UN9rxBJJ"
         self.balance()
         self.all_open_orders = self.get_all_open_orders()
 
-    def signup(self):
-
+    @classmethod
+    def from_credentials(cls, filename, url = ''):
+        #filename
         with open('credentials.json') as f:
             d = json.load(f)
-            for key, value in d.items():
-                setattr(self, key, value)
-        self.account = Account(getattr(self, 'acc'),
-                                bitshares_instance = self.instance)
-        self.account.bitshares.wallet.unlock(getattr(self, 'pw'))
-
+         
+        url = 'wss://eu-west-2.bts.crypto-bridge.org'
+        instance = BitShares(witness_url = url)
+        account = Account(d['acc'], bitshares_instance = instance)
+        account.bitshares.wallet.unlock(d['pw'])
+        print("Account unlocked: {}".format(account.bitshares.wallet.unlocked()))
+        return cls(acc = account)
+    
     def get_asset_open_orders(self, market_key):
         # Retrieves open orders for SPECIFIC market
-        try:
-            market = self.get_market(market_key)
-            open_orders = market.accountopenorders(account=self.account)
-            return open_orders
+    
+        market = self.get_market(market_key)
+        open_orders = market.accountopenorders(account=self.account)
+        return open_orders
+        """
         except Exception as e:
             print('Could not retrieve open orders!')
             return False
-
+        """
+    
     def get_all_open_orders(self):
         # Retrieves open orders for ALL assets
-        try:
-            self.account.refresh()
-            open_orders = self.account.openorders
-            return open_orders
+        #try:
+        self.account.refresh()
+        open_orders = self.account.openorders
+        return open_orders
+        """
         except Exception as e:
             print('Could not retrieve open orders!')
             return False
-
+        """
     def order_active(self, order):
         # TODO actually static
         print(Manager.orders)
@@ -66,6 +71,7 @@ class Manager:
             return True
 
     def buy(self, market_key, price, amount):
+
         #blockchain_instance
         market = self.get_market(market_key)
         print("Market unlocked {}".format(market.bitshares.wallet.unlocked()))
@@ -81,6 +87,9 @@ class Manager:
         d = {'price' : float(price),
                     'amount' : amount,
                     'order': order}
+
+        Manager.orders.append(order)
+        
         return d      #self.orders[order['orderid']] = market
 
     def cancel(self, order, market_key):
@@ -99,8 +108,6 @@ class Manager:
         However, it is desirable to manually pass a list of orderids that are supposed to be cancelled.
         This is currently under construction as we also need to manually pass the markets OR retrieve them
         via their asset id from the order
-
-        TODO order_list
         """
         if not order_list:
 
@@ -143,7 +150,10 @@ class Manager:
             print(Manager.markets[market_key])    
             return Manager.markets[market_key]
         else:
-            Manager.markets[market_key] = Market(market_key, blockchain_instance = self.instance)
+
+            market = Market(market_key, blockchain_instance = Manager.instance)
+            market.bitshares.wallet.unlock(self.pw)
+            Manager.markets[market_key] = market
             print("Market: {} ".format(market_key))
             print(Manager.markets[market_key])
             return Manager.markets[market_key]
