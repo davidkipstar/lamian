@@ -70,6 +70,8 @@ class Manager:
         market = self.get_market(market_key)
         print("Market unlocked {}".format(market.bitshares.wallet.unlocked()))
         print("Account unlocked {}".format(self.account.bitshares.wallet.unlocked()))
+        print("Placing order on {} for {} @ {}".format(market_key, price, amount))
+        
         order = market.buy(price = price,
                             amount = amount,
                             returnOrderId = True,
