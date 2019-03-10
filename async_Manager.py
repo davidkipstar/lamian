@@ -58,11 +58,13 @@ class Manager:
 
     def order_active(self, order):
         # TODO actually static
-        print(Manager.orders)
+        print('Trying to pass orders to Manager. Current Manager Orders:', Manager.orders)
         if order in Manager.orders:
             return False   # no new order added
         else:
+            print('Appending Order to Manager:', order)
             Manager.orders.append(order)
+            print('New Manager Orders:', Manager.orders)
             return True
 
     def buy(self, market_key, price, amount):

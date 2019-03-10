@@ -32,7 +32,8 @@ class Worker(Manager):
         # Below: Depends on Manager input
         self.keep_buying = None
         self.do_cancel = None
-        self.amount_open_orders = None
+        self.amount_open_orders = 0 # assumption
+        self.open_orders = None
         
         if btc:
             asks,bids = self.get_orderbook()
@@ -66,7 +67,6 @@ class Worker(Manager):
             print("Worker: {} .... running in state {} loop {}".format(self.market_string, self.strategy.state, i)) 
             current_state = self.strategy.state
             asks, bids = self.get_orderbook()
-            self.amount_open_orders = len(super().get_asset_open_orders(self.market_string))
 
             for order in self.orders:
                 print("Open order {}".format(order))
@@ -76,9 +76,30 @@ class Worker(Manager):
                 price = self.strategy.state0(asks, bids)
                 if price and self.amount_open_orders < self.max_open_orders:
                     test_order = super().buy(self.market_string, price, self.tsize)
-                    self.order_active(test_order)  # send to manager
-                    self.orders.append(test_order) # on worker side
+                    self.orders.append(test_order)  # on worker side
                     print('tracked orders:', self.orders)
+
+                    a = self.get_all_open_orders()
+                    b = self.get_asset_open_orders(self.market_string)
+                    c = self.cancel_all_orders(self.market_string)
+                    print('a,b,c:')
+                    print(a, b, c)
+
+                    print('sending to manager:')
+                    self.order_active(b)
+
+                    # Instantly cancel order, for testing!
+                    if test_order and not c:
+                        print('order is set, trying to cancel')
+                        test_cancel = self.cancel(test_order, self.market_string)
+                        if test_cancel:
+                            print('cancellation successful')
+                        else:
+                            print('couldnt cancel order, abort mission!!! Require manual cancellation!')
+
+
+
+# BREAK
                     current_state = 1
 
             if current_state == 1:
@@ -107,5 +128,16 @@ class Worker(Manager):
                                         print('cancellation successful')
                                     else:
                                         print('couldnt cancel order, abort mission!!! Require manual cancellation!')
+
+            """
+
+            """
+
+                                self.open_orders = self.get_asset_open_orders(self.market_string)
+                                print('Worker: Found open orders: ', self.open_orders)
+                                self.amount_open_orders = len(self.open_orders)
+                                self.order_active(self.open_orders)  # send to manager
+
+                                self.cancel_all_orders(self.market_string)
 
             """

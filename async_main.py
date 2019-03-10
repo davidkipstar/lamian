@@ -43,7 +43,7 @@ w.run()
 """
 
 #BUY
-coin= 'PARQ'
+coin= 'LCC'
 market = 'BRIDGE.{}:BRIDGE.BTC'.format(coin)
 tsize = 0.0000001
 w = Worker(market, tsize,th = 0.0138)
