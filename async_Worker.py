@@ -89,7 +89,7 @@ class Worker(Manager):
                     self.order_active(b)
 
                     # Find which orders in Manager.orders are still active
-                    print('these orders are still active ', self.is_order_still_active())
+                    print('these orderidss are still active ', self.which_orderids_still_active())
 
                     # Instantly cancel order, for testing!
                     if test_order and not c:

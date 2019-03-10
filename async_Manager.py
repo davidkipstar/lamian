@@ -67,7 +67,7 @@ class Manager:
             print('New Manager Orders:', Manager.orders)
             return True
 
-    def is_order_still_active(self):
+    def which_orderids_still_active(self):
 
         all_open_orders = self.get_asset_open_orders(self.market_string)
         all_open_orderids = []
