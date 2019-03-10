@@ -84,18 +84,7 @@ class Manager:
         # Compare, find out which tracked orders on the manager side are still open
         still_open_orders = [item for item in manager_orderids if item in all_open_orderids]
 
-        return(still_open_orders)
-
-        """
-
-        for i in range(len(Manager.orders)):
-            curr_id = all_open_orders[i]['id']
-            if curr_id in Manager.orders[i]['order']['orderid']:
-                still_open_orders.append(curr_id)
-
-        return(still_open_orders)
-        
-        """
+        return still_open_orders
 
 
     def buy(self, market_key, price, amount):
