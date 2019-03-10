@@ -67,6 +67,37 @@ class Manager:
             print('New Manager Orders:', Manager.orders)
             return True
 
+    def is_order_still_active(self):
+
+        all_open_orders = self.get_asset_open_orders(self.market_string)
+        all_open_orderids = []
+        manager_orderids = []
+
+        # Get all currently active orderids
+        for i in range(len(all_open_orders)):
+            all_open_orderids.append(all_open_orders[i]['id'])
+
+        # Get all orderids from Manager.orders
+        for i in range(len(Manager.orders)):
+            manager_orderids.append(self.orders[i]['order']['orderid'])
+
+        # Compare, find out which tracked orders on the manager side are still open
+        still_open_orders = [item for item in manager_orderids if item in all_open_orderids]
+
+        return(still_open_orders)
+
+        """
+
+        for i in range(len(Manager.orders)):
+            curr_id = all_open_orders[i]['id']
+            if curr_id in Manager.orders[i]['order']['orderid']:
+                still_open_orders.append(curr_id)
+
+        return(still_open_orders)
+        
+        """
+
+
     def buy(self, market_key, price, amount):
         #blockchain_instance
         market = self.get_market(market_key)
