@@ -30,12 +30,12 @@ class Manager:
         #filename
         with open('credentials.json') as f:
             d = json.load(f)
-         
+        
         url = 'wss://eu-west-2.bts.crypto-bridge.org'
         instance = BitShares(witness_url = url)
         account = Account(d['acc'], bitshares_instance = instance)
         account.bitshares.wallet.unlock(d['pw'])
-        print("Account unlocked: {}".format(account.bitshares.wallet.unlocked()))
+        print("Manager: Account unlocked: {}".format(account.bitshares.wallet.unlocked()))
         return cls(acc = account)
     
     def get_asset_open_orders(self, market_key):
@@ -61,44 +61,37 @@ class Manager:
             print('Could not retrieve open orders!')
             return False
         """
-    def order_active(self, order):
-        # TODO actually static
-        print('Trying to pass orders to Manager. Current Manager Orders:', Manager.orders)
+
+    def order_active(self, order, market_string):
+        print(Manager.orders)
         if order in Manager.orders:
-            return False   # no new order added
+            all_open_orders = self.get_asset_open_orders(market_string)
+
+            #k = list(map(lambda x: getattr(x, 'id'),all_open_orders))
+            #print("OpenOrder:",k)
+            print("ORderId:", all_open_orders)
+            if True:
+                #
+                print("Manager: Order still open")
+                return True    
+            else:
+                #
+                return False
+
         else:
-            print('Appending Order to Manager:', order)
+            #new order signed up
+            print("New order: {}".format(order))
             Manager.orders.append(order)
-            print('New Manager Orders:', Manager.orders)
             return True
-
-    def which_orderids_still_active(self):
-
-        all_open_orders = self.get_asset_open_orders(self.market_string)
-        all_open_orderids = []
-        manager_orderids = []
-
-        # Get all currently active orderids
-        for i in range(len(all_open_orders)):
-            all_open_orderids.append(all_open_orders[i]['id'])
-
-        # Get all orderids from Manager.orders
-        for i in range(len(Manager.orders)):
-            manager_orderids.append(self.orders[i]['order']['orderid'])
-
-        # Compare, find out which tracked orders on the manager side are still open
-        still_open_orders = [item for item in manager_orderids if item in all_open_orderids]
-
-        return still_open_orders
 
 
     def buy(self, market_key, price, amount):
 
         #blockchain_instance
         market = self.get_market(market_key)
-        print("Market unlocked {}".format(market.bitshares.wallet.unlocked()))
-        print("Account unlocked {}".format(self.account.bitshares.wallet.unlocked()))
-        print("Placing order on {} for {} @ {}".format(market_key, price, amount))
+        #print("ManaMarket unlocked {}".format(market.bitshares.wallet.unlocked()))
+        #print("Account unlocked {}".format(self.account.bitshares.wallet.unlocked()))
+        print("Manager: Placing order on {} for {} @ {}".format(market_key, price, amount))
         
         order = market.buy(price = price,
                             amount = amount,
@@ -106,22 +99,19 @@ class Manager:
                             account = self.account,
                             expiration = 60)
 
-        d = {'price' : float(price),
-                    'amount' : amount,
-                    'order': order}
 
-        Manager.orders.append(order)
-        
-        return d      #self.orders[order['orderid']] = market
+        return order
 
     def cancel(self, order, market_key):
         # cancelling specific order
         try:
             market = self.get_market(market_key)
-            market.cancel(order['order']['orderid'], self.account)
+            
+            market.cancel(order['id'], self.account)
             return True
         except Exception as e:
-            print("Error during cancellation! Order_id: {}".format(order['orderid']))
+            print("Error during cancellation! Order_id: {}".format(order['id']))
+            print(e)
             return False
 
     def cancel_all_orders(self, market_key, order_list = None):
@@ -161,31 +151,30 @@ class Manager:
     def balance(self):
         self.account.refresh()
         my_coins = self.account.balances
-        print("balance    : {}".format(my_coins))
+        #print("balance    : {}".format(my_coins))
         self.balances = dict(zip(map(lambda x: getattr(x,'symbol'),my_coins),my_coins))
 
 
     def get_market(self, market_key):
         #market_key = getattr(worker, 'quotecur') + ':' + getattr(worker, 'basecur')
         if market_key in Manager.markets.keys():
-            print("Market: {} ".format(market_key))
-            print(Manager.markets[market_key])    
+            #print("Market: {} ".format(market_key))
+            #print(Manager.markets[market_key])    
             return Manager.markets[market_key]
         else:
-
             market = Market(market_key, blockchain_instance = Manager.instance)
             market.bitshares.wallet.unlock(self.pw)
             Manager.markets[market_key] = market
-            print("Market: {} ".format(market_key))
-            print(Manager.markets[market_key])
+            #print("Market: {} ".format(market_key))
+            #print(Manager.markets[market_key])
             return Manager.markets[market_key]
 
     def pick_sellcoins(self, whitelist=['BRIDGE.LCC'], min_capital=0.00000001):
-    #
+        #
         my_coins = []
         for coin in self.balances.values():
             if coin.symbol in whitelist and coin.amount > min_capital:
-                print("Added {} with balance {}".format(coin.symbol, coin.amount))
+                print("Manager: Added {} with balance {}".format(coin.symbol, coin.amount))
                 my_coins.append(coin)
         return dict(zip(map(lambda x: getattr(x, 'symbol'), my_coins), my_coins))
 
@@ -211,8 +200,7 @@ class Manager:
                     
                     if(quoteidx_found == False):
                         quoteamount = 0
-                print("Coinbalance for {} is {}".format(quotecur,quoteamount))
-                #
+                #print("Coinbalance for {} is {}".format(quotecur,quoteamount))
                 return quoteamount
             else:
                 #Initial
