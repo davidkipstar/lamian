@@ -1,6 +1,19 @@
 from utils import find_price
 from decimal import Decimal
 
+"""
+Strategy:
+    - Input: Data (Orderbook, Transaction)
+    - Output: State 
+Usage:
+    #
+    Decides if a strategy needs to change or not, does not perform actual changes on the system
+    Define States:
+        - on input check conditions 
+        - return if condition is met or not
+    Don't call Manager, Worker from here
+
+"""
 class CheckSpread:
     satoshi = Decimal('0.00000001')
         

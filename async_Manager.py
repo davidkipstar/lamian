@@ -10,6 +10,11 @@ from bitshares.market import Market
 
 from utils import *
 
+"""
+The Manager:
+
+"""
+
 class Manager:
     
     markets = {}
@@ -106,7 +111,7 @@ class Manager:
         # cancelling specific order
         try:
             market = self.get_market(market_key)
-            
+
             market.cancel(order['id'], self.account)
             return True
         except Exception as e:
