@@ -63,12 +63,34 @@ class Manager:
         """
     def order_active(self, order):
         # TODO actually static
-        print(Manager.orders)
+        print('Trying to pass orders to Manager. Current Manager Orders:', Manager.orders)
         if order in Manager.orders:
             return False   # no new order added
         else:
+            print('Appending Order to Manager:', order)
             Manager.orders.append(order)
+            print('New Manager Orders:', Manager.orders)
             return True
+
+    def which_orderids_still_active(self):
+
+        all_open_orders = self.get_asset_open_orders(self.market_string)
+        all_open_orderids = []
+        manager_orderids = []
+
+        # Get all currently active orderids
+        for i in range(len(all_open_orders)):
+            all_open_orderids.append(all_open_orders[i]['id'])
+
+        # Get all orderids from Manager.orders
+        for i in range(len(Manager.orders)):
+            manager_orderids.append(self.orders[i]['order']['orderid'])
+
+        # Compare, find out which tracked orders on the manager side are still open
+        still_open_orders = [item for item in manager_orderids if item in all_open_orderids]
+
+        return still_open_orders
+
 
     def buy(self, market_key, price, amount):
 
@@ -158,14 +180,14 @@ class Manager:
             print(Manager.markets[market_key])
             return Manager.markets[market_key]
 
-    def pick_sellcoins(self, blacklist=['BRIDGE.BTC','BTS', 'DEEX', 'FRESHCOIN', 'LIQPAY', 'READMEMO'],min_capital=0.00000001):
-        #
+    def pick_sellcoins(self, whitelist=['BRIDGE.LCC'], min_capital=0.00000001):
+    #
         my_coins = []
         for coin in self.balances.values():
-            if coin.symbol not in blacklist and coin.amount > min_capital:
+            if coin.symbol in whitelist and coin.amount > min_capital:
                 print("Added {} with balance {}".format(coin.symbol, coin.amount))
                 my_coins.append(coin)
-        return dict(zip(map(lambda x: getattr(x,'symbol'),my_coins),my_coins))
+        return dict(zip(map(lambda x: getattr(x, 'symbol'), my_coins), my_coins))
 
     def coinbalance(self, quotecur):
         """
@@ -198,6 +220,3 @@ class Manager:
 
         except Exception as e:
             print('Error on line {}'.format(sys.exc_info()[-1].tb_lineno), type(e).__name__, e)
-
-
-        

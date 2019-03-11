@@ -14,7 +14,6 @@ class CheckSpread:
     def state0(self, asks, bids):
         #input is orde
         price_estimated = find_price(asks, getattr(self, 'th'), getattr(self, 'tsize'))
-        
         price = lambda x: +Decimal(x['price']).quantize(CheckSpread.satoshi)
         price_v = bids.apply(price)
         price_bid = price_v[0].quantize(CheckSpread.satoshi)
@@ -28,14 +27,24 @@ class CheckSpread:
             return 0
             
     def state1(self, asks, order):
+        # Checks if better price exists
         estimated_price = find_price(asks, 
                                         self.th, 
                                         self.tsize, 
                                         previous_order=order)
-        # 5% diviation
-        order_price = order['price']
+        print('estimated_price', estimated_price)
+        order_price = order['price'].quantize(CheckSpread.satoshi)
         
-        if abs(float(estimated_price) - order_price)/order_price > 0.95:
-            self.state = 0 
+        if abs(estimated_price - order_price) > 0.0000000001:
+            if self.amount_open_orders == 1:
+                test_cancel = super().cancel(self.market_string)
+            elif self.amount_open_orders > 1:
+                test_cancel = super().cancel_all_orders(self.market_string)
+            if test_cancel:
+                self.state = 0
+            else:
+                print('could not cancel in state1 or order has been filled in the mean time')
+
         else:
             self.state = 1
+
