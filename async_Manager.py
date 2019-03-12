@@ -21,7 +21,7 @@ class Manager:
         url = 'wss://eu-west-2.bts.crypto-bridge.org'
         if Manager.instance is None:
             Manager.instance = BitShares(witness_url = url)
-        self.pw = "5KgkgfK4suQqLJY1Uv8mY4tPx4e8V8a2q2SX8xbS5o8UN9rxBJJ"
+        self.pw = "test"
         self.balance()
         self.all_open_orders = self.get_all_open_orders()
 
@@ -83,7 +83,7 @@ class Manager:
             all_open_orderids.append(all_open_orders[i]['id'])
 
         # Get all orderids from Manager.orders
-        for i in range(len(Manager.orders)):
+        for i in range(len(self.orders)):
             manager_orderids.append(self.orders[i]['order']['orderid'])
 
         # Compare, find out which tracked orders on the manager side are still open
