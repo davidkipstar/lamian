@@ -93,7 +93,7 @@ class Worker(Manager):
                     order = super().buy(self.market_string, price, self.tsize)
                     w_order = {'order': order,'price': price, 'amount': self.tsize}
                     self.orders.append(w_order)  # on worker side
-                    super().order_active(order, self.market_string)# register to manager
+                    super().order_active(order)
                     print("Worker: Order {} placed for {} @ {}".format(order['id'],w_order['amount'],w_order['price']))
                     
                     #switch to next state

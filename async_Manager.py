@@ -67,27 +67,43 @@ class Manager:
             return False
         """
 
-    def order_active(self, order, market_string):
-        print(Manager.orders)
-        if order in Manager.orders:
-            all_open_orders = self.get_asset_open_orders(market_string)
 
-            #k = list(map(lambda x: getattr(x, 'id'),all_open_orders))
-            #print("OpenOrder:",k)
-            print("ORderId:", all_open_orders)
-            if True:
-                #
-                print("Manager: Order still open")
-                return True    
+    def which_orderids_still_active(self):
+
+        all_open_orders = self.get_asset_open_orders(self.market_string)
+        all_open_orderids = []
+        manager_orderids = []
+
+        # Get all currently active orderids
+        for i in range(len(all_open_orders)):
+            all_open_orderids.append(all_open_orders[i]['id'])
+
+        # Get all orderids from Manager.orders
+        for i in range(len(Manager.orders)):
+            manager_orderids.append(Manager.orders[i]['order']['orderid'])
+
+        # Compare, find out which tracked orders on the manager side are still open
+        still_open_orders = [item for item in manager_orderids if item in all_open_orderids]
+
+        return still_open_orders
+
+    def order_active(self, order):
+
+        if order in Manager.orders:
+
+            supposed_orderid = order['order']['orderid']
+            curr_active_orderids = self.which_orderids_still_active()
+
+            if supposed_orderid in curr_active_orderids:
+                return True
             else:
-                #
                 return False
 
         else:
-            #new order signed up
-            print("New order: {}".format(order))
+            print('Appending Order to Manager:', order)
             Manager.orders.append(order)
-            return True
+            print('New Manager Orders:', Manager.orders)
+            return None
 
 
     def buy(self, market_key, price, amount):
