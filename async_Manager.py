@@ -18,93 +18,85 @@ The Manager:
 class Manager:
     
     markets = {}
+    url = 'wss://eu-west-2.bts.crypto-bridge.org'
     orders = []
     instance = None
 
-    def __init__(self, acc):
-        self.account = acc
-        url = 'wss://eu-west-2.bts.crypto-bridge.org'
-        if Manager.instance is None:
-            Manager.instance = BitShares(witness_url = url)
-        self.pw = "5KgkgfK4suQqLJY1Uv8mY4tPx4e8V8a2q2SX8xbS5o8UN9rxBJJ"
-        self.balance()
-        self.all_open_orders = self.get_all_open_orders()
 
-    @classmethod
-    def from_credentials(cls, filename, url = ''):
-        #filename
-        with open('credentials.json') as f:
-            d = json.load(f)
-        
-        url = 'wss://eu-west-2.bts.crypto-bridge.org'
-        instance = BitShares(witness_url = url)
-        account = Account(d['acc'], bitshares_instance = instance)
-        account.bitshares.wallet.unlock(d['pw'])
+    def __init__(self, currencies):
+        print("---- init Manager -----")
+        #Sign Up
+        if Manager.instance is None:
+            Manager.instance = BitShares(witness_url = Manager.url)
+
+        self.pw = "5KgkgfK4suQqLJY1Uv8mY4tPx4e8V8a2q2SX8xbS5o8UN9rxBJJ"
+        self.acc = "kipstar1337"
+        account = Account(self.acc, bitshares_instance = Manager.instance)
+        account.bitshares.wallet.unlock(self.pw)
+        self.account = account
         print("Manager: Account unlocked: {}".format(account.bitshares.wallet.unlocked()))
-        return cls(acc = account)
-    
-    def get_asset_open_orders(self, market_key):
-        # Retrieves open orders for SPECIFIC market
-    
-        market = self.get_market(market_key)
-        open_orders = market.accountopenorders(account=self.account)
-        return open_orders
-        """
-        except Exception as e:
-            print('Could not retrieve open orders!')
-            return False
-        """
-    
-    def get_all_open_orders(self):
-        # Retrieves open orders for ALL assets
-        #try:
+        
+        #Add markets
+        for shitcoin in currencies[1:]:
+            m = self.get_market("BRIDGE.{}:BRIDGE.{}".format(currencies[0],shitcoin))
+        
+        #balance        
+        self.account.refresh()
+        my_coins = self.account.balances
+        
+        #
+        self.balances = dict(zip(map(lambda x: getattr(x,'symbol'),my_coins),my_coins))
+
+    @property
+    def open_orders(self):
         self.account.refresh()
         open_orders = self.account.openorders
         return open_orders
-        """
-        except Exception as e:
-            print('Could not retrieve open orders!')
-            return False
-        """
+
+    def which_orderids_still_active(self):
+        #
+        all_open_orders = self.open_orders
+        all_open_orderids = []
+        manager_orderids = []
+
+        # Get all currently active orderids
+        for i in range(len(all_open_orders)):
+            all_open_orderids.append(all_open_orders[i]['id'])
+
+        # Get all orderids from Manager.orders
+        for i in range(len(Manager.orders)):
+            manager_orderids.append(Manager.orders[i]['order']['orderid'])
+
+        # Compare, find out which tracked orders on the manager side are still open
+        still_open_orders = [item for item in manager_orderids if item in all_open_orderids]
+
+        return still_open_orders
 
     def order_active(self, order, market_string):
-        print(Manager.orders)
-        if order in Manager.orders:
-            all_open_orders = self.get_asset_open_orders(market_string)
-
-            #k = list(map(lambda x: getattr(x, 'id'),all_open_orders))
-            #print("OpenOrder:",k)
-            print("ORderId:", all_open_orders)
-            if True:
-                #
-                print("Manager: Order still open")
-                return True    
-            else:
-                #
-                return False
-
+        #
+        print("Finding order {}".format(order['order']['orderid']))
+        print("Manager-orders")
+        order_found = False
+        for morder in self.open_orders:
+            if morder['id'] == order['order']['id']: 
+                order_found = True
+                print("Fund order")
+        
+        #implement market specific here
+        if order_found:
+            print("Order found")
         else:
-            #new order signed up
-            print("New order: {}".format(order))
-            Manager.orders.append(order)
-            return True
+            print("Order not found")
+            return False
 
 
     def buy(self, market_key, price, amount):
-
-        #blockchain_instance
         market = self.get_market(market_key)
-        #print("ManaMarket unlocked {}".format(market.bitshares.wallet.unlocked()))
-        #print("Account unlocked {}".format(self.account.bitshares.wallet.unlocked()))
-        print("Manager: Placing order on {} for {} @ {}".format(market_key, price, amount))
-        
         order = market.buy(price = price,
                             amount = amount,
                             returnOrderId = True,
                             account = self.account,
                             expiration = 60)
-
-
         return order
 
     def cancel(self, order, market_key):
@@ -131,7 +123,7 @@ class Manager:
             # Create list of orders to be cancelled, depending on a specific market
             # TODO we are actually signing up twice in the same market because get_market_open_orders requires a market too
             market = self.get_market(market_key)
-            orders = self.get_asset_open_orders(market_key)
+            orders = self.open_orders
             print((len(orders), 'open orders to cancel'))
             if len(orders):
                 attempt = 1
@@ -153,63 +145,28 @@ class Manager:
                         return False
                     pass
 
-    def balance(self):
-        self.account.refresh()
-        my_coins = self.account.balances
-        #print("balance    : {}".format(my_coins))
-        self.balances = dict(zip(map(lambda x: getattr(x,'symbol'),my_coins),my_coins))
-
+    def get_orderbook(self,market_string):
+        try:
+            market = self.get_market(market_string)
+            orderbook_df = pd.DataFrame(market.orderbook(self.orderbooklimit)) # 
+            
+            asks = orderbook_df['asks'] # prices increasing from index 0 to index 1
+            bids = orderbook_df['bids'] # prices decreasing from index 0 to index 1
+            
+            return asks,bids 
+        
+        except Exception as e:
+            
+            print("Update failed, market is too illiquid: {}".format(e))
+            return None, None       
 
     def get_market(self, market_key):
-        #market_key = getattr(worker, 'quotecur') + ':' + getattr(worker, 'basecur')
         if market_key in Manager.markets.keys():
-            #print("Market: {} ".format(market_key))
-            #print(Manager.markets[market_key])    
             return Manager.markets[market_key]
         else:
             market = Market(market_key, blockchain_instance = Manager.instance)
             market.bitshares.wallet.unlock(self.pw)
             Manager.markets[market_key] = market
-            #print("Market: {} ".format(market_key))
-            #print(Manager.markets[market_key])
+            print("Joined market {}".format(market_key))
             return Manager.markets[market_key]
 
-    def pick_sellcoins(self, whitelist=['BRIDGE.LCC'], min_capital=0.00000001):
-        #
-        my_coins = []
-        for coin in self.balances.values():
-            if coin.symbol in whitelist and coin.amount > min_capital:
-                print("Manager: Added {} with balance {}".format(coin.symbol, coin.amount))
-                my_coins.append(coin)
-        return dict(zip(map(lambda x: getattr(x, 'symbol'), my_coins), my_coins))
-
-    def coinbalance(self, quotecur):
-        """
-          Withdrawls balance for one currency 
-          If quotecur is None check all 
-        """
-        try:
-            #maybe check for quote in some place
-            if quotecur:
-                balance_l = self.account.balances
-                quoteidx = 0
-                quoteidx_found = False
-                for i in range(len(balance_l)):
-                    ele = balance_l[i]
-                    sym = ele['symbol']
-
-                    if(sym == quotecur):
-                        quoteidx = i
-                        quoteamount = balance_l[quoteidx]['amount']
-                        quoteidx_found = True
-                    
-                    if(quoteidx_found == False):
-                        quoteamount = 0
-                #print("Coinbalance for {} is {}".format(quotecur,quoteamount))
-                return quoteamount
-            else:
-                #Initial
-                raise ValueError("Quotecur not found")
-
-        except Exception as e:
-            print('Error on line {}'.format(sys.exc_info()[-1].tb_lineno), type(e).__name__, e)

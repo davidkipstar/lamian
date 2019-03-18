@@ -7,7 +7,7 @@ Strategy:
     - Output: State 
 Usage:
     #
-    Decides if a strategy needs to change or not, does not perform actual changes on the system
+    Decides if a strategy needs to change or not, does not perform actual changes on the systemr
     Define States:
         - on input check conditions 
         - return if condition is met or not
