@@ -4,11 +4,11 @@ from decimal import *
 import pandas as pd
 
 
-def find_price(orderbook, th, tsize, previous_order=None, minimum_liquidity=1):
+def find_price(orderbook, th, tsize, previous_order = None, minimum_liquidity=1):
     """
       Computes spread and computes optimal ask/bid
       orderbook is either bids or asks as generated from update
-
+        minimum liquididty (maybe at least 1 btc in ob?)
     """
     satoshi = Decimal('0.00000001')
     th = Decimal(th).quantize(satoshi)
@@ -23,11 +23,10 @@ def find_price(orderbook, th, tsize, previous_order=None, minimum_liquidity=1):
     obrevenue_v = quote_v * price_v * th  # compensate for threshold
     ownrevenue_v = tsize * price_v
 
-    d = {'quote': quote_v, 'price': price_v,
-         'obrevenue': obrevenue_v, 'ownrevenue': ownrevenue_v}
+    d = {'quote': quote_v, 'price': price_v, 'obrevenue': obrevenue_v, 'ownrevenue': ownrevenue_v}
     df = pd.DataFrame(d)
     opt_price_rounded = 0
-
+    
     # In case we already have active orders, account for them
     if previous_order:
         dropidx = (df['price'] == previous_order['price']) & (df['quote'] == previous_order['amount'])
@@ -49,11 +48,11 @@ def find_price(orderbook, th, tsize, previous_order=None, minimum_liquidity=1):
         # once again reassign
         dfsub['obrevenue_cumsum'] = dfsub['obrevenue'].cumsum()
         dfsub['xtimes_ownrevenue'] = dfsub['ownrevenue'] * minimum_liquidity
-        lower_bound = dfsub.index[dfsub['obrevenue_cumsum']
-                                > dfsub['xtimes_ownrevenue']].tolist()
+        lower_bound = dfsub.index[dfsub['obrevenue_cumsum'] > dfsub['xtimes_ownrevenue']].tolist()
         # now this is the lower bound. Combine them to find the optimal price
         opt_price = dfsub['price'][lower_bound[0]]
-
+    #print("Own revenue: {}".format(ownrevenue_v))
+    print("opt : {} , rounded: {}".format(opt_price, opt_price_rounded))
     return opt_price_rounded
 
 

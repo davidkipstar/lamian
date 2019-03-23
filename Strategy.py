@@ -43,20 +43,17 @@ class CheckSpread:
             return 0
             
     def state1(self, asks, order):
+
         # Checks if better price exists
-        estimated_price = find_price(asks, 
-                                        self.th, 
-                                        self.tsize, 
-                                        previous_order=order)
-        
-        #print('estimated_price', estimated_price)
+        estimated_price = find_price(asks, self.th, self.tsize, previous_order=order)
         order_price = order['price'].quantize(CheckSpread.satoshi)
         
-        if abs(estimated_price - order_price) > 0.0000000001:
+        print("Deviation at: {}".format(estimated_price -order_price))
+
+        if abs(estimated_price - order_price) > 111111110.0000000001:
             print("Strategy: Order deviation too large")
             self.state = 0
             return False
         else:
-            #print("Strategy: Order placed")
             return True
 

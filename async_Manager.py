@@ -73,22 +73,16 @@ class Manager:
         return still_open_orders
 
     def order_active(self, order, market_string):
-        #
-        print("Finding order {}".format(order['order']['orderid']))
         print("Manager-orders")
-        order_found = False
-        for morder in self.open_orders:
-            if morder['id'] == order['order']['id']: 
-                order_found = True
-                print("Fund order")
-        
-        #implement market specific here
-        if order_found:
-            print("Order found")
-        else:
-            print("Order not found")
-            return False
 
+        order_found = False
+        open_orders = self.open_orders
+        for morder in open_orders:
+            print("Comparing {} with {}".format(morder['id'], order['order']['orderid']))
+            if morder['id'] == order['order']['orderid']: 
+                order_found = True
+        
+        return order_found
 
     def buy(self, market_key, price, amount):
         market = self.get_market(market_key)
@@ -97,14 +91,14 @@ class Manager:
                             returnOrderId = True,
                             account = self.account,
                             expiration = 60)
+        self.account.refresh()
         return order
 
     def cancel(self, order, market_key):
         # cancelling specific order
         try:
             market = self.get_market(market_key)
-
-            market.cancel(order['id'], self.account)
+            market.cancel(order['order']['orderid'], account = self.account)
             return True
         except Exception as e:
             print("Error during cancellation! Order_id: {}".format(order['id']))
@@ -133,7 +127,7 @@ class Manager:
 
             while attempt:
                 try:
-                    details = market.cancel(order_list, self.account)
+                    details = market.cancel(order_list, account  = self.account)
                     print(details)
                     attempt = 0
                     return True
