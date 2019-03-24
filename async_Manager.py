@@ -23,29 +23,53 @@ class Manager:
     instance = None
 
 
-    def __init__(self, currencies):
+    def __init__(self):#, currencies):
         print("---- init Manager -----")
         #Sign Up
         if Manager.instance is None:
             Manager.instance = BitShares(witness_url = Manager.url)
-
-        self.pw = "test"
+        self.history = []
+        self.pw = "5KgkgfK4suQqLJY1Uv8mY4tPx4e8V8a2q2SX8xbS5o8UN9rxBJJ"
         self.acc = "kipstar1337"
-        account = Account(self.acc, bitshares_instance = Manager.instance)
+        account = Account(self.acc, bitshares_instance = Manager.instance, full = True)
         account.bitshares.wallet.unlock(self.pw)
         self.account = account
         print("Manager: Account unlocked: {}".format(account.bitshares.wallet.unlocked()))
         
         #Add markets
-        for shitcoin in currencies[1:]:
-            m = self.get_market("BRIDGE.{}:BRIDGE.{}".format(currencies[0],shitcoin))
+        #for shitcoin in currencies[1:]:
+        #    m = self.get_market("BRIDGE.{}:BRIDGE.{}".format(currencies[0],shitcoin))
         
-        #balance        
+    def balance(self):
         self.account.refresh()
         my_coins = self.account.balances
+        return dict(zip(map(lambda x: getattr(x,'symbol'),my_coins),my_coins))
+
+    def check_balance(self, quote, base, market_string, tradingside):
+        market = self.get_market(market_string)
+
+        _balances = self.balance()
+        recent_trades = []
+        for trade in market.accounttrades(account=self.account): #[0]
+            if trade not in self.history:
+                print("New Trade found {}".format(trade))
+                recent_trades.append(trade)
         
-        #
-        self.balances = dict(zip(map(lambda x: getattr(x,'symbol'),my_coins),my_coins))
+        self.history.extend(recent_trades)
+        
+        avg_price = calc_avg_price(recent_trades, tradingside)
+
+        if tradingside == 'buy':
+            if quote in _balances.keys():
+                coinbalance = _balances[quote]
+            else:
+                coinbalance = 0    
+        else:
+            if base in _balances.keys():
+                coinbalance = _balances[base]
+        tsize = min(coinbalance - 0.00000001, 0)
+        
+        return tsize, avg_price
 
     @property
     def open_orders(self):
@@ -90,7 +114,7 @@ class Manager:
                             amount = amount,
                             returnOrderId = True,
                             account = self.account,
-                            expiration = 60)
+                            expiration = 10)
         self.account.refresh()
         return order
 

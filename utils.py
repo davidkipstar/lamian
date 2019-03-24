@@ -65,3 +65,18 @@ def convert_to_quote(asks, bids, basecur_amount):  # btc_tsize = basecur amount
     init_bid = basecur_amount/midprice
 
     return init_bid
+
+def calc_avg_price(recent_trades, tradingside):
+
+
+    def m(key,recent_trades):
+        return list(filter(lambda x: x['type'] == tradingside,list(map(lambda x: x[key], recent_trades))))
+    
+
+    recent_amount_ele = m('amount', recent_trades)
+    recent_rate_ele = m('rate',recent_trades)
+
+    lista = recent_amount_ele
+    listb = recent_rate_ele
+
+    return [a*b for a,b in zip(lista,listb)]

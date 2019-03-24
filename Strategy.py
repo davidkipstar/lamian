@@ -37,22 +37,19 @@ class CheckSpread:
         if spread_estimated > self.th:
             self.state = 1
             print("Strategy: Condition met placing order ")
-            if self.tradingside == 'buy':
-                return price_bid
-            else:
-                return price_ask
+            return price_bid
         else:
             return 0
             
-    def state1(self, asks, order):
+    def state1(self, bids, order):
 
         if self.tradingside == 'buy':
-            max_deviation = Decimal('0.0000000001')
+            max_deviation = Decimal('0.0000000001') 
         else:
             max_deviation = Decimal('1')
 
         # Checks if better price exists
-        estimated_price = find_price(asks, self.th, self.tsize, previous_order=order)
+        estimated_price = find_price(bids, self.th, self.tsize, previous_order=order)
         order_price = order['price'].quantize(CheckSpread.satoshi)
         
         print("Deviation at: {}".format(estimated_price - order_price))
