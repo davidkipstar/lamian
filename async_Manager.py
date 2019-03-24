@@ -29,7 +29,7 @@ class Manager:
         if Manager.instance is None:
             Manager.instance = BitShares(witness_url = Manager.url)
 
-        self.pw = "5KgkgfK4suQqLJY1Uv8mY4tPx4e8V8a2q2SX8xbS5o8UN9rxBJJ"
+        self.pw = "test"
         self.acc = "kipstar1337"
         account = Account(self.acc, bitshares_instance = Manager.instance)
         account.bitshares.wallet.unlock(self.pw)

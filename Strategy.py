@@ -17,40 +17,47 @@ Usage:
 class CheckSpread:
     satoshi = Decimal('0.00000001')
         
-    def __init__(self, tsize = 0.001, th = 0.01):
+    def __init__(self, tradingside, tsize = 0.001, th = 0.01):
         #
         self.tsize = tsize 
         self.th = th
-        self.state = 0 
+        self.state = 0
+        self.tradingside = tradingside
         #self.on('orderbook')
         #self.on('enemy')
 
     def state0(self, asks, bids):
-        
-        price_estimated = find_price(asks, getattr(self, 'th'), getattr(self, 'tsize'))
-        price = lambda x: +Decimal(x['price']).quantize(CheckSpread.satoshi)
-        price_v = bids.apply(price)
-        price_bid = price_v[0].quantize(CheckSpread.satoshi)
-        
-        spread_estimated = ((price_estimated - price_bid)/price_bid).quantize(CheckSpread.satoshi)
+
+        price_bid = find_price(bids, getattr(self, 'th'), getattr(self, 'tsize'))
+        price_ask = find_price(asks, getattr(self, 'th'), getattr(self, 'tsize'))
+
+        spread_estimated = ((price_ask - price_bid)/price_bid).quantize(CheckSpread.satoshi)
         print("Strategy: Spread: {}".format(spread_estimated))
         
         if spread_estimated > self.th:
             self.state = 1
             print("Strategy: Condition met placing order ")
-            return price_bid
+            if self.tradingside == 'buy':
+                return price_bid
+            else:
+                return price_ask
         else:
             return 0
             
     def state1(self, asks, order):
 
+        if self.tradingside == 'buy':
+            max_deviation = Decimal('0.0000000001')
+        else:
+            max_deviation = Decimal('1')
+
         # Checks if better price exists
         estimated_price = find_price(asks, self.th, self.tsize, previous_order=order)
         order_price = order['price'].quantize(CheckSpread.satoshi)
         
-        print("Deviation at: {}".format(estimated_price -order_price))
+        print("Deviation at: {}".format(estimated_price - order_price))
 
-        if abs(estimated_price - order_price) > 111111110.0000000001:
+        if abs(estimated_price - order_price) > max_deviation:
             print("Strategy: Order deviation too large")
             self.state = 0
             return False

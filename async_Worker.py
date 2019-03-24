@@ -16,10 +16,10 @@ from async_Manager import Manager
 
 class Worker(Manager):
 
-    def __init__(self, buy, sell, tsize, th = 0.05, base='buy', orders = []):
+    def __init__(self, quote, base, tsize, tradingside, th = 0.05, orders = []):
         
         #settings for trade 
-        self.base = base 
+        self.tradingside = tradingside
         self.th = th 
         
         #
@@ -29,25 +29,22 @@ class Worker(Manager):
         self.state = None
         
         #setup
-        self.market_string = "BRIDGE.{}:BRIDGE.{}".format(buy, sell)
-        print("Worker on {}".format(self.market_string)) 
-        
-        #
-        if base == 'buy':
-            base = buy
-            quote = sell
+        if self.tradingside == 'buy':
+            self.market_string = "BRIDGE.{}:BRIDGE.{}".format(quote, base)
             super().__init__([base, quote]) 
-            asks,bids = self.get_orderbook(self.market_string)
-            self.tsize = tsize
-        else:
-            base = sell
-            quote = buy
-            super().__init__([base, quote]) 
-            asks,bids = self.get_orderbook(self.market_string)
+            asks, bids = self.get_orderbook(self.market_string)
             self.tsize = convert_to_quote(asks, bids, tsize)
-        
+        else:
+            base, quote = quote, base
+            self.market_string = "BRIDGE.{}:BRIDGE.{}".format(base, quote)
+            super().__init__([base, quote]) 
+            asks, bids = self.get_orderbook(self.market_string)
+            self.tsize = tsize
+
+        print("Worker on {}".format(self.market_string))
+
         #Strategy
-        self.strategy = CheckSpread(tsize=self.tsize,th=self.th)
+        self.strategy = CheckSpread(tsize=self.tsize,th=self.th, tradingside = self.tradingside)
         self.max_open_orders = 2
                          
     def run(self):

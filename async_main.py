@@ -13,9 +13,10 @@ if __name__ == '__main__':
     market = 'BRIDGE.{}:BRIDGE.BTC'.format(coin)
     #
     tsize = 0.0000001
-    s = CheckSpread()
+    side = 'sell'
+    s = CheckSpread(tradingside = side)
     m = Manager(['BTC','LGS','LCC'])
     #
-    w = Worker('BTC', 'LCC', tsize, th = 0.0138)
+    w = Worker(quote = 'LCC', base = 'BTC', th = 0.0138, tradingside = side, tsize = 0.00000001)
     #
     w.run()
