@@ -10,10 +10,6 @@ from bitshares.market import Market
 
 from utils import *
 
-"""
-The Manager:
-
-"""
 
 class Manager:
     
@@ -21,8 +17,6 @@ class Manager:
     url = 'wss://eu-west-2.bts.crypto-bridge.org'
     orders = []
     instance = None
-
-
     def __init__(self):#, currencies):
         print("---- init Manager -----")
         #Sign Up
@@ -36,54 +30,44 @@ class Manager:
         self.account = account
         print("Manager: Account unlocked: {}".format(account.bitshares.wallet.unlocked()))
         
-        #Add markets
-        #for shitcoin in currencies[1:]:
-        #    m = self.get_market("BRIDGE.{}:BRIDGE.{}".format(currencies[0],shitcoin))
-        
     def balance(self):
         self.account.refresh()
         my_coins = self.account.balances
         return dict(zip(map(lambda x: getattr(x,'symbol'),my_coins),my_coins))
-
-    def check_balance(self, quote, base, market_string, tradingside):
+    
+    def new_trade(self, market_string):
         market = self.get_market(market_string)
-
-        _balances = self.balance()
         recent_trades = []
-        for trade in market.accounttrades(account=self.account): #[0]
+        for trade in market.accounttrades(account=self.account):
             if trade not in self.history:
                 print("New Trade found {}".format(trade))
                 recent_trades.append(trade)
-        
-        self.history.extend(recent_trades)
-        
-        avg_price = calc_avg_price(recent_trades, tradingside)
-
-        if tradingside == 'buy':
-            if quote in _balances.keys():
-                coinbalance = _balances[quote]
             else:
-                coinbalance = 0    
-        else:
-            if base in _balances.keys():
-                coinbalance = _balances[base]
-        tsize = min(coinbalance - 0.00000001, 0)
-        
-        return tsize, avg_price
+                print("Recent trade: {}".format(trade))
+        if recent_trades:
+            self.history.extend(recent_trades)
+        return recent_trades
+
+    def order_filled(self, w_order, market_string):
+        order_was_filled = False
+        recent_trades = self.new_trade(market_string)
+        if recent_trades:
+            order_was_filled = True
+        return order_was_filled, recent_trades
 
     @property
     def open_orders(self):
         self.account.refresh()
+        #mkt = self.get_market(self.market_string)
         open_orders = self.account.openorders
+        #market_open_orders = mkt.accountopenorders(account = self.account)
         return open_orders
 
     def which_orderids_still_active(self):
-        #
         all_open_orders = self.open_orders
         all_open_orderids = []
         manager_orderids = []
 
-        # Get all currently active orderids
         for i in range(len(all_open_orders)):
             all_open_orderids.append(all_open_orders[i]['id'])
 
@@ -97,15 +81,14 @@ class Manager:
         return still_open_orders
 
     def order_active(self, order, market_string):
-        print("Manager-orders")
-
+        #print("Manager-orders")
         order_found = False
         open_orders = self.open_orders
         for morder in open_orders:
-            print("Comparing {} with {}".format(morder['id'], order['order']['orderid']))
+            #print("Comparing {} with {}".format(morder['id'], order['order']['orderid']))
             if morder['id'] == order['order']['orderid']: 
                 order_found = True
-        
+        print("Order found: {}".format(order_found))
         return order_found
 
     def buy(self, market_key, price, amount):
@@ -114,7 +97,7 @@ class Manager:
                             amount = amount,
                             returnOrderId = True,
                             account = self.account,
-                            expiration = 10)
+                            expiration = 60)
         self.account.refresh()
         return order
 

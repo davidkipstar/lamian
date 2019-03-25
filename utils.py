@@ -80,3 +80,36 @@ def calc_avg_price(recent_trades, tradingside):
     listb = recent_rate_ele
 
     return [a*b for a,b in zip(lista,listb)]
+
+"""
+    def check_balance(self, quote, base, market_string, tradingside):
+        # decide if  
+        market = self.get_market(market_string)
+        _balances = self.balance()
+        recent_trades = []
+        print("Recent trades: ")
+        for trade in market.accounttrades(account=self.account):
+            if trade not in self.history:
+                print("New Trade found {}".format(trade))
+                recent_trades.append(trade)
+            else:
+                print("Recent trade: {}".format(trade))
+
+        if recent_trades:
+            #filled?
+            self.history.extend(recent_trades)
+            avg_price = calc_avg_price(recent_trades, tradingside)
+        
+        if tradingside == 'buy':
+            if quote in _balances.keys():
+                coinbalance = _balances[quote]
+            else:
+                coinbalance = 0    
+        else:
+            if base in _balances.keys():
+                coinbalance = _balances[base]
+        tsize = min(coinbalance - 0.00000001, 0)
+        
+        return tsize, avg_price
+
+"""
