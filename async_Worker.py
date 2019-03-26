@@ -20,7 +20,7 @@ class Worker(Manager):
         super().__init__()
         #settings for trade 
         self.tradingside = tradingside
-        self.th = th 
+        self.th = th
         
         #
         self.orderbooklimit = 25
@@ -29,6 +29,7 @@ class Worker(Manager):
         self.open_order = prev_order
         self.state = None
         self.history = []
+        self.cur = quote
         #setup
         if self.tradingside == 'buy':
             self.base, self.quote = base, quote
@@ -36,13 +37,15 @@ class Worker(Manager):
             super().get_market(self.market_string)
             asks, bids = self.get_orderbook(self.market_string)
             self.tsize = convert_to_quote(asks, bids, tsize)
+            self.max_inventory = self.tsize # has to be denominated in quote
         
         else:
             self.base, self.quote = quote, base
             self.market_string = "BRIDGE.{}:BRIDGE.{}".format(quote, base)
-            super().get_market(self.market_string) 
+            super().get_market(self.market_string)
             asks, bids = self.get_orderbook(self.market_string)
             self.tsize = tsize
+            self.max_inventory = convert_to_base(asks, bids, tsize)
 
         print("Worker on {}".format(self.market_string))
 
@@ -99,9 +102,12 @@ class Worker(Manager):
                     filled, recent_trades =  super().order_filled(w_order, self.market_string)
                     if filled:
                         print("Order was filled...")
-                        tsize, avg_price = calc_avg_price(recent_trades, self.tradingside)
-                        self.tsize = tsize
-                        print("New tsize {} , avg_price {}".format(tsize, avg_price))
+                        avg_price = calc_avg_price(recent_trades, self.tradingside)
+
+                        # Adjust tsize
+                        cur_bal = super().balance()[self.cur]
+                        self.tsize = max(self.max_inventory - cur_bal, 0)
+                        print("New tsize {} , avg_price {}".format(self.tsize, avg_price))
                         #get new balance
                         #switch sideS? 
                     else:

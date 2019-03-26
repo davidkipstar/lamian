@@ -66,12 +66,21 @@ def convert_to_quote(asks, bids, basecur_amount):  # btc_tsize = basecur amount
 
     return init_bid
 
+def convert_to_base(asks, bids, quotecur_amount):  # btc_tsize = basecur amount
+    #
+    #
+    lowest_ask = asks[0]['price']
+    highest_bid = bids[0]['price']
+    midprice = 0.5 * (lowest_ask + highest_bid)
+    init_bid = quotecur_amount * midprice
+
+    return init_bid
+
 def calc_avg_price(recent_trades, tradingside):
 
 
     def m(key,recent_trades):
         return list(filter(lambda x: x['type'] == tradingside,list(map(lambda x: x[key], recent_trades))))
-    
 
     recent_amount_ele = m('amount', recent_trades)
     recent_rate_ele = m('rate',recent_trades)
