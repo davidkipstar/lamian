@@ -1,6 +1,7 @@
 from utils import find_price
 from decimal import Decimal
 
+from arbitrage import ArbitrageException
 """
 Strategy:
     - Input: Data (Orderbook, Transaction)
@@ -33,11 +34,11 @@ class CheckSpread:
 
         spread_estimated = ((price_ask - price_bid)/price_bid).quantize(CheckSpread.satoshi)
         print("Strategy: Spread: {}".format(spread_estimated))
-        
+        spread_estimated = -1
         if spread_estimated > self.th:
-            self.state = 1
-            print("Strategy: Condition met placing order ")
             return price_bid
+        elif spread_estimated < 0:
+            raise ArbitrageException
         else:
             return 0
             
@@ -56,7 +57,6 @@ class CheckSpread:
 
         if abs(estimated_price - order_price) > max_deviation:
             print("Strategy: Order deviation too large")
-            self.state = 0
             return False
         else:
             return True
