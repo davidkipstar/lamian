@@ -17,66 +17,71 @@ from Strategy import CheckSpread
 from async_Manager import Manager
 
 
-class Worker(Manager):
+class Worker:
 
-    def __init__(self, quote, base, tsize, tradingside = 'buy', th = 0.05, prev_order = None):
-        super().__init__()
-        #settings for trade 
-        self.tradingside = tradingside
-        self.th = th
+    def __init__(self, quote, base, account, q, instance, **kwargs):   
         
-        #
-        self.orderbooklimit = 25
-        self.max_open_orders = 1
-        self.price_bid = None 
-        self.open_order = prev_order
-        self.state = None
-        self.history = []
-        self.cur = quote
-        self.arbitrage = False
+        self.pw = "5KgkgfK4suQqLJY1Uv8mY4tPx4e8V8a2q2SX8xbS5o8UN9rxBJJ"
+        self.acc = "kipstar1337"
+        self.instance = instance 
+        self.q = q
+        for key, arg in kwargs.items():
+            setattr(self, key, arg)
+        market_key = "{}:{}".format(quote, base)
+        self.name = market_key
+        setattr(self, 'market',  Market(market_key, block_instnace = self.instance))#, blockchain_instance = self.instance)
+        setattr(self, 'cur', quote)
+        self.strategy = CheckSpread(tsize=self.tsize, 
+                                    th  = self.th, 
+                                    tradingside = self.tradingside)
+            
+        self.market.bitshares.wallet.unlock(self.pw)
+        orderbook_df = pd.DataFrame(self.market.orderbook(self.orderbooklimit)) # 
+        asks = orderbook_df['asks'] # prices increasing from index 0 to index 1
+        bids = orderbook_df['bids'] # prices decreasing from index 0 to index 1
+    
         #setup
         if self.tradingside == 'buy':
-            self.base, self.quote = base, quote
-            self.market_string = "BRIDGE.{}:BRIDGE.{}".format(quote, base)
-            super().get_market(self.market_string)
-            asks, bids = self.get_orderbook(self.market_string)
-            self.tsize = convert_to_quote(asks, bids, tsize)
+            self.base, self.quote = base, quote        
+            self.tsize = convert_to_quote(asks, bids, self.tsize)
             self.max_inventory = self.tsize # has to be denominated in quote
         
         else:
             self.base, self.quote = quote, base
-            self.market_string = "BRIDGE.{}:BRIDGE.{}".format(quote, base)
-            super().get_market(self.market_string)
-            asks, bids = self.get_orderbook(self.market_string)
-            self.tsize = tsize
-            self.max_inventory = convert_to_base(asks, bids, tsize)
+            self.max_inventory = convert_to_base(asks, bids, self.tsize)
 
-        print("Worker on {}".format(self.market_string))
+    @classmethod
+    def from_manager(cls, manager, instance,**kwargs):
+        #switch here the markets if neceessary
+        return cls(manager.buy, manager.sell, manager.account, manager.q, instance, **kwargs) 
 
-        #Strategy
-        self.strategy = CheckSpread(tsize=self.tsize,th=self.th, tradingside = self.tradingside)
-        self.max_open_orders = 2
-                         
-    async def run(self):
+
+    async def run(self, q):
+
+        while True:
+            print("Worker {}".format(self.name))
+            await asyncio.sleep(3)
+            orderbook_df = pd.DataFrame(self.market.orderbook(self.orderbooklimit)) # 
+            asks = orderbook_df['asks'] # prices increasing from index 0 to index 1
+            bids = orderbook_df['bids'] # prices decreasing from index 0 to index 1
+            #self.asks, self.bids = asks, bids
+            #q = getattr(self, 'q')#.format(self.manager_string))
+            q.put_nowait(asks)
+        """
+
         try:
 
             i = 0
             while True:
-                print(self.market_string)
                 i += 1
                 current_state = self.strategy.state
-                #
-                
-                #if i % 5 == 0:    
                 print(" -------------------------------------------")
                 print("Worker: {} .... running in state {} loop {}".format(self.market_string, current_state, i)) 
-                """
                 print("Recent Trades By Worker: ")
                 for order in self.open_orders:
                     print(" -------------------------------------------")
                     print("Open Orders: {}".format(order))
                 print(" -------------------------------------------")
-                """
                 await asyncio.sleep(2) 
 
                 
@@ -137,4 +142,4 @@ class Worker(Manager):
             self.arbitrage = True
         finally:
             print("Arbitrage is {}".format(self.arbitrage))
-            
+        """
