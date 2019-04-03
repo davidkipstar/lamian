@@ -3,6 +3,14 @@ from decimal import *
 
 import pandas as pd
 
+from datetime import date, datetime
+
+def json_serial(obj):
+    """JSON serializer for objects not serializable by default json code"""
+
+    if isinstance(obj, (datetime, date)):
+        return obj.isoformat()
+    raise TypeError ("Type %s not serializable" % type(obj))
 
 def find_price(orderbook, th, tsize, previous_order = None, minimum_liquidity=1):
     """

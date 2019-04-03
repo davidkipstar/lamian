@@ -10,9 +10,7 @@ from bitshares.account import Account
 from bitshares.market import Market
 
 from Strategy import MarketStrategy
-
 from utils import *
-
 
 class Manager:
     

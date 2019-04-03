@@ -29,7 +29,7 @@ class Worker:
             setattr(self, key, arg)
         market_key = "{}:{}".format(quote, base)
         self.name = market_key
-        setattr(self, 'market',  Market(market_key, block_instnace = self.instance))#, blockchain_instance = self.instance)
+        setattr(self, 'market',  Market(market_key, block_instance = self.instance))#, blockchain_instance = self.instance)
         setattr(self, 'cur', quote)
         self.strategy = CheckSpread(tsize=self.tsize, 
                                     th  = self.th, 
