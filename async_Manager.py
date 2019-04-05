@@ -14,12 +14,12 @@ from utils import *
 
 class Manager:
     
-    def __init__(self, buy, sell, account, q, 
+    def __init__(self, buy, sell, account,
             url = 'wss://eu-west-2.bts.crypto-bridge.org'):
         
         self.arbitrage = 0
         self.history = []
-        self.q = q#asyncio.Queue()
+        #self.q = q#asyncio.Queue()
 
         self.buy  = buy 
         self.sell = sell
@@ -36,6 +36,7 @@ class Manager:
         self.open_order = None 
         self.trades = {} #Ordereddict with timestamp or dataframe is smart le 
         self.workers = []
+        self.listening = []
         
     def balance(self):
         self.account.refresh()

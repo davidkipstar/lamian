@@ -19,18 +19,19 @@ from async_Manager import Manager
 
 class Worker:
 
-    def __init__(self, quote, base, account, q, instance, **kwargs):   
+    def __init__(self, quote, base, account, instance, **kwargs):   
         
         self.pw = "5KgkgfK4suQqLJY1Uv8mY4tPx4e8V8a2q2SX8xbS5o8UN9rxBJJ"
         self.acc = "kipstar1337"
         self.instance = instance 
-        self.q = q
+        #self.q = q
         for key, arg in kwargs.items():
             setattr(self, key, arg)
-        market_key = "{}:{}".format(quote, base)
-        self.name = market_key
-        setattr(self, 'market',  Market(market_key, block_instance = self.instance))#, blockchain_instance = self.instance)
-        setattr(self, 'cur', quote)
+        self.market_key = "{}:{}".format(quote, base)
+        self.name = self.market_key
+        self.market = Market(self.market_key, block_instance = self.instance)#, blockchain_instance = self.instance)
+        self.cur = quote
+
         self.strategy = CheckSpread(tsize=self.tsize, 
                                     th  = self.th, 
                                     tradingside = self.tradingside)
@@ -53,7 +54,7 @@ class Worker:
     @classmethod
     def from_manager(cls, manager, instance,**kwargs):
         #switch here the markets if neceessary
-        return cls(manager.buy, manager.sell, manager.account, manager.q, instance, **kwargs) 
+        return cls(manager.buy, manager.sell, manager.account, instance, **kwargs) 
 
 
     async def run(self, q):
