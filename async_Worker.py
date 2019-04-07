@@ -33,6 +33,7 @@ class Worker:
                             'timestamp' : time.time() ,
                             'asks' : None, 
                             'bids' : None }
+
         self.id = Worker.worker_counter
         Worker.worker_counter += 1
         self.market = Market(self.market_key, block_instance = self.instance)
@@ -46,8 +47,9 @@ class Worker:
         return cls(manager.buy, manager.sell, manager.account, instance, **kwargs) 
 
 
-    async def run(self, q, tradingside = 'buy'):
+    async def run(self, tradingside = 'buy'):
         i = 0
+        assert(self.q)
         self.q = q 
         print("Starting to run on {}".format(self.market_key))
         while True:

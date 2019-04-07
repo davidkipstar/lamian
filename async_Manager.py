@@ -14,13 +14,14 @@ from utils import *
 
 class Manager:
     
-    def __init__(self, buy, sell, account, url = 'wss://eu-west-2.bts.crypto-bridge.org'):
+    def __init__(self, buy, sell, account, strategy = None,url = 'wss://eu-west-2.bts.crypto-bridge.org'):
+        #
         self.arbitrage = 0
         self.history = []
         self.buy  = buy 
         self.sell = sell
         self.market_key = '{}:{}'.format(buy, sell)
-        self.strategy = CheckSpread()
+        self.strategy = strategy
         #
         self.pw = "5KgkgfK4suQqLJY1Uv8mY4tPx4e8V8a2q2SX8xbS5o8UN9rxBJJ"
         self.acc = "kipstar1337"
@@ -42,10 +43,14 @@ class Manager:
         open_orders = self.account.openorders
         return open_orders
 
-    async def run(self, q):
+    async def run(self):
         #
         print("Starting to run on {}".format(self.market_key))
         i = 0
+        assert(self.strategy)
+        assert(self.q)
+        q = self.q
+        
         await asyncio.sleep(5)     
         while True:
             #await asyncio.sleep(2) 

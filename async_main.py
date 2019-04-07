@@ -143,32 +143,47 @@ if __name__ == '__main__':
         
         #Init Workers and queues
         trading_markets = {}
+        
+        
+        def mirror_key(key):
+            m_key = key.split(':')
+            m_key.reverse()
+            return ':'.join(m_key)
+        
         for key, manager in managers.items():
             #check if buy:sell exists as sell:buy
-            mirror_key_l = key.split(':')
-            mirror_key_l.reverse()
-            mirror_key = ':'.join(mirror_key_l)
+            
             if key in trading_markets: 
                 #market already exists
                 #trading_markets[key].append(asyncio.Queue(loop=loop))
                 trading_markets[key] = asyncio.Queue(loop=loop)
-            elif mirror_key in trading_markets:
-                trading_markets[mirror_key] = asyncio.Queue(loop=loop) 
+            elif mirror_key(key) in trading_markets:
+                trading_markets[mirror_key(key)] = asyncio.Queue(loop=loop) 
                 #trading_markets[mirror_key].append(asyncio.Queue(loop=loop))
             else:
                 trading_markets[key] = asyncio.Queue(loop=loop)
             w = Worker.from_manager(manager, ana.instance, **w_config)
             workers.update({ w.id : w })
-        dict(zip(list(map(lambda x: x.market_key ,workers.values())), [asyncio.Queue(loop=loop) for i in range(len(workers))]))
         
         #create transition table for queues
         for key, queue in trading_markets.items():
             for worker in workers.values():
-                if key==worker.market_key:
+                if key == worker.market_key or mirror_key(key) == worker.market_key:
+                    worker.q = queue 
             
-            for manager in managers.items()
+            if key in managers:
+                m = managers[key]
+                m.q = queue
+            elif mirror_key(key) in managers:
+                m = managers[mirror_key(key)]
+                m.q = queue
+            else:
+                print("{} not found in managers... ".format(key))
+
         #
-        producer_coro = [w.run() for w in workers.values()]
+        #
+        #
+        producer_coro = [w.run() for w in workers.values() ]
         consumer_coro = [m.run() for m in managers.values()]
         
         #
