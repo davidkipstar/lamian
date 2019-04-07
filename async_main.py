@@ -32,17 +32,17 @@ m_config = {}
 class Analyst:
 
     def __init__(self, url = 'wss://eu-west-2.bts.crypto-bridge.org', major_coin = 'BRIDGE.BTC'):
-        
         self.instance = BitShares(witness_url = url)
         self.pw = "5KgkgfK4suQqLJY1Uv8mY4tPx4e8V8a2q2SX8xbS5o8UN9rxBJJ"
         self.acc = "kipstar1337"
+
         self.major_coin = major_coin
+        
         account = Account(self.acc, bitshares_instance = self.instance, full = True)
         account.bitshares.wallet.unlock(self.pw)
         self.account = account
         print("Manager: Account unlocked: {}".format(account.bitshares.wallet.unlocked()))
-        #get balance
-
+        
         self.update()
 
     def update(self):
@@ -96,30 +96,13 @@ class Analyst:
         print("Starting consumer.. {}".format(m))
         await m.run(q)
         
-async def main(ana,q):
-    
-    producers = [asyncio.create_task(ana.produce(w)) for w in workers.values()]
-    consumers = [asyncio.create_task(ana.consume(m,q)) for m in managers.values()]
-    await asyncio.gather(*producers)
-    await q.join()  # Implicitly awaits consumers, too
-    
-    print("Canceling all consumers")
-    for c in consumers:
-        c.cancel()
-
-    print("Sleeping for 10 seconds...")
-    for i in range(5):
-        print(".")
-        time.sleep(2)
-
-
 if __name__ == '__main__':
     
     ana = Analyst() 
-    managers = {}
+    managers = {} # keys: SELL_COIN:BUY_COIN
     workers = {}
     buying = {'BRIDGE.BTC' : None, 'BRIDGE.LCC' : None, 'BRIDGE.GIN' : None}
-        
+    
     while ana.major_balance > 0:
         
         #Get Coins to trade
@@ -128,30 +111,65 @@ if __name__ == '__main__':
 
         #Init Manager on market sell-buy for  
         for sell_coin in selling_coins:
+            balance = selling_coins[sell_coin]
+            print("Owning {} of {}".format(balance, sell_coin))
+
+            #NOTE:
+            # This can be replaced by an investment strategy
+            if sell_coin != 'BRIDGE.BTC':
+                #use full balance
+                tsize = balance
+                th = 0.01 #asymmetric  th can be implemented here
+
+            else:
+                #equally distributed capital
+                tsize = balance/len(buying_coins)
+                th = 0.05 #always 5% spread
+            ## 
+            
+            #NOTE:
+            #since we use our full balance if we trade any other coin then btc
+            # it is possible to fail an order due to insufficient balance
             for buy_coin in buying_coins:
                 if buy_coin != sell_coin:
-                    m = Manager(sell_coin, buy_coin, ana.account)
-                    managers.update({ m.name : m })        
+                    #init manager on market
+                    strategy = CheckSpread(tsize = tsize, th = 0.05)
+                    m = Manager(sell_coin, buy_coin, ana.account, strategy = strategy)
+                    managers.update({"{}:{}".format(sell_coin, buy_coin) : m })
         
-        #Init Workers for each market
-        for manager in managers.values():
-            w = Worker.from_manager(manager, ana.instance, **w_config)
-            workers.update({ w.name: w })
-        
-        #
+
+        #Start Asyncio
         loop = asyncio.get_event_loop()
+        
+        #Init Workers and queues
+        trading_markets = {}
+        for key, manager in managers.items():
+            #check if buy:sell exists as sell:buy
+            mirror_key_l = key.split(':')
+            mirror_key_l.reverse()
+            mirror_key = ':'.join(mirror_key_l)
+            if key in trading_markets: 
+                #market already exists
+                #trading_markets[key].append(asyncio.Queue(loop=loop))
+                trading_markets[key] = asyncio.Queue(loop=loop)
+            elif mirror_key in trading_markets:
+                trading_markets[mirror_key] = asyncio.Queue(loop=loop) 
+                #trading_markets[mirror_key].append(asyncio.Queue(loop=loop))
+            else:
+                trading_markets[key] = asyncio.Queue(loop=loop)
+            w = Worker.from_manager(manager, ana.instance, **w_config)
+            workers.update({ w.id : w })
         dict(zip(list(map(lambda x: x.market_key ,workers.values())), [asyncio.Queue(loop=loop) for i in range(len(workers))]))
-        queues = {}
         
         #create transition table for queues
-        for manager in managers.values():
-            for worker in workers.values():  
-                if worker.market_key in managers:
-                    queues[worker.market_key] = asyncio.Queue(loop=loop)
-        
+        for key, queue in trading_markets.items():
+            for worker in workers.values():
+                if key==worker.market_key:
+            
+            for manager in managers.items()
         #
-        producer_coro = [w.run(queues[w.market_key]) for w in workers.values()]
-        consumer_coro = [m.run(queues[w.market_key]) for m in managers.values()]
+        producer_coro = [w.run() for w in workers.values()]
+        consumer_coro = [m.run() for m in managers.values()]
         
         #
         loop.run_until_complete(asyncio.gather(*producer_coro, *consumer_coro))
