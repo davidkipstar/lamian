@@ -27,6 +27,7 @@ class Worker:
         for key, arg in kwargs.items():
             setattr(self, key, arg)
         
+    
         #
         self.db = TinyDB('2DAY.json')
         self.db_template = {'market': self.market_key, 
@@ -36,9 +37,11 @@ class Worker:
 
         self.id = Worker.worker_counter
         Worker.worker_counter += 1
+        #
+        print("Market_key: {}".format(self.market_key))
         self.market = Market(self.market_key, block_instance = self.instance)
         #This should always be the same thus BTC:GIN and GIN:BTC both yield BTC:GIN
-        self.market_key = self.market.get_string
+        #self.market_key = self.market.get_string
         self.cur = quote        
         self.market.bitshares.wallet.unlock(self.pw)
         
@@ -50,7 +53,7 @@ class Worker:
     async def run(self, tradingside = 'buy'):
         i = 0
         assert(self.q)
-        self.q = q 
+        q = self.q 
         print("Starting to run on {}".format(self.market_key))
         while True:
             await asyncio.sleep(np.random.randint(10)) 

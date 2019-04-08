@@ -103,12 +103,13 @@ if __name__ == '__main__':
     workers = {}
     buying = {'BRIDGE.BTC' : None, 'BRIDGE.LCC' : None, 'BRIDGE.GIN' : None}
     
+    i = 0 
     while ana.major_balance > 0:
-        
+        i += 1
         #Get Coins to trade
         selling_coins = ana.find_sellcoins(**buying)
         buying_coins  = ana.find_buycoins(**buying)
-
+        print("Starting ... loop {}".format(i))
         #Init Manager on market sell-buy for  
         for sell_coin in selling_coins:
             balance = selling_coins[sell_coin]
@@ -150,6 +151,7 @@ if __name__ == '__main__':
             m_key.reverse()
             return ':'.join(m_key)
         
+        print("Create asyncio")
         for key, manager in managers.items():
             #check if buy:sell exists as sell:buy
             
@@ -162,14 +164,20 @@ if __name__ == '__main__':
                 #trading_markets[mirror_key].append(asyncio.Queue(loop=loop))
             else:
                 trading_markets[key] = asyncio.Queue(loop=loop)
-            w = Worker.from_manager(manager, ana.instance, **w_config)
+            print("Key: {}".format(key))
+            w = Worker.from_manager(manager, ana.instance, market_key = key,**w_config)
             workers.update({ w.id : w })
         
+        print("Transition table...")
         #create transition table for queues
         for key, queue in trading_markets.items():
+            print("Transition from {}".format(key))
             for worker in workers.values():
+                #
                 if key == worker.market_key or mirror_key(key) == worker.market_key:
-                    worker.q = queue 
+                    worker.q = queue
+
+                    print("........ {}".format(worker.market_key))
             
             if key in managers:
                 m = managers[key]
@@ -179,17 +187,16 @@ if __name__ == '__main__':
                 m.q = queue
             else:
                 print("{} not found in managers... ".format(key))
+        #check if populated
+        for w in workers.values():
+            print(w.q)
 
-        #
-        #
-        #
         producer_coro = [w.run() for w in workers.values() ]
         consumer_coro = [m.run() for m in managers.values()]
-        
         #
         loop.run_until_complete(asyncio.gather(*producer_coro, *consumer_coro))
         loop.close()
-
+        #
         ana.update()
 
 

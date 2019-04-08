@@ -16,10 +16,10 @@ class Manager:
     
     def __init__(self, buy, sell, account, strategy = None,url = 'wss://eu-west-2.bts.crypto-bridge.org'):
         #
-        self.arbitrage = 0
         self.history = []
         self.buy  = buy 
         self.sell = sell
+        #
         self.market_key = '{}:{}'.format(buy, sell)
         self.strategy = strategy
         #
@@ -27,37 +27,37 @@ class Manager:
         self.acc = "kipstar1337"
         self.account = account
         self.account.refresh()
+        #
         self.open_order = None 
-        self.trades = {} #Ordereddict with timestamp or dataframe is smart le 
+        self.trades = {} 
+        #Ordereddict with timestamp or dataframe is smart le 
         self.workers = []
         self.listening = []
         
-    def balance(self):
+    async def balance(self):
         self.account.refresh()
         my_coins = self.account.balances
         return dict(zip(map(lambda x: getattr(x,'symbol'),my_coins),my_coins))
     
     @property
-    def open_orders(self):
+    async def open_orders(self):
         self.account.refresh()
         open_orders = self.account.openorders
         return open_orders
 
     async def run(self):
-        #
         print("Starting to run on {}".format(self.market_key))
         i = 0
         assert(self.strategy)
         assert(self.q)
         q = self.q
-        
         await asyncio.sleep(5)     
         while True:
             #await asyncio.sleep(2) 
             i += 1            
             current_state = self.strategy.state
             entry = await q.get()
-            orders = self.open_orders
+            orders = await self.open_orders
             print("Entry on  {}".format(self.market_key))
             if i%5 == 0:
                 print("{} is in state {} after {} iterations".format(self.market_key, current_state, i)) 
@@ -67,15 +67,6 @@ class Manager:
                         print("{}: {}".format(self.market_key, order))
                 print(" -------------------------------------------")
             await asyncio.sleep(1)
-            """
-            print("Manager {}".format(self.name))
-            await asyncio.sleep(3)
-            j = await q.get()
-            #global 
-            print("{} received {}".format(self.name, j))
-            #self.strategy.apply(j)
-            q.task_done()
-            """
 
 
         
