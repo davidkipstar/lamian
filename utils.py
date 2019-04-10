@@ -20,7 +20,7 @@ def find_price(orderbook, th, tsize, previous_order = None, minimum_liquidity=1)
     """
     satoshi = Decimal('0.00000001')
     th = Decimal(th).quantize(satoshi)
-    tsize = Decimal(tsize).quantize(satoshi)
+    tsize = Decimal(tsize['amount']).quantize(satoshi)
 
     def price(x): return +Decimal(x['price']).quantize(satoshi)
     def quote(x): return +Decimal(x['quote']['amount']).quantize(satoshi)
