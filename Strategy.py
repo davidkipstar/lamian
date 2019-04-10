@@ -15,15 +15,34 @@ class CheckSpread:
         self.tsize = tsize 
         self.th = th
         self.state = 0
+    
+    def apply(self, entry):
+        #transition table, if state changes we need to return a task
+        #since only orderbooks are used 
+        asks, bids = entry['asks'], entry['bids']
+
+        if self.state == 0:    
+            conf = self.state0(asks, bids)
+            if self.state ==1:
+                return "0-1" #transition from state 0 to state 1 
+            else:
+                return None
+        if self.state == 1:
+            #bis, order = entry
+            conf = self.state1(asks, bids)
+            if self.state == 0:
+                return "1-0" #transition from state 1 to state 0 
+            else:
+                return 0 
+
 
     def state0(self, asks, bids):
-
+        #
+        #asks, bids = entry['asks'], entry['bids']
         price_bid = find_price(bids, getattr(self, 'th'), getattr(self, 'tsize'))
         price_ask = find_price(asks, getattr(self, 'th'), getattr(self, 'tsize'))
-
         spread_estimated = ((price_ask - price_bid)/price_bid).quantize(CheckSpread.satoshi)
-        print("Strategy: Spread: {}".format(spread_estimated))
-        
+        #print("Strategy: Spread: {}".format(spread_estimated))
         if spread_estimated > self.th:
             return price_bid
         elif spread_estimated < 0:

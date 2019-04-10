@@ -100,96 +100,78 @@ if __name__ == '__main__':
     
     ana = Analyst() 
     managers = {} # keys: SELL_COIN:BUY_COIN
-    workers = {}
-    buying = {'BRIDGE.BTC' : None, 'BRIDGE.LCC' : None, 'BRIDGE.GIN' : None}
-    
-    i = 0 
+    workers = {}  # keys: worker.id 
+    #coins we want to trade
+    buying = {'BRIDGE.BTC' : None, 'BRIDGE.LGS': None ,'BRIDGE.LCC' : None, 'BRIDGE.GIN' : None}
+    #selling are all coins we have a balance
+
+    i = 0 # i  
     while ana.major_balance > 0:
         i += 1
-        #Get Coins to trade
+        #coins to trade
         selling_coins = ana.find_sellcoins(**buying)
         buying_coins  = ana.find_buycoins(**buying)
-        print("Starting ... loop {}".format(i))
+        
+        print("We are in loop {} owning ...".format(i))
         #Init Manager on market sell-buy for  
         for sell_coin in selling_coins:
             balance = selling_coins[sell_coin]
-            print("Owning {} of {}".format(balance, sell_coin))
+            print("     - {}".format(balance))
 
-            #NOTE:
-            # This can be replaced by an investment strategy
+            # Investment strategy
             if sell_coin != 'BRIDGE.BTC':
                 #use full balance
+                #NOTE: is this correct?
                 tsize = balance
                 th = 0.01 #asymmetric  th can be implemented here
-
             else:
                 #equally distributed capital
                 tsize = balance/len(buying_coins)
                 th = 0.05 #always 5% spread
-            ## 
-            
+
             #NOTE:
             #since we use our full balance if we trade any other coin then btc
             # it is possible to fail an order due to insufficient balance
             for buy_coin in buying_coins:
+                # different markets
                 if buy_coin != sell_coin:
                     #init manager on market
-                    strategy = CheckSpread(tsize = tsize, th = 0.05)
-                    m = Manager(sell_coin, buy_coin, ana.account, strategy = strategy)
+                    # CheckSpread(tsize = tsize, th = th)
+                    m = Manager(sell_coin, buy_coin, ana.account, strategy = CheckSpread(tsize=tsize,th=th))
                     managers.update({"{}:{}".format(sell_coin, buy_coin) : m })
-        
 
         #Start Asyncio
         loop = asyncio.get_event_loop()
         
         #Init Workers and queues
-        trading_markets = {}
-        
+        trading_markets = {}        
         
         def mirror_key(key):
             m_key = key.split(':')
             m_key.reverse()
             return ':'.join(m_key)
         
-        print("Create asyncio")
+        print("Using Async, populating worker with queues")
         for key, manager in managers.items():
+
             #check if buy:sell exists as sell:buy
-            
+            queue = asyncio.Queue(loop=loop)
+            #insert to maanger
+            manager.q = queue
             if key in trading_markets: 
                 #market already exists
-                #trading_markets[key].append(asyncio.Queue(loop=loop))
-                trading_markets[key] = asyncio.Queue(loop=loop)
+                trading_markets[key].append(queue)
+                #trading_markets[key] = asyncio.Queue(loop=loop)
             elif mirror_key(key) in trading_markets:
-                trading_markets[mirror_key(key)] = asyncio.Queue(loop=loop) 
-                #trading_markets[mirror_key].append(asyncio.Queue(loop=loop))
+                #trading_markets[mirror_key(key)] = asyncio.Queue(loop=loop) 
+                trading_markets[mirror_key].append(queue)
             else:
-                trading_markets[key] = asyncio.Queue(loop=loop)
-            print("Key: {}".format(key))
-            w = Worker.from_manager(manager, ana.instance, market_key = key,**w_config)
+                trading_markets[key] = [queue]
+        for key, items in trading_markets.items():
+            #for item in items:
+            w = Worker.from_manager(manager, ana.instance, queues = items ,market_key = key,**w_config)
             workers.update({ w.id : w })
         
-        print("Transition table...")
-        #create transition table for queues
-        for key, queue in trading_markets.items():
-            print("Transition from {}".format(key))
-            for worker in workers.values():
-                #
-                if key == worker.market_key or mirror_key(key) == worker.market_key:
-                    worker.q = queue
-
-                    print("........ {}".format(worker.market_key))
-            
-            if key in managers:
-                m = managers[key]
-                m.q = queue
-            elif mirror_key(key) in managers:
-                m = managers[mirror_key(key)]
-                m.q = queue
-            else:
-                print("{} not found in managers... ".format(key))
-        #check if populated
-        for w in workers.values():
-            print(w.q)
 
         producer_coro = [w.run() for w in workers.values() ]
         consumer_coro = [m.run() for m in managers.values()]

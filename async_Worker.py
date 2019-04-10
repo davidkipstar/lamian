@@ -27,7 +27,6 @@ class Worker:
         for key, arg in kwargs.items():
             setattr(self, key, arg)
         
-    
         #
         self.db = TinyDB('2DAY.json')
         self.db_template = {'market': self.market_key, 
@@ -52,8 +51,7 @@ class Worker:
 
     async def run(self, tradingside = 'buy'):
         i = 0
-        assert(self.q)
-        q = self.q 
+        assert(self.queues)
         print("Starting to run on {}".format(self.market_key))
         while True:
             await asyncio.sleep(np.random.randint(10)) 
@@ -65,5 +63,6 @@ class Worker:
             new_entry['bids'] = orderbook['bids']
             new_entry['asks'] = orderbook['asks']
             self.db.insert(new_entry)
-            self.q.put_nowait(new_entry)
+            for queue in self.queues:
+                queue.put_nowait(new_entry)
             await asyncio.sleep(5)

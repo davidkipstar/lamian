@@ -58,13 +58,21 @@ class Manager:
             current_state = self.strategy.state
             entry = await q.get()
             orders = await self.open_orders
-            print("Entry on  {}".format(self.market_key))
+            #print("R".format(self.market_key))
+            task = self.strategy.apply(entry)
+            if(task):
+                print("Now we need to implement a pipe to analyst which deals with the task returned by strategy")
             if i%5 == 0:
-                print("{} is in state {} after {} iterations".format(self.market_key, current_state, i)) 
+                print("Buying: {} Selling: {} , in state {} after {} iteratios".format(self.buy, self.sell, self.state, i))
+                #print("{}:{} is in state {} after {} iterations".format(self.market_key, current_state, i)) 
                 if len(orders):
                     print("OpenOrders in {}".format(self.market_key))
                     for order in orders:
                         print("{}: {}".format(self.market_key, order))
+                else:
+                    print("No open orders")
+
+
                 print(" -------------------------------------------")
             await asyncio.sleep(1)
 
