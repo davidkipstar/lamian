@@ -59,7 +59,7 @@ class Manager:
             entry = await q.get()
             orders = await self.open_orders
             #print("R".format(self.market_key))
-            task = self.strategy.apply(entry)
+            task = self.strategy.apply(pd.DataFrame(entry))
             if(task):
                 print("Now we need to implement a pipe to analyst which deals with the task returned by strategy")
             if i%5 == 0:
