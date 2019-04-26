@@ -4,36 +4,62 @@ import pandas as pd
 import numpy as np
 import sys
 import asyncio
+from asyncio import Queue
 
 from bitshares import BitShares
 from bitshares.account import Account
 from bitshares.market import Market
 
+from async_Analyst import Analyst
 from Strategy import MarketStrategy, CheckSpread
 from utils import *
 
-class Manager:
+class Manager(Analyst):
     
-    def __init__(self, buy, sell, account, strategy = None,url = 'wss://eu-west-2.bts.crypto-bridge.org'):
+    managers = []
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+   # sell, buy, account, tradingside = 'buy' ,strategy = None, toQuote = True,url = 'wss://eu-west-2.bts.crypto-bridge.org'):
         #
-        self.history = []
-        self.buy  = buy 
-        self.sell = sell
-        #
-        self.market_key = '{}:{}'.format(buy, sell)
-        self.strategy = strategy
-        #
-        self.pw = "5KgkgfK4suQqLJY1Uv8mY4tPx4e8V8a2q2SX8xbS5o8UN9rxBJJ"
-        self.acc = "kipstar1337"
-        self.account = account
-        self.account.refresh()
-        #
-        self.open_order = None 
-        self.trades = {} 
-        #Ordereddict with timestamp or dataframe is smart le 
+        data = {
+            'open_orders' : None,
+            'trades' : {}}
+        for key, item in kwargs.items():
+            setattr(self, key, item)
+        
+        if tradingside == 'buy':
+            self.quote = buy
+            self.base = sell
+        else:
+            self.quote = sell
+            self.base = buy
+        
         self.workers = []
+        self.w_config = {'orderbooklimit' : 25,
+                    'open_order' : None,
+                    'max_open_orders' : 1,
+                    'state' : None,
+                    'arbitrage' : False
+                    }
+        self.w_config = self.w_config.update(**kwargs)
+                
+
         self.listening = []
         
+    @staticmethod
+    def populate(loop):
+        #
+        q = {}
+        for key, manager in Manager.managers.items():
+            q[manager.id] = []
+            for i in range(manager.worker_count):
+                #unterscheiden zwischen orderbook und user
+                queue = Queue(loop=loop)
+                w = Worker.from_manager(m, queue,**m.w_config)
+                q[manager.id].append(w)
+        return q
+    
     async def balance(self):
         self.account.refresh()
         my_coins = self.account.balances
@@ -45,35 +71,14 @@ class Manager:
         open_orders = self.account.openorders
         return open_orders
 
-    async def run(self):
-        print("Starting to run on {}".format(self.market_key))
+    async def run(self, **kwargs):
         i = 0
-        assert(self.strategy)
-        assert(self.q)
-        q = self.q
+
         await asyncio.sleep(5)     
         while True:
             #await asyncio.sleep(2) 
-            i += 1            
-            current_state = self.strategy.state
             entry = await q.get()
-            orders = await self.open_orders
-            #print("R".format(self.market_key))
-            task = self.strategy.apply(pd.DataFrame(entry))
-            if(task):
-                print("Now we need to implement a pipe to analyst which deals with the task returned by strategy")
-            if i%5 == 0:
-                print("Buying: {} Selling: {} , in state {} after {} iteratios".format(self.buy, self.sell, self.state, i))
-                #print("{}:{} is in state {} after {} iterations".format(self.market_key, current_state, i)) 
-                if len(orders):
-                    print("OpenOrders in {}".format(self.market_key))
-                    for order in orders:
-                        print("{}: {}".format(self.market_key, order))
-                else:
-                    print("No open orders")
-
-
-                print(" -------------------------------------------")
+            print("Manager", entry)
             await asyncio.sleep(1)
 
 

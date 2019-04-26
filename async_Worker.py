@@ -12,57 +12,41 @@ from bitshares.market import Market
 
 from utils import *
 from tinydb import Query, TinyDB
-
+from async_Manager import Manager
     
-class Worker:
-    worker_counter = 0 
-
-    def __init__(self, quote, base, account, instance, **kwargs): 
-        #
-        self.instance = instance
-        self.orderbooklimit = 25
-        self.history = []
-        self.pw = "5KgkgfK4suQqLJY1Uv8mY4tPx4e8V8a2q2SX8xbS5o8UN9rxBJJ"
-        self.acc = "kipstar1337"
+class Worker(Manager):
+    def __init__(self, **kwargs):
+        data = {
+            'tradingside' : 
+            'market_key' : 
+            'instance' : 
+            'base' : 
+            'quote'
+            '2Quote' : 
+            'tsize' : 
+            'loop' : 
+            'queue' : 
+        }
+        #quote, base, account, strategy, toQuote, queue, 
+        kwargs['queue'] = Queue(loop=kwargs['loop'])
+        
         for key, arg in kwargs.items():
             setattr(self, key, arg)
-        
-        #
-        self.db = TinyDB('2DAY.json')
-        self.db_template = {'market': self.market_key, 
-                            'timestamp' : time.time() ,
-                            'asks' : None, 
-                            'bids' : None }
+        self.market = Market(self.market_key, block_instance = instance)
+        kwargs.update({'market' :self.market})
+        self.strategy = CheckSpread(**kwargs)
+        super().__init__(**kwargs)
 
-        self.id = Worker.worker_counter
-        Worker.worker_counter += 1
-        #
-        print("Market_key: {}".format(self.market_key))
-        self.market = Market(self.market_key, block_instance = self.instance)
-        #This should always be the same thus BTC:GIN and GIN:BTC both yield BTC:GIN
-        #self.market_key = self.market.get_string
-        self.cur = quote        
-        self.market.bitshares.wallet.unlock(self.pw)
-        
-    @classmethod
-    def from_manager(cls, manager, instance,**kwargs):
-        return cls(manager.buy, manager.sell, manager.account, instance, **kwargs) 
-
-
-    async def run(self, tradingside = 'buy'):
+    async def run(self, **kwargs):
         i = 0
-        assert(self.queues)
         print("Starting to run on {}".format(self.market_key))
         while True:
             await asyncio.sleep(np.random.randint(10)) 
             i += 1
             if not i%5:
                 print("{} after {} iterations".format(self.market_key, i)) 
-            orderbook = self.market.orderbook(self.orderbooklimit)
-            new_entry = self.db_template.copy()
-            new_entry['bids'] = orderbook['bids']
-            new_entry['asks'] = orderbook['asks']
-            self.db.insert(new_entry)
-            for queue in self.queues:
-                queue.put_nowait(new_entry)
+            asks, bids = self.orderbook
+            event = self.strategy.apply(asks, bids)
+            if event:
+                queue.put_nowait(event)
             await asyncio.sleep(5)
