@@ -1,119 +1,31 @@
 import os 
 import time 
 import asyncio
-
 from async_Manager import Manager
 from async_Worker import Worker
 from Strategy import CheckSpread
-#from utils import convert_to_quote
-from copy import deepcopy
 from async_Analyst import Analyst
-from bitshares import BitShares
-from bitshares.account import Account
-from bitshares.market import Market
 
-
-global managers #this is in Analyst
-global workers  #this is in Analyst
-
-w_config = {'orderbooklimit' : 25,
-            'tradingside' : 'buy',
-            'open_order' : None,
-            'tsize' : 0.000000001,
-            'th' : 0.05,
-            'max_open_orders' : 1,
-            'price_bid' : None ,
-            'state' : None,
-            'history' : [],
-            'arbitrage' : False}
-
-m_config = {}
 
 if __name__ == '__main__':
     
-    ana = Analyst() 
-    managers = {} # 
     buying = {'BRIDGE.BTC' : None, 'BRIDGE.LGS': None ,'BRIDGE.LCC' : None, 'BRIDGE.GIN' : None}
     #selling are all coins we have a balance
+    data = {
+        'pw' : "5KgkgfK4suQqLJY1Uv8mY4tPx4e8V8a2q2SX8xbS5o8UN9rxBJJ",
+        'acc' : "kipstar1337",
+        'url' : 'wss://eu-west-2.bts.crypto-bridge.org',
+        'major_coin' : 'BRIDGE.BTC',
+        'buying' : {'BRIDGE.BTC' : None , 'BRIDGE.LGS': None , 'BRIDGE.GIN': None}
+    }
 
-    i = 0 # i  
-    while ana.major_balance > 0:
-          
-        #Start Asyncio
-        loop = asyncio.get_event_loop()
-        #
-        i += 1
-        #coins to trade
-        selling_coins = ana.find_sellcoins(**buying)
-        buying_coins  = ana.find_buycoins(**buying)
-        
-        print("We are in loop {} owning ...".format(i))
-        #Init Manager on market sell-buy for  
-        for sell_coin in selling_coins:
-            balance = selling_coins[sell_coin]
-            print("     - {}".format(balance))
-
-            # Investment strategy
-            if sell_coin != 'BRIDGE.BTC':
-                #use full balance
-                #NOTE: is this correct?
-                tsize = balance
-                th = 0.01 #asymmetric  th can be implemented here
-                data = {
-                    'sell' : ana.major_coin, 
-                    'buy' : buy_coin,
-                    'tradingside'='sell',
-                    'tsize' =tsize, 
-                    'th' = th
-                    'toQuote' : False,
-                    'loop' : loop
-                }
-
-                m = Manager(**data)
-            
-            else:
-                #equally distributed capital
-                tsize = balance/len(buying_coins)
-                th = 0.05 #always 5% spread
-
-                #NOTE:
-                #since we use our full balance if we trade any other coin then btc
-                # it is possible to fail an order due to insufficient balance
-                for buy_coin in buying_coins:
-                    # different markets
-                    if buy_coin != sell_coin:
-                        #init manager on market
-                        # CheckSpread(tsize = tsize, th = th)
-                        #m = Manager()
-                        data = {
-                            'sell' : ana.major_coin, 
-                            'buy' : buy_coin,
-                            'tradingside'='buy',
-                            'tsize' =tsize, 
-                            'th' = th,
-                            'toQuote' : True,
-                            'loop' : loop
-                        }
-                        m = Manager(**data)
-                      
-        workers = []
-        workers_dict = Manager.populate(loop)
-        for key, _workers in workers_dict.items():
-            print("Manager {} managing {} workers".format(key, len(_workers)))
-            for w in _workers:
-                workers.append(w)
-                
-        producer_coro = [w.run() for w in workers]
-        consumer_coro = [m.run() for m in managers.values()]
-        #
-        loop.run_until_complete(asyncio.gather(*producer_coro, *consumer_coro, ana.run()))
-        loop.close()
-        #
-        ana.update()
-
-
-
-
+    ana = Analyst.from_kwargs(**data) 
+    managers, workers = ana.populate()
+    producer_coro = [w.run() for w in workers]
+    consumer_coro = [m.run() for m in managers]
+    #
+    ana.loop.run_until_complete(asyncio.gather(*producer_coro, *consumer_coro))
+    ana.loop.close()
     """
         #Init Workers and queues
         trading_markets = {}        

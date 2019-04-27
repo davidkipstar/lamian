@@ -1,32 +1,53 @@
-from utils import find_price
+from utils import find_price, convert_to_quote
 from decimal import Decimal
 
+import pandas as pd
+
+from bitshares import BitShares
+from bitshares.account import Account
+from bitshares.market import Market
 from arbitrage import ArbitrageException
 
 class CheckSpread:
     satoshi = Decimal('0.00000001')        
-    
-    def __init__(self, **kwargs)
+    """
+        market: market
+        tsize : tsize
+        tradingside: 
+        toQuote:
+        account: account
+
+    """
+    def __init__(self, **kwargs):
         for key, arg in kwargs.items():
             setattr(self, key, arg)
-    
-        if toQuote:
+        if kwargs['toQuote']:        
             asks, bids = self.orderbook
-            self.tsize = convert_to_quote(asks, bids, tsize)
-            self.cur = quote
-        else:
-            self.cur = base
+            if asks is None:
+                self.orderbooklimit = self.orderbooklimit//2
+                asks, bids = self.orderbook
+                if asks is None:
+                    print("FAILED MISSERABLY")
+            if asks is not None:
+                self.tsize = convert_to_quote(asks, bids, self.tsize)
 
+    @classmethod
+    def from_kwargs(cls, **kwargs):
+        instance = BitShares(witness_url = kwargs['url'])
+        account = Account(kwargs['acc'], bitshares_instance = instance, full = True)
+        account.bitshares.wallet.unlock(kwargs['pw'])
+        kwargs.update({'account' : account, 'instance': instance})
+        return cls(**kwargs)
 
     @property 
-    async def orderbook(self):
+    def orderbook(self):
         ob = self.market.orderbook(self.orderbooklimit)
-        if len(ob['asks']) != len(ob['bids']) or len(ob['asks']) < self.orderbooklimit:
+        if len(ob['asks']) >= self.orderbooklimit and len(ob['asks']) >= self.orderbooklimit:
             asks, bids = pd.DataFrame(ob['asks']), pd.DataFrame(ob['bids'])
             return asks, bids 
         else:
             print("not liquid")
-            return None
+            return None, None
 
     
     @property
@@ -36,19 +57,6 @@ class CheckSpread:
         return open_orders
     
    
-    def new_trade(self, market_string):
-        market = self.get_market(market_string)
-        recent_trades = []
-        for trade in market.accounttrades(account=self.account):
-            if trade not in self.history:
-                print("New Trade found {}".format(trade))
-                recent_trades.append(trade)
-            else:
-                print("Recent trade: {}".format(trade))
-        if recent_trades:
-            self.history.extend(recent_trades)
-        return recent_trades
-
     def order_filled(self, w_order, market_string):
         order_was_filled = False
         recent_trades = self.new_trade(market_string)
@@ -56,13 +64,6 @@ class CheckSpread:
             order_was_filled = True
         return order_was_filled, recent_trades
 
-    @property
-    def open_orders(self):
-        self.account.refresh()
-        #mkt = self.get_market(self.market_string)
-        open_orders = self.account.openorders
-        #market_open_orders = mkt.accountopenorders(account = self.account)
-        return open_orders
 
     def which_orderids_still_active(self):
         all_open_orders = self.open_orders
@@ -81,7 +82,7 @@ class CheckSpread:
 
         return still_open_orders
 
-    def order_active(self, order, market_string):
+    def order_active(self, order):
         #print("Manager-orders")
         order_found = False
         open_orders = self.open_orders
@@ -92,93 +93,32 @@ class CheckSpread:
         print("Order found: {}".format(order_found))
         return order_found
 
-    def buy(self, market_key, price, amount):
-        market = self.get_market(market_key)
-        order = market.buy(price = price,
-                            amount = amount,
-                            returnOrderId = True,
-                            account = self.account,
-                            expiration = 60)
+    def buy(self, **kwargs): #market_key, price, amount):
+        order = self.market.buy(**kwargs)
         self.account.refresh()
         return order
 
-    def cancel(self, order, market_key):
+    def cancel(self, order):
         # cancelling specific order
         try:
-            market = self.get_market(market_key)
-            market.cancel(order['order']['orderid'], account = self.account)
+            self.market.cancel(order['order']['orderid'], account = self.account)
             return True
         except Exception as e:
             print("Error during cancellation! Order_id: {}".format(order['id']))
             print(e)
             return False
 
-    def cancel_all_orders(self, market_key, order_list = None):
-        """
-        So far this function cancels all orders for a specific market.
-        However, it is desirable to manually pass a list of orderids that are supposed to be cancelled.
-        This is currently under construction as we also need to manually pass the markets OR retrieve them
-        via their asset id from the order
-        """
-        if not order_list:
-
-            # Create list of orders to be cancelled, depending on a specific market
-            # TODO we are actually signing up twice in the same market because get_market_open_orders requires a market too
-            market = self.get_market(market_key)
-            orders = self.open_orders
-            print((len(orders), 'open orders to cancel'))
-            if len(orders):
-                attempt = 1
-                order_list = []
-                for order in orders:
-                    order_list.append(order['id'])
-
-            while attempt:
-                try:
-                    details = market.cancel(order_list, account  = self.account)
-                    print(details)
-                    attempt = 0
-                    return True
-                except:
-                    print((attempt, 'cancel failed', order_list))
-                    attempt += 1
-                    if attempt > 3:
-                        print('cancel aborted')
-                        return False
-                    pass
-
-    def get_orderbook(self,market_string):
-        try:
-            market = self.get_market(market_string)
-            orderbook_df = pd.DataFrame(market.orderbook(self.orderbooklimit)) # 
-            
-            asks = orderbook_df['asks'] # prices increasing from index 0 to index 1
-            bids = orderbook_df['bids'] # prices decreasing from index 0 to index 1
-            
-            return asks,bids 
-        
-        except Exception as e:
-            
-            print("Update failed, market is too illiquid: {}".format(e))
-            return None, None       
-
-    def get_market(self, market_key):
-        if market_key in Manager.markets.keys():
-            return Manager.markets[market_key]
-        else:
-            market = Market(market_key, blockchain_instance = Manager.instance)
-            market.bitshares.wallet.unlock(self.pw)
-            Manager.markets[market_key] = market
-            print("Joined market {}".format(market_key))
-            return Manager.markets[market_key]
-
-
     def apply(self, asks, bids, **kwargs):
         #transition table, if state changes we need to return a task
         #since only orderbooks are used 
         
         if self.state == 0:
-            conf = {'price' : self.state0(asks, bids), 'amount' : self.tsize}
+            conf = {
+                'price' : self.state0(asks, bids), 'amount' : self.tsize,
+                'returnOrderId' : True,
+                'account' : self.account,
+                'expiration' : 60
+            }
             if self.state ==1:
                 order = self.buy(**conf)
                 self.open_order = order
@@ -191,14 +131,19 @@ class CheckSpread:
             open_order = self.open_order
             conf = self.state1(asks, bids)
             if self.state == 0:
-                self.cancel(open_order)
-                return True #transition from state 1 to state 0 
+                if self.cancel(open_order):
+                    return True #transition from state 1 to state 0 
+                else:
+                    #exceptoin
+                    return False
             else:
                 return False 
 
 
     def state0(self, asks, bids):
         #
+        print("BIDS", bids)
+        print("ASKS", asks)
         #asks, bids = entry['asks'], entry['bids']
         price_bid = find_price(bids, getattr(self, 'th'), getattr(self, 'tsize'))
         price_ask = find_price(asks, getattr(self, 'th'), getattr(self, 'tsize'))
@@ -229,4 +174,19 @@ class CheckSpread:
             return False
         else:
             return True
+"""
 
+
+    def new_trade(self, market_string):
+        market = self.get_market(market_string)
+        recent_trades = []
+        for trade in market.accounttrades(account=self.account):
+            if trade not in self.history:
+                print("New Trade found {}".format(trade))
+                recent_trades.append(trade)
+            else:
+                print("Recent trade: {}".format(trade))
+        if recent_trades:
+            self.history.extend(recent_trades)
+        return recent_trades
+"""

@@ -66,12 +66,11 @@ def find_price(orderbook, th, tsize, previous_order = None, minimum_liquidity=1)
 
 def convert_to_quote(asks, bids, basecur_amount):  # btc_tsize = basecur amount
     #
-    #
-    lowest_ask = asks[0]['price']
-    highest_bid = bids[0]['price']
+
+    lowest_ask = asks.iloc[0]['price']
+    highest_bid = bids.iloc[0]['price']
     midprice = 0.5 * (lowest_ask + highest_bid)
     init_bid = basecur_amount/midprice
-
     return init_bid
 
 def convert_to_base(asks, bids, quotecur_amount):  # btc_tsize = basecur amount
