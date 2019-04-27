@@ -128,7 +128,7 @@ class CheckSpread:
 
         if self.state == 1:
             #bis, order = entry
-            open_order = self.open_order
+            open_order = await self.open_order
             conf = self.state1(asks, bids)
             if self.state == 0:
                 if self.cancel(open_order):

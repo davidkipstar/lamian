@@ -56,7 +56,8 @@ class Analyst:
                     'acc' : self.acc,
                     'pw' : self.pw,
                     'orderbooklimit' : 25,
-                    'open_order' : None
+                    'open_order' : None,
+                    'state' : 0
                 }
 
                 w = Worker(self.loop,**data)
@@ -89,7 +90,8 @@ class Analyst:
                             'acc' : self.acc,
                             'pw' : self.pw,
                             'orderbooklimit' : 25,
-                            'open_order' : None
+                            'open_order' : None,
+                            'state' : 0
                         }
                         
 
