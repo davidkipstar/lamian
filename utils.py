@@ -24,19 +24,34 @@ def find_price(orderbook, th, tsize, previous_order = None, minimum_liquidity=1)
     satoshi = Decimal('0.00000001')
     th = Decimal(th).quantize(satoshi)
     tsize = Decimal(tsize['amount']).quantize(satoshi)
-    #
+
+    quote_v = []
+    price_v = []
+    for i in range(0, len(orderbook) - 1):
+        q = orderbook.quote[0].amount
+        p = orderbook.price[0]
+        quote_v.append(Decimal(q).quantize(satoshi))
+        price_v.append(Decimal(p).quantize(satoshi))
+
+        #quote_v.append(Decimal(orderbook.quote[0].amount)).quantize(satoshi)
+        #price_v.append(Decimal(orderbook.price[0])).quantize(satoshi)
+
+
+    """
     def p(x): return +Decimal(x.loc['price']).quantize(satoshi)
     def bal(x): return +Decimal(x.loc['amount']).quantize(satoshi)
     #
     quote_v = orderbook['quote'].copy()
     quote_v = quote_v.apply(bal)
     price_v = orderbook.apply(p)
+    """
 
     print("hi")
     print(quote_v, price_v)
 
-    obrevenue_v = quote_v * price_v * th  # compensate for threshold
-    ownrevenue_v = tsize * price_v
+
+    obrevenue_v = [a*b for a,b in zip(quote_v, price_v)]  # compensate for threshold
+    ownrevenue_v = [tsize * p for p in price_v]
 
     d = {'quote': quote_v, 'price': price_v, 'obrevenue': obrevenue_v, 'ownrevenue': ownrevenue_v}
     df = pd.DataFrame(d)
