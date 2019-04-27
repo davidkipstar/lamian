@@ -28,14 +28,13 @@ def find_price(orderbook, th, tsize, previous_order = None, minimum_liquidity=1)
     quote_v = []
     price_v = []
     for i in range(0, len(orderbook) - 1):
-        q = orderbook.quote[0].amount
-        p = orderbook.price[0]
+        q = orderbook.quote[i].amount
+        p = orderbook.price[i]
         quote_v.append(Decimal(q).quantize(satoshi))
         price_v.append(Decimal(p).quantize(satoshi))
 
         #quote_v.append(Decimal(orderbook.quote[0].amount)).quantize(satoshi)
         #price_v.append(Decimal(orderbook.price[0])).quantize(satoshi)
-
 
     """
     def p(x): return +Decimal(x.loc['price']).quantize(satoshi)
@@ -46,9 +45,6 @@ def find_price(orderbook, th, tsize, previous_order = None, minimum_liquidity=1)
     price_v = orderbook.apply(p)
     """
 
-    print("hi")
-    print(quote_v, price_v)
-
 
     obrevenue_v = [a*b for a,b in zip(quote_v, price_v)]  # compensate for threshold
     ownrevenue_v = [tsize * p for p in price_v]
@@ -58,13 +54,18 @@ def find_price(orderbook, th, tsize, previous_order = None, minimum_liquidity=1)
     opt_price_rounded = 0
     
     # In case we already have active orders, account for them
-    if previous_order:
-        dropidx = (df['price'] == previous_order['price']) & (df['quote'] == previous_order['amount'])
-        df = df.drop(df.index[dropidx])  # overwrite
+    if previous_order: # need price and quote of the previous order here in Decimal().quantize(satoshi)
+        dropidx = (df['price'] == Decimal(previous_order[0]).quantize(satoshi)) & (df['quote'] == Decimal(previous_order[1]).quantize(satoshi))
+        if len(dropidx) > 0:
+            df = df.drop(df.index[dropidx])  # overwrite
+        else:
+            print('previous order not found!')
 
     # Get first bound
     df['obrevenue_cumsum'] = df['obrevenue'].cumsum()
     idx = df.index[df['obrevenue_cumsum'] > df['ownrevenue']].tolist()
+    if len(idx) == 0:
+        raise ValueError('Market is waaaay too illiquid')
     opt_price = df['price'][idx[0]]
     opt_price_rounded = opt_price.quantize(satoshi)
 

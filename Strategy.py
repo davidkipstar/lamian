@@ -82,29 +82,32 @@ class CheckSpread:
 
         return still_open_orders
 
-    async def order_active(self, order):
+    async def which_order(self, order):
+        # input order is orderid, string
         #print("Manager-orders")
         order_found = False
         open_orders = await self.open_orders
+        full_order_l = []
         for morder in open_orders:
             #print("Comparing {} with {}".format(morder['id'], order['order']['orderid']))
-            if morder['id'] == order['order']['orderid']: 
-                order_found = True
+            if morder['id'] == order['orderid']:
+                full_order_l.append(order['orderid'])
         print("Order found: {}".format(order_found))
-        return order_found
+        return full_order_l
 
     def place_order(self, **kwargs):
         if kwargs:
             price = kwargs['price']
             amount = kwargs['amount'].amount
            # amount = 0.000002
+        print(self.market_key, ': setting order')
         order = self.market.buy(price = price,
                             amount = amount,
                             returnOrderId = True,
                             account = self.account,
                             expiration = 60)
         self.account.refresh()
-        return order
+        return [price, amount]  # actually order object but its annoying to extract price and amount (converted)
     """
     def place_order(self, **kwargs): #market_key, price, amount):
         return 1 
@@ -200,8 +203,8 @@ class CheckSpread:
 
         # Checks if better price exists
         
-        estimated_price = find_price(bids, self.th, self.tsize, previous_order=order)
-        order_price = order['price'].quantize(CheckSpread.satoshi)
+        estimated_price = find_price(bids, self.th, self.tsize, previous_order=order)  # self.which_order(order['orderid'])
+        order_price = order[0].quantize(CheckSpread.satoshi)
 
         if abs(estimated_price - order_price) > max_deviation:
             print("Strategy: Order deviation too large")
