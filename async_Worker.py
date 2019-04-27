@@ -69,7 +69,7 @@ class Worker:
             #asks, bids = self.orderbook
             #print("Asks", asks)
             #print("Bids" , bids)
-            event = self.strategy.apply()#asks, bids)
+            event = await self.strategy.apply()#asks, bids)
             if event:
                 print("event")
                 self.queue.put_nowait(event)

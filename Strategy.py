@@ -108,7 +108,7 @@ class CheckSpread:
             print(e)
             return False
 
-    def apply(self, **kwargs):
+    async def apply(self, **kwargs):
         #transition table, if state changes we need to return a task
         #since only orderbooks are used 
         asks, bids =  self.orderbook
@@ -121,7 +121,7 @@ class CheckSpread:
             }
             if self.state ==1:
                 order = self.buy(**conf)
-                self.open_order = order
+                order = await self.open_order
                 return order
             else:
                 return False
