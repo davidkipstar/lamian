@@ -108,10 +108,10 @@ class CheckSpread:
             print(e)
             return False
 
-    def apply(self, asks, bids, **kwargs):
+    def apply(self, **kwargs):
         #transition table, if state changes we need to return a task
         #since only orderbooks are used 
-        
+        asks, bids =  self.orderbook
         if self.state == 0:
             conf = {
                 'price' : self.state0(asks, bids), 'amount' : self.tsize,
@@ -142,8 +142,6 @@ class CheckSpread:
 
     def state0(self, asks, bids):
         #
-        print("BIDS", bids)
-        print("ASKS", asks)
         #asks, bids = entry['asks'], entry['bids']
         price_bid = find_price(bids, getattr(self, 'th'), getattr(self, 'tsize'))
         price_ask = find_price(asks, getattr(self, 'th'), getattr(self, 'tsize'))
@@ -165,6 +163,7 @@ class CheckSpread:
             max_deviation = Decimal('1')
 
         # Checks if better price exists
+        
         estimated_price = find_price(bids, self.th, self.tsize, previous_order=order)
         order_price = order['price'].quantize(CheckSpread.satoshi)
 

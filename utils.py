@@ -14,6 +14,9 @@ def json_serial(obj):
 
 def find_price(orderbook, th, tsize, previous_order = None, minimum_liquidity=1):
     """
+    # INPUT:
+        orderbook as Dataframe
+
       Computes spread and computes optimal ask/bid
       orderbook is either bids or asks as generated from update
         minimum liquididty (maybe at least 1 btc in ob?)
@@ -21,12 +24,16 @@ def find_price(orderbook, th, tsize, previous_order = None, minimum_liquidity=1)
     satoshi = Decimal('0.00000001')
     th = Decimal(th).quantize(satoshi)
     tsize = Decimal(tsize['amount']).quantize(satoshi)
+    #
+    def p(x): return +Decimal(x.loc['price']).quantize(satoshi)
+    def bal(x): return +Decimal(x.loc['amount']).quantize(satoshi)
+    #
+    quote_v = orderbook['quote'].copy()
+    quote_v = quote_v.apply(bal)
+    price_v = orderbook.apply(p)
 
-    def price(x): return +Decimal(x['price']).quantize(satoshi)
-    def quote(x): return +Decimal(x['quote']['amount']).quantize(satoshi)
-
-    quote_v = orderbook.apply(quote)
-    price_v = orderbook.apply(price)
+    print("hi")
+    print(quote_v, price_v)
 
     obrevenue_v = quote_v * price_v * th  # compensate for threshold
     ownrevenue_v = tsize * price_v

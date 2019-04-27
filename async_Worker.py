@@ -66,8 +66,10 @@ class Worker:
             i += 1
             if not i%5:
                 print("{} after {} iterations".format(self.market_key, i)) 
-            asks, bids = self.orderbook
-            event = self.strategy.apply(asks, bids)
+            #asks, bids = self.orderbook
+            #print("Asks", asks)
+            #print("Bids" , bids)
+            event = self.strategy.apply()#asks, bids)
             if event:
                 print("event")
                 self.queue.put_nowait(event)
