@@ -23,11 +23,6 @@ class CheckSpread:
             setattr(self, key, arg)
         if kwargs['toQuote']:        
             asks, bids = self.orderbook
-            if asks is None:
-                self.orderbooklimit = self.orderbooklimit//2
-                asks, bids = self.orderbook
-                if asks is None:
-                    print("FAILED MISSERABLY")
             if asks is not None:
                 self.tsize = convert_to_quote(asks, bids, self.tsize)
 
@@ -119,13 +114,15 @@ class CheckSpread:
                 'account' : self.account,
                 'expiration' : 60
             }
+            return False
+            """
             if self.state ==1:
                 order = self.buy(**conf)
                 order = await self.open_order
                 return order
             else:
                 return False
-
+            """
         if self.state == 1:
             #bis, order = entry
             open_order = self.open_order
@@ -141,6 +138,7 @@ class CheckSpread:
 
 
     def state0(self, asks, bids):
+        return 0
         #
         #asks, bids = entry['asks'], entry['bids']
         price_bid = find_price(bids, getattr(self, 'th'), getattr(self, 'tsize'))

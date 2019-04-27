@@ -7,6 +7,11 @@ from Strategy import CheckSpread
 from async_Analyst import Analyst
 
 
+async def run(producer_coro,consumer_coro,**kwargs):
+    #
+    producer_coro.extend(consumer_coro)
+    await asyncio.gather(*producer_coro, *consumer_coro, **kwargs)
+    
 if __name__ == '__main__':
     
     buying = {'BRIDGE.BTC' : None, 'BRIDGE.LGS': None ,'BRIDGE.LCC' : None, 'BRIDGE.GIN' : None}
@@ -20,12 +25,11 @@ if __name__ == '__main__':
     }
 
     ana = Analyst.from_kwargs(**data) 
-    managers, workers = ana.populate()
-    producer_coro = [w.run() for w in workers]
-    consumer_coro = [m.run() for m in managers]
     #
-    ana.loop.run_until_complete(asyncio.gather(*producer_coro, *consumer_coro))
-    ana.loop.close()
+    asyncio.run(run(*ana.populate()))#, loop = ana.loop))
+    #ana.loop.close(
+
+
     """
         #Init Workers and queues
         trading_markets = {}        

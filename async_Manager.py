@@ -33,12 +33,14 @@ class Manager:
         
     async def run(self):
         i = 0
-        await asyncio.sleep(5)     
+        await asyncio.sleep(5)
+
         while True:
             #await asyncio.sleep(2) 
             #entry = await queue.get()
             queues = Manager.managers[self.buy]
-            print(await asyncio.wait(queues, return_when = asyncio.FIRST_COMPLETED))
+            
+            #print(await asyncio.wait(*(q.get() for q in queues), return_when = asyncio.FIRST_COMPLETED))
             await asyncio.sleep(1)
 
 

@@ -63,6 +63,7 @@ class Worker:
         print("Starting to run on {}".format(self.market_key))
         while True:
             await asyncio.sleep(np.random.randint(10)) 
+            """
             i += 1
             if not i%5:
                 print("{} after {} iterations".format(self.market_key, i)) 
@@ -74,3 +75,4 @@ class Worker:
                 print("event")
                 self.queue.put_nowait(event)
             await asyncio.sleep(5)
+            """
