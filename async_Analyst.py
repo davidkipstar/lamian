@@ -111,11 +111,8 @@ class Analyst:
             for w in workers:
                 if w.tradingside == 'buy':
                     coin = w.buy
-                #if w.cr_frame.f_locals['kwargs']['tradingside'] == 'buy':
-                    #coin = w.cr_frame.f_locals['kwargs']['buy']
                 else:
                     coin = w.sell
-                    #coin = w.cr_frame.f_locals['kwargs']['sell']
                 if m.buy == coin:
                     Manager.managers[coin].append(w.queue)
         self.managers = managers
