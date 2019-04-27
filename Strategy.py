@@ -93,12 +93,25 @@ class CheckSpread:
         print("Order found: {}".format(order_found))
         return order_found
 
+    def place_order(self, **kwargs):
+        if kwargs:
+            price = kwargs['price']
+            amount = kwargs['amount'].amount
+           # amount = 0.000002
+        order = self.market.buy(price = price,
+                            amount = amount,
+                            returnOrderId = True,
+                            account = self.account,
+                            expiration = 60)
+        self.account.refresh()
+        return order
+    """
     def place_order(self, **kwargs): #market_key, price, amount):
         return 1 
         order = self.market.buy(**kwargs)
         self.account.refresh()
         return order
-    
+    """
     @property
     def my_order(self):
         return self._order
@@ -163,10 +176,11 @@ class CheckSpread:
     def state0(self, asks, bids):
         #
         #asks, bids = entry['asks'], entry['bids']
+        print(self.market_key, ': state0 activated')
         price_bid = find_price(bids, getattr(self, 'th'), getattr(self, 'tsize'))
         price_ask = find_price(asks, getattr(self, 'th'), getattr(self, 'tsize'))
         spread_estimated = ((price_ask - price_bid)/price_bid).quantize(CheckSpread.satoshi)
-        #print("Strategy: Spread: {}".format(spread_estimated))
+        print("Strategy: Spread: {}".format(spread_estimated))
         if spread_estimated > self.th:
             self.state = 1
             return price_bid
@@ -176,6 +190,8 @@ class CheckSpread:
             return 0
             
     def state1(self, bids, order, tradingside = 'buy'):
+
+        print(self.market_key, ': state1 activated')
 
         if tradingside == 'buy':
             max_deviation = Decimal('0.0000000001') 

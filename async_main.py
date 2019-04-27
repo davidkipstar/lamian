@@ -9,14 +9,14 @@ from async_Analyst import Analyst
 
 if __name__ == '__main__':
     
-    buying = {'BRIDGE.BTC' : None, 'BRIDGE.LGS': None ,'BRIDGE.LCC' : None, 'BRIDGE.GIN' : None}
+    buying = {'BRIDGE.BTC' : None, 'BRIDGE.LRM': None ,'BRIDGE.LCC' : None, 'BRIDGE.GIN' : None}
     #selling are all coins we have a balance
     data = {
-        'pw' : "5KgkgfK4suQqLJY1Uv8mY4tPx4e8V8a2q2SX8xbS5o8UN9rxBJJ",
+        'pw' : "test",
         'acc' : "kipstar1337",
         'url' : 'wss://eu-west-2.bts.crypto-bridge.org',
         'major_coin' : 'BRIDGE.BTC',
-        'buying' : {'BRIDGE.BTC' : None , 'BRIDGE.LGS': None , 'BRIDGE.GIN': None}
+        'buying' : {'BRIDGE.BTC' : None , 'BRIDGE.LRM': None , 'BRIDGE.GIN': None}
     }
 
     ana = Analyst.from_kwargs(**data) 
