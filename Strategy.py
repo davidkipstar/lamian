@@ -49,7 +49,7 @@ class CheckSpread:
             print("not liquid")
             return None, None
 
-    
+
     @property
     async def open_orders(self):
         self.account.refresh()
@@ -82,10 +82,10 @@ class CheckSpread:
 
         return still_open_orders
 
-    def order_active(self, order):
+    async def order_active(self, order):
         #print("Manager-orders")
         order_found = False
-        open_orders = self.open_orders
+        open_orders = await self.open_orders
         for morder in open_orders:
             #print("Comparing {} with {}".format(morder['id'], order['order']['orderid']))
             if morder['id'] == order['order']['orderid']: 
@@ -93,10 +93,28 @@ class CheckSpread:
         print("Order found: {}".format(order_found))
         return order_found
 
-    def buy(self, **kwargs): #market_key, price, amount):
+    def place_order(self, **kwargs): #market_key, price, amount):
+        return 1 
         order = self.market.buy(**kwargs)
         self.account.refresh()
         return order
+    
+    @property
+    def my_order(self):
+        return self._order
+    
+    @my_order.setter
+    def my_order(self, conf):
+        order = self.place_order(**conf)
+        self._order = order
+
+    @my_order.deleter
+    def my_order(self):
+        try:
+            self.cancel(self._order)
+            self._order = None
+        except:
+            print("eror cnacel")
 
     def cancel(self, order):
         # cancelling specific order
@@ -114,29 +132,32 @@ class CheckSpread:
         asks, bids =  self.orderbook
         if self.state == 0:
             conf = {
-                'price' : self.state0(asks, bids), 'amount' : self.tsize,
+                'price' : self.state0(asks, bids), 
+                'amount' : self.tsize,
                 'returnOrderId' : True,
                 'account' : self.account,
                 'expiration' : 60
             }
             if self.state ==1:
-                order = self.buy(**conf)
-                order = await self.open_order
-                return order
+                self.my_order = conf
+                return self.my_order
             else:
+                #continue
                 return False
-
+                
         if self.state == 1:
             #bis, order = entry
-            open_order = await self.open_order
-            conf = self.state1(asks, bids)
-            if self.state == 0:
-                if self.cancel(open_order):
-                    return True #transition from state 1 to state 0 
+            order = self.my_order
+            conf = self.state1(asks, order)
+            if self.state == 0 and order:
+                del self.my_order
+                if self.my_order:
+                    self.state = 1
+                    raise ValueError("Order was not deleted")
                 else:
-                    #exceptoin
                     return False
             else:
+                #continue
                 return False 
 
 

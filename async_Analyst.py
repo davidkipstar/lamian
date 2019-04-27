@@ -67,7 +67,7 @@ class Analyst:
                 #equally distributed capital
                 tsize = balance/len(buying_coins)
                 th = 0.05 #always 5% spread
-
+                print("Balance {} TSIZE {}".format(balance,tsize))
                 #NOTE:
                 #since we use our full balance if we trade any other coin then btc
                 # it is possible to fail an order due to insufficient balance

@@ -39,8 +39,14 @@ class Manager:
             #await asyncio.sleep(2) 
             #entry = await queue.get()
             queues = Manager.managers[self.buy]
-            await asyncio.wait(queues, return_when = asyncio.FIRST_COMPLETED)
-            await asyncio.sleep(1)
+            for q in queues:
+                try:
+                    x = await q.get_nowait()
+                except Exception as e:
+                    pass
+                else:
+                    print(x)
+            await asyncio.sleep(5)
 
 
         
