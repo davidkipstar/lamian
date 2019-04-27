@@ -105,8 +105,7 @@ class CheckSpread:
     
     @my_order.setter
     def my_order(self, conf):
-        order = self.place_order(**conf)
-        self._order = order
+        self._order = self.place_order(**conf)
 
     @my_order.deleter
     def my_order(self):
