@@ -14,8 +14,8 @@ from bitshares.market import Market
 
 class Analyst:
     strategies = []
+
     def __init__(self, **kwargs):
-        #url = 'wss://eu-west-2.bts.crypto-bridge.org', major_coin = 'BRIDGE.BTC'):
         self.loop = asyncio.get_event_loop()
 
         for key, item in kwargs.items():
@@ -59,7 +59,7 @@ class Analyst:
                     'open_order' : None
                 }
 
-                w = Worker.from_kwargs(self.loop,**data)
+                w = Worker(self.loop,**data)
                 time.sleep(1)
                 workers.append(w)
             else:
@@ -93,7 +93,7 @@ class Analyst:
                         }
                         
 
-                        w = Worker.from_kwargs(self.loop,**data)
+                        w = Worker(self.loop,**data)
                         time.sleep(1)
                 
                         workers.append(w)
@@ -111,8 +111,11 @@ class Analyst:
             for w in workers:
                 if w.tradingside == 'buy':
                     coin = w.buy
+                #if w.cr_frame.f_locals['kwargs']['tradingside'] == 'buy':
+                    #coin = w.cr_frame.f_locals['kwargs']['buy']
                 else:
                     coin = w.sell
+                    #coin = w.cr_frame.f_locals['kwargs']['sell']
                 if m.buy == coin:
                     Manager.managers[coin].append(w.queue)
         self.managers = managers

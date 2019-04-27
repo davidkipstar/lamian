@@ -15,6 +15,7 @@ from utils import *
 
 class Manager:
     managers = {}
+
     def __init__(self, loop, **kwargs):
         for key, item in kwargs.items():
             setattr(self, key, item)

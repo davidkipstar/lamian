@@ -38,18 +38,14 @@ class Worker:
         kwargs['market'] = self.market
         self.queue = Queue(loop = loop)
         self.strategy = CheckSpread.from_kwargs(**kwargs)
-        
-    @classmethod 
-    def from_kwargs(cls, loop, **kwargs):
+
         if kwargs['open_order']:
             print("Starting with open order")
         else:
-            kwargs['state'] = 0 
-        return cls(loop,**kwargs)
-
+            kwargs['state'] = 0
 
     @property 
-    def orderbook(self):
+    async def orderbook(self):
         ob = self.market.orderbook(self.orderbooklimit)
         if len(ob['asks']) >= self.orderbooklimit and len(ob['asks']) >= self.orderbooklimit:
             asks, bids = pd.DataFrame(ob['asks']), pd.DataFrame(ob['bids'])
