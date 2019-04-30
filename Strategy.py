@@ -97,8 +97,9 @@ class CheckSpread:
 
     def place_order(self, **kwargs):
         if kwargs:
-            price = kwargs['price']
-            amount = kwargs['amount'].amount
+            # price and amount must both be Decimal here!
+            price = kwargs['price'] # already Decimal bc of state0
+            amount = Decimal(kwargs['amount'].amount).quantize(CheckSpread.satoshi)
            # amount = 0.000002
         print(self.market_key, ': setting order')
         order = self.market.buy(price = price,
@@ -106,8 +107,11 @@ class CheckSpread:
                             returnOrderId = True,
                             account = self.account,
                             expiration = 60)
-        self.account.refresh()
-        return [price, amount]  # actually order object but its annoying to extract price and amount (converted)
+        if order:
+            self.account.refresh()
+            return [price, amount]  # actually order object but its annoying to extract price and amount (converted)
+        else:
+            raise ValueError('Order failed!')
     """
     def place_order(self, **kwargs): #market_key, price, amount):
         return 1 
@@ -147,8 +151,8 @@ class CheckSpread:
         asks, bids =  self.orderbook
         if self.state == 0:
             conf = {
-                'price' : self.state0(asks, bids), 
-                'amount' : self.tsize,
+                'price' : self.state0(asks, bids), # is already Decimal as returned from state0
+                'amount' : self.tsize, # not Decimal yet, to be done when setting order
                 'returnOrderId' : True,
                 'account' : self.account,
                 'expiration' : 60
@@ -163,7 +167,10 @@ class CheckSpread:
         if self.state == 1:
             #bis, order = entry
             order = self.my_order
-            conf = self.state1(asks, order)
+            if self.tradingside == 'sell':
+                conf = self.state1(asks, order)
+            else:
+                conf = self.state1(bids, order)
             if self.state == 0 and order:
                 del self.my_order
                 if self.my_order:

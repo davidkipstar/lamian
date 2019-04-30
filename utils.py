@@ -45,7 +45,6 @@ def find_price(orderbook, th, tsize, previous_order = None, minimum_liquidity=1)
     price_v = orderbook.apply(p)
     """
 
-
     obrevenue_v = [a*b for a,b in zip(quote_v, price_v)]  # compensate for threshold
     ownrevenue_v = [tsize * p for p in price_v]
 
@@ -55,7 +54,15 @@ def find_price(orderbook, th, tsize, previous_order = None, minimum_liquidity=1)
     
     # In case we already have active orders, account for them
     if previous_order: # need price and quote of the previous order here in Decimal().quantize(satoshi)
-        dropidx = (df['price'] == Decimal(previous_order[0]).quantize(satoshi)) & (df['quote'] == Decimal(previous_order[1]).quantize(satoshi))
+        # Cut off a digit from df['quote'] as it is not exact!
+        satoshi_reduced = '0.0000001'
+        quote_reduced = []
+        for i in range(len(quote_v)):
+            a = quote_v[i].quantize(Decimal(satoshi_reduced))
+            quote_reduced.append(a)
+        df['quote_reduced'] = quote_reduced
+        dropidx = (df['price'] == Decimal(previous_order[0]).quantize(satoshi)) & (df['quote_reduced'] == Decimal(previous_order[1]).quantize(Decimal(satoshi_reduced)))  # right side is not decimal!!
+        #dropidx = (df['price'] == Decimal(previous_order[0]).quantize(satoshi)) & (pd.DataFrame(quote_reduced) == Decimal(previous_order[1]).quantize(Decimal(satoshi_reduced)))
         if len(dropidx) > 0:
             df = df.drop(df.index[dropidx])  # overwrite
         else:
