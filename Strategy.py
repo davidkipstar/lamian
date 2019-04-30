@@ -133,7 +133,7 @@ class CheckSpread:
             self.cancel(self._order)
             self._order = None
         except:
-            print("eror cnacel")
+            print("error cancel")
 
     def cancel(self, order):
         # cancelling specific order
@@ -148,8 +148,9 @@ class CheckSpread:
     async def apply(self, **kwargs):
         #transition table, if state changes we need to return a task
         #since only orderbooks are used 
-        asks, bids =  self.orderbook
+        asks, bids = self.orderbook
         if self.state == 0:
+            self.current_open_orders = await self.open_orders
             conf = {
                 'price' : self.state0(asks, bids), # is already Decimal as returned from state0
                 'amount' : self.tsize, # not Decimal yet, to be done when setting order
@@ -157,7 +158,7 @@ class CheckSpread:
                 'account' : self.account,
                 'expiration' : 60
             }
-            if self.state ==1:
+            if self.state == 1 and len(self.current_open_orders) < 2:
                 self.my_order = conf
                 return self.my_order
             else:
@@ -165,17 +166,20 @@ class CheckSpread:
                 return False
                 
         if self.state == 1:
+            self.current_open_orders = await self.open_orders
+            if len(self.current_open_orders) == 0:
+                return False
             #bis, order = entry
             order = self.my_order
             if self.tradingside == 'sell':
                 conf = self.state1(asks, order)
             else:
                 conf = self.state1(bids, order)
-            if self.state == 0 and order:
+            if self.state == 0 and order and len(self.current_open_orders) > 0:
                 del self.my_order
                 if self.my_order:
                     self.state = 1
-                    raise ValueError("Order was not deleted")
+                    print('Couldnt cancel order')  #raise ValueError("Order was not deleted")
                 else:
                     return False
             else:
