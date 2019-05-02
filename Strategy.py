@@ -101,6 +101,10 @@ class CheckSpread:
             amount = kwargs['amount'].amount
            # amount = 0.000002
         print(self.market_key, ': setting order')
+        self.market.bitshares.wallet.unlock(self.pw)
+        print(self.market.bitshares.wallet.unlocked())
+        self.account.bitshares.wallet.unlock(self.pw)
+        print(self.account.bitshares.wallet.unlocked())
         order = self.market.buy(price = price,
                             amount = amount,
                             returnOrderId = True,

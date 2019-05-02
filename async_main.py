@@ -12,7 +12,7 @@ if __name__ == '__main__':
     buying = {'BRIDGE.BTC' : None, 'BRIDGE.LRM': None ,'BRIDGE.LCC' : None, 'BRIDGE.GIN' : None}
     #selling are all coins we have a balance
     data = {
-        'pw' : "test",
+        'pw' : "5KgkgfK4suQqLJY1Uv8mY4tPx4e8V8a2q2SX8xbS5o8UN9rxBJJ",
         'acc' : "kipstar1337",
         'url' : 'wss://eu-west-2.bts.crypto-bridge.org',
         'major_coin' : 'BRIDGE.BTC',
