@@ -1,86 +1,46 @@
 from utils import find_price, convert_to_quote
 from decimal import Decimal
-
 import pandas as pd
-
+import asyncio
+import sys
+import logging 
 from bitshares import BitShares
 from bitshares.account import Account
 from bitshares.market import Market
 from arbitrage import ArbitrageException
 
-class CheckSpread:
-    satoshi = Decimal('0.00000001')        
-    """
-        market: market
-        tsize : tsize
-        tradingside: 
-        toQuote:
-        account: account
+import re 
+class Agent:
 
-    """
-    def __init__(self, **kwargs):
-        for key, arg in kwargs.items():
-            setattr(self, key, arg)
-        if kwargs['toQuote']:        
-            asks, bids = self.orderbook
-            if asks is None:
-                self.orderbooklimit = self.orderbooklimit//2
-                asks, bids = self.orderbook
-                if asks is None:
-                    print("FAILED MISSERABLY")
-            if asks is not None:
-                self.tsize = convert_to_quote(asks, bids, self.tsize)
-
-    @classmethod
-    def from_kwargs(cls, **kwargs):
-        instance = BitShares(witness_url = kwargs['url'])
-        account = Account(kwargs['acc'], bitshares_instance = instance, full = True)
-        account.bitshares.wallet.unlock(kwargs['pw'])
-        kwargs.update({'account' : account, 'instance': instance})
-        return cls(**kwargs)
+    def __init__(self, logger, *args, **kwargs):
+        """
+        self.logger = self.logger.getLogger()
+        self.c_handler = self.logger.StreamHandler(sys.stdout)
+        c_format = self.logger.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        self.c_handler.setFormatter(c_format)
+        """
+        self.logger = logging.getLogger("{}_{}".format(__name__,re.sub('BRIDGE.','', kwargs['market_key'])))
+        pass
 
     @property 
-    def orderbook(self):
+    async def orderbook(self):
         ob = self.market.orderbook(self.orderbooklimit)
         if len(ob['asks']) >= self.orderbooklimit and len(ob['asks']) >= self.orderbooklimit:
             asks, bids = pd.DataFrame(ob['asks']), pd.DataFrame(ob['bids'])
-            return asks, bids 
+            self.logger.info("orderbook received")
         else:
-            print("not liquid")
-            return None, None
+            self.logger.info("not liquid.")
+            asks, bids = None, None 
+        await asyncio.sleep(0)
+        return asks, bids 
 
 
     @property
     async def open_orders(self):
         self.account.refresh()
-        open_orders = self.account.openorders
-        return open_orders
-    
-   
-    def order_filled(self, w_order, market_string):
-        order_was_filled = False
-        recent_trades = self.new_trade(market_string)
-        if recent_trades:
-            order_was_filled = True
-        return order_was_filled, recent_trades
-
-
-    def which_orderids_still_active(self):
-        all_open_orders = self.open_orders
-        all_open_orderids = []
-        manager_orderids = []
-
-        for i in range(len(all_open_orders)):
-            all_open_orderids.append(all_open_orders[i]['id'])
-
-        # Get all orderids from Manager.orders
-        for i in range(len(Manager.orders)):
-            manager_orderids.append(Manager.orders[i]['order']['orderid'])
-
-        # Compare, find out which tracked orders on the manager side are still open
-        still_open_orders = [item for item in manager_orderids if item in all_open_orderids]
-
-        return still_open_orders
+        open_os = self.account.openorders
+        await asyncio.sleep(0)
+        return open_os
 
     async def which_order(self, order):
         # input order is orderid, string
@@ -92,48 +52,68 @@ class CheckSpread:
             #print("Comparing {} with {}".format(morder['id'], order['order']['orderid']))
             if morder['id'] == order['orderid']:
                 full_order_l.append(order['orderid'])
-        print("Order found: {}".format(order_found))
+        self.logger.info("Order found")
+        #print("Order found: {}".format(order_found))
         return full_order_l
 
     def place_order(self, **kwargs):
-        if kwargs:
-            # price and amount must both be Decimal here!
-            price = kwargs['price'] # already Decimal bc of state0
-            amount = Decimal(kwargs['amount'].amount).quantize(CheckSpread.satoshi)
-           # amount = 0.000002
-        print(self.market_key, ': setting order')
-        order = self.market.buy(price = price,
-                            amount = amount,
-                            returnOrderId = True,
-                            account = self.account,
-                            expiration = 60)
-        if order:
-            self.account.refresh()
-            return [price, amount]  # actually order object but its annoying to extract price and amount (converted)
-        else:
+        try:
+            if kwargs:
+                # price and amount must both be Decimal here!
+                price = kwargs['price'] # already Decimal bc of state0
+                amount = Decimal(kwargs['amount'].amount).quantize(CheckSpread.satoshi)
+            # amount = 0.000002
+            self.market = Market(self.market_key)
+            self.market.bitshares.wallet.unlock(self.pw)
+            #self.market.bitshares.wallet.addPrivateKey(self.pw)
+            #print(self.market_key, ': setting order')
+            #print(self.account)
+            #print(self.account.bitshares.wallet.unlocked())
+            self.account.bitshares.wallet.unlock(self.pw)
+            order = self.market.buy(price = price,
+                                amount = amount,
+                                returnOrderId = True,
+                                account = self.account,
+                                expiration = 30)
+            
+            self.logger.info("order placed for {} @ {}".format(amount ,price))
+            if order:
+                self.account.refresh()
+                return order  # actually order object but its annoying to extract price and amount (converted)
+        except Exception as e:
+            logging.error(e)
             raise ValueError('Order failed!')
-    """
-    def place_order(self, **kwargs): #market_key, price, amount):
-        return 1 
-        order = self.market.buy(**kwargs)
-        self.account.refresh()
-        return order
-    """
+
     @property
-    def my_order(self):
-        return self._order
-    
+    async def my_order(self):
+        order = await self.order_still_active(self._order)
+        if order:
+            return self._order, True
+        else:
+            return self._order, False
+
     @my_order.setter
     def my_order(self, conf):
         self._order = self.place_order(**conf)
 
+    
     @my_order.deleter
     def my_order(self):
         try:
             self.cancel(self._order)
             self._order = None
         except:
-            print("error cancel")
+            self.logger.error("during cancel order, maybe it was filled ")
+
+    async def order_still_active(self, order):
+        #
+        self.account.refresh()
+        open_os = self.account.openorders
+        order_found = False
+        for open_order in open_os:
+            if order['orderid'] == open_order['id']:
+                order_found = True
+        return order_found
 
     def cancel(self, order):
         # cancelling specific order
@@ -141,14 +121,45 @@ class CheckSpread:
             self.market.cancel(order['order']['orderid'], account = self.account)
             return True
         except Exception as e:
-            print("Error during cancellation! Order_id: {}".format(order['id']))
-            print(e)
             return False
+
+
+
+class CheckSpread(Agent):
+    satoshi = Decimal('0.00000001')        
+    """
+        market: market
+        tsize : tsize
+        tradingside: 
+        toQuote:
+        account: account
+
+    """
+    def __init__(self,logger, **kwargs):
+        super().__init__(logger, **kwargs)
+        for key, arg in kwargs.items():
+            setattr(self, key, arg)
+        ob = self.market.orderbook(self.orderbooklimit)
+        asks, bids = pd.DataFrame(ob['asks']), pd.DataFrame(ob['bids'])
+        self.logger.info("length of asks is {}".format(len(asks)))    
+        if kwargs['toQuote']:
+            self.tsize = convert_to_quote(asks, bids, self.tsize)
+
+    @classmethod
+    def from_kwargs(cls, logger, **kwargs):
+        instance = BitShares(witness_url = kwargs['url'])
+        account = Account(kwargs['acc'], bitshares_instance = instance, full = True)
+        account.bitshares.wallet.unlock(kwargs['pw'])
+        #doppeltgemoppelt
+        market = Market(kwargs['market_key'], block_instance = instance)
+        market.bitshares.wallet.unlock(kwargs['pw'])
+        kwargs.update({'account' : account, 'instance': instance, 'market' : market})
+        return cls(logger, **kwargs)
 
     async def apply(self, **kwargs):
         #transition table, if state changes we need to return a task
         #since only orderbooks are used 
-        asks, bids = self.orderbook
+        asks, bids = await self.orderbook
         if self.state == 0:
             self.current_open_orders = await self.open_orders
             conf = {
@@ -160,52 +171,47 @@ class CheckSpread:
             }
             if self.state == 1 and len(self.current_open_orders) < 2:
                 self.my_order = conf
-                return self.my_order
+                return await self.my_order
             else:
-                #continue
-                return False
+                #sleep for 5 seconds
+                return await asyncio.sleep(5)
                 
         if self.state == 1:
-            self.current_open_orders = await self.open_orders
-            if len(self.current_open_orders) == 0:
-                return False
-            #bis, order = entry
-            order = self.my_order
-            if self.tradingside == 'sell':
-                conf = self.state1(asks, order)
-            else:
-                conf = self.state1(bids, order)
-            if self.state == 0 and order and len(self.current_open_orders) > 0:
-                del self.my_order
-                if self.my_order:
-                    self.state = 1
-                    print('Couldnt cancel order')  #raise ValueError("Order was not deleted")
+            my_order, active = await self.my_order
+            if active:
+                if self.tradingside == 'sell':
+                    conf = self.state1(asks, my_order)
                 else:
-                    return False
+                    conf = self.state1(bids, my_order)
+                if self.state == 0 and my_order: # and len(self.current_open_orders) > 0:
+                    del self.my_order
+                    logging.info("order delted")
+                return await asyncio.sleep(5)
             else:
-                #continue
-                return False 
-
+                logging.info("order not found")
+                #assume filled by hund
+                return await self.my_order
+            
 
     def state0(self, asks, bids):
         #
         #asks, bids = entry['asks'], entry['bids']
-        print(self.market_key, ': state0 activated')
+        #print(self.market_key, ': state0 activated')
         price_bid = find_price(bids, getattr(self, 'th'), getattr(self, 'tsize'))
         price_ask = find_price(asks, getattr(self, 'th'), getattr(self, 'tsize'))
         spread_estimated = ((price_ask - price_bid)/price_bid).quantize(CheckSpread.satoshi)
-        print("Strategy: Spread: {}".format(spread_estimated))
+        #print("Strategy: Spread: {}".format(spread_estimated))
         if spread_estimated > self.th:
             self.state = 1
+            self.logger.info("spread met condition")
             return price_bid
         elif spread_estimated < 0:
+            self.logger.warning("arbitrage")
             raise ArbitrageException
         else:
             return 0
             
     def state1(self, bids, order, tradingside = 'buy'):
-
-        print(self.market_key, ': state1 activated')
 
         if tradingside == 'buy':
             max_deviation = Decimal('0.0000000001') 
@@ -213,29 +219,12 @@ class CheckSpread:
             max_deviation = Decimal('1')
 
         # Checks if better price exists
-        
         estimated_price = find_price(bids, self.th, self.tsize, previous_order=order)  # self.which_order(order['orderid'])
         order_price = order[0].quantize(CheckSpread.satoshi)
 
         if abs(estimated_price - order_price) > max_deviation:
-            print("Strategy: Order deviation too large")
+            self.logger.warning("deviation too large")
             self.state = 0
             return False
         else:
             return True
-"""
-
-
-    def new_trade(self, market_string):
-        market = self.get_market(market_string)
-        recent_trades = []
-        for trade in market.accounttrades(account=self.account):
-            if trade not in self.history:
-                print("New Trade found {}".format(trade))
-                recent_trades.append(trade)
-            else:
-                print("Recent trade: {}".format(trade))
-        if recent_trades:
-            self.history.extend(recent_trades)
-        return recent_trades
-"""

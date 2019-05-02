@@ -1,4 +1,5 @@
 import os 
+import sys
 import time 
 import asyncio
 
@@ -11,18 +12,24 @@ from copy import deepcopy
 from bitshares import BitShares
 from bitshares.account import Account
 from bitshares.market import Market
+import logging 
+
+
+
 
 class Analyst:
     strategies = []
 
-    def __init__(self, **kwargs):
-        self.loop = asyncio.get_event_loop()
-
+    def __init__(self,loop, logger, **kwargs):
+        self.loop = loop
+        
+        self.logger = logger 
+        
         for key, item in kwargs.items():
             setattr(self, key, item)
-
         self.update()
-    
+        self.logger.debug("Welcome !")
+        
     def populate(self):
         workers = []
         buying = self.buying
@@ -32,15 +39,12 @@ class Analyst:
         
         coins = buying_coins.keys()
         #[Manager(coin) for coin in buying_coins]
-        
 
         for sell_coin in selling_coins:
             balance = selling_coins[sell_coin]
-            print("     - {}".format(balance))
+            self.logger.info("Owning {}".format(sell_coin))
             # Investment strategy
             if sell_coin != 'BRIDGE.BTC':
-                #use full balance
-                #NOTE: is this correct?
                 tsize = balance
                 th = 0.01 #asymmetric  th can be implemented here
                 data = {
@@ -60,17 +64,20 @@ class Analyst:
                     'state' : 0
                 }
 
-                w = Worker(self.loop,**data)
+                w = Worker(self.loop, self.logger, **data)
+                #await asyncio.sleep(1)
                 time.sleep(1)
                 workers.append(w)
             else:
                 #equally distributed capital
                 tsize = balance/len(buying_coins)
                 th = 0.03 #always 5% spread
-                print("Balance {} TSIZE {}".format(balance,tsize))
+                self.logger.info("Investing btc {}".format(tsize))
+                
                 #NOTE:
                 #since we use our full balance if we trade any other coin then btc
                 # it is possible to fail an order due to insufficient balance
+                
                 for buy_coin in buying_coins:
                     # different markets
                     if buy_coin != sell_coin:
@@ -93,13 +100,12 @@ class Analyst:
                             'open_order' : None,
                             'state' : 0
                         }
-                        
-
-                        w = Worker(self.loop,**data)
-                        time.sleep(1)
-                
+        
+                        w = Worker(self.loop, self.logger, **data)
+                        time.sleep(1)#await asyncio.sleep(1)
+        
                         workers.append(w)
-
+        #make manager
         managers = []
         m_d ={
             'buy' : None
@@ -107,8 +113,9 @@ class Analyst:
         for m in coins:
             d = m_d.copy()
             d['buy'] = m
-            managers.append(Manager(self.loop, **d))
-
+            managers.append(Manager(self.loop, self.logger,  **d))
+            #await asyncio.sleep(1)
+            time.sleep(1)
         for m in managers:
             for w in workers:
                 if w.tradingside == 'buy':
@@ -126,22 +133,19 @@ class Analyst:
             
 
     @classmethod
-    def from_kwargs(cls, **kwargs):
+    def from_kwargs(cls,loop, logger, **kwargs):
         instance = BitShares(witness_url = kwargs['url'])
         account = Account(kwargs['acc'], bitshares_instance = instance, full = True)
         account.bitshares.wallet.unlock(kwargs['pw'])
         kwargs.update({'account' : account, 'instance': 'instance'})
-        print(kwargs)
-        return cls(**kwargs)
+        return cls(loop,logger, **kwargs)
 
     def update(self):
         self.account.refresh()
         my_coins = self.account.balances
         self.balance = dict(zip(map(lambda x: getattr(x,'symbol'),my_coins),my_coins))
         self.major_balance = self.balance[self.major_coin]
-        if self.major_balance:
-            print("Owing {} of {}".format(self.major_balance, self.major_coin))
-
+        
 
     def find_buycoins(self, **kwargs):
         # # # 
@@ -152,13 +156,12 @@ class Analyst:
         for coin, amount in self.balance.items():
             if coin in buycoins.keys():
                 if coin == self.major_coin:
-                    print("Major coin balance: {}".format(amount))
+                    self.logger.info("Major balance: {}".format(amount))
                     self.major_balance = amount
                     del buycoins[coin]
                 elif coin == "BTS":
-                    print("BTS amount {}".format(self.balance[coin]))
+                    self.logger.info("BTS amount {}".format(self.balance[coin]))
                 else:
-                    print("Already owning {} of {}".format(amount, coin))
                     buycoins[coin] = self.balance[coin]
         return buycoins
 
@@ -174,47 +177,9 @@ class Analyst:
         pass
 
     async def produce(self,w):
-        print("Starting producer.. {}".format(w))
+        #print("Starting producer.. {}".format(w))
         await w.run()
         
     async def consume(self,m,q):
-        print("Starting consumer.. {}".format(m))
+        #print("Starting consumer.. {}".format(m))
         await m.run(q)
-"""
-
-    def cancel_all_orders(self, market_key, order_list = None):
-        
-        So far this function cancels all orders for a specific market.
-        However, it is desirable to manually pass a list of orderids that are supposed to be cancelled.
-        This is currently under construction as we also need to manually pass the markets OR retrieve them
-        via their asset id from the order
-        if not order_list:
-
-            # Create list of orders to be cancelled, depending on a specific market
-            # TODO we are actually signing up twice in the same market because get_market_open_orders requires a market too
-            market = self.get_market(market_key)
-            orders = self.open_orders
-            print((len(orders), 'open orders to cancel'))
-            if len(orders):
-                attempt = 1
-                order_list = []
-                for order in orders:
-                    order_list.append(order['id'])
-
-            while attempt:
-                try:
-                    details = market.cancel(order_list, account  = self.account)
-                    print(details)
-                    attempt = 0
-                    return True
-                except:
-                    print((attempt, 'cancel failed', order_list))
-                    attempt += 1
-                    if attempt > 3:
-                        print('cancel aborted')
-                        return False
-                    pass
-
-
-
-"""

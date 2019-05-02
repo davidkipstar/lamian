@@ -65,8 +65,9 @@ def find_price(orderbook, th, tsize, previous_order = None, minimum_liquidity=1)
         #dropidx = (df['price'] == Decimal(previous_order[0]).quantize(satoshi)) & (pd.DataFrame(quote_reduced) == Decimal(previous_order[1]).quantize(Decimal(satoshi_reduced)))
         if len(dropidx) > 0:
             df = df.drop(df.index[dropidx])  # overwrite
-        else:
-            print('previous order not found!')
+       
+        #else:
+        #    print('previous order not found!')
 
     # Get first bound
     df['obrevenue_cumsum'] = df['obrevenue'].cumsum()
@@ -90,7 +91,7 @@ def find_price(orderbook, th, tsize, previous_order = None, minimum_liquidity=1)
         # now this is the lower bound. Combine them to find the optimal price
         opt_price = dfsub['price'][lower_bound[0]]
     #print("Own revenue: {}".format(ownrevenue_v))
-    print("opt : {} , rounded: {}".format(opt_price, opt_price_rounded))
+    #print("opt : {} , rounded: {}".format(opt_price, opt_price_rounded))
     return opt_price_rounded
 
 
