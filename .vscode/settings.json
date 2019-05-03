@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "${env.HOME}/GIT/julian/lamian/venv/bin/python",
+    "python.pythonPath": "/home/david/GIT/venv_lamian2/bin/python",
     "git.ignoreLimitWarning": true,
     "python.unitTest.unittestArgs": [
         "-v",
