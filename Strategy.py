@@ -152,7 +152,7 @@ class CheckSpread(Agent):
         self.logger.info("length of asks is {}".format(len(asks)))    
         if kwargs['toQuote']:
             self.tsize = convert_to_quote(asks, bids, self.tsize)
-        self.og_tsize = tsize # save, will be reduced once having bought
+        self.og_tsize = self.tsize # save, will be reduced once having bought
         self.executed_trades = []
 
     @classmethod
