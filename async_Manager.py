@@ -52,14 +52,24 @@ class Manager:
 
         #if self.coin not in Manager.managers:
         #    Manager.managers[coin] = self
-        
-    def expired_or_not(self, order):
-        #check if order is expired
-        #for o in self.coin_orders:
-        #    o.
-        
-        return True
 
+    def open_orders(self):
+        self.account.refresh()
+        open_orders = self.account.openorders
+        return open_orders
+
+    def order_active(self, order):
+        # Expired or not
+        print("Manager-orders")
+
+        order_found = False
+        open_orders = self.open_orders
+        for morder in open_orders:
+            print("Comparing {} with {}".format(morder['id'], order['orderid']))
+            if morder['id'] == order['orderid']:
+                order_found = True
+
+        return order_found
 
     async def run(self):
         i = 0
@@ -69,7 +79,7 @@ class Manager:
             for q in queues:
                 try:
                     order = await q.get_nowait()
-                    if self.expired_or_not(order):
+                    if not self.order_active(order):
                         self.logger.info("Order expired on market")
                     else:
                         self.logger.info("Order has been filled!")
