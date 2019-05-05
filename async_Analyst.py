@@ -111,9 +111,9 @@ class Analyst:
             'buy' : None
         }
         for m in coins:
-            d = m_d.copy()
-            d['buy'] = m
-            managers.append(Manager(self.loop, self.logger,  **d))
+            #d = m_d.copy()
+            #d['buy'] = m
+            managers.append(Manager(self.loop, self.logger,  **data))
             #await asyncio.sleep(1)
             time.sleep(1)
         for m in managers:

@@ -74,7 +74,7 @@ class Agent:
                                 amount = amount,
                                 returnOrderId = True,
                                 account = self.account,
-                                expiration = 30)
+                                expiration = 120)
             
             self.logger.info("order placed for {} @ {}".format(amount ,price))
             if order:
