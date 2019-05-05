@@ -179,7 +179,7 @@ class CheckSpread(Agent):
             # If tsize < og_tsize, exit
             # amount_spent = max(sum(self.current_trades['amount']), 0)
             # tsize -= amount_spent
-
+            print('Strategy orders:', self.current_open_orders)
 
 
             conf = {
@@ -206,13 +206,15 @@ class CheckSpread(Agent):
                 if self.state == 0 and my_order: # and len(self.current_open_orders) > 0:
                     del self.my_order
                     logging.info("order delted")
-                return await asyncio.sleep(5)
+                await asyncio.sleep(0)
+                return False
             else:
                 logging.info("order not found")
                 #assume filled by hund
                 
                 self.state = 0 
-                return await self.my_order
+                await asyncio.sleep(0)
+                return False
             
 
     def state0(self, asks, bids):
