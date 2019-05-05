@@ -115,6 +115,14 @@ class Agent:
                 order_found = True
         return order_found
 
+    def market_open_orders(self):
+        return self.market.accountopenorders(self.acc)
+
+    def trades(self):
+        t = self.market.accounttrades(self.acc, currencyPair = self.market_key, limit = 50)
+        self.executed_trades.append(t)
+        return t
+
     def cancel(self, order):
         # cancelling specific order
         try:
@@ -144,6 +152,8 @@ class CheckSpread(Agent):
         self.logger.info("length of asks is {}".format(len(asks)))    
         if kwargs['toQuote']:
             self.tsize = convert_to_quote(asks, bids, self.tsize)
+        self.og_tsize = tsize # save, will be reduced once having bought
+        self.executed_trades = []
 
     @classmethod
     def from_kwargs(cls, logger, **kwargs):
@@ -161,7 +171,17 @@ class CheckSpread(Agent):
         #since only orderbooks are used 
         asks, bids = await self.orderbook
         if self.state == 0:
-            self.current_open_orders = await self.open_orders
+            # Fetch news
+            self.current_open_orders = self.market_open_orders()
+            self.current_trades = self.trades() # Todo: 
+            # If trades, we need to estimate the tsize reduction
+            # amount_spent = Sum over all btc tsizes in trades
+            # If tsize < og_tsize, exit
+            # amount_spent = max(sum(self.current_trades['amount']), 0)
+            # tsize -= amount_spent
+
+
+
             conf = {
                 'price' : self.state0(asks, bids), # is already Decimal as returned from state0
                 'amount' : self.tsize, # not Decimal yet, to be done when setting order
