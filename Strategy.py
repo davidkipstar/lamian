@@ -190,6 +190,8 @@ class CheckSpread(Agent):
             else:
                 logging.info("order not found")
                 #assume filled by hund
+                
+                self.state = 0 
                 return await self.my_order
             
 
