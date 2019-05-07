@@ -58,6 +58,24 @@ class Agent:
 
     def place_order(self, **kwargs):
         try:
+            """
+            if kwargs:
+                # price and amount must both be Decimal here!
+                price = kwargs['price']  # already Decimal bc of state0
+                amount = Decimal(kwargs['amount'].amount).quantize(CheckSpread.satoshi)
+            # amount = 0.000002
+            print(self.market_key, ': setting order')
+            order = self.market.buy(price=price,
+                                    amount=amount,
+                                    returnOrderId=True,
+                                    account=self.account,
+                                    expiration=60)
+            if order:
+                self.account.refresh()
+                return [price, amount]  # actually order object but its annoying to extract price and amount (converted)
+            else:
+                raise ValueError('Order failed!')
+            """
             if kwargs:
                 # price and amount must both be Decimal here!
                 price = kwargs['price'] # already Decimal bc of state0
@@ -77,9 +95,21 @@ class Agent:
                                 expiration = 120)
             
             self.logger.info("order placed for {} @ {}".format(amount ,price))
+            self.logger.info('order object {}'.format(order))
             if order:
                 self.account.refresh()
-                return order  # actually order object but its annoying to extract price and amount (converted)
+                # WHAT
+                # EVER
+                # YOU
+                # DO
+                # DONT
+                # TOUCH
+                # THE
+                # RETURN
+                # STRUCTURE
+                # !!!
+                # this goes straight to state0 for previous_order, which is then needed in find_price for dropidx!
+                return [price, amount]  # actually order object but its annoying to extract price and amount (converted)
         except Exception as e:
             logging.error(e)
             raise ValueError('Order failed!')
@@ -218,13 +248,13 @@ class CheckSpread(Agent):
             
 
     def state0(self, asks, bids):
-        #
+        print(self.market, ' : entering stae0')
         #asks, bids = entry['asks'], entry['bids']
         #print(self.market_key, ': state0 activated')
         price_bid = find_price(bids, getattr(self, 'th'), getattr(self, 'tsize'))
         price_ask = find_price(asks, getattr(self, 'th'), getattr(self, 'tsize'))
         spread_estimated = ((price_ask - price_bid)/price_bid).quantize(CheckSpread.satoshi)
-        print("Strategy: Spread: {}".format(spread_estimated))
+        print(self.market, " : Strategy: Spread: {}".format(spread_estimated))
         if spread_estimated > self.th:
             self.state = 1
             self.logger.info("spread met condition")
@@ -236,7 +266,7 @@ class CheckSpread(Agent):
             return 0
             
     def state1(self, bids, order, tradingside = 'buy'):
-
+        print(self.market, ': entering state1')
         if tradingside == 'buy':
             max_deviation = Decimal('0.0000000001') 
         else:
