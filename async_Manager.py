@@ -88,8 +88,8 @@ class Manager:
                         #adjust balance    
                 except Exception as e:
                     pass
-            await asyncio.sleep(5)
-            self.logger.info("new try in manager")
+            await asyncio.sleep(0.5)
+#           self.logger.info("new try in manager")
 
 
         

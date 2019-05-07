@@ -98,16 +98,9 @@ class Agent:
             self.logger.info('order object {}'.format(order))
             if order:
                 self.account.refresh()
-                # WHAT
-                # EVER
-                # YOU
-                # DO
-                # DONT
-                # TOUCH
-                # THE
-                # RETURN
-                # STRUCTURE
-                # !!!
+                # return[0] = price and return[1] = amount
+                # DONT CHANGE THIS
+                # Optionally add another index
                 # this goes straight to state0 for previous_order, which is then needed in find_price for dropidx!
                 return [price, amount]  # actually order object but its annoying to extract price and amount (converted)
         except Exception as e:
@@ -248,7 +241,7 @@ class CheckSpread(Agent):
             
 
     def state0(self, asks, bids):
-        print(self.market, ' : entering stae0')
+        print(self.market, ' : entering state0')
         #asks, bids = entry['asks'], entry['bids']
         #print(self.market_key, ': state0 activated')
         price_bid = find_price(bids, getattr(self, 'th'), getattr(self, 'tsize'))

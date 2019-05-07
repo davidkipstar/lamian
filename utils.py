@@ -65,9 +65,8 @@ def find_price(orderbook, th, tsize, previous_order = None, minimum_liquidity=1)
         #dropidx = (df['price'] == Decimal(previous_order[0]).quantize(satoshi)) & (pd.DataFrame(quote_reduced) == Decimal(previous_order[1]).quantize(Decimal(satoshi_reduced)))
         if len(dropidx) > 0:
             df = df.drop(df.index[dropidx])  # overwrite
-       
-        #else:
-        #    print('previous order not found!')
+        else:
+            print('CRITICAL fucking error: Dropidx doesnt exist!')
 
     # Get first bound
     df['obrevenue_cumsum'] = df['obrevenue'].cumsum()
