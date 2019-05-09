@@ -56,7 +56,8 @@ class Worker:
             
             if event:
                 x = await event
-                print('Event:', x)
-                self.logger.info("Event created")
-                self.queue.put_nowait(x)
+                #print('Event:', x)
+                self.logger.info("Event created {}".format(x))
+                if x:
+                    self.queue.put_nowait(x)
             await asyncio.sleep(5)

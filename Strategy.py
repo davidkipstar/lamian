@@ -108,27 +108,50 @@ class Agent:
 
     @property
     async def my_order(self):
-        order = await self.order_still_active(self._order)
-        if order:
-            return self._order, True
-        else:
-            return self._order, False
-
+        try:
+            order_changed = False
+            if self._order:
+                order = await self.order_still_active(self._order)
+                if order:
+                    #check price deviation
+                    deviation = 0
+                    if deviation:
+                        self._order = order
+                        self.logger.info("order has been changed: {} {}".format(1,2))
+                    self.logger.info("order found")
+                    return self._order
+                else:
+                    self.logger.info("order not found, so it has been filled or is gone")
+                    return None 
+        except Exception as e:
+            self._order = None 
+            self._price = None
+            self._amount = None 
+            self.logger.error("Error in getting order: {}".format(e))
+            return None 
     @my_order.setter
     def my_order(self, conf):
         try:
+            if self._order:
+                self.logger.info("overwrite order")
             self._order, self._price, self._amount = self.place_order(**conf)
+            self.logger.info("Order placed for {} {}".format(self._price, self._amount))
         except Exception as e:
             self.logger.error("Error in setting order {}".format(e))
     
     @my_order.deleter
     def my_order(self):
         try:
-            self.cancel(self._order)
+            if self._order:
+                self.cancel(self._order)
+                self.logger.info("Canceled order in {}".format(self.market_key))
+        
+            else:
+                self.logger.info("Order already deleted")
             self._order = None
             self._price = None
             self._amount = None 
-            self.logger.info("Canceled order in {}".format(self.market_key))
+            
         except:
             self.logger.error("during cancel order, maybe it was filled ")
 
@@ -185,6 +208,7 @@ class CheckSpread(Agent):
             self.tsize = convert_to_quote(asks, bids, self.tsize)
         self.og_tsize = self.tsize # save, will be reduced once having bought
         self.executed_trades = []
+        self._order = None 
 
     @classmethod
     def from_kwargs(cls, logger, **kwargs):
@@ -228,19 +252,17 @@ class CheckSpread(Agent):
                 return asyncio.sleep(5)
                 
         if self.state == 1:
-            my_order, active = await self.my_order
-            if active:
+            my_order = await self.my_order
+            if my_order:
                 if self.tradingside == 'sell':
                     conf = self.state1(asks, my_order)
                 else:
                     conf = self.state1(bids, my_order)
-                if self.state == 0 and my_order: # and len(self.current_open_orders) > 0:
+                if self.state == 0 and my_order is not None: # and len(self.current_open_orders) > 0:
                     del self.my_order
-                    logging.info("order delted")
                 return asyncio.sleep(5)
             else:
-                logging.info("order not found")
-                #assume filled by hund
+                del self.my_order
                 self.state = 0 
                 return asyncio.sleep(5)
             
