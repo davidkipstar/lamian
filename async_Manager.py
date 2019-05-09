@@ -80,12 +80,13 @@ class Manager:
             for q in queues:
                 try:
                     order = await q.get_nowait()
-                    order_found = self.order_active(order)
-                    if not order_found:
-                        self.logger.info("Order expired on market")
-                    else:
-                        self.logger.info("Order has been filled!")
+                    #order_found = self.order_active(order)
+                    #if not order_found:
+                    #    self.logger.info("Order expired on market")
+                    #else:
+                    #    self.logger.info("Order has been filled!")
                         #adjust balance    
+                    self.logger.info("received {}".format(order))
                 except Exception as e:
                     pass
             await asyncio.sleep(0.5)

@@ -12,7 +12,7 @@ def json_serial(obj):
         return obj.isoformat()
     raise TypeError ("Type %s not serializable" % type(obj))
 
-def find_price(orderbook, th, tsize, previous_order = None, minimum_liquidity=1):
+def find_price(orderbook, th, tsize, previous_order = None, previous_amount = None, previous_price = None, minimum_liquidity=1):
     """
     # INPUT:
         orderbook as Dataframe
@@ -61,8 +61,8 @@ def find_price(orderbook, th, tsize, previous_order = None, minimum_liquidity=1)
             a = quote_v[i].quantize(Decimal(satoshi_reduced))
             quote_reduced.append(a)
         df['quote_reduced'] = quote_reduced
-        dropidx = (df['price'] == Decimal(previous_order[0]).quantize(satoshi)) & (df['quote_reduced'] == Decimal(previous_order[1]).quantize(Decimal(satoshi_reduced)))  # right side is not decimal!!
-        #dropidx = (df['price'] == Decimal(previous_order[0]).quantize(satoshi)) & (pd.DataFrame(quote_reduced) == Decimal(previous_order[1]).quantize(Decimal(satoshi_reduced)))
+        dropidx = (df['price'] == Decimal(previous_price).quantize(satoshi)) & (df['quote_reduced'] == Decimal(previous_amount).quantize(Decimal(satoshi_reduced)))  # right side is not decimal!!
+        #dropidx = (df['price'] == Decimal(previous_amount).quantize(satoshi)) & (pd.DataFrame(quote_reduced) == Decimal(previous_price).quantize(Decimal(satoshi_reduced)))
         if len(dropidx) > 0:
             df = df.drop(df.index[dropidx])  # overwrite
         else:

@@ -20,7 +20,7 @@ class Agent:
         self.c_handler.setFormatter(c_format)
         """
         self.logger = logging.getLogger("{}_{}".format(__name__,re.sub('BRIDGE.','', kwargs['market_key'])))
-        pass
+        
 
     @property 
     async def orderbook(self):
@@ -80,7 +80,7 @@ class Agent:
                 # price and amount must both be Decimal here!
                 price = kwargs['price'] # already Decimal bc of state0
                 amount = Decimal(kwargs['amount'].amount).quantize(CheckSpread.satoshi)
-            # amount = 0.000002
+            # amhttps://www.kicker.de/ount = 0.000002
             self.market = Market(self.market_key)
             self.market.bitshares.wallet.unlock(self.pw)
             #self.market.bitshares.wallet.addPrivateKey(self.pw)
@@ -95,16 +95,15 @@ class Agent:
                                 expiration = 120)
             
             self.logger.info("order placed for {} @ {}".format(amount ,price))
-            self.logger.info('order object {}'.format(order))
+            #self.logger.info('order object {}'.format(order))
             if order:
                 self.account.refresh()
                 # return[0] = price and return[1] = amount
                 # DONT CHANGE THIS
                 # Optionally add another index
                 # this goes straight to state0 for previous_order, which is then needed in find_price for dropidx!
-                return [price, amount]  # actually order object but its annoying to extract price and amount (converted)
+                return order, price, amount  # actually order object but its annoying to extract price and amount (converted)
         except Exception as e:
-            logging.error(e)
             raise ValueError('Order failed!')
 
     @property
@@ -117,33 +116,42 @@ class Agent:
 
     @my_order.setter
     def my_order(self, conf):
-        self._order = self.place_order(**conf)
-
+        try:
+            self._order, self._price, self._amount = self.place_order(**conf)
+        except Exception as e:
+            self.logger.error("Error in setting order {}".format(e))
     
     @my_order.deleter
     def my_order(self):
         try:
             self.cancel(self._order)
             self._order = None
+            self._price = None
+            self._amount = None 
+            self.logger.info("Canceled order in {}".format(self.market_key))
         except:
             self.logger.error("during cancel order, maybe it was filled ")
 
     async def order_still_active(self, order):
         #
+        assert(order)
         self.account.refresh()
         open_os = self.account.openorders
         order_found = False
         for open_order in open_os:
             if order['orderid'] == open_order['id']:
                 order_found = True
+        self.logger.info("Order found is {}".format(order_found))
         return order_found
 
     def market_open_orders(self):
         return self.market.accountopenorders(self.acc)
 
     def trades(self):
-        t = self.market.accounttrades(self.acc, currencyPair = self.market_key, limit = 50)
-        self.executed_trades.append(t)
+        t = self.market.accounttrades(self.acc, limit = 50) #currencyPair is not supported ;) 
+        if len(t):
+            logging.info("Found trades {}".format(t))
+            self.executed_trades.append(t)
         return t
 
     def cancel(self, order):
@@ -202,8 +210,7 @@ class CheckSpread(Agent):
             # If tsize < og_tsize, exit
             # amount_spent = max(sum(self.current_trades['amount']), 0)
             # tsize -= amount_spent
-            print('Strategy orders:', self.current_open_orders)
-
+            #print('Strategy orders:', self.current_open_orders)
 
             conf = {
                 'price' : self.state0(asks, bids), # is already Decimal as returned from state0
@@ -212,12 +219,13 @@ class CheckSpread(Agent):
                 'account' : self.account,
                 'expiration' : 60
             }
+
             if self.state == 1 and len(self.current_open_orders) < 2:
                 self.my_order = conf
-                return await self.my_order
+                return asyncio.sleep(5)
             else:
                 #sleep for 5 seconds
-                return await asyncio.sleep(5)
+                return asyncio.sleep(5)
                 
         if self.state == 1:
             my_order, active = await self.my_order
@@ -229,25 +237,22 @@ class CheckSpread(Agent):
                 if self.state == 0 and my_order: # and len(self.current_open_orders) > 0:
                     del self.my_order
                     logging.info("order delted")
-                await asyncio.sleep(0)
-                return False
+                return asyncio.sleep(5)
             else:
                 logging.info("order not found")
                 #assume filled by hund
-                
                 self.state = 0 
-                await asyncio.sleep(0)
-                return False
+                return asyncio.sleep(5)
             
 
     def state0(self, asks, bids):
-        print(self.market, ' : entering state0')
+        #print(self.market, ' : entering state0')
         #asks, bids = entry['asks'], entry['bids']
         #print(self.market_key, ': state0 activated')
         price_bid = find_price(bids, getattr(self, 'th'), getattr(self, 'tsize'))
         price_ask = find_price(asks, getattr(self, 'th'), getattr(self, 'tsize'))
         spread_estimated = ((price_ask - price_bid)/price_bid).quantize(CheckSpread.satoshi)
-        print(self.market, " : Strategy: Spread: {}".format(spread_estimated))
+        #print(self.market, " : Strategy: Spread: {}".format(spread_estimated))
         if spread_estimated > self.th:
             self.state = 1
             self.logger.info("spread met condition")
@@ -256,22 +261,24 @@ class CheckSpread(Agent):
             self.logger.warning("arbitrage")
             raise ArbitrageException
         else:
+            self.logger.info("spread to low currently at {}".format(spread_estimated))
             return 0
             
     def state1(self, bids, order, tradingside = 'buy'):
-        print(self.market, ': entering state1')
+        #print(self.market, ': entering state1')
         if tradingside == 'buy':
             max_deviation = Decimal('0.0000000001') 
         else:
             max_deviation = Decimal('1')
 
         # Checks if better price exists
-        estimated_price = find_price(bids, self.th, self.tsize, previous_order=order)  # self.which_order(order['orderid'])
-        order_price = order[0].quantize(CheckSpread.satoshi)
+        estimated_price = find_price(bids, self.th, self.tsize, previous_order=order, previous_amount=self._amount, previous_price=self._price)  # self.which_order(order['orderid'])
+        order_price = self._price.quantize(CheckSpread.satoshi)
 
         if abs(estimated_price - order_price) > max_deviation:
-            self.logger.warning("deviation too large")
+            self.logger.info("deviation  {} too large".format(estimated_price - order_price))
             self.state = 0
             return False
         else:
+            self.logger.info("observing open order......")
             return True

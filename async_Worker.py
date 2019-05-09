@@ -55,7 +55,8 @@ class Worker:
             event = self.strategy.apply()#asks, bids)
             
             if event:
-                print('Event:', event)
+                x = await event
+                print('Event:', x)
                 self.logger.info("Event created")
-                self.queue.put_nowait(event)
+                self.queue.put_nowait(x)
             await asyncio.sleep(5)
