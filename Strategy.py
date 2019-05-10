@@ -160,8 +160,13 @@ class CheckSpread(Agent):
         #transition table, if state changes we need to return a task
         #since only orderbooks are used 
         asks, bids = await self.orderbook
+        self.current_open_orders = await self.open_orders
+
+        # In case our order has expired or filled
+        if len(self.current_open_orders) == 0:
+            self.state = 0
+
         if self.state == 0:
-            self.current_open_orders = await self.open_orders
             conf = {
                 'price' : self.state0(asks, bids), # is already Decimal as returned from state0
                 'amount' : self.tsize, # not Decimal yet, to be done when setting order
@@ -174,7 +179,7 @@ class CheckSpread(Agent):
                 return await self.my_order
             else:
                 #sleep for 5 seconds
-                return await asyncio.sleep(5)
+                return await asyncio.sleep(0.5)
                 
         if self.state == 1:
             my_order, active = await self.my_order
@@ -185,8 +190,8 @@ class CheckSpread(Agent):
                     conf = self.state1(bids, my_order)
                 if self.state == 0 and my_order: # and len(self.current_open_orders) > 0:
                     del self.my_order
-                    logging.info("order delted")
-                return await asyncio.sleep(5)
+                    logging.info("order deleted")
+                return await asyncio.sleep(0.5)
             else:
                 logging.info("order not found")
                 #assume filled by hund
@@ -221,6 +226,7 @@ class CheckSpread(Agent):
         # Checks if better price exists
         estimated_price = find_price(bids, self.th, self.tsize, previous_order=order)  # self.which_order(order['orderid'])
         order_price = order[0].quantize(CheckSpread.satoshi)
+        print('order price could be wrong:',order_price)
 
         if abs(estimated_price - order_price) > max_deviation:
             self.logger.warning("deviation too large")

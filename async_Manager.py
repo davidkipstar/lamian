@@ -63,7 +63,7 @@ class Manager:
 
     async def run(self):
         i = 0
-        await asyncio.sleep(5)     
+        await asyncio.sleep(0.5)
         while True:
             queues = Manager.managers[self.buy]
             for q in queues:
@@ -76,8 +76,8 @@ class Manager:
                         #adjust balance    
                 except Exception as e:
                     pass
-            await asyncio.sleep(5)
-            self.logger.info("new try in manager")
+            await asyncio.sleep(0.5)
+            #self.logger.info("new try in manager")
 
 
         

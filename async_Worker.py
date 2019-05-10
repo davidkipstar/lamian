@@ -57,4 +57,4 @@ class Worker:
             if event:
                 self.logger.info("Event created")
                 self.queue.put_nowait(event)
-            await asyncio.sleep(5)
+            await asyncio.sleep(0.5)
