@@ -235,7 +235,7 @@ class CheckSpread(Agent):
             # amount_spent = max(sum(self.current_trades['amount']), 0)
             # tsize -= amount_spent
             #print('Strategy orders:', self.current_open_orders)
-
+            
             conf = {
                 'price' : self.state0(asks, bids), # is already Decimal as returned from state0
                 'amount' : self.tsize, # not Decimal yet, to be done when setting order
@@ -278,7 +278,7 @@ class CheckSpread(Agent):
         if spread_estimated > self.th:
             self.state = 1
             self.logger.info("spread met condition")
-            return price_bid
+            return price_bid if self.tradingside == 'buy' else price_ask
         elif spread_estimated < 0:
             self.logger.warning("arbitrage")
             raise ArbitrageException

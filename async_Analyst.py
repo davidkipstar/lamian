@@ -170,7 +170,7 @@ class Analyst:
         # kwargs: coins to sell besides major_coin 
         # 
         # # #
-        return {'BRIDGE.BTC' : self.balance['BRIDGE.BTC']}
+        return {'BRIDGE.BTC' : self.balance['BRIDGE.BTC'], 'BRIDGE.GIN' : self.balance['BRIDGE.GIN']}
 
     def step(self):
         #compute difference from one trading episode T = 5 minutes or smth..
