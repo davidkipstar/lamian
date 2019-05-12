@@ -83,10 +83,10 @@ class Agent:
             # amhttps://www.kicker.de/ount = 0.000002
             self.market = Market(self.market_key)
             self.market.bitshares.wallet.unlock(self.pw)
-            #self.market.bitshares.wallet.addPrivateKey(self.pw)
+            self.market.bitshares.wallet.addPrivateKey('5KgkgfK4suQqLJY1Uv8mY4tPx4e8V8a2q2SX8xbS5o8UN9rxBJJ')
             #print(self.market_key, ': setting order')
             #print(self.account)
-            #print(self.account.bitshares.wallet.unlocked())
+            print('Unlocked?! ', self.account.bitshares.wallet.unlocked())
             self.account.bitshares.wallet.unlock(self.pw)
             order = self.market.buy(price = price,
                                 amount = amount,
