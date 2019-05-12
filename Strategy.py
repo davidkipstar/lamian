@@ -58,24 +58,6 @@ class Agent:
 
     def place_order(self, **kwargs):
         try:
-            """
-            if kwargs:
-                # price and amount must both be Decimal here!
-                price = kwargs['price']  # already Decimal bc of state0
-                amount = Decimal(kwargs['amount'].amount).quantize(CheckSpread.satoshi)
-            # amount = 0.000002
-            print(self.market_key, ': setting order')
-            order = self.market.buy(price=price,
-                                    amount=amount,
-                                    returnOrderId=True,
-                                    account=self.account,
-                                    expiration=60)
-            if order:
-                self.account.refresh()
-                return [price, amount]  # actually order object but its annoying to extract price and amount (converted)
-            else:
-                raise ValueError('Order failed!')
-            """
             if kwargs:
                 # price and amount must both be Decimal here!
                 price = kwargs['price'] # already Decimal bc of state0
@@ -83,16 +65,25 @@ class Agent:
             # amhttps://www.kicker.de/ount = 0.000002
             self.market = Market(self.market_key)
             self.market.bitshares.wallet.unlock(self.pw)
-            self.market.bitshares.wallet.addPrivateKey('5KgkgfK4suQqLJY1Uv8mY4tPx4e8V8a2q2SX8xbS5o8UN9rxBJJ')
+            #self.market.bitshares.wallet.addPrivateKey('5KgkgfK4suQqLJY1Uv8mY4tPx4e8V8a2q2SX8xbS5o8UN9rxBJJ')
             #print(self.market_key, ': setting order')
             #print(self.account)
             print('Unlocked?! ', self.account.bitshares.wallet.unlocked())
-            self.account.bitshares.wallet.unlock(self.pw)
-            order = self.market.buy(price = price,
-                                amount = amount,
-                                returnOrderId = True,
-                                account = self.account,
-                                expiration = 120)
+            print('tradingside: ', self.tradingside)
+            #self.account.bitshares.wallet.unlock(self.pw)
+            if self.tradingside == 'buy':
+                order = self.market.buy(price = price,
+                                    amount = amount,
+                                    returnOrderId = True,
+                                    account = self.account,
+                                    expiration = 120)
+            else:
+                amount = amount - Decimal('0.01')
+                order = self.market.sell(price = price,
+                                    amount = amount,
+                                    returnOrderId = True,
+                                    account = self.account,
+                                    expiration = 120)
             
             self.logger.info("order placed for {} @ {}".format(amount ,price))
             #self.logger.info('order object {}'.format(order))
@@ -205,7 +196,7 @@ class CheckSpread(Agent):
         asks, bids = pd.DataFrame(ob['asks']), pd.DataFrame(ob['bids'])
         self.logger.info("length of asks is {}".format(len(asks)))    
         if kwargs['toQuote']:
-            self.tsize = convert_to_quote(asks, bids, self.tsize)
+            self.tsize = convert_to_quote(asks, bids, self.tsize) 
         self.og_tsize = self.tsize # save, will be reduced once having bought
         self.executed_trades = []
         self._order = None 
@@ -290,11 +281,13 @@ class CheckSpread(Agent):
         #print(self.market, ': entering state1')
         if tradingside == 'buy':
             max_deviation = Decimal('0.0000000001') 
+            estimated_price = find_price(bids, self.th, self.tsize, previous_order=order, previous_amount=self._amount, previous_price=self._price)  # self.which_order(order['orderid'])
         else:
-            max_deviation = Decimal('1')
+            max_deviation = Decimal('0.0000000001') #Decimal('1')
+            estimated_price = find_price(asks, self.th, self.tsize, previous_order=order, previous_amount=self._amount, previous_price=self._price)  # self.which_order(order['orderid'])
 
         # Checks if better price exists
-        estimated_price = find_price(bids, self.th, self.tsize, previous_order=order, previous_amount=self._amount, previous_price=self._price)  # self.which_order(order['orderid'])
+        
         order_price = self._price.quantize(CheckSpread.satoshi)
 
         if abs(estimated_price - order_price) > max_deviation:

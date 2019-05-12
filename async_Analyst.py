@@ -170,7 +170,10 @@ class Analyst:
         # kwargs: coins to sell besides major_coin 
         # 
         # # #
-        return {'BRIDGE.BTC' : self.balance['BRIDGE.BTC'], 'BRIDGE.GIN' : self.balance['BRIDGE.GIN']}
+        try:
+            return {'BRIDGE.BTC' : self.balance['BRIDGE.BTC'], 'BRIDGE.GIN' : self.balance['BRIDGE.GIN']}
+        except Exception as e:
+            raise ValueError('Couldnt assign balances, probably because orders are still open.', e)
 
     def step(self):
         #compute difference from one trading episode T = 5 minutes or smth..

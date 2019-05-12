@@ -11,11 +11,11 @@ if __name__ == '__main__':
     
     buying = {'BRIDGE.BTC' : None, 'BRIDGE.LRM': None ,'BRIDGE.LCC' : None, 'BRIDGE.GIN' : None}
     data = {
-        'pw' : "5KgkgfK4suQqLJY1Uv8mY4tPx4e8V8a2q2SX8xbS5o8UN9rxBJJ",
+        'pw' : "test",
         'acc' : "kipstar1337",
         'url' : 'wss://eu-west-2.bts.crypto-bridge.org',
         'major_coin' : 'BRIDGE.BTC',
-        'buying' : {'BRIDGE.BTC' : None , 'BRIDGE.LRM': None , 'BRIDGE.GIN': None}
+        'buying' : {'BRIDGE.BTC' : None , 'BRIDGE.GIN': None}
     }
 
     with open('./logging.yml', 'r') as stream:
@@ -31,4 +31,5 @@ if __name__ == '__main__':
     #
     ana.loop.run_until_complete(asyncio.gather(*producer_coro, *consumer_coro))
     ana.loop.close()
+    
     
