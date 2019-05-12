@@ -12,7 +12,7 @@ def json_serial(obj):
         return obj.isoformat()
     raise TypeError ("Type %s not serializable" % type(obj))
 
-def find_price(orderbook, th, tsize, previous_order = None, previous_amount = None, previous_price = None, minimum_liquidity=1):
+def find_price(orderbook, ob_th, tsize, previous_order = None, previous_amount = None, previous_price = None, minimum_liquidity=1):
     """
     # INPUT:
         orderbook as Dataframe
@@ -22,7 +22,7 @@ def find_price(orderbook, th, tsize, previous_order = None, previous_amount = No
         minimum liquididty (maybe at least 1 btc in ob?)
     """
     satoshi = Decimal('0.00000001')
-    th = Decimal(th).quantize(satoshi)
+    ob_th = Decimal(ob_th).quantize(satoshi)
     tsize = Decimal(tsize['amount']).quantize(satoshi)
 
     quote_v = []
@@ -45,7 +45,7 @@ def find_price(orderbook, th, tsize, previous_order = None, previous_amount = No
     price_v = orderbook.apply(p)
     """
 
-    obrevenue_v = [a*b for a,b in zip(quote_v, price_v)]  # compensate for threshold
+    obrevenue_v = [a*b*ob_th for a,b in zip(quote_v, price_v)]  # compensate for threshold
     ownrevenue_v = [tsize * p for p in price_v]
 
     d = {'quote': quote_v, 'price': price_v, 'obrevenue': obrevenue_v, 'ownrevenue': ownrevenue_v}

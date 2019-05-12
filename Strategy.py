@@ -76,14 +76,14 @@ class Agent:
                                     amount = amount,
                                     returnOrderId = True,
                                     account = self.account,
-                                    expiration = 120)
+                                    expiration = 60)
             else:
                 amount = amount - Decimal('0.01')
                 order = self.market.sell(price = price,
                                     amount = amount,
                                     returnOrderId = True,
                                     account = self.account,
-                                    expiration = 120)
+                                    expiration = 60)
             
             self.logger.info("order placed for {} @ {}".format(amount ,price))
             #self.logger.info('order object {}'.format(order))
@@ -134,8 +134,11 @@ class Agent:
     def my_order(self):
         try:
             if self._order:
-                self.cancel(self._order)
-                self.logger.info("Canceled order in {}".format(self.market_key))
+                cancelled = self.cancel(self._order)
+                if cancelled:
+                    self.logger.info("Canceled order in {}".format(self.market_key))
+                else:
+                    self.logger.info('Couldnt cancel order in {}'.format(self.market_key))
         
             else:
                 self.logger.info("Order already deleted")
@@ -174,6 +177,7 @@ class Agent:
             self.market.cancel(order['order']['orderid'], account = self.account)
             return True
         except Exception as e:
+            print('couldnt cancel!!')
             return False
 
 
@@ -235,12 +239,12 @@ class CheckSpread(Agent):
                 'expiration' : 60
             }
 
-            if self.state == 1 and len(self.current_open_orders) < 2:
+            if self.state == 1 and len(self.current_open_orders) < 2 and not self._order:
                 self.my_order = conf
-                return asyncio.sleep(5)
+                return asyncio.sleep(0.5)
             else:
                 #sleep for 5 seconds
-                return asyncio.sleep(5)
+                return asyncio.sleep(0.5)
                 
         if self.state == 1:
             my_order = await self.my_order
@@ -251,19 +255,19 @@ class CheckSpread(Agent):
                     conf = self.state1(bids, my_order)
                 if self.state == 0 and my_order is not None: # and len(self.current_open_orders) > 0:
                     del self.my_order
-                return asyncio.sleep(5)
+                return asyncio.sleep(0.5)
             else:
                 del self.my_order
                 self.state = 0 
-                return asyncio.sleep(5)
+                return asyncio.sleep(0.5)
             
 
     def state0(self, asks, bids):
         #print(self.market, ' : entering state0')
         #asks, bids = entry['asks'], entry['bids']
         #print(self.market_key, ': state0 activated')
-        price_bid = find_price(bids, getattr(self, 'th'), getattr(self, 'tsize')) + self.satoshi
-        price_ask = find_price(asks, getattr(self, 'th'), getattr(self, 'tsize')) - self.satoshi
+        price_bid = find_price(bids, getattr(self, 'ob_th'), getattr(self, 'tsize')) + self.satoshi
+        price_ask = find_price(asks, getattr(self, 'ob_th'), getattr(self, 'tsize')) - self.satoshi
         spread_estimated = ((price_ask - price_bid)/price_bid).quantize(CheckSpread.satoshi)
         #print(self.market, " : Strategy: Spread: {}".format(spread_estimated))
         if spread_estimated > self.th:
@@ -274,17 +278,17 @@ class CheckSpread(Agent):
             self.logger.warning("arbitrage")
             raise ArbitrageException
         else:
-            self.logger.info("spread to low currently at {}".format(spread_estimated))
+            self.logger.info("spread too low currently at {}".format(spread_estimated))
             return 0
             
     def state1(self, bids, order, tradingside = 'buy'):
         #print(self.market, ': entering state1')
         if tradingside == 'buy':
             max_deviation = Decimal('0.0000000001') 
-            estimated_price = find_price(bids, self.th, self.tsize, previous_order=order, previous_amount=self._amount, previous_price=self._price)  # self.which_order(order['orderid'])
+            estimated_price = find_price(bids, self.ob_th, self.tsize, previous_order=order, previous_amount=self._amount, previous_price=self._price)  # self.which_order(order['orderid'])
         else:
             max_deviation = Decimal('0.0000000001') #Decimal('1')
-            estimated_price = find_price(asks, self.th, self.tsize, previous_order=order, previous_amount=self._amount, previous_price=self._price)  # self.which_order(order['orderid'])
+            estimated_price = find_price(asks, self.ob_th, self.tsize, previous_order=order, previous_amount=self._amount, previous_price=self._price)  # self.which_order(order['orderid'])
 
         # Checks if better price exists
         
