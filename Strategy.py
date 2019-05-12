@@ -262,8 +262,8 @@ class CheckSpread(Agent):
         #print(self.market, ' : entering state0')
         #asks, bids = entry['asks'], entry['bids']
         #print(self.market_key, ': state0 activated')
-        price_bid = find_price(bids, getattr(self, 'th'), getattr(self, 'tsize'))
-        price_ask = find_price(asks, getattr(self, 'th'), getattr(self, 'tsize'))
+        price_bid = find_price(bids, getattr(self, 'th'), getattr(self, 'tsize')) + self.satoshi
+        price_ask = find_price(asks, getattr(self, 'th'), getattr(self, 'tsize')) - self.satoshi
         spread_estimated = ((price_ask - price_bid)/price_bid).quantize(CheckSpread.satoshi)
         #print(self.market, " : Strategy: Spread: {}".format(spread_estimated))
         if spread_estimated > self.th:
