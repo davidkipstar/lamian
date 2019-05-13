@@ -284,10 +284,10 @@ class CheckSpread(Agent):
     def state1(self, bids, order, tradingside = 'buy'):
         #print(self.market, ': entering state1')
         if tradingside == 'buy':
-            max_deviation = Decimal('0.0000000001') 
+            max_deviation = Decimal('0.00000001') 
             estimated_price = find_price(bids, self.ob_th, self.tsize, previous_order=order, previous_amount=self._amount, previous_price=self._price)  # self.which_order(order['orderid'])
         else:
-            max_deviation = Decimal('0.0000000001') #Decimal('1')
+            max_deviation = Decimal('0.00000001') #Decimal('1')
             estimated_price = find_price(asks, self.ob_th, self.tsize, previous_order=order, previous_amount=self._amount, previous_price=self._price)  # self.which_order(order['orderid'])
 
         # Checks if better price exists
