@@ -174,10 +174,10 @@ class Agent:
     def cancel(self, order):
         # cancelling specific order
         try:
-            self.market.cancel(order['order']['orderid'], account = self.account)
+            self.market.cancel(order['orderid'], account = self.account)
             return True
         except Exception as e:
-            print('couldnt cancel!!')
+            print('couldnt cancel!! error: ', e)
             return False
 
 
