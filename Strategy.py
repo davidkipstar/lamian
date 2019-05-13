@@ -4,6 +4,7 @@ import pandas as pd
 import asyncio
 import sys
 import logging 
+import time
 from bitshares import BitShares
 from bitshares.account import Account
 from bitshares.market import Market
@@ -171,6 +172,7 @@ class Agent:
             self.executed_trades.append(t)
         return t
 
+   
     def cancel(self, order):
         # cancelling specific order
         try:
@@ -179,7 +181,6 @@ class Agent:
         except Exception as e:
             print('couldnt cancel!!')
             return False
-
 
 
 class CheckSpread(Agent):

@@ -38,7 +38,25 @@ class Worker:
             setattr(self, key, arg)
         #setup logger
         self.logger = logging.getLogger("{}_{}".format(__name__, re.sub('BRIDGE.','',self.market_key)))
-
+        # wenn tsize = 0 und tradignside == 'sell' in kwargs dann erstmal sleep und anschliessend immer balance testen. wenn > 0.01 dann verkaufen
+        while self.tsize == 0:
+            # These are actually functions from the Analyst, how do I call them in here without redefinition?
+            print('zzzzzzzzzz... sleeping because no balance ', self.tradingside)
+            time.sleep(10)
+            # Check if balance changed, and if true, start trading
+            self.account = Account(self.acc)
+            self.account.refresh()
+            my_coins = self.account.balances
+            self.balance = dict(zip(map(lambda x: getattr(x,'symbol'),my_coins),my_coins))
+            try:
+                self.major_balance = self.balance['BRIDGE.GIN']
+            except:
+                self.major_balance = 0
+            if self.major_balance > 0.01:
+                tsize = self.major_balance
+            else:
+                tsize = 0
+        
         self.market = Market(self.market_key, block_instance = self.instance)
         kwargs['market'] = self.market
         self.queue = Queue(loop = loop)
