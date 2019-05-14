@@ -205,6 +205,7 @@ class CheckSpread(Agent):
         self.og_tsize = self.tsize # save, will be reduced once having bought
         self.executed_trades = []
         self._order = None 
+        self.major_coin = self.sell ['symbol'] if self.tradingside == 'sell' else self.buy['symbol']
 
     @classmethod
     def from_kwargs(cls, logger, **kwargs):
@@ -219,22 +220,24 @@ class CheckSpread(Agent):
 
     def adjust_tsize(self):
         # wenn tsize = 0 und tradignside == 'sell' in kwargs dann erstmal sleep und anschliessend immer balance testen. wenn > 0.01 dann verkaufen
-
         # Check if balance changed, and if true, start trading
         self.account = Account(self.acc)
         self.account.refresh()
         my_coins = self.account.balances
         self.balance = dict(zip(map(lambda x: getattr(x,'symbol'),my_coins),my_coins))
         try:
-            self.major_balance = self.balance['BRIDGE.GIN'] # WARNING: Replace bridge.gin with current coin!!!!
-        except:
+            self.major_balance = self.balance[self.major_coin] # WARNING: Replace bridge.gin with current coin!!!!
+        except Exception as e:
+            self.logger.error("error in checking balance {}".format(e))
             self.major_balance = 0
-        if self.major_balance > 0.01:
-            tsize = self.major_balance
-        else:
-            tsize = 0
-            return None
-
+        finally:
+            if self.major_balance > 0.01:
+                self.tsize = self.major_balance
+                #set state to 0 to invoke transition from sleeping to active
+                self.state = 0
+                return asyncio.sleep(0)
+            else:
+                return asyncio.sleep(5)
     async def apply(self, **kwargs):
         #transition table, if state changes we need to return a task
         #since only orderbooks are used 
@@ -249,8 +252,7 @@ class CheckSpread(Agent):
             # amount_spent = max(sum(self.current_trades['amount']), 0)
             # tsize -= amount_spent
             #print('Strategy orders:', self.current_open_orders)
-            self.adjust_tsize()
-
+            
             conf = {
                 'price' : self.state0(asks, bids), # is already Decimal as returned from state0
                 'amount' : self.tsize, # not Decimal yet, to be done when setting order
@@ -278,9 +280,12 @@ class CheckSpread(Agent):
                 return asyncio.sleep(0.5)
             else:
                 del self.my_order
-                self.state = 0 
+                self.state = 2 #changed to 2 instead of 0 thus checks balance! 
                 return asyncio.sleep(0.5)
-            
+        
+        if self.state == 2:
+            return self.adjust_tsize()
+
 
     def state0(self, asks, bids):
         #print(self.market, ' : entering state0')

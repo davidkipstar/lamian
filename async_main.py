@@ -20,6 +20,7 @@ if __name__ == '__main__':
 
     with open('./logging.yml', 'r') as stream:
         config = yaml.load(stream)
+        
     logging.config.dictConfig(config)
     loop = asyncio.get_event_loop()
     logger = logging.getLogger()

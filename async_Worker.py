@@ -53,11 +53,6 @@ class Worker:
             if not i%5:
                 self.logger.info("{} iterations".format(i)) 
             event = self.strategy.apply()#asks, bids)
-            if event is None:
-                      
-                print('zzzzzzzzzz... sleeping because no balance ')
-                time.sleep(10)
-            
             if event:
                 x = await event
                 #print('Event:', x)
