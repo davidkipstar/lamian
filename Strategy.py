@@ -4,6 +4,7 @@ import pandas as pd
 import asyncio
 import sys
 import logging 
+import time
 from bitshares import BitShares
 from bitshares.account import Account
 from bitshares.market import Market
@@ -128,7 +129,7 @@ class Agent:
             self._order, self._price, self._amount = self.place_order(**conf)
             self.logger.info("Order placed for {} {}".format(self._price, self._amount))
         except Exception as e:
-            self.logger.error("Error in setting order {}".format(e))
+            self.logger.error(" Error in setting order {}".format(e))
     
     @my_order.deleter
     def my_order(self):
@@ -216,6 +217,24 @@ class CheckSpread(Agent):
         kwargs.update({'account' : account, 'instance': instance, 'market' : market})
         return cls(logger, **kwargs)
 
+    def adjust_tsize(self):
+        # wenn tsize = 0 und tradignside == 'sell' in kwargs dann erstmal sleep und anschliessend immer balance testen. wenn > 0.01 dann verkaufen
+
+        # Check if balance changed, and if true, start trading
+        self.account = Account(self.acc)
+        self.account.refresh()
+        my_coins = self.account.balances
+        self.balance = dict(zip(map(lambda x: getattr(x,'symbol'),my_coins),my_coins))
+        try:
+            self.major_balance = self.balance['BRIDGE.GIN'] # WARNING: Replace bridge.gin with current coin!!!!
+        except:
+            self.major_balance = 0
+        if self.major_balance > 0.01:
+            tsize = self.major_balance
+        else:
+            tsize = 0
+            return None
+
     async def apply(self, **kwargs):
         #transition table, if state changes we need to return a task
         #since only orderbooks are used 
@@ -230,7 +249,8 @@ class CheckSpread(Agent):
             # amount_spent = max(sum(self.current_trades['amount']), 0)
             # tsize -= amount_spent
             #print('Strategy orders:', self.current_open_orders)
-            
+            self.adjust_tsize()
+
             conf = {
                 'price' : self.state0(asks, bids), # is already Decimal as returned from state0
                 'amount' : self.tsize, # not Decimal yet, to be done when setting order

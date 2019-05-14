@@ -51,7 +51,7 @@ class Analyst:
                     'sell' : sell_coin, 
                     'buy' : self.major_coin,
                     'tradingside' :'sell',
-                    'tsize' : tsize, 
+                    'tsize' : 0 if tsize <= 0.01 else tsize, 
                     'th' : th,
                     'ob_th' : 0.1,
                     'toQuote' : False,
@@ -173,7 +173,7 @@ class Analyst:
         # 
         # # #
         try:
-            return {'BRIDGE.BTC' : self.balance['BRIDGE.BTC']}#, 'BRIDGE.GIN' : self.balance['BRIDGE.GIN']}
+            return {'BRIDGE.BTC' : self.balance['BRIDGE.BTC'], 'BRIDGE.GIN' : 0.001}
         except Exception as e:
             raise ValueError('Couldnt assign balances, probably because orders are still open.', e)
 
