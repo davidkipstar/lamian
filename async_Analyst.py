@@ -62,7 +62,8 @@ class Analyst:
                     'pw' : self.pw,
                     'orderbooklimit' : 25,
                     'open_order' : None,
-                    'state' : 0
+                    'state' : 0,
+                    'major_coin' : sell_coin
                 }
 
                 w = Worker(self.loop, self.logger, **data)
@@ -100,7 +101,8 @@ class Analyst:
                             'pw' : self.pw,
                             'orderbooklimit' : 25,
                             'open_order' : None,
-                            'state' : 0
+                            'state' : 0,
+                            'major_coin' : buy_coin
                         }
         
                         w = Worker(self.loop, self.logger, **data)

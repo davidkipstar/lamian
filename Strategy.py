@@ -205,7 +205,7 @@ class CheckSpread(Agent):
         self.og_tsize = self.tsize # save, will be reduced once having bought
         self.executed_trades = []
         self._order = None 
-        self.major_coin = self.sell ['symbol'] if self.tradingside == 'sell' else self.buy['symbol']
+        #self.major_coin = self.sell['symbol'] if self.tradingside == 'sell' else self.buy['symbol']
 
     @classmethod
     def from_kwargs(cls, logger, **kwargs):
@@ -228,7 +228,7 @@ class CheckSpread(Agent):
         try:
             self.major_balance = self.balance[self.major_coin] # WARNING: Replace bridge.gin with current coin!!!!
         except Exception as e:
-            self.logger.error("error in checking balance {}".format(e))
+            self.logger.error("error in checking balance {}".format(e)) # Error can occur when balance of a coin is precisely zero, then it doesnt exist in the balance list.
             self.major_balance = 0
         finally:
             if self.major_balance > 0.01:
@@ -237,6 +237,7 @@ class CheckSpread(Agent):
                 self.state = 0
                 return asyncio.sleep(0)
             else:
+                print('snooooooozzzzzing..........')
                 return asyncio.sleep(5)
     async def apply(self, **kwargs):
         #transition table, if state changes we need to return a task
@@ -284,8 +285,9 @@ class CheckSpread(Agent):
                 return asyncio.sleep(0.5)
         
         if self.state == 2:
-            return self.adjust_tsize()
-
+            while self.tsize < 0.01:
+                self.adjust_tsize()
+                return True
 
     def state0(self, asks, bids):
         #print(self.market, ' : entering state0')
