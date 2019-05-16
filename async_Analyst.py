@@ -14,12 +14,12 @@ from bitshares.account import Account
 from bitshares.market import Market
 import logging 
 
-
+from decimal import Decimal
 
 
 class Analyst:
     strategies = []
-
+    satoshi = Decimal('0.00000001')
     def __init__(self,loop, logger, **kwargs):
         #
         self.loop = loop
@@ -34,18 +34,20 @@ class Analyst:
         self.update()
         self.logger.info("Major Coin: {}".format(self.major_coin))
         self.logger.info("Major Balance: {}".format(self.major_balance))
+        self.major_balance = self.major_balance
         self.logger.info("Welcome !")
         self.connections = {}
         
     
-    def connect(self, manager, worker):
+    def connect(self, m, worker):
         """ 
         Connect:
             Tasks:
                 if worker not connected with manager, connect
         """
 
-        pass
+        Manager.managers[m.coin].append(worker.queue)
+
     def generate_data(self, coin, amount, **kwargs):
         """
         ADJUST THIS SHIT HERE
@@ -75,7 +77,8 @@ class Analyst:
                     'pw' : self.pw,
                     'orderbooklimit' : 25,
                     'open_order' : None,
-                    'state' : None,}
+                    'state' : None,
+                    'ob_th' : 0.1}
         if kwargs['tradingside'] == 'buy':
             data['buy'] = coin 
             data['sell'] = self.major_coin
@@ -120,15 +123,16 @@ class Analyst:
             time.sleep(1)
 
         ## MANAGER
+        ms = []
         for w in workers:
-            Manager.from_worker(w, self.loop, self.logger)     
+            ms.append(Manager(self.loop, self.logger, coin = w.market_key.split(':')[0]))     
             time.sleep(1)
 
         ## BUILD GRAPH
-        for m in Manager.managers:
+        for m in ms:
             for w in workers:
                 self.connect(m, w)
-                
+        return ms, workers                
     async def run(self):
         print("run")
             

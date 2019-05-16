@@ -38,14 +38,16 @@ class Manager:
         
         for key, item in kwargs.items():
             setattr(self, key, item)        
-        self.logger = logging.getLogger("{}:{}".format(__name__, self.buy))
+        self.logger = logging.getLogger("{}:{}".format(__name__, self.coin))
         
-        if self.buy not in Manager.managers:
-            Manager.managers[self.buy] = []
-    
+        if self.coin not in Manager.managers:
+            Manager.managers[self.coin] = []
+        
     @classmethod
     def from_worker(cls, w, loop, logger, **kwargs):
         #kwargs.update('buy' : )
+        [x, _] = w.market_key.split(':')
+        kwargs['coin'] = x 
         return cls(loop, logger, **kwargs)
 
     async def run(self):
@@ -53,7 +55,7 @@ class Manager:
         await asyncio.sleep(5)     
         
         while True:
-            queues = Manager.managers[self.buy]
+            queues = Manager.managers[self.coin]
             for q in queues:
                 try:
                     order = await q.get_nowait()

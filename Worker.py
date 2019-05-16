@@ -27,8 +27,11 @@ class Worker:
 
         for key, arg in kwargs.items():
             setattr(self, key, arg)
-        if self.tradingside == 'sell': self.market_key = "{}:{}".format(self.sell, self.major_coin)
-        if self.tradingside == 'buy': self.market_key = "{}:{}".format(self.major_coin, self.buy)
+        if self.tradingside == 'sell': 
+            self.market_key = "{}:{}".format(self.sell, self.major_coin)
+        else:
+            self.market_key = "{}:{}".format(self.buy, self.major_coin)
+        #if self.tradingside == 'buy': self.market_key = "{}:{}".format(self.major_coin, self.buy)
         self.logger = logging.getLogger("{}_{}".format(__name__, re.sub('BRIDGE.','',self.market_key)))
         self.market = Market(self.market_key, block_instance = self.instance)
         kwargs['market'] = self.market
@@ -39,6 +42,7 @@ class Worker:
 
     @classmethod
     def from_kwargs(cls, *args, **kwargs):
+
         return cls(*args, **kwargs)
     async def run(self, **kwargs):
         i = 0

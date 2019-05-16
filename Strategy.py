@@ -13,13 +13,7 @@ from arbitrage import ArbitrageException
 import re 
 class Agent:
 
-    def __init__(self, logger, *args, **kwargs):
-        """
-        self.logger = self.logger.getLogger()
-        self.c_handler = self.logger.StreamHandler(sys.stdout)
-        c_format = self.logger.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-        self.c_handler.setFormatter(c_format)
-        """
+    def __init__(self, logger, *args, **kwargs):    
         self._tsize = 0 
         self.logger = logging.getLogger("{}_{}".format(__name__,re.sub('BRIDGE.','', kwargs['market_key'])))
         
@@ -41,22 +35,28 @@ class Agent:
     def tsize(self):
         # Check if balance changed
         try:
-            self.account = Account(self.acc)
             self.account.refresh()
             my_coins = self.account.balances
             self.balance = dict(zip(map(lambda x: getattr(x,'symbol'),my_coins),my_coins))
-            old_tsize = self._tsize
-            self._tsize =  self.balance[self.major_coin] # WARNING: Replace bridge.gin with current coin!!!!
-            logger.info("Changed tsize from {} to {}".format(old_tsize, self._tsize))
-            return self._tsize
+            self._tsize
+            #
+            _tsize =  self.balance[self.major_coin] # WARNING: Replace bridge.gin with current coin!!!!
+            if self.tradingside == 'buy':
+                #case btc 
+                _tsize = self._tsize/len(self.whitelist) - self.inventory
 
+            if self._tsize != _tsize:
+                self.logger.info("changed tsize from {} to {}".format(self._tsize, _tsize))
+                self._tsize = _tsize
+
+            
         # Error can occur when balance of a coin is precisely zero, then it doesnt exist in the balance list. 
         except Exception as e:
             self.logger.info("No balance for {}".format(self.major_coin)) 
             
         finally:
             self.logger.info("balance for {} is {} ".format(self.major_coin, self._tsize))
-            return 0
+            return self._tsize
 
     #change tsize 
     @tsize.setter
@@ -223,24 +223,18 @@ class CheckSpread(Agent):
 
     """
     def __init__(self,logger, **kwargs):
-        self._tsize = 0 
         super().__init__(logger, **kwargs)
-        if 'tsize' in kwargs: del kwargs['tsize']
         for key, arg in kwargs.items():
             setattr(self, key, arg)
+        
         ob = self.market.orderbook(self.orderbooklimit)
         asks, bids = pd.DataFrame(ob['asks']), pd.DataFrame(ob['bids'])
         self.logger.info("length of asks is {}".format(len(asks)))
-        if self.tsize:
-
-            if kwargs['toQuote']: 
-                size = convert_to_quote(asks, bids, self.tsize) 
-                if size:
-                    self.tsize = size
-                else:
-                    logger.error("Converting tsize failed {} {} {}".format(self._tsize, asks, bids))
-            else:
-                logger.info("Starting to {} {} of {}".format(self.tradingside,self._tsize, self.major_coin))
+        if self.tradingside == 'buy':
+            size = convert_to_quote(asks, bids, self.tsize) 
+            if size:
+                self.tsize = size
+        logger.info("Starting to {} {} of {}".format(self.tradingside,self._tsize, self.major_coin))
         #self.og_tsize = self.tsize # save, will be reduced once having bought
         self.executed_trades = []
         self._order = None 
