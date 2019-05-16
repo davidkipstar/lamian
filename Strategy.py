@@ -264,7 +264,10 @@ class CheckSpread(Agent):
     async def apply(self, **kwargs):
         #transition table, if state changes we need to return a task
         #since only orderbooks are used 
-        
+
+        if self._tsize == 3:
+            self.tsize()
+
         if self.state == 0:
             asks, bids = await self.orderbook
             # Fetch news
