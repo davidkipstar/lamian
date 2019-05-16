@@ -35,39 +35,18 @@ class Manager:
     managers = {}
 
     def __init__(self, loop, logger,**kwargs):
-        """
-        kwargs:
-            - 
-        """
+        
         for key, item in kwargs.items():
             setattr(self, key, item)        
-
-        self.account = Account(kwargs['acc'])
         self.logger = logging.getLogger("{}:{}".format(__name__, self.buy))
         
         if self.buy not in Manager.managers:
             Manager.managers[self.buy] = []
-        
-
-    def open_orders(self):
-        
-        self.account.refresh()
-        open_orders = self.account.openorders
-        
-        return open_orders
-
-    def order_active(self, order):
-        # Expired or not
-
-        order_found = False
-        open_orders = self.open_orders()
-        
-        for morder in open_orders:
-            print("Comparing {} with {}".format(morder['id'], order[0]['orderid']))
-            if morder['id'] == order[0]['orderid']: # order is tupel of orderobject, True
-                order_found = True
-
-        return order_found
+    
+    @classmethod
+    def from_worker(cls, w, loop, logger, **kwargs):
+        #kwargs.update('buy' : )
+        return cls(loop, logger, **kwargs)
 
     async def run(self):
         i = 0

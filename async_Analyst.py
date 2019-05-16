@@ -3,8 +3,8 @@ import sys
 import time 
 import asyncio
 
-from async_Manager import Manager
-from async_Worker import Worker
+from Manager import Manager
+from Worker import Worker
 from Strategy import CheckSpread
 #from utils import convert_to_quote
 from copy import deepcopy
@@ -21,33 +21,35 @@ class Analyst:
     strategies = []
 
     def __init__(self,loop, logger, **kwargs):
+        #
         self.loop = loop
-        
         self.logger = logger 
         
         for key, item in kwargs.items():
             setattr(self, key, item)
+    
+        self.account = Account(self.acc)
+        self.account.refresh()
+        my_coins = self.account.balances
         self.update()
-        self.logger.debug("Welcome !")
+        self.logger.info("Major Coin: {}".format(self.major_coin))
+        self.logger.info("Major Balance: {}".format(self.major_balance))
+        self.logger.info("Welcome !")
+        self.connections = {}
         
-    def populate(self):
-        workers = []
-        buying = self.buying
-        selling_coins = self.find_sellcoins(**buying)
-        buying_coins  = self.find_buycoins(**buying)
-        buying_coins.update(selling_coins)
-        
-        coins = buying_coins.keys()
-        #[Manager(coin) for coin in buying_coins]
+    
+    def connect(self, manager, worker):
+        """ 
+        Connect:
+            Tasks:
+                if worker not connected with manager, connect
+        """
 
-        for sell_coin in selling_coins:
-            balance = selling_coins[sell_coin]
-            self.logger.info("Owning {}".format(sell_coin))
-            # Investment strategy
-            if sell_coin != 'BRIDGE.BTC':
-                tsize = balance
-                th = 0.01 #asymmetric  th can be implemented here
-                data = {
+        pass
+    def generate_data(self, coin, amount, **kwargs):
+        """
+        ADJUST THIS SHIT HERE
+        data = {
                     'sell' : sell_coin, 
                     'buy' : self.major_coin,
                     'tradingside' :'sell',
@@ -65,73 +67,68 @@ class Analyst:
                     'state' : 0,
                     'major_coin' : sell_coin
                 }
+        """
+        data = {'major_coin' : 'BRIDGE.BTC',
+                    'instance' : self.instance,
+                    'url' : self.url,
+                    'acc' : self.acc,
+                    'pw' : self.pw,
+                    'orderbooklimit' : 25,
+                    'open_order' : None,
+                    'state' : None,}
+        if kwargs['tradingside'] == 'buy':
+            data['buy'] = coin 
+            data['sell'] = self.major_coin
+            data['tsize'] = self.major_balance/len(self.whitelist)
+            data['th'] = 0.05
 
-                w = Worker(self.loop, self.logger, **data)
-                #await asyncio.sleep(1)
-                time.sleep(1)
-                workers.append(w)
-            else:
-                #equally distributed capital
-                tsize = balance/len(buying_coins)
-                th = 0.03 #always 5% spread
-                self.logger.info("Investing btc {}".format(tsize))
-                
-                #NOTE:
-                #since we use our full balance if we trade any other coin then btc
-                # it is possible to fail an order due to insufficient balance
-                
-                for buy_coin in buying_coins:
-                    # different markets
-                    if buy_coin != sell_coin:
-                        #init manager on market
-                        # CheckSpread(tsize = tsize, th = th)
-                        #m = Manager()
-                        data = {
-                            'sell' : self.major_coin, 
-                            'buy' : buy_coin,
-                            'tradingside':'buy',
-                            'tsize' :tsize, 
-                            'th' : th,
-                            'ob_th' : 0.1,
-                            'toQuote' : True,
-                            'market_key' : "{}:{}".format(buy_coin, self.major_coin),
-                            'instance' : self.instance,
-                            'url' : self.url,
-                            'acc' : self.acc,
-                            'pw' : self.pw,
-                            'orderbooklimit' : 25,
-                            'open_order' : None,
-                            'state' : 0,
-                            'major_coin' : buy_coin
-                        }
-        
-                        w = Worker(self.loop, self.logger, **data)
-                        time.sleep(1)#await asyncio.sleep(1)
-        
-                        workers.append(w)
-        #make manager
-        managers = []
-        m_d ={
-            'buy' : None
-        }
-        for m in coins:
-            #d = m_d.copy()
-            #d['buy'] = m
-            managers.append(Manager(self.loop, self.logger,  **data))
-            #await asyncio.sleep(1)
+        if kwargs['tradingside'] == 'sell':
+            data['sell'] = coin 
+            data['buy'] = self.major_coin
+            data['th'] = 0.03
+
+        kwargs.update(data)
+        return kwargs
+    
+    def populate(self):
+        """
+        Populate:
+            Tasks:
+                - filter whitelist, blacklist, bts 
+                - initialize worker 
+        """
+        ## WORKER
+        self.worker_data = {} # insert all used kwrags dictionary here!!!!!!!!!!!!!!!!!
+        workers = []
+        #sellcoins 
+        selling_coins = self.find_sellcoins()
+        for coin, amount in selling_coins.items():
+            self.logger.info("Selling {} owning {}".format(coin, amount))
+            data = self.generate_data(coin, amount, tradingside = 'sell')
+            self.worker_data["{}:{}".format(coin, self.major_coin, **data)] = data.copy() #different
+            workers.append(Worker.from_kwargs(self.loop, self.logger, **data))
             time.sleep(1)
-        for m in managers:
-            for w in workers:
-                if w.tradingside == 'buy':
-                    coin = w.buy
-                else:
-                    coin = w.sell
-                if m.buy == coin:
-                    Manager.managers[coin].append(w.queue)
-        self.managers = managers
-        self.workers = workers
-        return managers, workers
+            #generate data
 
+        #data['tradingside'] = 'buy'
+        buying_coins  = self.find_buycoins()
+        for coin, amount in buying_coins.items():
+            self.logger.info("Buying {} owning {}".format(coin, amount))
+            data = self.generate_data(coin, amount, tradingside = 'buy')
+            self.worker_data["{}:{}".format(self.major_coin, coin)] = data.copy()
+            workers.append(Worker.from_kwargs(self.loop, self.logger,**data))
+            time.sleep(1)
+
+        ## MANAGER
+        for w in workers:
+            Manager.from_worker(w, self.loop, self.logger)     
+            time.sleep(1)
+
+        ## BUILD GRAPH
+        for m in Manager.managers:
+            for w in workers:
+                self.connect(m, w)
+                
     async def run(self):
         print("run")
             
@@ -155,29 +152,22 @@ class Analyst:
         # # # 
         # kwargs: coins allowed to buy
         # get balances and check if it is allowed coin
-        # # #
-        buycoins = kwargs.copy()
-        for coin, amount in self.balance.items():
-            if coin in buycoins.keys():
-                if coin == self.major_coin:
-                    self.logger.info("Major balance: {}".format(amount))
-                    self.major_balance = amount
-                    del buycoins[coin]
-                elif coin == "BTS":
-                    self.logger.info("BTS amount {}".format(self.balance[coin]))
-                else:
-                    buycoins[coin] = self.balance[coin]
+        # #
+        buycoins = {}
+        investing_tsize = self.major_balance/len(self.whitelist)
+        for coin in self.whitelist:
+            buycoins[coin] = investing_tsize #is in BTC
         return buycoins
 
     def find_sellcoins(self, **kwargs):
         # # #
-        # kwargs: coins to sell besides major_coin 
-        # 
+        # filter 
         # # #
-        try:
-            return {'BRIDGE.BTC' : self.balance['BRIDGE.BTC'], 'BRIDGE.GIN' : 0.001}
-        except Exception as e:
-            raise ValueError('Couldnt assign balances, probably because orders are still open.', e)
+        sellcoins = {}
+        for coin in self.whitelist:
+            if coin in self.balance and coin != self.major_coin:
+                sellcoins[coin] = self.balance[coin]
+        return sellcoins 
 
     def step(self):
         #compute difference from one trading episode T = 5 minutes or smth..

@@ -22,27 +22,24 @@ from bitshares.market import Market
     
 class Worker:
     """
-        'tradingside' : 
-        'market_key' : 
-        'instance' : 
-        'base' : 
-        'quote'
-        '2Quote' : 
-        'tsize' : 
-        'loop' : 
-        'queue' : 
     """
     def __init__(self, loop, logger ,**kwargs):
 
         for key, arg in kwargs.items():
             setattr(self, key, arg)
-
+        if self.tradingside == 'sell': self.market_key = "{}:{}".format(self.sell, self.major_coin)
+        if self.tradingside == 'buy': self.market_key = "{}:{}".format(self.major_coin, self.buy)
         self.logger = logging.getLogger("{}_{}".format(__name__, re.sub('BRIDGE.','',self.market_key)))
         self.market = Market(self.market_key, block_instance = self.instance)
         kwargs['market'] = self.market
         self.queue = Queue(loop = loop)
+        kwargs.update({'market_key' : self.market_key})
+        self.logger.info("Created worker {} on {}".format(self.tradingside, self.market_key))
         self.strategy = CheckSpread.from_kwargs(logger, **kwargs)
 
+    @classmethod
+    def from_kwargs(cls, *args, **kwargs):
+        return cls(*args, **kwargs)
     async def run(self, **kwargs):
         i = 0
         self.logger.info("Worker starts on {}".format(re.sub('BRIDGE.','',self.market_key)))
