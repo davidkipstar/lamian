@@ -4,15 +4,18 @@ import asyncio
 import logging 
 import logging.config
 import yaml
-
+import json
 from async_Analyst import Analyst
 
 if __name__ == '__main__':    
     
     buying = {'BRIDGE.BTC' : None, 'BRIDGE.LRM': None ,'BRIDGE.LCC' : None, 'BRIDGE.GIN' : None}
+    with open('credentials.json') as f:
+        j = json.load(f)
+
     data = {
-        'pw' : "test",
-        'acc' : "kipstar1337",
+        'pw' : j['pw'],
+        'acc' : j['acc'],
         'url' : 'wss://eu-west-2.bts.crypto-bridge.org',
         'major_coin' : 'BRIDGE.BTC',
         'buying' : {'BRIDGE.BTC' : None , 'BRIDGE.GIN': None}

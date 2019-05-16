@@ -41,10 +41,13 @@ class Manager:
         """
         for key, item in kwargs.items():
             setattr(self, key, item)        
+
         self.account = Account(kwargs['acc'])
         self.logger = logging.getLogger("{}:{}".format(__name__,self.buy))
+        
         if self.buy not in Manager.managers:
             Manager.managers[self.buy] = []
+        
         # 'amount_to_sell': {'amount': 30397, 'asset_id': '1.3.1570'},
         #  'min_to_receive': {'amount': 384474522, 'asset_id': '1.3.3543'}, 
         
@@ -55,16 +58,18 @@ class Manager:
         #    Manager.managers[coin] = self
 
     def open_orders(self):
+        
         self.account.refresh()
         open_orders = self.account.openorders
+        
         return open_orders
 
     def order_active(self, order):
         # Expired or not
-        print("Manager-orders", order)
 
         order_found = False
         open_orders = self.open_orders()
+        
         for morder in open_orders:
             print("Comparing {} with {}".format(morder['id'], order[0]['orderid']))
             if morder['id'] == order[0]['orderid']: # order is tupel of orderobject, True
@@ -75,22 +80,16 @@ class Manager:
     async def run(self):
         i = 0
         await asyncio.sleep(5)     
+        
         while True:
             queues = Manager.managers[self.buy]
             for q in queues:
                 try:
                     order = await q.get_nowait()
-                    #order_found = self.order_active(order)
-                    #if not order_found:
-                    #    self.logger.info("Order expired on market")
-                    #else:
-                    #    self.logger.info("Order has been filled!")
-                        #adjust balance    
                     self.logger.info("received {}".format(order))
                 except Exception as e:
                     pass
             await asyncio.sleep(0.5)
-#           self.logger.info("new try in manager")
 
 
         

@@ -20,6 +20,7 @@ class Agent:
         c_format = self.logger.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         self.c_handler.setFormatter(c_format)
         """
+        self._tsize = 0 
         self.logger = logging.getLogger("{}_{}".format(__name__,re.sub('BRIDGE.','', kwargs['market_key'])))
         
 
@@ -35,6 +36,33 @@ class Agent:
         await asyncio.sleep(0)
         return asks, bids 
 
+    #get tsize
+    @property
+    def tsize(self):
+        # Check if balance changed
+        try:
+            self.account = Account(self.acc)
+            self.account.refresh()
+            my_coins = self.account.balances
+            self.balance = dict(zip(map(lambda x: getattr(x,'symbol'),my_coins),my_coins))
+            old_tsize = self._tsize
+            self._tsize =  self.balance[self.major_coin] # WARNING: Replace bridge.gin with current coin!!!!
+            logger.info("Changed tsize from {} to {}".format(old_tsize, self._tsize))
+            return self._tsize
+
+        # Error can occur when balance of a coin is precisely zero, then it doesnt exist in the balance list. 
+        except Exception as e:
+            self.logger.info("No balance for {}".format(self.major_coin)) 
+            
+        finally:
+            self.logger.info("balance for {} is {} ".format(self.major_coin, self._tsize))
+            return 0
+
+    #change tsize 
+    @tsize.setter
+    def tsize(self, size):
+        self._tsize = size
+        #ob[0] = asks, ob[1] = bids
 
     @property
     async def open_orders(self):
@@ -121,6 +149,7 @@ class Agent:
             self._amount = None 
             self.logger.error("Error in getting order: {}".format(e))
             return None 
+
     @my_order.setter
     def my_order(self, conf):
         try:
@@ -194,15 +223,25 @@ class CheckSpread(Agent):
 
     """
     def __init__(self,logger, **kwargs):
+        self._tsize = 0 
         super().__init__(logger, **kwargs)
+        if 'tsize' in kwargs: del kwargs['tsize']
         for key, arg in kwargs.items():
             setattr(self, key, arg)
         ob = self.market.orderbook(self.orderbooklimit)
         asks, bids = pd.DataFrame(ob['asks']), pd.DataFrame(ob['bids'])
-        self.logger.info("length of asks is {}".format(len(asks)))    
-        if kwargs['toQuote']:
-            self.tsize = convert_to_quote(asks, bids, self.tsize) 
-        self.og_tsize = self.tsize # save, will be reduced once having bought
+        self.logger.info("length of asks is {}".format(len(asks)))
+        if self.tsize:
+
+            if kwargs['toQuote']: 
+                size = convert_to_quote(asks, bids, self.tsize) 
+                if size:
+                    self.tsize = size
+                else:
+                    logger.error("Converting tsize failed {} {} {}".format(self._tsize, asks, bids))
+            else:
+                logger.info("Starting to {} {} of {}".format(self.tradingside,self._tsize, self.major_coin))
+        #self.og_tsize = self.tsize # save, will be reduced once having bought
         self.executed_trades = []
         self._order = None 
         #self.major_coin = self.sell['symbol'] if self.tradingside == 'sell' else self.buy['symbol']
@@ -216,34 +255,16 @@ class CheckSpread(Agent):
         market = Market(kwargs['market_key'], block_instance = instance)
         market.bitshares.wallet.unlock(kwargs['pw'])
         kwargs.update({'account' : account, 'instance': instance, 'market' : market})
+        if 'tsize' in kwargs: del kwargs['tsize']
         return cls(logger, **kwargs)
 
-    def adjust_tsize(self):
-        # wenn tsize = 0 und tradignside == 'sell' in kwargs dann erstmal sleep und anschliessend immer balance testen. wenn > 0.01 dann verkaufen
-        # Check if balance changed, and if true, start trading
-        self.account = Account(self.acc)
-        self.account.refresh()
-        my_coins = self.account.balances
-        self.balance = dict(zip(map(lambda x: getattr(x,'symbol'),my_coins),my_coins))
-        try:
-            self.major_balance = self.balance[self.major_coin] # WARNING: Replace bridge.gin with current coin!!!!
-        except Exception as e:
-            self.logger.error("error in checking balance {}".format(e)) # Error can occur when balance of a coin is precisely zero, then it doesnt exist in the balance list.
-            self.major_balance = 0
-        finally:
-            if self.major_balance > 0.01:
-                self.tsize = self.major_balance
-                #set state to 0 to invoke transition from sleeping to active
-                self.state = 0
-                return asyncio.sleep(0)
-            else:
-                print('snooooooozzzzzing..........')
-                return asyncio.sleep(5)
+
     async def apply(self, **kwargs):
         #transition table, if state changes we need to return a task
         #since only orderbooks are used 
-        asks, bids = await self.orderbook
+        
         if self.state == 0:
+            asks, bids = await self.orderbook
             # Fetch news
             self.current_open_orders = self.market_open_orders()
             self.current_trades = self.trades() # Todo: 
@@ -262,12 +283,12 @@ class CheckSpread(Agent):
                 'expiration' : 60
             }
 
-            if self.state == 1 and len(self.current_open_orders) < 2 and not self._order:
+            if self.state == 1 and len(self.current_open_orders) < 2 and not self._order and conf['amount']:
                 self.my_order = conf
-                return asyncio.sleep(0.5)
             else:
-                #sleep for 5 seconds
-                return asyncio.sleep(0.5)
+                #push into sleep 
+                self.state = 2
+            return asyncio.sleep(0.5)
                 
         if self.state == 1:
             my_order = await self.my_order
@@ -285,10 +306,19 @@ class CheckSpread(Agent):
                 return asyncio.sleep(0.5)
         
         if self.state == 2:
-            while self.tsize < 0.01:
-                self.adjust_tsize()
-                return True
-
+            # wenn tsize = 0 und tradignside == 'sell' 
+            # in kwargs dann erstmal sleep und anschliessend immer balance testen. wenn > 0.01 dann verkaufen
+    
+            #min_balance !
+            #state2()
+            min_balance = 0.01
+            if self.tradingside == 'sell':
+                if self.tsize > min_balance:
+                    self.state = 0
+            else:
+                self.state = 0 #hope we own btc
+            return asyncio.sleep(5)
+            
     def state0(self, asks, bids):
         #print(self.market, ' : entering state0')
         #asks, bids = entry['asks'], entry['bids']

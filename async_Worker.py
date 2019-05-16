@@ -36,9 +36,8 @@ class Worker:
 
         for key, arg in kwargs.items():
             setattr(self, key, arg)
-        #setup logger
-        self.logger = logging.getLogger("{}_{}".format(__name__, re.sub('BRIDGE.','',self.market_key)))
 
+        self.logger = logging.getLogger("{}_{}".format(__name__, re.sub('BRIDGE.','',self.market_key)))
         self.market = Market(self.market_key, block_instance = self.instance)
         kwargs['market'] = self.market
         self.queue = Queue(loop = loop)
@@ -50,13 +49,12 @@ class Worker:
         while True:
             await asyncio.sleep(np.random.randint(10)) 
             i += 1
-            if not i%5:
-                self.logger.info("{} iterations".format(i)) 
-            event = self.strategy.apply()#asks, bids)
+            event = self.strategy.apply()
+            
             if event:
                 x = await event
-                #print('Event:', x)
                 self.logger.info("Event created {}".format(x))
                 if x:
                     self.queue.put_nowait(x)
+            
             await asyncio.sleep(0.5)
