@@ -1,4 +1,4 @@
-from utils import find_price, convert_to_quote
+from utils import find_price, convert_to_quote, convert_to_base
 from decimal import Decimal
 import pandas as pd
 import asyncio
@@ -14,9 +14,8 @@ import re
 class Agent:
 
     def __init__(self, logger, *args, **kwargs):    
-        self._tsize = 0 
+        self.og_tsize = kwargs['og_tsize']
         self.logger = logging.getLogger("{}_{}".format(__name__,re.sub('BRIDGE.','', kwargs['market_key'])))
-        
 
     @property 
     async def orderbook(self):
@@ -32,22 +31,30 @@ class Agent:
 
     #get tsize
     @property
-    def tsize(self):
+    async def tsize(self):
         # Check if balance changed
         try:
             self.account.refresh()
             my_coins = self.account.balances
             self.balance = dict(zip(map(lambda x: getattr(x,'symbol'),my_coins),my_coins))
-            self._tsize
-            #
             _tsize =  self.balance[self.major_coin] # WARNING: Replace bridge.gin with current coin!!!!
             if self.tradingside == 'buy':
-                #case btc 
-                _tsize = self._tsize/len(self.whitelist) - self.inventory
+                #case btc
+                asks, bids = await self.orderbook
+                try:
+                    quote_inventory = self.balance[self.buy] - 0.01
+                    self.inventory = convert_to_base(asks, bids, quote_inventory)
+                except:
+                    self.inventory = 0
 
-            if self._tsize != _tsize:
-                self.logger.info("changed tsize from {} to {}".format(self._tsize, _tsize))
-                self._tsize = _tsize
+            else:
+                if self._tsize != _tsize:
+                    try:
+                        self.inventory = self.balance[self.sell] - 0.01
+                        self.logger.info("changed tsize from {} to {}".format(self._tsize, _tsize))
+                        self._tsize = _tsize
+                    except:
+                        self.inventory = 0
 
             
         # Error can occur when balance of a coin is precisely zero, then it doesnt exist in the balance list. 
@@ -223,6 +230,7 @@ class CheckSpread(Agent):
 
     """
     def __init__(self,logger, **kwargs):
+        kwargs.update({'og_tsize': kwargs['tsize']})
         super().__init__(logger, **kwargs)
         for key, arg in kwargs.items():
             setattr(self, key, arg)
@@ -231,7 +239,7 @@ class CheckSpread(Agent):
         asks, bids = pd.DataFrame(ob['asks']), pd.DataFrame(ob['bids'])
         self.logger.info("length of asks is {}".format(len(asks)))
         if self.tradingside == 'buy':
-            size = convert_to_quote(asks, bids, self.tsize) 
+            size = convert_to_quote(asks, bids, self._tsize)
             if size:
                 self.tsize = size
         logger.info("Starting to {} {} of {}".format(self.tradingside,self._tsize, self.major_coin))
@@ -249,7 +257,7 @@ class CheckSpread(Agent):
         market = Market(kwargs['market_key'], block_instance = instance)
         market.bitshares.wallet.unlock(kwargs['pw'])
         kwargs.update({'account' : account, 'instance': instance, 'market' : market})
-        if 'tsize' in kwargs: del kwargs['tsize']
+
         return cls(logger, **kwargs)
 
 
@@ -268,10 +276,10 @@ class CheckSpread(Agent):
             # amount_spent = max(sum(self.current_trades['amount']), 0)
             # tsize -= amount_spent
             #print('Strategy orders:', self.current_open_orders)
-            
+            await self.tsize
             conf = {
                 'price' : self.state0(asks, bids), # is already Decimal as returned from state0
-                'amount' : self.tsize, # not Decimal yet, to be done when setting order
+                'amount' : self._tsize, # not Decimal yet, to be done when setting order
                 'returnOrderId' : True,
                 'account' : self.account,
                 'expiration' : 60
@@ -307,7 +315,7 @@ class CheckSpread(Agent):
             #state2()
             min_balance = 0.01
             if self.tradingside == 'sell':
-                if self.tsize > min_balance:
+                if await self.tsize > min_balance:
                     self.state = 0
             else:
                 self.state = 0 #hope we own btc
@@ -317,8 +325,8 @@ class CheckSpread(Agent):
         #print(self.market, ' : entering state0')
         #asks, bids = entry['asks'], entry['bids']
         #print(self.market_key, ': state0 activated')
-        price_bid = find_price(bids, getattr(self, 'ob_th'), getattr(self, 'tsize')) + self.satoshi
-        price_ask = find_price(asks, getattr(self, 'ob_th'), getattr(self, 'tsize')) - self.satoshi
+        price_bid = find_price(bids, getattr(self, 'ob_th'), getattr(self, '_tsize')) + self.satoshi
+        price_ask = find_price(asks, getattr(self, 'ob_th'), getattr(self, '_tsize')) - self.satoshi
         spread_estimated = ((price_ask - price_bid)/price_bid).quantize(CheckSpread.satoshi)
         #print(self.market, " : Strategy: Spread: {}".format(spread_estimated))
         if spread_estimated > self.th:
@@ -336,10 +344,10 @@ class CheckSpread(Agent):
         #print(self.market, ': entering state1')
         if tradingside == 'buy':
             max_deviation = Decimal('0.00000001') 
-            estimated_price = find_price(bids, self.ob_th, self.tsize, previous_order=order, previous_amount=self._amount, previous_price=self._price)  # self.which_order(order['orderid'])
+            estimated_price = find_price(bids, self.ob_th, self._tsize, previous_order=order, previous_amount=self._amount, previous_price=self._price)  # self.which_order(order['orderid'])
         else:
             max_deviation = Decimal('0.00000001') #Decimal('1')
-            estimated_price = find_price(asks, self.ob_th, self.tsize, previous_order=order, previous_amount=self._amount, previous_price=self._price)  # self.which_order(order['orderid'])
+            estimated_price = find_price(asks, self.ob_th, self._tsize, previous_order=order, previous_amount=self._amount, previous_price=self._price)  # self.which_order(order['orderid'])
 
         # Checks if better price exists
         

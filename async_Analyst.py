@@ -77,18 +77,20 @@ class Analyst:
                     'pw' : self.pw,
                     'orderbooklimit' : 25,
                     'open_order' : None,
-                    'state' : None,
+                    'state' : 2,
                     'ob_th' : 0.1}
         if kwargs['tradingside'] == 'buy':
             data['buy'] = coin 
             data['sell'] = self.major_coin
-            data['tsize'] = self.major_balance/len(self.whitelist)
+            data['tsize'] = self.major_balance['amount']/len(self.whitelist)
             data['th'] = 0.05
 
         if kwargs['tradingside'] == 'sell':
             data['sell'] = coin 
             data['buy'] = self.major_coin
             data['th'] = 0.03
+            data['tsize'] = 0
+            data['state'] = 2
 
         kwargs.update(data)
         return kwargs
