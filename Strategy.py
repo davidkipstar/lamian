@@ -97,8 +97,11 @@ class Agent:
             if kwargs:
                 # price and amount must both be Decimal here!
                 price = kwargs['price'] # already Decimal bc of state0
-                amount = Decimal(kwargs['amount'].amount).quantize(CheckSpread.satoshi)
+                amount = Decimal(kwargs['amount']).quantize(CheckSpread.satoshi)
             # amhttps://www.kicker.de/ount = 0.000002
+            if self.market:
+                self.market.clear()  # Else fails after first successful order, check: https://github.com/bitshares/python-bitshares/issues/86
+                # That issue is NOT fixed obviously
             self.market = Market(self.market_key)
             self.market.bitshares.wallet.unlock(self.pw)
             #self.market.bitshares.wallet.addPrivateKey('5KgkgfK4suQqLJY1Uv8mY4tPx4e8V8a2q2SX8xbS5o8UN9rxBJJ')
@@ -107,6 +110,7 @@ class Agent:
             print('Unlocked?! ', self.account.bitshares.wallet.unlocked())
             print('tradingside: ', self.tradingside)
             #self.account.bitshares.wallet.unlock(self.pw)
+
             if self.tradingside == 'buy':
                 order = self.market.buy(price = price,
                                     amount = amount,
@@ -131,7 +135,7 @@ class Agent:
                 # this goes straight to state0 for previous_order, which is then needed in find_price for dropidx!
                 return order, price, amount  # actually order object but its annoying to extract price and amount (converted)
         except Exception as e:
-            raise ValueError('Order failed!')
+            raise ValueError('Order failed!', e)
 
     @property
     async def my_order(self):
@@ -264,15 +268,15 @@ class CheckSpread(Agent):
     async def apply(self, **kwargs):
         #transition table, if state changes we need to return a task
         #since only orderbooks are used 
+        asks, bids = await self.orderbook
+        self.current_open_orders = self.market_open_orders()
+        self.current_trades = self.trades()  # Todo:
 
         if self._tsize == 3:
             self.tsize()
 
         if self.state == 0:
-            asks, bids = await self.orderbook
-            # Fetch news
-            self.current_open_orders = self.market_open_orders()
-            self.current_trades = self.trades() # Todo: 
+
             # If trades, we need to estimate the tsize reduction
             # amount_spent = Sum over all btc tsizes in trades
             # If tsize < og_tsize, exit
@@ -282,7 +286,7 @@ class CheckSpread(Agent):
             await self.tsize
             conf = {
                 'price' : self.state0(asks, bids), # is already Decimal as returned from state0
-                'amount' : self._tsize, # not Decimal yet, to be done when setting order
+                'amount' : self._tsize - 100, # not Decimal yet, to be done when setting order
                 'returnOrderId' : True,
                 'account' : self.account,
                 'expiration' : 60
