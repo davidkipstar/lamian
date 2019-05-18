@@ -99,7 +99,11 @@ def convert_to_quote(asks, bids, basecur_amount):  # btc_tsize = basecur amount
 
     lowest_ask = asks.iloc[0]['price']
     highest_bid = bids.iloc[0]['price']
-    midprice = 0.5 * (lowest_ask + highest_bid)
+    # Problem when using midprice:
+    # If the spread is high af and a worker gets some btc allocated, then the calculated tsize will exceed the balance
+    # And hence the order would fail. So just use the highest bid atm
+    # midprice = 0.5 * (lowest_ask + highest_bid)
+    midprice = highest_bid
     init_bid = basecur_amount/midprice
     return init_bid
 
@@ -108,7 +112,9 @@ def convert_to_base(asks, bids, quotecur_amount):  # btc_tsize = basecur amount
     #
     lowest_ask = asks[0]['price']
     highest_bid = bids[0]['price']
-    midprice = 0.5 * (lowest_ask + highest_bid)
+    # Deactivating midprice, same reasoning as for convert to quote
+    # midprice = 0.5 * (lowest_ask + highest_bid)
+    midprice = lowest_ask
     init_bid = quotecur_amount * midprice
 
     return init_bid
