@@ -37,6 +37,7 @@ class Agent:
             self.account.refresh()
             my_coins = self.account.balances
             self.balance = dict(zip(map(lambda x: getattr(x,'symbol'),my_coins),my_coins))
+            
             _tsize =  self.balance[self.major_coin] # WARNING: Replace bridge.gin with current coin!!!!
             if self.tradingside == 'buy':
                 #case btc
@@ -48,13 +49,13 @@ class Agent:
                     self.inventory = 0
 
             else:
-                if self._tsize != _tsize:
-                    try:
-                        self.inventory = self.balance[self.sell] - 0.01
-                        self.logger.info("changed tsize from {} to {}".format(self._tsize, _tsize))
-                        self._tsize = _tsize
-                    except:
-                        self.inventory = 0
+                try:
+                    tsize_before = self._tsize
+                    self.inventory = max(self.balance[self.sell].amount - 0.01, 0)
+                    self._tsize = self.inventory
+                    self.logger.info("changed tsize from {} to {}".format(tsize_before, self._tsize))
+                except:
+                    self.inventory = 0
 
             
         # Error can occur when balance of a coin is precisely zero, then it doesnt exist in the balance list. 
@@ -116,14 +117,14 @@ class Agent:
                                     amount = amount,
                                     returnOrderId = True,
                                     account = self.account,
-                                    expiration = 60)
+                                    expiration = 600)
             else:
                 amount = amount - Decimal('0.01')
                 order = self.market.sell(price = price,
                                     amount = amount,
                                     returnOrderId = True,
                                     account = self.account,
-                                    expiration = 60)
+                                    expiration = 600)
             
             self.logger.info("order placed for {} @ {}".format(amount ,price))
             #self.logger.info('order object {}'.format(order))
@@ -274,6 +275,7 @@ class CheckSpread(Agent):
 
         if self._tsize == 3:
             self.tsize()
+            print(self.tradingside, ' : ' ,self._tsize)
 
         if self.state == 0:
 
@@ -286,7 +288,7 @@ class CheckSpread(Agent):
             await self.tsize
             conf = {
                 'price' : self.state0(asks, bids), # is already Decimal as returned from state0
-                'amount' : self._tsize - 100, # not Decimal yet, to be done when setting order
+                'amount' : self._tsize, # not Decimal yet, to be done when setting order
                 'returnOrderId' : True,
                 'account' : self.account,
                 'expiration' : 60
