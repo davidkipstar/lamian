@@ -117,14 +117,14 @@ class Agent:
                                     amount = amount,
                                     returnOrderId = True,
                                     account = self.account,
-                                    expiration = 600)
+                                    expiration = 60)
             else:
                 amount = amount - Decimal('0.01')
                 order = self.market.sell(price = price,
                                     amount = amount,
                                     returnOrderId = True,
                                     account = self.account,
-                                    expiration = 600)
+                                    expiration = 60)
             
             self.logger.info("order placed for {} @ {}".format(amount ,price))
             #self.logger.info('order object {}'.format(order))
@@ -222,6 +222,23 @@ class Agent:
             print('couldnt cancel!! error: ', e)
             return False
 
+    def calc_avg_price(self, recent_trades):
+
+        try:
+            def m(key,recent_trades):
+                return list(filter(lambda x: x['type'] == self.tradingside, list(map(lambda x: x[key], recent_trades))))
+
+            recent_amount_ele = m('amount', recent_trades)
+            recent_rate_ele = m('rate',recent_trades)
+
+            lista = recent_amount_ele
+            listb = recent_rate_ele
+
+            return [a*b for a,b in zip(lista,listb)]
+
+        except Exception as e:
+            print('Couldnt calculate average price, ', e)
+
 
 
 class CheckSpread(Agent):
@@ -251,6 +268,7 @@ class CheckSpread(Agent):
         #self.og_tsize = self.tsize # save, will be reduced once having bought
         self.executed_trades = []
         self._order = None 
+        self._avg_price = None
         #self.major_coin = self.sell['symbol'] if self.tradingside == 'sell' else self.buy['symbol']
 
     @classmethod
@@ -272,7 +290,12 @@ class CheckSpread(Agent):
         asks, bids = await self.orderbook
         self.current_open_orders = self.market_open_orders()
         self.current_trades = self.trades()  # Todo:
-
+        
+        # Todo: 
+        #if len(self.current_trades) > 0:
+        #    self._avg_price = self.calc_avg_price(self.executed_trades)
+        #    print('executed trades: ', self.executed_trades)
+        
         if self._tsize == 3:
             self.tsize()
             print(self.tradingside, ' : ' ,self._tsize)
