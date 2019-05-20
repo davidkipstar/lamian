@@ -110,14 +110,16 @@ def convert_to_quote(asks, bids, basecur_amount):  # btc_tsize = basecur amount
 def convert_to_base(asks, bids, quotecur_amount):  # btc_tsize = basecur amount
     #
     #
-    lowest_ask = asks[0]['price']
-    highest_bid = bids[0]['price']
+    lowest_ask = asks.iloc[0]['price']
+    highest_bid = bids.iloc[0]['price']
     # Deactivating midprice, same reasoning as for convert to quote
     # midprice = 0.5 * (lowest_ask + highest_bid)
     midprice = lowest_ask
     init_bid = quotecur_amount * midprice
 
     return init_bid
+
+"""
 
 def calc_avg_price(recent_trades, tradingside):
 
@@ -132,6 +134,8 @@ def calc_avg_price(recent_trades, tradingside):
     listb = recent_rate_ele
 
     return [a*b for a,b in zip(lista,listb)]
+
+"""
 
 """
     def check_balance(self, quote, base, market_string, tradingside):
