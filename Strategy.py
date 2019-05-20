@@ -43,14 +43,13 @@ class Agent:
                 #case btc
                 asks, bids = await self.orderbook
                 try:
-                    quote_inventory = self.balance[self.buy].amount - 0.01]
-                    # heres the error
+                    quote_inventory = self.balance[self.buy].amount - 0.01
                     self.inventory = convert_to_base(asks, bids, quote_inventory)
                 except:
                     self.inventory = 0
 
                 compensated_tsize = max(self.og_tsize - self.inventory, 0) # of course, if we bought sth., then we got to subtract that from our allocated budget.
-                self._tsize = compensated_tsize
+                self._tsize = convert_to_quote(asks, bids, compensated_tsize) # convert back to quote for settings orders
 
             else:
                 try:
