@@ -369,7 +369,7 @@ class CheckSpread(Agent):
             self.state = 1
             self.logger.info("spread met condition")
             return price_bid if self.tradingside == 'buy' else price_ask
-        elif spread_estimated < 0.01:
+        elif spread_estimated < -0.01:
             self.logger.warning("arbitrage")
             raise ArbitrageException
         else:
