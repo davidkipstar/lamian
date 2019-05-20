@@ -14,7 +14,7 @@ import re
 class Agent:
 
     def __init__(self, logger, *args, **kwargs):    
-        self.og_tsize = kwargs['og_tsize']
+        self.og_tsize = kwargs['tsize'] # only need this for buy atm
         self.logger = logging.getLogger("{}_{}".format(__name__,re.sub('BRIDGE.','', kwargs['market_key'])))
 
     @property 
@@ -43,10 +43,14 @@ class Agent:
                 #case btc
                 asks, bids = await self.orderbook
                 try:
-                    quote_inventory = self.balance[self.buy] - 0.01
+                    quote_inventory = self.balance[self.buy].amount - 0.01]
+                    # heres the error
                     self.inventory = convert_to_base(asks, bids, quote_inventory)
                 except:
                     self.inventory = 0
+
+                compensated_tsize = max(self.og_tsize - self.inventory, 0) # of course, if we bought sth., then we got to subtract that from our allocated budget.
+                self._tsize = compensated_tsize
 
             else:
                 try:
@@ -112,14 +116,15 @@ class Agent:
             print('tradingside: ', self.tradingside)
             #self.account.bitshares.wallet.unlock(self.pw)
 
-            if self.tradingside == 'buy':
+            amount = amount - Decimal('0.01')
+            if self.tradingside == 'buy':         
                 order = self.market.buy(price = price,
                                     amount = amount,
                                     returnOrderId = True,
                                     account = self.account,
                                     expiration = 60)
             else:
-                amount = amount - Decimal('0.01')
+                
                 order = self.market.sell(price = price,
                                     amount = amount,
                                     returnOrderId = True,
