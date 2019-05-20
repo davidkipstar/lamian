@@ -121,14 +121,14 @@ class Agent:
                                     amount = amount,
                                     returnOrderId = True,
                                     account = self.account,
-                                    expiration = 60)
+                                    expiration = 600)
             else:
                 
                 order = self.market.sell(price = price,
                                     amount = amount,
                                     returnOrderId = True,
                                     account = self.account,
-                                    expiration = 60)
+                                    expiration = 600)
             
             self.logger.info("order placed for {} @ {}".format(amount ,price))
             #self.logger.info('order object {}'.format(order))
@@ -326,7 +326,7 @@ class CheckSpread(Agent):
             else:
                 #push into sleep 
                 self.state = 2
-            return asyncio.sleep(0.5)
+            return asyncio.sleep(0.1)
                 
         if self.state == 1:
             my_order = await self.my_order
@@ -337,11 +337,11 @@ class CheckSpread(Agent):
                     conf = self.state1(bids, my_order)
                 if self.state == 0 and my_order is not None: # and len(self.current_open_orders) > 0:
                     del self.my_order
-                return asyncio.sleep(0.5)
+                return asyncio.sleep(0.1)
             else:
                 del self.my_order
                 self.state = 2 #changed to 2 instead of 0 thus checks balance! 
-                return asyncio.sleep(0.5)
+                return asyncio.sleep(0.1)
         
         if self.state == 2:
             # wenn tsize = 0 und tradignside == 'sell' 
@@ -369,7 +369,7 @@ class CheckSpread(Agent):
             self.state = 1
             self.logger.info("spread met condition")
             return price_bid if self.tradingside == 'buy' else price_ask
-        elif spread_estimated < 0:
+        elif spread_estimated < 0.01:
             self.logger.warning("arbitrage")
             raise ArbitrageException
         else:
