@@ -82,6 +82,7 @@ class Manager:
         await asyncio.sleep(5)     
         
         while True:
+            # waaaaaay to many queues here!!
             queues = Manager.managers[self.buy]
             for q in queues:
                 try:
@@ -89,7 +90,7 @@ class Manager:
                     self.logger.info("received {}".format(order))
                 except Exception as e:
                     pass
-            await asyncio.sleep(0.5)
+            await asyncio.sleep(0.000001)
 
 
         

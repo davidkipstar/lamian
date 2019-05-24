@@ -23,7 +23,7 @@ def find_price(orderbook, ob_th, tsize, previous_order = None, previous_amount =
     """
     satoshi = Decimal('0.00000001')
     ob_th = Decimal(ob_th).quantize(satoshi)
-    tsize = Decimal(tsize).quantize(satoshi) if isinstance(tsize, float) else Decimal(tsize['amount']).quantize(satoshi) # Can be passed as integer if the balance is 0 when starting Analyst
+    tsize = Decimal(tsize).quantize(satoshi) if isinstance(tsize, float) or isinstance(tsize, int) else Decimal(tsize['amount']).quantize(satoshi) # Can be passed as integer if the balance is 0 when starting Analyst
 
     quote_v = []
     price_v = []

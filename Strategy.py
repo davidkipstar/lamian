@@ -49,7 +49,10 @@ class Agent:
                     self.inventory = 0
 
                 compensated_tsize = max(self.og_tsize - self.inventory, 0) # of course, if we bought sth., then we got to subtract that from our allocated budget.
-                self._tsize = convert_to_quote(asks, bids, compensated_tsize) # convert back to quote for settings orders
+                if compensated_tsize > 0:
+                    self._tsize = convert_to_quote(asks, bids, compensated_tsize) # convert back to quote for settings orders
+                else:
+                    self._tsize = 0
 
             else:
                 try:
@@ -121,14 +124,14 @@ class Agent:
                                     amount = amount,
                                     returnOrderId = True,
                                     account = self.account,
-                                    expiration = 600)
+                                    expiration = 120)
             else:
                 
                 order = self.market.sell(price = price,
                                     amount = amount,
                                     returnOrderId = True,
                                     account = self.account,
-                                    expiration = 600)
+                                    expiration = 120)
             
             self.logger.info("order placed for {} @ {}".format(amount ,price))
             #self.logger.info('order object {}'.format(order))
@@ -321,7 +324,7 @@ class CheckSpread(Agent):
                 'expiration' : 60
             }
 
-            if self.state == 1 and len(self.current_open_orders) < 2 and not self._order and conf['amount']:
+            if self.state == 1 and len(self.current_open_orders) < 3 and not self._order and conf['amount'] > 0.02:
                 self.my_order = conf
             else:
                 #push into sleep 
@@ -349,9 +352,9 @@ class CheckSpread(Agent):
     
             #min_balance !
             #state2()
-            min_balance = 0.01
-            if self.tradingside == 'sell':
-                if await self.tsize > min_balance:
+            min_balance = 0.021
+            
+            if await self.tsize > min_balance:
                     self.state = 0
             else:
                 self.state = 0 #hope we own btc
@@ -361,19 +364,22 @@ class CheckSpread(Agent):
         #print(self.market, ' : entering state0')
         #asks, bids = entry['asks'], entry['bids']
         #print(self.market_key, ': state0 activated')
-        price_bid = find_price(bids, getattr(self, 'ob_th'), getattr(self, '_tsize')) + self.satoshi
-        price_ask = find_price(asks, getattr(self, 'ob_th'), getattr(self, '_tsize')) - self.satoshi
+        price_bid = find_price(bids, getattr(self, 'ob_th'), getattr(self, '_tsize'), minimum_liquidity=1) + self.satoshi
+        price_ask = find_price(asks, getattr(self, 'ob_th'), getattr(self, '_tsize'), minimum_liquidity=0) - self.satoshi
         spread_estimated = ((price_ask - price_bid)/price_bid).quantize(CheckSpread.satoshi)
         #print(self.market, " : Strategy: Spread: {}".format(spread_estimated))
         if spread_estimated > self.th:
             self.state = 1
             self.logger.info("spread met condition")
-            return price_bid if self.tradingside == 'buy' else price_ask
+            return price_bid if self.tradingside == 'buy' else price_ask  
+#        elif spread_estimated > 0:
+#            self.ob_th = 
         elif spread_estimated < -0.01:
             self.logger.warning("arbitrage")
             raise ArbitrageException
         else:
             self.logger.info("spread too low currently at {}".format(spread_estimated))
+            time.sleep(5)
             return 0
             
     def state1(self, bids, order, tradingside = 'buy'):
@@ -396,3 +402,14 @@ class CheckSpread(Agent):
         else:
             self.logger.info("observing open order......")
             return True
+
+                
+"""
+        elif spread_estimated > 0 and self._avg_price > 0:
+            if self.tradingside == 'buy':
+                return(self._avg_price + 0.000001)
+            else:
+                return(self._avg_price - 0.000001)
+
+"""
+        

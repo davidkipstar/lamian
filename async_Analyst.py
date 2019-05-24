@@ -89,7 +89,7 @@ class Analyst:
         if kwargs['tradingside'] == 'sell':
             data['sell'] = coin 
             data['buy'] = self.major_coin
-            data['th'] = 0.03
+            data['th'] = 0.015
             data['tsize'] = 0
             data['state'] = 2
             data['ob_th'] = 0.3
