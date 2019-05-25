@@ -1,0 +1,7 @@
+
+
+viel zu lange managerqueue, das kostet ziemlich viel Zeit bis eine neue Order gesetzt wird
+wenn gekauft und spread zu klein oder preis zu niedrig, dann einfach mit hoeherem preis reinsetzen und warten
+wenn spread too low dann kurz sleep # done
+er versucht zu verkaufen wenn balance 0.02 und failt dann # done
+self.executed_trades wird zu lang, immer wieder ueberschreiben und save oder so
