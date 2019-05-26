@@ -19,13 +19,14 @@ class Agent:
 
     @property 
     async def orderbook(self):
-        ob = self.market.orderbook(self.orderbooklimit)
-        if len(ob['asks']) >= self.orderbooklimit and len(ob['asks']) >= self.orderbooklimit:
-            asks, bids = pd.DataFrame(ob['asks']), pd.DataFrame(ob['bids'])
-            self.logger.info("orderbook received")
-        else:
+        try:
+            ob = self.market.orderbook(self.orderbooklimit)
+            if len(ob['asks']) >= self.orderbooklimit and len(ob['asks']) >= self.orderbooklimit:
+                asks, bids = pd.DataFrame(ob['asks']), pd.DataFrame(ob['bids'])
+                self.logger.info("orderbook received")
+        except:
             self.logger.info("not liquid.")
-            asks, bids = None, None 
+            asks, bids = None, None
         await asyncio.sleep(0)
         return asks, bids 
 
@@ -43,8 +44,11 @@ class Agent:
                 #case btc
                 asks, bids = await self.orderbook
                 try:
-                    quote_inventory = self.balance[self.buy].amount - 0.01
-                    self.inventory = convert_to_base(asks, bids, quote_inventory)
+                    quote_inventory = max(self.balance[self.buy].amount - 0.01, 0)
+                    if quote_inventory > 0:
+                        self.inventory = convert_to_base(asks, bids, quote_inventory)
+                    else:
+                        self.inventory = 0
                 except:
                     self.inventory = 0
 
@@ -246,6 +250,7 @@ class Agent:
         except Exception as e:
             print('Couldnt calculate average price, ', e)
 
+    
 
 
 class CheckSpread(Agent):
