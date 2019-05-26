@@ -300,7 +300,7 @@ class CheckSpread(Agent):
         #transition table, if state changes we need to return a task
         #since only orderbooks are used 
         asks, bids = await self.orderbook
-        self.current_open_orders = self.market_open_orders()
+        #self.current_open_orders = self.market_open_orders()
         self.current_trades = self.trades()  # Todo:
         
         # Todo: 
@@ -329,7 +329,7 @@ class CheckSpread(Agent):
                 'expiration' : 60
             }
 
-            if self.state == 1 and len(self.current_open_orders) < 3 and not self._order and conf['amount'] > 0.02:
+            if self.state == 1  and not self._order and conf['amount'] > 0.02: # and len(self.current_open_orders) < 3
                 self.my_order = conf
             else:
                 #push into sleep 
