@@ -89,6 +89,12 @@ def find_price(orderbook, ob_th, tsize, previous_order = None, previous_amount =
         lower_bound = dfsub.index[dfsub['obrevenue_cumsum'] > dfsub['xtimes_ownrevenue']].tolist()
         # now this is the lower bound. Combine them to find the optimal price
         opt_price = dfsub['price'][lower_bound[0]]
+        
+        # dont need to overwrite if price difference is negligble
+        # so only overwrite if price diff is "big"
+        if opt_price_rounded - opt_price.quantize(satoshi) > 0.0000001:
+            opt_price_rounded = opt_price
+            
     #print("Own revenue: {}".format(ownrevenue_v))
     #print("opt : {} , rounded: {}".format(opt_price, opt_price_rounded))
     return opt_price_rounded
