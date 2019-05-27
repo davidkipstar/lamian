@@ -330,14 +330,15 @@ class CheckSpread(Agent):
             return asyncio.sleep(10)
 
         #self.current_open_orders = self.market_open_orders()
-        self.current_trades = self.trades()  # Todo:
-        avg_sell_price = self.calc_avg_price('sell', self.current_trades)
-        avg_buy_price = self.calc_avg_price('buy', self.current_trades)
+        self.current_trades = self.trades()  
         # Todo: 
-        #if len(self.current_trades) > 0:
-        #    self._avg_price = self.calc_avg_price(self.executed_trades)
-        #    print('executed trades: ', self.executed_trades)
-        
+        # Spam filter for executed trades, else its just gonna grow without limit!
+        if len(self.current_trades) > 0:
+            avg_sell_price = self.calc_avg_price('sell', self.executed_trades[-1])
+            avg_buy_price = self.calc_avg_price('buy', self.executed_trades[-1])
+            print('current avg buy price: ', avg_buy_price)
+            print('current avg sell price: ', avg_sell_price)
+
         if self._tsize == 3:
             self.tsize()
             print(self.tradingside, ' : ' ,self._tsize)
