@@ -42,8 +42,6 @@ class Agent:
             self.balance = dict(zip(map(lambda x: getattr(x,'symbol'),my_coins),my_coins))
             self.current_open_orders = self.market_open_orders()
                       
-
-            _tsize =  self.balance[self.major_coin] # WARNING: Replace bridge.gin with current coin!!!!
             if self.tradingside == 'buy':
                 #case btc
                 asks, bids = await self.orderbook
@@ -52,37 +50,21 @@ class Agent:
                 # Added in quote_inventory
                 sell_orders = list(filter(lambda x: x['for_sale']['symbol'] == self.buy, self.current_open_orders))
                 self.quote_inventory = sum(list(map(lambda x: x['for_sale']['amount'], sell_orders)))
-                
-                #price_to_sell = list(map(lambda x: x['price'], sell_orders))
-                #quote_inventory = [a*(1/b) for a,b in zip(amount_to_sell, price_to_sell)] # in bitcoin
-                #quote_inventory = [a*b for a,b in zip(amount_to_sell, price_to_sell)] # in quote
                 self.balance_in_quote = convert_to_quote(asks, bids, self.og_tsize)
+                
                 try:
                     self.quote_inventory += max(balance_in_quote - 0.01, 0)
                 except:
                     print('no additional balance')
                 
                 self._tsize = max(self.balance_in_quote - self.quote_inventory, 0)
-
-                #if quote_inventory > 0:
-                #    self.inventory = convert_to_base(asks, bids, quote_inventory)
-                #    compensated_tsize = max(self.og_tsize - self.inventory, 0) # of course, if we bought sth., then we got to subtract that from our allocated budget.
-                #else: 
-                #    compensated_tsize = 0
-                
-                #if quote_inventory > 0:
-                #    self._tsize = convert_to_quote(asks, bids, compensated_tsize) # convert back to quote for settings orders
-                #else:
-                #    self._tsize = 0
                     
             else:
                 try:
-                    tsize_before = self._tsize
                     self.inventory = max(self.balance[self.sell].amount - 0.01, 0)
-                    self._tsize = self.inventory
-                    self.logger.info("changed tsize from {} to {}".format(tsize_before, self._tsize))
                 except:
                     self.inventory = 0
+                self._tsize = self.inventory
 
             
         # Error can occur when balance of a coin is precisely zero, then it doesnt exist in the balance list. 
