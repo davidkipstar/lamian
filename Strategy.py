@@ -218,11 +218,14 @@ class Agent:
         return self.market.accountopenorders(self.acc)
 
     def trades(self):
-        t = self.market.accounttrades(self.acc, limit = 50) #currencyPair is not supported ;) 
-        if len(t):
-            logging.info("Found trades {}".format(t))
-            self.executed_trades.append(t)
-        return t
+        try:
+            t = self.market.accounttrades(self.acc, limit = 50) #currencyPair is not supported ;) 
+            if len(t):
+                logging.info("Found trades {}".format(t))
+                self.executed_trades.append(t)
+            return t
+        except:
+            self.logger.info('Couldnt retrieve trades')
 
     def cancel(self, order):
         # cancelling specific order
@@ -233,19 +236,40 @@ class Agent:
             print('couldnt cancel!! error: ', e)
             return False
 
-    def calc_avg_price(self, recent_trades):
+    def calc_avg_price(self, type, recent_trades):
+
+        # type is 'buy' or 'sell'
 
         try:
-            def m(key,recent_trades):
-                return list(filter(lambda x: x['type'] == self.tradingside, list(map(lambda x: x[key], recent_trades))))
+            #def m(key,recent_trades):
+            #    return list(filter(lambda x: x['type'] == self.tradingside, list(map(lambda x: x[key], recent_trades))))
 
-            recent_amount_ele = m('amount', recent_trades)
-            recent_rate_ele = m('rate',recent_trades)
+            # ATTENTION:
+            # all trades are classified as 'sell'!!! need to distinguish elsewise.
+            # Use price: if price > 1 then we should have a buy
+            # if price < 1 it should be a sell
+            # to be honest thats a rather shitty but given the circumstances probably the best id
+
+
+            if type == 'buy':
+                filtered_trades = list(filter(lambda x: x['price'] > 1, recent_trades))
+            else:
+                filtered_trades = list(filter(lambda x: x['price'] < 1, recent_trades))
+            
+            recent_amount_ele = list(map(lambda x: x['quote'].amount, filtered_trades)) #m('quote', recent_trades)
+            recent_rate_ele = list(map(lambda x: x['price'], filtered_trades)) #m('price',recent_trades)
 
             lista = recent_amount_ele
             listb = recent_rate_ele
 
-            return [a*b for a,b in zip(lista,listb)]
+            prod = [a*b for a,b in zip(lista,listb)]
+            avg_price = sum(prod)/sum(recent_amount_ele)
+
+            # If we have a buy, we must reconvert the price to quote:base
+            if type == 'sell':
+                return avg_price 
+            else:
+                return 1/avg_price
 
         except Exception as e:
             print('Couldnt calculate average price, ', e)
@@ -300,9 +324,15 @@ class CheckSpread(Agent):
         #transition table, if state changes we need to return a task
         #since only orderbooks are used 
         asks, bids = await self.orderbook
+        
+        if asks is None or bids is None:
+            self.logger.info('sleeping, no orderbook')
+            return asyncio.sleep(10)
+
         #self.current_open_orders = self.market_open_orders()
         self.current_trades = self.trades()  # Todo:
-        
+        avg_sell_price = self.calc_avg_price('sell', self.current_trades)
+        avg_buy_price = self.calc_avg_price('buy', self.current_trades)
         # Todo: 
         #if len(self.current_trades) > 0:
         #    self._avg_price = self.calc_avg_price(self.executed_trades)
