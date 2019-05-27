@@ -35,29 +35,46 @@ class Agent:
     async def tsize(self):
         # Check if balance changed
         try:
+            # MUST fetch balance and open orders together!
+            # BC if orders are open, the balance will already be subtracted. Only this way we get a full picture.
             self.account.refresh()
             my_coins = self.account.balances
             self.balance = dict(zip(map(lambda x: getattr(x,'symbol'),my_coins),my_coins))
-            
+            self.current_open_orders = self.market_open_orders()
+                      
+
             _tsize =  self.balance[self.major_coin] # WARNING: Replace bridge.gin with current coin!!!!
             if self.tradingside == 'buy':
                 #case btc
                 asks, bids = await self.orderbook
+                
+                # Retrieve sell data for comment above
+                # Added in quote_inventory
+                sell_orders = list(filter(lambda x: x['for_sale']['symbol'] == self.buy, self.current_open_orders))
+                self.quote_inventory = sum(list(map(lambda x: x['for_sale']['amount'], sell_orders)))
+                
+                #price_to_sell = list(map(lambda x: x['price'], sell_orders))
+                #quote_inventory = [a*(1/b) for a,b in zip(amount_to_sell, price_to_sell)] # in bitcoin
+                #quote_inventory = [a*b for a,b in zip(amount_to_sell, price_to_sell)] # in quote
+                self.balance_in_quote = convert_to_quote(asks, bids, self.og_tsize)
                 try:
-                    quote_inventory = max(self.balance[self.buy].amount - 0.01, 0)
-                    if quote_inventory > 0:
-                        self.inventory = convert_to_base(asks, bids, quote_inventory)
-                    else:
-                        self.inventory = 0
+                    self.quote_inventory += max(balance_in_quote - 0.01, 0)
                 except:
-                    self.inventory = 0
+                    print('no additional balance')
+                
+                self._tsize = max(self.balance_in_quote - self.quote_inventory, 0)
 
-                compensated_tsize = max(self.og_tsize - self.inventory, 0) # of course, if we bought sth., then we got to subtract that from our allocated budget.
-                if compensated_tsize > 0:
-                    self._tsize = convert_to_quote(asks, bids, compensated_tsize) # convert back to quote for settings orders
-                else:
-                    self._tsize = 0
-
+                #if quote_inventory > 0:
+                #    self.inventory = convert_to_base(asks, bids, quote_inventory)
+                #    compensated_tsize = max(self.og_tsize - self.inventory, 0) # of course, if we bought sth., then we got to subtract that from our allocated budget.
+                #else: 
+                #    compensated_tsize = 0
+                
+                #if quote_inventory > 0:
+                #    self._tsize = convert_to_quote(asks, bids, compensated_tsize) # convert back to quote for settings orders
+                #else:
+                #    self._tsize = 0
+                    
             else:
                 try:
                     tsize_before = self._tsize
@@ -296,11 +313,8 @@ class CheckSpread(Agent):
         ob = self.market.orderbook(self.orderbooklimit)
         asks, bids = pd.DataFrame(ob['asks']), pd.DataFrame(ob['bids'])
         self.logger.info("length of asks is {}".format(len(asks)))
-        if self.tradingside == 'buy':
-            size = convert_to_quote(asks, bids, self._tsize)
-            if size:
-                self.tsize = size
-        logger.info("Starting to {} {} of {}".format(self.tradingside,self._tsize, self.major_coin))
+
+        #logger.info("Starting to {} {} of {}".format(self.tradingside,self._tsize, self.major_coin))
         #self.og_tsize = self.tsize # save, will be reduced once having bought
         self.executed_trades = []
         self._order = None 
@@ -329,7 +343,6 @@ class CheckSpread(Agent):
             self.logger.info('sleeping, no orderbook')
             return asyncio.sleep(10)
 
-        #self.current_open_orders = self.market_open_orders()
         self.current_trades = self.trades()  
         # Todo: 
         # Spam filter for executed trades, else its just gonna grow without limit!
@@ -339,9 +352,7 @@ class CheckSpread(Agent):
             print('current avg buy price: ', avg_buy_price)
             print('current avg sell price: ', avg_sell_price)
 
-        if self._tsize == 3:
-            self.tsize()
-            print(self.tradingside, ' : ' ,self._tsize)
+
 
         if self.state == 0:
 
@@ -351,7 +362,9 @@ class CheckSpread(Agent):
             # amount_spent = max(sum(self.current_trades['amount']), 0)
             # tsize -= amount_spent
             #print('Strategy orders:', self.current_open_orders)
+            # self._tsize = await self.tsize
             await self.tsize
+            print(self.tradingside, ' : ' ,self._tsize)
             conf = {
                 'price' : self.state0(asks, bids), # is already Decimal as returned from state0
                 'amount' : self._tsize, # not Decimal yet, to be done when setting order
