@@ -15,6 +15,8 @@ class Agent:
 
     def __init__(self, logger, *args, **kwargs):    
         self.og_tsize = kwargs['tsize'] # only need this for buy atm
+        self.og_th = kwargs['th']
+        self.is_dump = False
         self.logger = logging.getLogger("{}_{}".format(__name__,re.sub('BRIDGE.','', kwargs['market_key'])))
 
     @property 
@@ -273,6 +275,22 @@ class Agent:
         except Exception as e:
             print('Couldnt calculate average price, ', e)
 
+    def is_dump(self, buy_price, avg_price, waiting_time):
+        
+        if self.is_dump:
+            curr_time = time.time()
+            timediff = curr_time - self.dump_starttime
+            if timediff > waiting_time:
+                self.th = self.og_th
+                self.is_dump = False
+
+        if buy_price < avg_price and not self.is_dump:
+            self.is_dump = True
+            self.dump_starttime = time.time()
+            self.th = 0.5 * self.og_th
+            self.logger.info('is_dump')
+        
+        return None
     
 
 
@@ -354,6 +372,8 @@ class CheckSpread(Agent):
                 'account' : self.account,
                 'expiration' : 60
             }
+            if avg_price is not None and avg_price > 0:
+                self.is_dump(conf['price'], avg_price, 200000)
 
             if self.state == 1  and not self._order and conf['amount'] > 0.02: # and len(self.current_open_orders) < 3
                 self.my_order = conf
