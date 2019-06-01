@@ -29,6 +29,7 @@ if __name__ == '__main__':
     
     #async
     loop = asyncio.get_event_loop()
+
     logger = logging.getLogger()
     ana = Analyst.from_kwargs(loop, logger, **data) 
     managers, workers = ana.populate()

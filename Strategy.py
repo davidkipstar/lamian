@@ -9,6 +9,7 @@ from bitshares import BitShares
 from bitshares.account import Account
 from bitshares.market import Market
 from arbitrage import ArbitrageException
+from Chat import ErrorBot, InfoBot
 
 import re 
 class Agent:
@@ -17,17 +18,20 @@ class Agent:
         self.og_tsize = kwargs['tsize'] # only need this for buy atm
         self.og_th = kwargs['th']
         self.is_dump = False
-        self.logger = logging.getLogger("{}_{}".format(__name__,re.sub('BRIDGE.','', kwargs['market_key'])))
+        name = "{}_{}".format(__name__,re.sub('BRIDGE.','', kwargs['market_key']))
+        self.error = ErrorBot(name)
+        self.info = InfoBot(name)
 
+        
     @property 
     async def orderbook(self):
         try:
             ob = self.market.orderbook(self.orderbooklimit)
             if len(ob['asks']) >= self.orderbooklimit and len(ob['asks']) >= self.orderbooklimit:
                 asks, bids = pd.DataFrame(ob['asks']), pd.DataFrame(ob['bids'])
-                self.logger.info("orderbook received")
+                self.info("orderbook received")
         except:
-            self.logger.info("not liquid.")
+            self.info("not liquid.")
             asks, bids = None, None
         await asyncio.sleep(0)
         return asks, bids 
@@ -71,10 +75,10 @@ class Agent:
             
         # Error can occur when balance of a coin is precisely zero, then it doesnt exist in the balance list. 
         except Exception as e:
-            self.logger.info("No balance for {}".format(self.major_coin)) 
+            self.info("No balance for {}".format(self.major_coin)) 
             
         finally:
-            self.logger.info("balance for {} is {} ".format(self.major_coin, self._tsize))
+            self.info("balance for {} is {} ".format(self.major_coin, self._tsize))
             return self._tsize
 
     #change tsize 
@@ -100,7 +104,7 @@ class Agent:
             #print("Comparing {} with {}".format(morder['id'], order['order']['orderid']))
             if morder['id'] == order['orderid']:
                 full_order_l.append(order['orderid'])
-        self.logger.info("Order found")
+        self.info("Order found")
         #print("Order found: {}".format(order_found))
         return full_order_l
 
@@ -138,8 +142,8 @@ class Agent:
                                     account = self.account,
                                     expiration = 120)
             
-            self.logger.info("order placed for {} @ {}".format(amount ,price))
-            #self.logger.info('order object {}'.format(order))
+            self.info("order placed for {} @ {}".format(amount ,price))
+            #self.info('order object {}'.format(order))
             if order:
                 self.account.refresh()
                 # return[0] = price and return[1] = amount
@@ -148,6 +152,7 @@ class Agent:
                 # this goes straight to state0 for previous_order, which is then needed in find_price for dropidx!
                 return order, price, amount  # actually order object but its annoying to extract price and amount (converted)
         except Exception as e:
+            self.info("Orderfailed")
             raise ValueError('Order failed!', e)
 
     @property
@@ -161,11 +166,11 @@ class Agent:
                     deviation = 0
                     if deviation:
                         self._order = order
-                        self.logger.info("order has been changed: {} {}".format(1,2))
-                    self.logger.info("order found")
+                        self.info("order has been changed: {} {}".format(1,2))
+                    self.info("order found")
                     return self._order
                 else:
-                    self.logger.info("order not found, so it has been filled or is gone")
+                    self.info("order not found, so it has been filled or is gone")
                     return None 
         except Exception as e:
             self._order = None 
@@ -178,9 +183,9 @@ class Agent:
     def my_order(self, conf):
         try:
             if self._order:
-                self.logger.info("overwrite order")
+                self.info("overwrite order")
             self._order, self._price, self._amount = self.place_order(**conf)
-            self.logger.info("Order placed for {} {}".format(self._price, self._amount))
+            self.info("Order placed for {} {}".format(self._price, self._amount))
         except Exception as e:
             self.logger.error(" Error in setting order {}".format(e))
     
@@ -190,12 +195,12 @@ class Agent:
             if self._order:
                 cancelled = self.cancel(self._order)
                 if cancelled:
-                    self.logger.info("Canceled order in {}".format(self.market_key))
+                    self.info("Canceled order in {}".format(self.market_key))
                 else:
-                    self.logger.info('Couldnt cancel order in {}'.format(self.market_key))
+                    self.info('Couldnt cancel order in {}'.format(self.market_key))
         
             else:
-                self.logger.info("Order already deleted")
+                self.info("Order already deleted")
             self._order = None
             self._price = None
             self._amount = None 
@@ -212,7 +217,7 @@ class Agent:
         for open_order in open_os:
             if order['orderid'] == open_order['id']:
                 order_found = True
-        self.logger.info("Order found is {}".format(order_found))
+        self.info("Order found is {}".format(order_found))
         return order_found
 
     def market_open_orders(self):
@@ -222,11 +227,11 @@ class Agent:
         try:
             t = self.market.accounttrades(self.acc, limit = 50) #currencyPair is not supported ;) 
             if len(t):
-                logging.info("Found trades {}".format(t))
+                logging.debug("Found trades {}".format(t))
                 self.executed_trades.append(t)
             return t
         except:
-            self.logger.info('Couldnt retrieve trades')
+            self.info('Couldnt retrieve trades')
 
     def cancel(self, order):
         # cancelling specific order
@@ -288,7 +293,7 @@ class Agent:
             self.is_dump = True
             self.dump_starttime = time.time()
             self.th = 0.5 * self.og_th
-            self.logger.info('is_dump')
+            self.info('is_dump')
         
         return None
     
@@ -312,9 +317,9 @@ class CheckSpread(Agent):
         
         ob = self.market.orderbook(self.orderbooklimit)
         asks, bids = pd.DataFrame(ob['asks']), pd.DataFrame(ob['bids'])
-        self.logger.info("length of asks is {}".format(len(asks)))
+        self.info("length of asks is {}".format(len(asks)))
 
-        #logger.info("Starting to {} {} of {}".format(self.tradingside,self._tsize, self.major_coin))
+        #logger.debug("Starting to {} {} of {}".format(self.tradingside,self._tsize, self.major_coin))
         #self.og_tsize = self.tsize # save, will be reduced once having bought
         self.executed_trades = []
         self._order = None 
@@ -340,7 +345,7 @@ class CheckSpread(Agent):
         asks, bids = await self.orderbook
         
         if asks is None or bids is None:
-            self.logger.info('sleeping, no orderbook')
+            self.info('sleeping, no orderbook')
             return asyncio.sleep(10)
 
         self.current_trades = self.trades()  
@@ -351,8 +356,8 @@ class CheckSpread(Agent):
             avg_buy_price = self.calc_avg_price('buy', self.executed_trades[-1])
             print('current avg buy price: ', avg_buy_price)
             print('current avg sell price: ', avg_sell_price)
-
-
+            self._avg_price = avg_buy_price - avg_sell_price
+            self.infO("CUrrent avg_price {}".format(self._avg_price))
 
         if self.state == 0:
 
@@ -372,8 +377,8 @@ class CheckSpread(Agent):
                 'account' : self.account,
                 'expiration' : 60
             }
-            if avg_price is not None and avg_price > 0:
-                self.is_dump(conf['price'], avg_price, 200000)
+            if self._avg_price is not None and self._avg_price > 0:
+                self.is_dump(conf['price'], self._avg_price, 200000)
 
             if self.state == 1  and not self._order and conf['amount'] > 0.02: # and len(self.current_open_orders) < 3
                 self.my_order = conf
@@ -421,7 +426,7 @@ class CheckSpread(Agent):
         #print(self.market, " : Strategy: Spread: {}".format(spread_estimated))
         if spread_estimated > self.th:
             self.state = 1
-            self.logger.info("spread met condition")
+            self.info("spread met condition")
             return price_bid if self.tradingside == 'buy' else price_ask  
 #        elif spread_estimated > 0:
 #            self.ob_th = 
@@ -429,7 +434,7 @@ class CheckSpread(Agent):
             self.logger.warning("arbitrage")
             raise ArbitrageException
         else:
-            self.logger.info("spread too low currently at {}".format(spread_estimated))
+            self.info("spread too low currently at {}".format(spread_estimated))
             time.sleep(5)
             return 0
             
@@ -447,11 +452,11 @@ class CheckSpread(Agent):
         order_price = self._price.quantize(CheckSpread.satoshi)
 
         if abs(estimated_price - order_price) > max_deviation:
-            self.logger.info("deviation  {} too large".format(estimated_price - order_price))
+            self.info("deviation  {} too large".format(estimated_price - order_price))
             self.state = 0
             return False
         else:
-            self.logger.info("observing open order......")
+            self.info("observing open order......")
             return True
 
                 

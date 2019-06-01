@@ -12,13 +12,15 @@ class Bot:
     def __init__(self, name, level):        
         self._id = [344197031]
         self.bot = telegram.Bot(token= Bot.TOKEN)
-
         self.start_time =  datetime.datetime.now()
         log_filename = self.start_time.strftime('%Y-%m-%d') + '{}-{}.log'.format(name, self.__class__.__name__)    
         logger = logging.getLogger(name)
         logger.setLevel(level)
-        formatter = logging.Formatter('%(asctime)s : %(levelname)s : %(message)s')
+        self.formatter = logging.Formatter('%(asctime)s : %(levelname)s : %(message)s')
         filename = '/'.join([os.getcwd(),'log',log_filename])
+        self.sh = logging.StreamHandler()
+        self.sh.setFormatter(self.formatter)
+        logger.addHandler(self.sh)
         self.logger = logger
         self.setHandler(filename, level)
     
@@ -45,7 +47,7 @@ class ErrorBot(Bot):
         super().__init__(name, logging.ERROR)
         
 
-    def __call__(self, msg, delta = datetime.timedelta(seconds = 10)):
+    def __call__(self, msg, delta = datetime.timedelta(hours = 2)):
         self.logger.error(msg)
         self.bot.sendMessage(chat_id = self._id[0], text = msg)
         if  datetime.datetime.now() - self.start_time > delta:
@@ -61,12 +63,14 @@ class ErrorBot(Bot):
 class InfoBot(Bot):
 
     def __init__(self, name):
+        self.name = name
         super().__init__(name, logging.INFO)
         
 
-    def __call__(self, msg, delta = datetime.timedelta(seconds = 10)):
-        self.logger.info(msg)
-        #self.bot.sendMessage(chat_id = self._id[0], text = msg)
+    def __call__(self, msg, delta = datetime.timedelta(seconds = 60)):
+
+        self.logger.info("{}:{}".format(self.name,msg))
+
         if datetime.datetime.now() - self.start_time > delta:
             self.send_file()
             self.logger.removeHandler(self.fh)

@@ -49,25 +49,7 @@ class Analyst:
 
     def generate_data(self, coin, amount, **kwargs):
         """
-        ADJUST THIS SHIT HERE
-        data = {
-                    'sell' : sell_coin, 
-                    'buy' : self.major_coin,
-                    'tradingside' :'sell',
-                    'tsize' : 0 if tsize <= 0.01 else tsize, 
-                    'th' : th,
-                    'ob_th' : 0.1,
-                    'toQuote' : False,
-                    'market_key' : "{}:{}".format(sell_coin, self.major_coin),
-                    'instance' : self.instance,
-                    'url' : self.url,
-                    'acc' : self.acc,
-                    'pw' : self.pw,
-                    'orderbooklimit' : 25,
-                    'open_order' : None,
-                    'state' : 0,
-                    'major_coin' : sell_coin
-                }
+
         """
         data = {'major_coin' : 'BRIDGE.BTC',
                     'instance' : self.instance,
