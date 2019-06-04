@@ -1,6 +1,6 @@
 {
-    "basecur" : "BRIDGE.BTC",
-    "quotecur" : "BRIDGE.LGS",
+    "basecur" : "BRIDGE.LCC",
+    "quotecur" : "BRIDGE.BTC",
     "bid_order_size" : 0.01,
     "start_tsize_bid": 0,
     "start_tsize_ask": 0,

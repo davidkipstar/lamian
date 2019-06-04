@@ -1,0 +1,13 @@
+
+
+viel zu lange managerqueue, das kostet ziemlich viel Zeit bis eine neue Order gesetzt wird
+wenn gekauft und spread zu klein oder preis zu niedrig, dann einfach mit hoeherem preis reinsetzen und warten
+self.executed_trades wird zu lang, immer wieder ueberschreiben und save oder so
+og tsize nicht beachtet!!!!
+
+wenn calc_average < aktueller optimaler preis, dann
+self.og_th = self.th
+self.timer = timestamp
+self.th = leichter als vorher
+
+in apply strategy immer checken und wenn timer abgelaufen reset auf og_th

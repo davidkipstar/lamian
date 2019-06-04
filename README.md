@@ -1,2 +1,0 @@
-# lamian
-La La Mian
