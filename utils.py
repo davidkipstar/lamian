@@ -125,6 +125,16 @@ def convert_to_base(asks, bids, quotecur_amount):  # btc_tsize = basecur amount
 
     return init_bid
 
+
+def numberlist(nums, limit):
+    prefix = []
+    sum = 0
+    for num in nums:
+        sum += num
+        prefix.append(num)
+        if sum > limit:
+            return prefix
+
 """
 
 def calc_avg_price(recent_trades, tradingside):

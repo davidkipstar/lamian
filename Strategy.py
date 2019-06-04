@@ -1,4 +1,4 @@
-from utils import find_price, convert_to_quote, convert_to_base
+from utils import find_price, convert_to_quote, convert_to_base, numberlist
 from decimal import Decimal
 import pandas as pd
 import asyncio
@@ -235,7 +235,7 @@ class Agent:
             print('couldnt cancel!! error: ', e)
             return False
 
-    def calc_avg_price(self, type, recent_trades):
+    def calc_avg_price(self, type, recent_trades, lifo = True):
 
         # type is 'buy' or 'sell'
 
@@ -260,6 +260,13 @@ class Agent:
 
             lista = recent_amount_ele
             listb = recent_rate_ele
+
+            curr_inv = max(self.balance[self.buy].amount + self.quote_inventory, 0)
+            if lifo and curr_inv > 0:
+                lista.reverse()
+                listb.reverse()
+                lista = lista[:numberlist(lista, curr_inv)]
+                listb = listb[:len(lista)]
 
             prod = [a*b for a,b in zip(lista,listb)]
             avg_price = sum(prod)/sum(recent_amount_ele)
@@ -405,7 +412,8 @@ class CheckSpread(Agent):
             return price_bid if self.tradingside == 'buy' else price_ask  
 #        elif spread_estimated > 0:
 #            self.ob_th = 
-        elif spread_estimated < -0.01:
+        elif spread_estimated < -0.11:
+            # exception unhandled yet, so increasing that it wont trigger.
             self.logger.warning("arbitrage")
             raise ArbitrageException
         else:
