@@ -235,7 +235,7 @@ class Agent:
             print('couldnt cancel!! error: ', e)
             return False
 
-    def calc_avg_price(self, type, recent_trades, lifo = True):
+    def calc_avg_price(self, type, recent_trades, lifo = False):
 
         # type is 'buy' or 'sell'
 
@@ -261,12 +261,16 @@ class Agent:
             lista = recent_amount_ele
             listb = recent_rate_ele
 
-            curr_inv = max(self.balance[self.buy].amount + self.quote_inventory, 0)
-            if lifo and curr_inv > 0:
-                lista.reverse()
-                listb.reverse()
-                lista = lista[:numberlist(lista, curr_inv)]
-                listb = listb[:len(lista)]
+            if len(lista) == 0:
+                return NULL
+
+            if type == 'buy' and lifo:
+                curr_inv = max(self.balance[self.buy].amount + self.quote_inventory, 0)
+                if curr_inv > 0:
+                    lista.reverse()
+                    listb.reverse()
+                    lista = lista[:numberlist(lista, curr_inv)]
+                    listb = listb[:len(lista)]
 
             prod = [a*b for a,b in zip(lista,listb)]
             avg_price = sum(prod)/sum(recent_amount_ele)
@@ -340,6 +344,9 @@ class CheckSpread(Agent):
             avg_buy_price = self.calc_avg_price('buy', self.executed_trades[-1])
             print('current avg buy price: ', avg_buy_price)
             print('current avg sell price: ', avg_sell_price)
+
+            avg_buy_price_lifo = self.calc_avg_price('buy', self.executed_trades[-1], True)
+
 
 
 
