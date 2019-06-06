@@ -375,6 +375,13 @@ class CheckSpread(Agent):
                 'expiration' : 60
             }
 
+            try:
+                if self.tradingside == 'sell' and conf['price'] < avg_buy_price_lifo:
+                    conf['price'] = Decimal(avg_buy_price_lifo + 0.0000001).quantize(self.satoshi)
+                    print('overwriting sell price with lifo')
+            except:
+                print('price > lifo price')
+
             if self.state == 1  and not self._order and conf['amount'] > 0.02: # and len(self.current_open_orders) < 3
                 self.my_order = conf
             else:
