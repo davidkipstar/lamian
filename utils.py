@@ -12,7 +12,7 @@ def json_serial(obj):
         return obj.isoformat()
     raise TypeError ("Type %s not serializable" % type(obj))
 
-def find_price(orderbook, ob_th, tsize, previous_order = None, previous_amount = None, previous_price = None, minimum_liquidity=1):
+def find_price(orderbook, ob_th, tsize, avg_buy_price_lifo = 0, previous_order = None, previous_amount = None, previous_price = None, minimum_liquidity=1):
     """
     # INPUT:
         orderbook as Dataframe
@@ -94,6 +94,11 @@ def find_price(orderbook, ob_th, tsize, previous_order = None, previous_amount =
         # so only overwrite if price diff is "big"
         if opt_price_rounded - opt_price.quantize(satoshi) > 0.0000001:
             opt_price_rounded = opt_price
+
+    if avg_buy_price_lifo > 0:
+        lifoprice = Decimal(avg_buy_price_lifo).quantize(satoshi)
+        if opt_price_rounded < lifoprice:
+            opt_price_rounded = lifoprice
             
     #print("Own revenue: {}".format(ownrevenue_v))
     #print("opt : {} , rounded: {}".format(opt_price, opt_price_rounded))

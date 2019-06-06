@@ -289,6 +289,7 @@ class Agent:
 
         except Exception as e:
             print('Couldnt calculate average price, ', e)
+            return 0
 
     
 
@@ -318,6 +319,7 @@ class CheckSpread(Agent):
         self.executed_trades = []
         self._order = None 
         self._avg_price = None
+        avg_buy_price_lifo = 0
         #self.major_coin = self.sell['symbol'] if self.tradingside == 'sell' else self.buy['symbol']
 
     @classmethod
@@ -368,7 +370,7 @@ class CheckSpread(Agent):
             await self.tsize
             print(self.tradingside, ' : ' ,self._tsize)
             conf = {
-                'price' : self.state0(asks, bids), # is already Decimal as returned from state0
+                'price' : self.state0(asks, bids, avg_buy_price_lifo), # is already Decimal as returned from state0
                 'amount' : self._tsize, # not Decimal yet, to be done when setting order
                 'returnOrderId' : True,
                 'account' : self.account,
@@ -386,9 +388,9 @@ class CheckSpread(Agent):
             my_order = await self.my_order
             if my_order:
                 if self.tradingside == 'sell':
-                    conf = self.state1(asks, my_order)
+                    conf = self.state1(asks, my_order, avg_buy_price_lifo)
                 else:
-                    conf = self.state1(bids, my_order)
+                    conf = self.state1(bids, my_order, avg_buy_price_lifo)
                 if self.state == 0 and my_order is not None: # and len(self.current_open_orders) > 0:
                     del self.my_order
                 return asyncio.sleep(0.1)
@@ -411,12 +413,12 @@ class CheckSpread(Agent):
                 self.state = 0 #hope we own btc
             return asyncio.sleep(5)
             
-    def state0(self, asks, bids):
+    def state0(self, asks, bids, avg_buy_price_lifo):
         #print(self.market, ' : entering state0')
         #asks, bids = entry['asks'], entry['bids']
         #print(self.market_key, ': state0 activated')
-        price_bid = find_price(bids, getattr(self, 'ob_th'), getattr(self, '_tsize'), minimum_liquidity=1) + self.satoshi
-        price_ask = find_price(asks, getattr(self, 'ob_th'), getattr(self, '_tsize'), minimum_liquidity=0) - self.satoshi
+        price_bid = find_price(bids, getattr(self, 'ob_th'), getattr(self, '_tsize'), avg_buy_price_lifo, minimum_liquidity=1) + self.satoshi
+        price_ask = find_price(asks, getattr(self, 'ob_th'), getattr(self, '_tsize'), avg_buy_price_lifo, minimum_liquidity=0) - self.satoshi
         spread_estimated = ((price_ask - price_bid)/price_bid).quantize(CheckSpread.satoshi)
         #print(self.market, " : Strategy: Spread: {}".format(spread_estimated))
         if spread_estimated > self.th:
@@ -434,14 +436,14 @@ class CheckSpread(Agent):
             time.sleep(5)
             return 0
             
-    def state1(self, bids, order, tradingside = 'buy'):
+    def state1(self, bids, order, avg_buy_price_lifo, tradingside = 'buy'):
         #print(self.market, ': entering state1')
         if tradingside == 'buy':
             max_deviation = Decimal('0.00000001') 
-            estimated_price = find_price(bids, self.ob_th, self._tsize, previous_order=order, previous_amount=self._amount, previous_price=self._price)  # self.which_order(order['orderid'])
+            estimated_price = find_price(bids, self.ob_th, self._tsize, avg_buy_price_lifo, previous_order=order, previous_amount=self._amount, previous_price=self._price)  # self.which_order(order['orderid'])
         else:
             max_deviation = Decimal('0.00000001') #Decimal('1')
-            estimated_price = find_price(asks, self.ob_th, self._tsize, previous_order=order, previous_amount=self._amount, previous_price=self._price)  # self.which_order(order['orderid'])
+            estimated_price = find_price(asks, self.ob_th, self._tsize, avg_buy_price_lifo, previous_order=order, previous_amount=self._amount, previous_price=self._price)  # self.which_order(order['orderid'])
 
         # Checks if better price exists
         
