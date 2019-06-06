@@ -56,6 +56,7 @@ class Agent:
                     self.quote_inventory += max(balance_in_quote - 0.01, 0)
                 except:
                     print('no additional balance')
+                    self.quote_inventory = 0
                 
                 self._tsize = max(self.balance_in_quote - self.quote_inventory, 0)
                     
@@ -64,7 +65,7 @@ class Agent:
                     self.inventory = max(self.balance[self.sell].amount - 0.01, 0)
                 except:
                     self.inventory = 0
-                self._tsize = self.inventory
+                    self._tsize = self.inventory
 
             
         # Error can occur when balance of a coin is precisely zero, then it doesnt exist in the balance list. 
@@ -265,7 +266,12 @@ class Agent:
                 return NULL
 
             if type == 'buy' and lifo:
-                curr_inv = max(self.balance[self.buy].amount + self.quote_inventory, 0)
+                print('lifo')
+                if self.tradingside == 'buy':
+                    # Which kind of inventory we have depends on tsize!
+                    curr_inv = max(self.balance[self.buy].amount + self.quote_inventory, 0)
+                else:
+                    curr_inv = max(self.balance[self.buy].amount + self.inventory, 0)
                 if curr_inv > 0:
                     lista.reverse()
                     listb.reverse()
