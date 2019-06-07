@@ -53,7 +53,7 @@ class Agent:
                 self.balance_in_quote = convert_to_quote(asks, bids, self.og_tsize)
                 
                 try:
-                    self.quote_inventory += max(balance_in_quote - 0.01, 0)
+                    self.quote_inventory += max(self.balance_in_quote - 0.01, 0)
                 except:
                     print('no additional balance')
                     self.quote_inventory = 0
@@ -63,6 +63,7 @@ class Agent:
             else:
                 try:
                     self.inventory = max(self.balance[self.sell].amount - 0.01, 0)
+                    self._tsize = self.inventory
                 except:
                     self.inventory = 0
                     self._tsize = self.inventory
@@ -128,14 +129,14 @@ class Agent:
                                     amount = amount,
                                     returnOrderId = True,
                                     account = self.account,
-                                    expiration = 120)
+                                    expiration = 500)
             else:
                 
                 order = self.market.sell(price = price,
                                     amount = amount,
                                     returnOrderId = True,
                                     account = self.account,
-                                    expiration = 120)
+                                    expiration = 500)
             
             self.logger.info("order placed for {} @ {}".format(amount ,price))
             #self.logger.info('order object {}'.format(order))
