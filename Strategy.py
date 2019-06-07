@@ -49,16 +49,11 @@ class Agent:
                 # Retrieve sell data for comment above
                 # Added in quote_inventory
                 sell_orders = list(filter(lambda x: x['for_sale']['symbol'] == self.buy, self.current_open_orders))
-                self.quote_inventory = sum(list(map(lambda x: x['for_sale']['amount'], sell_orders)))
+                self.quote_inventory = sum(list(map(lambda x: x['for_sale']['amount'], sell_orders))) # is min 0
                 self.balance_in_quote = convert_to_quote(asks, bids, self.og_tsize)
-                
-                try:
-                    self.quote_inventory += max(self.balance_in_quote - 0.01, 0)
-                except:
-                    print('no additional balance')
-                    self.quote_inventory = 0
-                
-                self._tsize = max(self.balance_in_quote - self.quote_inventory, 0)
+                self.quote_inventory += max(self.balance_in_quote - 0.01, 0) # must exist for lifo
+
+                self._tsize = max(self.quote_inventory, 0)
                     
             else:
                 try:
@@ -320,7 +315,7 @@ class CheckSpread(Agent):
         self.executed_trades = []
         self._order = None 
         self._avg_price = None
-        avg_buy_price_lifo = 0
+
         #self.major_coin = self.sell['symbol'] if self.tradingside == 'sell' else self.buy['symbol']
 
     @classmethod
@@ -340,6 +335,7 @@ class CheckSpread(Agent):
         #transition table, if state changes we need to return a task
         #since only orderbooks are used 
         asks, bids = await self.orderbook
+        avg_buy_price_lifo = 0
         
         if asks is None or bids is None:
             self.logger.info('sleeping, no orderbook')
