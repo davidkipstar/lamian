@@ -222,6 +222,7 @@ class Agent:
             return t
         except:
             self.logger.info('Couldnt retrieve trades')
+            return []
 
     def cancel(self, order):
         # cancelling specific order
