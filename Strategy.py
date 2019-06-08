@@ -259,7 +259,7 @@ class Agent:
             listb = recent_rate_ele
 
             if len(lista) == 0:
-                return NULL
+                return 0
 
             if type == 'buy' and lifo:
                 print('lifo')
@@ -313,6 +313,7 @@ class CheckSpread(Agent):
         #logger.info("Starting to {} {} of {}".format(self.tradingside,self._tsize, self.major_coin))
         #self.og_tsize = self.tsize # save, will be reduced once having bought
         self.executed_trades = []
+        self.current_trades = []
         self._order = None 
         self._avg_price = None
 
