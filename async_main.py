@@ -25,12 +25,16 @@ if __name__ == '__main__':
     with open('./logging.yml', 'r') as stream:
         config = yaml.load(stream)
     
-    logging.config.dictConfig(config)
+    #logging.config.dictConfig(config)
+    logging.basicConfig(format='%(asctime)s %(message)s',
+                        datefmt='%m/%d/%Y %I:%M:%S %p',
+                        filename='logs.log',
+                        level=logging.INFO)
     
     #async
     loop = asyncio.get_event_loop()
     logger = logging.getLogger()
-    ana = Analyst.from_kwargs(loop, logger, **data) 
+    ana = Analyst.from_kwargs(loop, logger, **data)
     managers, workers = ana.populate()
 
     producer_coro = [w.run() for w in workers]
