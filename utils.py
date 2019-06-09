@@ -95,14 +95,12 @@ def find_price(orderbook, ob_th, tsize, avg_buy_price_lifo = 0, previous_order =
         if opt_price_rounded - opt_price.quantize(satoshi) > 0.0000001:
             opt_price_rounded = opt_price
 
-    if avg_buy_price_lifo > 0:
-        lifoprice = Decimal(avg_buy_price_lifo).quantize(satoshi)
-        if opt_price_rounded < lifoprice:
-            opt_price_rounded = lifoprice
-            
+    # Minimum price is our weighted buy price
+    lifoprice = Decimal(avg_buy_price_lifo).quantize(satoshi)
+
     #print("Own revenue: {}".format(ownrevenue_v))
     #print("opt : {} , rounded: {}".format(opt_price, opt_price_rounded))
-    return opt_price_rounded
+    return max(opt_price_rounded, lifoprice)
 
 
 def convert_to_quote(asks, bids, basecur_amount):  # btc_tsize = basecur amount
