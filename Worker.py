@@ -58,4 +58,4 @@ class Worker:
                 if x:
                     self.queue.put_nowait(x)
             
-            await asyncio.sleep(0.5)
+            await asyncio.sleep(0.000000001)
