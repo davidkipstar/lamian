@@ -416,7 +416,7 @@ class CheckSpread(Agent):
         #print(self.market, ' : entering state0')
         #asks, bids = entry['asks'], entry['bids']
         #print(self.market_key, ': state0 activated')
-        price_bid = find_price(bids, getattr(self, 'ob_th'), getattr(self, '_tsize'), avg_buy_price_lifo, minimum_liquidity=1) + self.satoshi
+        price_bid = find_price(bids, getattr(self, 'ob_th'), getattr(self, '_tsize'), 0, minimum_liquidity=1) + self.satoshi
         price_ask = find_price(asks, getattr(self, 'ob_th'), getattr(self, '_tsize'), avg_buy_price_lifo, minimum_liquidity=0) - self.satoshi
         spread_estimated = ((price_ask - price_bid)/price_bid).quantize(CheckSpread.satoshi)
         #print(self.market, " : Strategy: Spread: {}".format(spread_estimated))
@@ -439,8 +439,10 @@ class CheckSpread(Agent):
     def state1(self, bids, order, avg_buy_price_lifo, tradingside = 'buy'):
         #print(self.market, ': entering state1')
         if tradingside == 'buy':
-            max_deviation = Decimal('0.00000001') 
-            estimated_price = find_price(bids, self.ob_th, self._tsize, avg_buy_price_lifo, previous_order=order, previous_amount=self._amount, previous_price=self._price)  # self.which_order(order['orderid'])
+            max_deviation = Decimal('0.00000001')
+            # always 0 for lifo price, as this only concerns the sell value.
+            # else the spread becomes reeeally narrow such that we would be unable to trade!
+            estimated_price = find_price(bids, self.ob_th, self._tsize, 0, previous_order=order, previous_amount=self._amount, previous_price=self._price)  # self.which_order(order['orderid'])
         else:
             max_deviation = Decimal('0.00000001') #Decimal('1')
             estimated_price = find_price(asks, self.ob_th, self._tsize, avg_buy_price_lifo, previous_order=order, previous_amount=self._amount, previous_price=self._price)  # self.which_order(order['orderid'])
