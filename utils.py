@@ -96,7 +96,7 @@ def find_price(orderbook, ob_th, tsize, avg_buy_price_lifo = 0, previous_order =
             opt_price_rounded = opt_price
 
     # Minimum price is our weighted buy price
-    lifoprice = Decimal(avg_buy_price_lifo).quantize(satoshi)
+    lifoprice = Decimal(avg_buy_price_lifo).quantize(satoshi, rounding=ROUND_UP)
 
     #print("Own revenue: {}".format(ownrevenue_v))
     #print("opt : {} , rounded: {}".format(opt_price, opt_price_rounded))
