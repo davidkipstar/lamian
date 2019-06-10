@@ -387,9 +387,9 @@ class CheckSpread(Agent):
             my_order = await self.my_order
             if my_order:
                 if self.tradingside == 'sell':
-                    conf = self.state1(asks, my_order, avg_buy_price_lifo)
+                    conf = self.state1(asks, my_order, avg_buy_price_lifo, tradingside = 'sell')
                 else:
-                    conf = self.state1(bids, my_order, avg_buy_price_lifo)
+                    conf = self.state1(bids, my_order, avg_buy_price_lifo, tradingside = 'buy')
                 if self.state == 0 and my_order is not None: # and len(self.current_open_orders) > 0:
                     del self.my_order
                 return asyncio.sleep(0.1)
@@ -445,11 +445,12 @@ class CheckSpread(Agent):
             estimated_price = find_price(bids, getattr(self, 'ob_th'), getattr(self, '_tsize'), 0, previous_order=order, previous_amount=self._amount, previous_price=self._price) + self.satoshi # self.which_order(order['orderid'])
         else:
             max_deviation = Decimal('0.00000001') #Decimal('1')
-            estimated_price = find_price(asks, getattr(self, 'ob_th'), getattr(self, '_tsize'), avg_buy_price_lifo, previous_order=order, previous_amount=self._amount, previous_price=self._price) - self.satoshi # self.which_order(order['orderid'])
+            # first argument bids is actually asks as input
+            estimated_price = find_price(bids, getattr(self, 'ob_th'), getattr(self, '_tsize'), avg_buy_price_lifo, previous_order=order, previous_amount=self._amount, previous_price=self._price) - self.satoshi # self.which_order(order['orderid'])
 
         # Checks if better price exists
         
-        order_price = self._price.quantize(CheckSpread.satoshi)
+        order_price = self._price.quantize(self.satoshi)
 
         if abs(estimated_price - order_price) > max_deviation:
             self.logger.info("deviation  {} too large".format(estimated_price - order_price))
