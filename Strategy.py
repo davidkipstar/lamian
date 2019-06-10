@@ -442,10 +442,10 @@ class CheckSpread(Agent):
             max_deviation = Decimal('0.00000001')
             # always 0 for lifo price, as this only concerns the sell value.
             # else the spread becomes reeeally narrow such that we would be unable to trade!
-            estimated_price = find_price(bids, self.ob_th, self._tsize, 0, previous_order=order, previous_amount=self._amount, previous_price=self._price)  # self.which_order(order['orderid'])
+            estimated_price = find_price(bids, getattr(self, 'ob_th'), getattr(self, '_tsize'), 0, previous_order=order, previous_amount=self._amount, previous_price=self._price) + self.satoshi # self.which_order(order['orderid'])
         else:
             max_deviation = Decimal('0.00000001') #Decimal('1')
-            estimated_price = find_price(asks, self.ob_th, self._tsize, avg_buy_price_lifo, previous_order=order, previous_amount=self._amount, previous_price=self._price)  # self.which_order(order['orderid'])
+            estimated_price = find_price(asks, getattr(self, 'ob_th'), getattr(self, '_tsize'), avg_buy_price_lifo, previous_order=order, previous_amount=self._amount, previous_price=self._price) - self.satoshi # self.which_order(order['orderid'])
 
         # Checks if better price exists
         
