@@ -219,6 +219,10 @@ class Agent:
             if len(t):
                 logging.info("Found trades {}".format(t))
                 self.executed_trades.append(t)
+                max_len = 500
+                # Prevent memory leak!!
+                if len(self.executed_trades) > max_len:
+                    self.executed_trades = self.executed_trades[(len(self.executed_trades) - max_len):len(self.executed_trades)]
             return t
         except:
             self.logger.info('Couldnt retrieve trades')
