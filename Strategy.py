@@ -217,8 +217,27 @@ class Agent:
         try:
             t = self.market.accounttrades(self.acc, limit = 50) #currencyPair is not supported ;) 
             if len(t):
-                logging.info("Found trades {}".format(t))
-                self.executed_trades.append(t)
+                # only add unique trades
+                # retrieve fucking id:
+                # t[i]['quote'].bitshares._txbuffers[0].tx.id
+                if len(self.executed_trades) == 0:
+                    self.executed_trades.append(t[0])
+                for i in range(len(t)):
+                    for j in range(len(self.executed_trades)):
+                        # Change to ordered list if works. Efficiency.
+                        t_tx = t[i]['quote'].bitshares._txbuffers[0]
+                        t_tx_id = t_tx.tx.id
+                        exe_tx = self.executed_trades[j]['quote'].bitshares._txbuffers[0]
+                        exe_tx_id = exe_tx.tx.id
+                        if t_tx_id != exe_tx_id:
+                            self.executed_trades.append(t[i])
+                            logging.info("Found trades {}".format(t[i]))
+                # control max length,too
+                max_len = 500
+                if len(self.executed_trades) > max_len:
+                    self.executed_trades = self.executed_trades[(len(self.executed_trades)-max_len):len(self.executed_trades)]
+                    logging.info('Decreasing max trades length')
+
             return t
         except:
             self.logger.info('Couldnt retrieve trades')
