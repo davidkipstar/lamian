@@ -91,7 +91,7 @@ class Analyst:
             data['th'] = 0.0025
             data['tsize'] = 0
             data['state'] = 2
-            data['ob_th'] = 0.5
+            data['ob_th'] = 1
 
         kwargs.update(data)
         return kwargs
