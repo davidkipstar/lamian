@@ -89,7 +89,11 @@ def find_price(orderbook, ob_th, tsize, avg_buy_price_lifo = 0, previous_order =
         dfsub['xtimes_ownrevenue'] = dfsub['ownrevenue'] * minimum_liquidity
         lower_bound = dfsub.index[dfsub['obrevenue_cumsum'] > dfsub['xtimes_ownrevenue']].tolist()
         # now this is the lower bound. Combine them to find the optimal price
-        opt_price = dfsub['price'][lower_bound[0]]
+        try:
+            # Hot fix, investigate!
+            opt_price = dfsub['price'][lower_bound[0]]
+        except:
+            print('index problem in find_price')
         
         # dont need to overwrite if price difference is negligble
         # so only overwrite if price diff is "big"
