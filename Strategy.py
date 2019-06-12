@@ -428,6 +428,7 @@ class CheckSpread(Agent):
             if self.orderbooklimit > 50:
                 self.orderbooklimit = 25
                 self.logger.info('reducing orderbooklimit')
+                return 0
         spread_estimated = ((price_ask - price_bid)/price_bid).quantize(CheckSpread.satoshi)
         #print(self.market, " : Strategy: Spread: {}".format(spread_estimated))
         if spread_estimated > self.th:
@@ -457,7 +458,14 @@ class CheckSpread(Agent):
             max_deviation = Decimal('0.00000001') #Decimal('1')
             # first argument bids is actually asks as input
             estimated_price = find_price(bids, getattr(self, 'ob_th'), getattr(self, '_tsize'), avg_buy_price_lifo, previous_order=order, previous_amount=self._amount, previous_price=self._price) - self.satoshi # self.which_order(order['orderid'])
-
+        if estimated_price is None:
+            # case when too illiquid
+            self.orderbooklimit += 5
+            if self.orderbooklimit > 50:
+                self.orderbooklimit = 25
+                self.logger.info('reducing orderbooklimit')
+                self.state = 0
+                return False
         # Checks if better price exists
         
         order_price = self._price.quantize(self.satoshi)
