@@ -409,8 +409,8 @@ class CheckSpread(Agent):
             #min_balance !
             #state2()
             min_balance = 0.021
-            
-            if await self.tsize > min_balance:
+            await self.tsize
+            if self._tsize > min_balance:
                     self.state = 0
             else:
                 self.state = 0 #hope we own btc
