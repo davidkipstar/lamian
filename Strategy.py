@@ -422,6 +422,12 @@ class CheckSpread(Agent):
         #print(self.market_key, ': state0 activated')
         price_bid = find_price(bids, getattr(self, 'ob_th'), getattr(self, '_tsize'), 0, minimum_liquidity=1) + self.satoshi
         price_ask = find_price(asks, getattr(self, 'ob_th'), getattr(self, '_tsize'), avg_buy_price_lifo, minimum_liquidity=0) - self.satoshi
+        if price_bid is None or price_ask is None:
+            # case when too illiquid
+            self.orderbooklimit += 5
+            if self.orderbooklimit > 50:
+                self.orderbooklimit = 25
+                self.logger.info('reducing orderbooklimit')
         spread_estimated = ((price_ask - price_bid)/price_bid).quantize(CheckSpread.satoshi)
         #print(self.market, " : Strategy: Spread: {}".format(spread_estimated))
         if spread_estimated > self.th:

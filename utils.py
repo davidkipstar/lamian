@@ -72,7 +72,8 @@ def find_price(orderbook, ob_th, tsize, avg_buy_price_lifo = 0, previous_order =
     df['obrevenue_cumsum'] = df['obrevenue'].cumsum()
     idx = df.index[df['obrevenue_cumsum'] > df['ownrevenue']].tolist()
     if len(idx) == 0:
-        raise ValueError('Market is waaaay too illiquid')
+        #raise ValueError('Market is waaaay too illiquid')
+        return None
     opt_price = df['price'][idx[0]]
     opt_price_rounded = opt_price.quantize(satoshi)
 
