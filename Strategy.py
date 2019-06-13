@@ -53,7 +53,7 @@ class Agent:
                 self.balance_in_quote = convert_to_quote(asks, bids, self.og_tsize)
                 self.quote_inventory += max(self.balance_in_quote - 0.01, 0) # must exist for lifo
 
-                self._tsize = max(self.quote_inventory, 0)
+                self._tsize = max(self.og_tsize - self.quote_inventory, 0)
                     
             else:
                 try:
