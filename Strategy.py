@@ -53,8 +53,11 @@ class Agent:
                 self.balance_in_quote = convert_to_quote(asks, bids, self.og_tsize)
                 self.quote_inventory += max(self.balance_in_quote - 0.01, 0) # must exist for lifo
 
-                self._tsize = max(self.og_tsize - self.quote_inventory, 0)
-                    
+                # check how much we have on sell side and compensate so that we dont continue to buy if we have sufficient inventory
+                self.inventory = max(self.balance[self.buy].amount - 0.01, 0)
+
+                self._tsize = max(self.quote_inventory - self.inventory, 0) # also subtract what we already have in orders!
+
             else:
                 try:
                     self.inventory = max(self.balance[self.sell].amount - 0.01, 0)
