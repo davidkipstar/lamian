@@ -354,10 +354,10 @@ class CheckSpread(Agent):
         # Todo: 
         # Spam filter for executed trades, else its just gonna grow without limit!
         if len(self.current_trades) > 0:
-            avg_sell_price = self.calc_avg_price('sell', self.executed_trades[-1])
-            avg_buy_price = self.calc_avg_price('buy', self.executed_trades[-1])
-            print('current avg buy price: ', avg_buy_price)
-            print('current avg sell price: ', avg_sell_price)
+            #avg_sell_price = self.calc_avg_price('sell', self.executed_trades[-1])
+            #avg_buy_price = self.calc_avg_price('buy', self.executed_trades[-1])
+            #print('current avg buy price: ', avg_buy_price)
+            #print('current avg sell price: ', avg_sell_price)
 
             avg_buy_price_lifo = self.calc_avg_price('buy', self.executed_trades[-1], True)
 
