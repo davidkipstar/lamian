@@ -24,6 +24,8 @@ class Agent:
             if len(ob['asks']) >= self.orderbooklimit and len(ob['asks']) >= self.orderbooklimit:
                 asks, bids = pd.DataFrame(ob['asks']), pd.DataFrame(ob['bids'])
                 self.logger.info("orderbook received")
+            else: # if connection fails / new bug
+                asks, bids = None, None
         except:
             self.logger.info("not liquid.")
             asks, bids = None, None
