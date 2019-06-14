@@ -29,7 +29,7 @@ if __name__ == '__main__':
     logging.basicConfig(format='%(asctime)s %(message)s',
                         datefmt='%m/%d/%Y %I:%M:%S %p',
                         filename='logs.log',
-                        level=logging.INFO)
+                        level=logging.WARNING) # info else
     
     #async
     loop = asyncio.get_event_loop()
