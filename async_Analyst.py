@@ -80,7 +80,7 @@ class Analyst:
         if kwargs['tradingside'] == 'buy':
             data['buy'] = coin 
             data['sell'] = self.major_coin
-            data['tsize'] = (0.5 * self.major_balance['amount'])/len(self.whitelist) # only invest half of our btc at a time
+            data['tsize'] = (0.8 * self.major_balance['amount'])/len(self.whitelist) # only invest half of our btc at a time
             data['th'] = 0.04
             data['ob_th'] = 1
 
