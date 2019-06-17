@@ -47,18 +47,18 @@ class Agent:
             if self.tradingside == 'buy':
                 #case btc
                 asks, bids = await self.orderbook
-                
+
                 # Retrieve sell data for comment above
                 # Added in quote_inventory
                 sell_orders = list(filter(lambda x: x['for_sale']['symbol'] == self.buy, self.current_open_orders))
-                self.quote_inventory = sum(list(map(lambda x: x['for_sale']['amount'], sell_orders))) # is min 0
+                self.quote_inventory_in_sellorders = sum(list(map(lambda x: x['for_sale']['amount'], sell_orders))) # is min 0
                 self.balance_in_quote = convert_to_quote(asks, bids, self.og_tsize)
-                self.quote_inventory += max(self.balance_in_quote - 0.01, 0) # must exist for lifo
+                self.quote_inventory = self.quote_inventory_in_sellorders + max(self.balance_in_quote - 0.01, 0) # must exist for lifo
 
                 # check how much we have on sell side and compensate so that we dont continue to buy if we have sufficient inventory
                 self.inventory = max(self.balance[self.buy].amount - 0.01, 0)
 
-                self._tsize = max(self.quote_inventory - self.inventory, 0) # also subtract what we already have in orders!
+                self._tsize = max(self.inventory - self.quote_inventory_in_sellorders, 0) # also subtract what we already have in orders!
 
             else:
                 try:
