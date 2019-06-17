@@ -12,7 +12,7 @@ def json_serial(obj):
         return obj.isoformat()
     raise TypeError ("Type %s not serializable" % type(obj))
 
-def find_price(orderbook, ob_th, tsize, previous_order = None, previous_amount = None, previous_price = None, minimum_liquidity=1):
+def find_price(orderbook, ob_th, tsize, avg_buy_price_lifo = 0, previous_order = None, previous_amount = None, previous_price = None, minimum_liquidity=1):
     """
     # INPUT:
         orderbook as Dataframe
@@ -72,7 +72,8 @@ def find_price(orderbook, ob_th, tsize, previous_order = None, previous_amount =
     df['obrevenue_cumsum'] = df['obrevenue'].cumsum()
     idx = df.index[df['obrevenue_cumsum'] > df['ownrevenue']].tolist()
     if len(idx) == 0:
-        raise ValueError('Market is waaaay too illiquid')
+        #raise ValueError('Market is waaaay too illiquid')
+        return None
     opt_price = df['price'][idx[0]]
     opt_price_rounded = opt_price.quantize(satoshi)
 
@@ -88,16 +89,23 @@ def find_price(orderbook, ob_th, tsize, previous_order = None, previous_amount =
         dfsub['xtimes_ownrevenue'] = dfsub['ownrevenue'] * minimum_liquidity
         lower_bound = dfsub.index[dfsub['obrevenue_cumsum'] > dfsub['xtimes_ownrevenue']].tolist()
         # now this is the lower bound. Combine them to find the optimal price
-        opt_price = dfsub['price'][lower_bound[0]]
+        try:
+            # Hot fix, investigate!
+            opt_price = dfsub['price'][lower_bound[0]]
+        except:
+            print('index problem in find_price')
         
         # dont need to overwrite if price difference is negligble
         # so only overwrite if price diff is "big"
         if opt_price_rounded - opt_price.quantize(satoshi) > 0.0000001:
             opt_price_rounded = opt_price
-            
+
+    # Minimum price is our weighted buy price
+    lifoprice = Decimal(1.02 * avg_buy_price_lifo).quantize(satoshi)
+
     #print("Own revenue: {}".format(ownrevenue_v))
     #print("opt : {} , rounded: {}".format(opt_price, opt_price_rounded))
-    return opt_price_rounded
+    return max(opt_price_rounded, lifoprice)
 
 
 def convert_to_quote(asks, bids, basecur_amount):  # btc_tsize = basecur amount
@@ -124,6 +132,16 @@ def convert_to_base(asks, bids, quotecur_amount):  # btc_tsize = basecur amount
     init_bid = quotecur_amount * midprice
 
     return init_bid
+
+
+def numberlist(nums, limit):
+    prefix = []
+    sum = 0
+    for num in nums:
+        sum += num
+        prefix.append(num)
+        if sum > limit:
+            return prefix
 
 """
 

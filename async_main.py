@@ -17,7 +17,7 @@ if __name__ == '__main__':
         'acc' : j['acc'],
         'url' : 'wss://eu-west-2.bts.crypto-bridge.org',
         'major_coin' : 'BRIDGE.BTC',
-        'whitelist' : ['BRIDGE.GIN'],
+        'whitelist' : ['BRIDGE.GIN', 'BRIDGE.ZNN', 'BRIDGE.SINS', 'BRIDGE.XGA', 'BRIDGE.BETTY',],
         'blacklist' : ['BRIDGE.BTS'],
     }
 
@@ -25,12 +25,17 @@ if __name__ == '__main__':
     with open('./logging.yml', 'r') as stream:
         config = yaml.load(stream)
     
-    logging.config.dictConfig(config)
+    #logging.config.dictConfig(config)
+    logging.basicConfig(format='%(asctime)s %(message)s',
+                        datefmt='%m/%d/%Y %I:%M:%S %p',
+                        filename='logs.log',
+                        level=logging.WARNING) # info else
     
     #async
     loop = asyncio.get_event_loop()
     logger = logging.getLogger()
-    ana = Analyst.from_kwargs(loop, logger, **data) 
+    logger.propagate = False
+    ana = Analyst.from_kwargs(loop, logger, **data)
     managers, workers = ana.populate()
 
     producer_coro = [w.run() for w in workers]

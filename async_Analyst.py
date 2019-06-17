@@ -76,22 +76,21 @@ class Analyst:
                     'pw' : self.pw,
                     'orderbooklimit' : 25,
                     'open_order' : None,
-                    'state' : 2,
-                    'ob_th' : 0.1}
+                    'state' : 2}
         if kwargs['tradingside'] == 'buy':
             data['buy'] = coin 
             data['sell'] = self.major_coin
-            data['tsize'] = (0.5 * self.major_balance['amount'])/len(self.whitelist) # only invest half of our btc at a time
-            data['th'] = 0.03
-            data['ob_th'] = 0.1
+            data['tsize'] = (0.8 * self.major_balance['amount'])/len(self.whitelist) # only invest half of our btc at a time
+            data['th'] = 0.04
+            data['ob_th'] = 1
 
         if kwargs['tradingside'] == 'sell':
             data['sell'] = coin 
             data['buy'] = self.major_coin
-            data['th'] = 0.015
+            data['th'] = 0.0025
             data['tsize'] = 0
             data['state'] = 2
-            data['ob_th'] = 0.3
+            data['ob_th'] = 2
 
         kwargs.update(data)
         return kwargs

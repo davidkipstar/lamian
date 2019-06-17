@@ -48,7 +48,7 @@ class Worker:
         i = 0
         self.logger.info("Worker starts on {}".format(re.sub('BRIDGE.','',self.market_key)))
         while True:
-            await asyncio.sleep(np.random.randint(10)) 
+            await asyncio.sleep(0.000000001)
             i += 1
             event = self.strategy.apply()
             
@@ -58,4 +58,4 @@ class Worker:
                 if x:
                     self.queue.put_nowait(x)
             
-            await asyncio.sleep(0.5)
+            await asyncio.sleep(0.000000001)
