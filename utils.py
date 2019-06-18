@@ -94,6 +94,7 @@ def find_price(orderbook, ob_th, tsize, avg_buy_price_lifo = 0, previous_order =
             opt_price = dfsub['price'][lower_bound[0]]
         except:
             print('index problem in find_price')
+            return None
         
         # dont need to overwrite if price difference is negligble
         # so only overwrite if price diff is "big"
