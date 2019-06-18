@@ -52,13 +52,15 @@ class Agent:
                 # Added in quote_inventory
                 sell_orders = list(filter(lambda x: x['for_sale']['symbol'] == self.buy, self.current_open_orders))
                 self.quote_inventory_in_sells = sum(list(map(lambda x: x['for_sale']['amount'], sell_orders))) # is min 0
+
                 self.balance_in_quote = convert_to_quote(asks, bids, self.og_tsize)
                 self.quote_inventory = self.quote_inventory_in_sells + max(self.balance_in_quote - 0.01, 0) # must exist for lifo, however we subtract some of that in self._tsize again. slightly inefficient, but hotfix.
 
                 # check how much we have on sell side and compensate so that we dont continue to buy if we have sufficient inventory
                 self.inventory = max(self.balance[self.buy].amount - 0.01, 0)
 
-                self._tsize = max(self.quote_inventory - self.inventory - self.quote_inventory_in_sells, 0) # also subtract what we already have in orders! This is done in self.quote_inventory_in_sells
+                # All in quote: Planned tsize - balance - balance in sells
+                self._tsize = max(self.balance_in_quote - self.inventory - self.quote_inventory_in_sells, 0) # also subtract what we already have in orders! This is done in self.quote_inventory_in_sells
 
             else:
                 try:
