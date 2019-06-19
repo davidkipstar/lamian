@@ -436,6 +436,9 @@ class CheckSpread(Agent):
                 self.orderbooklimit = 25
                 self.logger.info('reducing orderbooklimit')
                 return 0
+        else:
+            price_bid += self.satoshi
+            price_ask -= self.satoshi
         spread_estimated = ((price_ask - price_bid)/price_bid).quantize(CheckSpread.satoshi)
         #print(self.market, " : Strategy: Spread: {}".format(spread_estimated))
         if spread_estimated > self.th:
@@ -473,6 +476,10 @@ class CheckSpread(Agent):
                 self.logger.info('reducing orderbooklimit')
                 self.state = 0
                 return False
+        else:
+            price_bid += self.satoshi
+            price_ask -= self.satoshi
+
         # Checks if better price exists
         
         order_price = self._price.quantize(self.satoshi)
