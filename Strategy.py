@@ -479,7 +479,7 @@ class CheckSpread(Agent):
                 
             return False
         else:
-            estimated_price += self.satoshi
+            estimated_price += self.satoshi if self.tradingside == 'buy' else estimated_price -= self.satoshi
 
 
         # Checks if better price exists
