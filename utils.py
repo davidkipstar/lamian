@@ -1,6 +1,6 @@
 
 from decimal import *
-
+from traceback import print_stack
 import pandas as pd
 
 from datetime import date, datetime
@@ -21,7 +21,7 @@ def find_price(orderbook, ob_th, tsize, avg_buy_price_lifo = 0, previous_order =
       orderbook is either bids or asks as generated from update
         minimum liquididty (maybe at least 1 btc in ob?)
     """
-
+  
     if ob_th is None or tsize is None or avg_buy_price_lifo is None:
         print('Unexpected <None> Input in find_price!')
         print(ob_th, tsize, avg_buy_price_lifo)
