@@ -435,7 +435,8 @@ class CheckSpread(Agent):
             if self.orderbooklimit > 50:
                 self.orderbooklimit = 25
                 self.logger.info('reducing orderbooklimit')
-                return 0
+                
+            return 0
         else:
             price_bid += self.satoshi
             price_ask -= self.satoshi
@@ -475,7 +476,8 @@ class CheckSpread(Agent):
                 self.orderbooklimit = 25
                 self.logger.info('reducing orderbooklimit')
                 self.state = 0
-                return False
+                
+            return False
         else:
             price_bid += self.satoshi
             price_ask -= self.satoshi
