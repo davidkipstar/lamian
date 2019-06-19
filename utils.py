@@ -24,6 +24,7 @@ def find_price(orderbook, ob_th, tsize, avg_buy_price_lifo = 0, previous_order =
 
     if ob_th is None or tsize is None or avg_buy_price_lifo is None:
         print('Unexpected <None> Input in find_price!')
+        print(ob_th, tsize, avg_buy_price_lifo)
         return None
 
     satoshi = Decimal('0.00000001')
