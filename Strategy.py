@@ -220,21 +220,6 @@ class Agent:
     def market_open_orders(self):
         return self.market.accountopenorders(self.acc)
 
-    def trades(self):
-        try:
-            t = self.market.accounttrades(self.acc, limit = 50) #currencyPair is not supported ;) 
-            if len(t):
-                logging.info("Found trades {}".format(t))
-                self.executed_trades.append(t)
-                max_len = 50
-                # Prevent memory leak!!
-                if len(self.executed_trades) > max_len:
-                    self.executed_trades = self.executed_trades[(len(self.executed_trades) - max_len):len(self.executed_trades)]
-            return t
-        except:
-            self.logger.info('Couldnt retrieve trades')
-            return []
-
     def tradehistory(self):
 
         tradehistory = self.market.trades(limit=100)
@@ -325,9 +310,7 @@ class CheckSpread(Agent):
 
         #logger.info("Starting to {} {} of {}".format(self.tradingside,self._tsize, self.major_coin))
         #self.og_tsize = self.tsize # save, will be reduced once having bought
-        self.executed_trades = []
-        self.current_trades = []
-        self._order = None 
+        self._order = None
         self._avg_price = None
 
         #self.major_coin = self.sell['symbol'] if self.tradingside == 'sell' else self.buy['symbol']
@@ -355,7 +338,7 @@ class CheckSpread(Agent):
             self.logger.info('sleeping, no orderbook')
             return asyncio.sleep(10)
 
-        #self.current_trades = self.trades()  
+        #self.current_trades = self.trades()
         own_buys, own_sells = self.tradehistory()
         if len(own_buys) > 0:
            avg_buy_price_lifo = self.calc_avg_price('buy', own_buys, True)
