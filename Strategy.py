@@ -57,6 +57,7 @@ class Agent:
                 self.quote_inventory = self.quote_inventory_in_sells + max(self.balance_in_quote - 0.01, 0) # must exist for lifo, however we subtract some of that in self._tsize again. slightly inefficient, but hotfix.
 
                 # check how much we have on sell side and compensate so that we dont continue to buy if we have sufficient inventory
+                # warning: if we have 0 of a coin, then below expression will fail. So buy a little of each coin in advance or change this try-except structure.
                 self.inventory = max(self.balance[self.buy].amount - 0.01, 0)
 
                 # All in quote: Planned tsize - balance - balance in sells
