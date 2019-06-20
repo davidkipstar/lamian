@@ -235,6 +235,29 @@ class Agent:
             self.logger.info('Couldnt retrieve trades')
             return []
 
+    def tradehistory(self):
+
+        tradehistory = self.market.trades(limit=100)
+        trade_l = []
+        for t in tradehistory:
+            trade_l.append(t)
+
+       # trade_l is list with the recent trade history of a market
+       # trade_l[0]['side1_account_id'] and trade_l[0]['side2_account_id'] identifies buyer and seller
+       # we are '1.2.1620664'
+       # so just find our trades
+
+        own_id = '1.2.1620664'
+        own_buys = []
+        own_sells = []
+        for t in tradehistory:
+            if t['side1_account_id'] == own_id:
+                own_buys.append(t)
+            if t['side2_account_id'] == own_id:
+                own_sells.append(t)
+
+        return own_buys, own_sells
+
     def cancel(self, order):
         # cancelling specific order
         try:
@@ -249,32 +272,13 @@ class Agent:
         # type is 'buy' or 'sell'
 
         try:
-            #def m(key,recent_trades):
-            #    return list(filter(lambda x: x['type'] == self.tradingside, list(map(lambda x: x[key], recent_trades))))
+            lista = list(map(lambda x: x['quote'].amount, recent_trades))   # amount
+            listb = list(map(lambda x: x['price'], recent_trades))            # price
 
-            # ATTENTION:
-            # all trades are classified as 'sell'!!! need to distinguish elsewise.
-            # Use price: if price > 1 then we should have a buy
-            # if price < 1 it should be a sell
-            # to be honest thats a rather shitty but given the circumstances probably the best id
-
-
-            if type == 'buy':
-                filtered_trades = list(filter(lambda x: x['price'] > 1, recent_trades))
-            else:
-                filtered_trades = list(filter(lambda x: x['price'] < 1, recent_trades))
-            
-            recent_amount_ele = list(map(lambda x: x['quote'].amount, filtered_trades)) #m('quote', recent_trades)
-            recent_rate_ele = list(map(lambda x: x['price'], filtered_trades)) #m('price',recent_trades)
-
-            lista = recent_amount_ele
-            listb = recent_rate_ele
-
-            if len(lista) == 0:
+            if len(lista) == 0 or len(listb) == 0:
                 return 0
 
             if type == 'buy' and lifo:
-                print('lifo')
                 if self.tradingside == 'buy':
                     # Which kind of inventory we have depends on tsize!
                     curr_inv = max(self.balance[self.buy].amount + self.quote_inventory, 0)
@@ -287,13 +291,10 @@ class Agent:
                     listb = listb[:len(lista)]
 
             prod = [a*b for a,b in zip(lista,listb)]
-            avg_price = sum(prod)/sum(recent_amount_ele)
+            avg_price = sum(prod)/sum(lista) # lista == amount
 
             # If we have a buy, we must reconvert the price to quote:base
-            if type == 'sell':
-                return avg_price 
-            else:
-                return 1/avg_price
+            return avg_price
 
         except Exception as e:
             print('Couldnt calculate average price, ', e)
@@ -354,19 +355,10 @@ class CheckSpread(Agent):
             self.logger.info('sleeping, no orderbook')
             return asyncio.sleep(10)
 
-        self.current_trades = self.trades()  
-        # Todo: 
-        # Spam filter for executed trades, else its just gonna grow without limit!
-        if len(self.current_trades) > 0:
-            #avg_sell_price = self.calc_avg_price('sell', self.executed_trades[-1])
-            #avg_buy_price = self.calc_avg_price('buy', self.executed_trades[-1])
-            #print('current avg buy price: ', avg_buy_price)
-            #print('current avg sell price: ', avg_sell_price)
-
-            avg_buy_price_lifo = self.calc_avg_price('buy', self.executed_trades[-1], True)
-
-
-
+        #self.current_trades = self.trades()  
+        own_buys, own_sells = self.tradehistory()
+        if len(own_buys) > 0:
+           avg_buy_price_lifo = self.calc_avg_price('buy', own_buys, True)
 
         if self.state == 0:
 
