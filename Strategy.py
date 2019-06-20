@@ -222,6 +222,14 @@ class Agent:
 
     def tradehistory(self):
 
+        """
+        Gets trade history for own account and given market.
+        Limited by 100 last trades.
+        In case of spam or desired 'extended memory', consider calling self.market.trades all couple iterations
+        and then using this as input here.
+        :return: own recent, executed buys and sells
+        """
+
         tradehistory = self.market.trades(limit=100)
         trade_l = []
         for t in tradehistory:
