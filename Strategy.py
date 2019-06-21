@@ -223,12 +223,20 @@ class Agent:
 
     def trades(self):
         try:
-            t = self.market.accounttrades(self.acc, limit = 50) #currencyPair is not supported ;) 
+            t = self.market.accounttrades(self.acc, limit = 50)
             if len(t):
-                logging.info("Found trades {}".format(t))
-                self.executed_trades.append(t)
-                max_len = 50
+                if len(self.executed_trades) == 0:
+                    for i in range(len(t)):
+                        self.executed_trades.append(t[i])
+                else:
+                    exe_amount = list(map(lambda x: x['quote'].amount, self.executed_trades))
+                    exe_price = list(map(lambda x: x['price'], self.executed_trades))
+                    for i in range(len(t)):
+                            if t[i]['price'] not in exe_price and t[i]['base'].amount not in exe_amount:
+                                logging.info("Found trades {}".format(t))
+                                self.executed_trades.append(t[i])
                 # Prevent memory leak!!
+                max_len = 100
                 if len(self.executed_trades) > max_len:
                     self.executed_trades = self.executed_trades[(len(self.executed_trades) - max_len):len(self.executed_trades)]
             return t
@@ -356,15 +364,11 @@ class CheckSpread(Agent):
             return asyncio.sleep(10)
 
         self.current_trades = self.trades()  
-        # Todo: 
-        # Spam filter for executed trades, else its just gonna grow without limit!
         if len(self.current_trades) > 0:
-            #avg_sell_price = self.calc_avg_price('sell', self.executed_trades[-1])
-            #avg_buy_price = self.calc_avg_price('buy', self.executed_trades[-1])
-            #print('current avg buy price: ', avg_buy_price)
-            #print('current avg sell price: ', avg_sell_price)
-
-            avg_buy_price_lifo = self.calc_avg_price('buy', self.executed_trades[-1], True)
+            # Fails first time because tsize doesnt exist yet
+            # Need this as lower bound for sell price
+            if self.tradingside == 'sell':
+                avg_buy_price_lifo = self.calc_avg_price('buy', self.executed_trades, True)
 
 
 
