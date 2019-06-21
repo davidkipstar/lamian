@@ -2,7 +2,7 @@ wd = paste0(Sys.getenv('USERPROFILE'), '/Downloads')
 setwd(wd)
 
 library('data.table')
-dat = read.csv('data.csv')
+dat = read.csv('data (1).csv')
 setDT(dat)
 
 calculate_profit = function(dat, blacklist = c('OPEN.BTC', 'XMR', 'BCO')) {
@@ -15,6 +15,7 @@ calculate_profit = function(dat, blacklist = c('OPEN.BTC', 'XMR', 'BCO')) {
     m = merge(buy, sell, by.x = 'Asset.bought', by.y = 'Asset.sold')
     m[, 'inventory' := quotebought - quotesold]
     m[, 'inventory_value' := inventory * meanprice]
+    tradingfees = m[, .(0.002 * (sum(btcsold) + sum(btcbought)))]
 
     mm = m[Asset.bought != 'BTC']
 
@@ -22,10 +23,11 @@ calculate_profit = function(dat, blacklist = c('OPEN.BTC', 'XMR', 'BCO')) {
                 # Values in Bitcoin
                 'sold' = mm[, sum(btcsold)],
                 'bought' = mm[, sum(btcbought)],
-                'inventory_value' = mm[, sum(inventory_value)]
+                'inventory_value' = mm[, sum(inventory_value)],
+                'tradingfees' = tradingfees
                 )
 
-    outl$profit = outl$sold - outl$bought + outl$inventory_value
+    outl$profit = outl$sold - outl$bought + outl$inventory_value + tradingfees
 
     return(outl)
 }
