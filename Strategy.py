@@ -454,10 +454,10 @@ class CheckSpread(Agent):
             return price_bid if self.tradingside == 'buy' else price_ask  
 #        elif spread_estimated > 0:
 #            self.ob_th = 
-        elif spread_estimated < -0.11:
-            # exception unhandled yet, so increasing that it wont trigger.
-            self.logger.warning("arbitrage")
-            raise ArbitrageException
+#        elif spread_estimated < -0.5:
+#            # exception unhandled yet, so increasing that it wont trigger.
+#            self.logger.warning("arbitrage")
+#            raise ArbitrageException
         else:
             self.logger.info("spread too low currently at {}".format(spread_estimated))
             time.sleep(5)
