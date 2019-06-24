@@ -18,7 +18,7 @@ if __name__ == '__main__':
         'url' : 'wss://eu-west-2.bts.crypto-bridge.org',
         'major_coin' : 'BRIDGE.BTC',
         'whitelist' : ['BRIDGE.GIN', 'BRIDGE.ZNN', 'BRIDGE.SINS', 'BRIDGE.XGA', 'BRIDGE.ONEX',
-                       'BRIDGE.XMR', 'BRIDGE.HISC', 'BRIDGE.BCH', 'BRIDGE.POLIS', 'BRIDGE.ETH', 'BRIDGE.BITG'],
+                       'BRIDGE.HISC', 'BRIDGE.BCH', 'BRIDGE.POLIS', 'BRIDGE.BITG'],
         'blacklist' : ['BRIDGE.BTS'],
     }
 
