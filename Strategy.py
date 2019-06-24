@@ -467,6 +467,8 @@ class CheckSpread(Agent):
             self.logger.info("spread met condition")
             return price_bid
         elif self.tradingside == 'sell' and spread_estimated > self.th:
+            self.state = 1
+            self.logger.info("spread met condition")
             return price_ask
         else:
             self.logger.info("spread too low currently at {}".format(spread_estimated))
