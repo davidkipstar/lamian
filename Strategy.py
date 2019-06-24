@@ -5,6 +5,7 @@ import asyncio
 import sys
 import logging 
 import time
+import numpy
 from bitshares import BitShares
 from bitshares.account import Account
 from bitshares.market import Market
@@ -308,7 +309,17 @@ class Agent:
             print('Couldnt calculate average price, ', e)
             return 0
 
-    
+    def running_mean(self, N):
+        cumsum = numpy.cumsum(numpy.insert(self.spread_history, 0, 0))
+        return Decimal(0.9) * (cumsum[N:] - cumsum[:-N]) / N # trimmed down to 90% for buy condition
+
+    def calc_avg_spread(self, estimated_spread):
+        max_len = 1000
+        self.spread_history.append(estimated_spread)
+        if len(self.spread_history) > max_len:
+            self.spread_history = self.spread_history[len(self.spread_history - max_len):len(self.spread_history)]
+        _N = min(len(self.spread_history), 500)
+        return self.running_mean(_N)
 
 
 class CheckSpread(Agent):
@@ -335,8 +346,10 @@ class CheckSpread(Agent):
         #self.og_tsize = self.tsize # save, will be reduced once having bought
         self.executed_trades = []
         self.current_trades = []
+        self.spread_history = []
         self._order = None 
         self._avg_price = None
+
 
         #self.major_coin = self.sell['symbol'] if self.tradingside == 'sell' else self.buy['symbol']
 
@@ -446,12 +459,13 @@ class CheckSpread(Agent):
             price_bid += self.satoshi
             price_ask -= self.satoshi
         spread_estimated = ((price_ask - price_bid)/price_bid).quantize(CheckSpread.satoshi)
-        #print(self.market, " : Strategy: Spread: {}".format(spread_estimated))
+        avg_spread = self.calc_avg_spread(spread_estimated)
+
         if spread_estimated > self.th:
             # if we use the lifo min price, then the spread can be pretty damn low. So we need a low self.th for the sell side!
             self.state = 1
             self.logger.info("spread met condition")
-            return price_bid if self.tradingside == 'buy' else price_ask  
+            return price_bid if self.tradingside == 'buy' and spread_estimated >= avg_spread else price_ask
 #        elif spread_estimated > 0:
 #            self.ob_th = 
 #        elif spread_estimated < -0.5:
