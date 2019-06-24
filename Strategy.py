@@ -5,10 +5,13 @@ import asyncio
 import sys
 import logging 
 import time
+import numpy
 from bitshares import BitShares
 from bitshares.account import Account
 from bitshares.market import Market
 from arbitrage import ArbitrageException
+from TradingHistory import TradingHistory
+from Chat import ErrorBot, InfoBot
 
 import re 
 class Agent:
@@ -16,6 +19,8 @@ class Agent:
     def __init__(self, logger, *args, **kwargs):    
         self.og_tsize = kwargs['tsize'] # only need this for buy atm
         self.logger = logging.getLogger("{}_{}".format(__name__,re.sub('BRIDGE.','', kwargs['market_key'])))
+        self.error = ErrorBot("{}_{}".format(__name__,re.sub('BRIDGE.','', kwargs['market_key'])))
+        self.info = InfoBot("{}_{}".format(__name__,re.sub('BRIDGE.','', kwargs['market_key'])))
 
     @property 
     async def orderbook(self):
@@ -109,6 +114,7 @@ class Agent:
 
     def place_order(self, **kwargs):
         try:
+            self.error("Place order for {} ".format(kwargs['price']))
             if kwargs:
                 # price and amount must both be Decimal here!
                 price = kwargs['price'] # already Decimal bc of state0
@@ -222,27 +228,9 @@ class Agent:
         return self.market.accountopenorders(self.acc)
 
     def trades(self):
-        try:
-            t = self.market.accounttrades(self.acc, limit = 50)
-            if len(t):
-                if len(self.executed_trades) == 0:
-                    for i in range(len(t)):
-                        self.executed_trades.append(t[i])
-                else:
-                    exe_amount = list(map(lambda x: x['quote'].amount, self.executed_trades))
-                    exe_price = list(map(lambda x: x['price'], self.executed_trades))
-                    for i in range(len(t)):
-                            if t[i]['price'] not in exe_price and t[i]['base'].amount not in exe_amount:
-                                logging.info("Found trades {}".format(t))
-                                self.executed_trades.append(t[i])
-                # Prevent memory leak!!
-                max_len = 100
-                if len(self.executed_trades) > max_len:
-                    self.executed_trades = self.executed_trades[(len(self.executed_trades) - max_len):len(self.executed_trades)]
-            return t
-        except:
-            self.logger.info('Couldnt retrieve trades')
-            return []
+        trades = self.market.accounttrades(self.acc, limit = 50)
+        self.tradinghistory.update(trades)
+        return self.tradinghistory.history.values()
 
     def cancel(self, order):
         # cancelling specific order
@@ -308,6 +296,22 @@ class Agent:
             print('Couldnt calculate average price, ', e)
             return 0
 
+    def running_mean(x, N):
+        cumsum = numpy.cumsum(numpy.insert(x,0,0))
+        return (cumsum[N:] - cumsum[:-N]) / float(N)
+
+    def calc_avg_spread(self, spread_estimated):
+        self.spreadhistory.append(spread_estimated)
+        max_len = 1000
+        curr_len = len(self.spreadhistory)
+        if curr_len > max_len:
+            # Enforce max len
+            self.spreadhistory = self.spreadhistory[(curr_len-max_len):curr_len]
+        
+        print("AVG_SPREAD {} ".format(_avg_spread))
+        self._avg_spread = max(running_mean(self._avg_spread, len(self._avg_spread)),0) # attention new len, must be > 0
+        
+        return None
     
 
 
@@ -328,16 +332,17 @@ class CheckSpread(Agent):
             setattr(self, key, arg)
         
         ob = self.market.orderbook(self.orderbooklimit)
-        asks, bids = pd.DataFrame(ob['asks']), pd.DataFrame(ob['bids'])
+        asks, bids = pd.DataFrame(ob['asks']), pd.DataFrame(ob['bids']) # Todo: Require trader diversity. 
         self.logger.info("length of asks is {}".format(len(asks)))
-
         #logger.info("Starting to {} {} of {}".format(self.tradingside,self._tsize, self.major_coin))
         #self.og_tsize = self.tsize # save, will be reduced once having bought
-        self.executed_trades = []
+        #self.executed_trades = []
+        self.tradinghistory = TradingHistory(self.error)
         self.current_trades = []
         self._order = None 
         self._avg_price = None
-
+        self.spreadhistory = []
+        self._avg_spread = 0
         #self.major_coin = self.sell['symbol'] if self.tradingside == 'sell' else self.buy['symbol']
 
     @classmethod
@@ -446,8 +451,10 @@ class CheckSpread(Agent):
             price_bid += self.satoshi
             price_ask -= self.satoshi
         spread_estimated = ((price_ask - price_bid)/price_bid).quantize(CheckSpread.satoshi)
+        self.calc_avg_price(spread_estimated, [])
         #print(self.market, " : Strategy: Spread: {}".format(spread_estimated))
-        if spread_estimated > self.th:
+        
+        if spread_estimated > self.th and self._avg_spread > self.th:
             # if we use the lifo min price, then the spread can be pretty damn low. So we need a low self.th for the sell side!
             self.state = 1
             self.logger.info("spread met condition")
