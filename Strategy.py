@@ -314,9 +314,9 @@ class Agent:
         return Decimal(0.9) * (cumsum[N:] - cumsum[:-N]) / N # trimmed down to 90% for buy condition
 
     def calc_avg_spread(self, estimated_spread):
-        max_len = 100
+        max_len = 1000
         self.spread_history.append(estimated_spread)
-        _N = min(len(self.spread_history), 50)
+        _N = min(len(self.spread_history), 500)
         if len(self.spread_history) > max_len:
             self.spread_history = self.spread_history[(len(self.spread_history)-_N):len(self.spread_history)]
         avg_spread = self.running_mean(_N)
