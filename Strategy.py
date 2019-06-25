@@ -461,7 +461,7 @@ class CheckSpread(Agent):
         spread_estimated = ((price_ask - price_bid)/price_bid).quantize(CheckSpread.satoshi)
         avg_spread = self.calc_avg_spread(spread_estimated)
 
-        if self.tradingside == 'buy' and spread_estimated > self.th and spread_estimated >= avg_spread:
+        if self.tradingside == 'buy' and spread_estimated > self.th and spread_estimated >= avg_spread[0]:
             # if we use the lifo min price, then the spread can be pretty damn low. So we need a low self.th for the sell side!
             self.state = 1
             self.logger.info("spread met condition")
