@@ -310,16 +310,18 @@ class Agent:
             return 0
 
     def running_mean(self, N):
-        cumsum = numpy.cumsum(numpy.insert(self.spread_history, 0, 0))
+        cumsum = numpy.cumsum(numpy.insert(self.spread_history[(len(self.spread_history) - N):len(self.spread_history)], 0, 0))
         return Decimal(0.9) * (cumsum[N:] - cumsum[:-N]) / N # trimmed down to 90% for buy condition
 
     def calc_avg_spread(self, estimated_spread):
-        max_len = 1000
+        max_len = 100
         self.spread_history.append(estimated_spread)
+        _N = min(len(self.spread_history), 50)
         if len(self.spread_history) > max_len:
-            self.spread_history = self.spread_history[len(self.spread_history - max_len):len(self.spread_history)]
-        _N = min(len(self.spread_history), 500)
-        return self.running_mean(_N)
+            self.spread_history = self.spread_history[(len(self.spread_history)-_N):len(self.spread_history)]
+        avg_spread = self.running_mean(_N)
+        #self._avg_spread_history.append(avg_spread) # debug
+        return avg_spread
 
 
 class CheckSpread(Agent):
@@ -349,6 +351,7 @@ class CheckSpread(Agent):
         self.spread_history = []
         self._order = None 
         self._avg_price = None
+        self._avg_spread_history = []
 
 
         #self.major_coin = self.sell['symbol'] if self.tradingside == 'sell' else self.buy['symbol']
@@ -461,7 +464,7 @@ class CheckSpread(Agent):
         spread_estimated = ((price_ask - price_bid)/price_bid).quantize(CheckSpread.satoshi)
         avg_spread = self.calc_avg_spread(spread_estimated)
 
-        if self.tradingside == 'buy' and spread_estimated > self.th and spread_estimated >= avg_spread[0]:
+        if self.tradingside == 'buy' and spread_estimated > self.th and spread_estimated >= avg_spread:
             # if we use the lifo min price, then the spread can be pretty damn low. So we need a low self.th for the sell side!
             self.state = 1
             self.logger.info("spread met condition")
