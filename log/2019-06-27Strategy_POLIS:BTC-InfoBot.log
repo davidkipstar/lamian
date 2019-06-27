@@ -1,0 +1,686 @@
+2019-06-27 10:45:36,670 : INFO : length of asks is 25
+2019-06-27 10:45:53,779 : INFO : orderbook received
+2019-06-27 10:45:57,821 : INFO : orderbook received
+2019-06-27 10:45:58,509 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:45:58,509 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:45:59,675 : INFO : orderbook received
+2019-06-27 10:46:03,182 : INFO : orderbook received
+2019-06-27 10:46:14,499 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:46:14,499 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:46:14,540 : INFO : spread met condition
+2019-06-27 10:46:20,801 : INFO : orderbook received
+2019-06-27 10:46:23,759 : INFO : orderbook received
+2019-06-27 10:46:24,547 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:46:24,548 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:46:26,154 : INFO : orderbook received
+2019-06-27 10:46:28,860 : INFO : orderbook received
+2019-06-27 10:46:34,752 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:46:34,752 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:46:34,784 : INFO : spread met condition
+2019-06-27 10:46:41,538 : INFO : orderbook received
+2019-06-27 10:46:44,268 : INFO : orderbook received
+2019-06-27 10:46:45,061 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:46:45,062 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:46:46,760 : INFO : orderbook received
+2019-06-27 10:46:49,373 : INFO : orderbook received
+2019-06-27 10:46:55,922 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:46:55,923 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:46:55,962 : INFO : spread met condition
+2019-06-27 10:47:02,751 : INFO : orderbook received
+2019-06-27 10:47:05,586 : INFO : orderbook received
+2019-06-27 10:47:06,502 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:47:06,502 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:47:07,900 : INFO : orderbook received
+2019-06-27 10:47:10,700 : INFO : orderbook received
+2019-06-27 10:47:17,056 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:47:17,057 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:47:17,083 : INFO : spread met condition
+2019-06-27 10:47:23,705 : INFO : orderbook received
+2019-06-27 10:47:26,463 : INFO : orderbook received
+2019-06-27 10:47:27,144 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:47:27,145 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:47:28,879 : INFO : orderbook received
+2019-06-27 10:47:31,583 : INFO : orderbook received
+2019-06-27 10:47:37,636 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:47:37,636 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:47:37,659 : INFO : spread met condition
+2019-06-27 10:47:44,339 : INFO : orderbook received
+2019-06-27 10:47:47,066 : INFO : orderbook received
+2019-06-27 10:47:48,659 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:47:48,659 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:47:50,297 : INFO : orderbook received
+2019-06-27 10:47:53,151 : INFO : orderbook received
+2019-06-27 10:47:59,120 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:47:59,120 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:47:59,148 : INFO : spread met condition
+2019-06-27 10:48:05,721 : INFO : orderbook received
+2019-06-27 10:48:08,580 : INFO : orderbook received
+2019-06-27 10:48:09,971 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:48:09,972 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:48:11,825 : INFO : orderbook received
+2019-06-27 10:48:14,788 : INFO : orderbook received
+2019-06-27 10:48:20,761 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:48:20,761 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:48:20,787 : INFO : spread met condition
+2019-06-27 10:48:28,591 : INFO : orderbook received
+2019-06-27 10:48:31,497 : INFO : orderbook received
+2019-06-27 10:48:32,598 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:48:32,598 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:48:39,610 : INFO : orderbook received
+2019-06-27 10:48:42,730 : INFO : orderbook received
+2019-06-27 10:48:49,458 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:48:49,459 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:48:49,485 : INFO : spread met condition
+2019-06-27 10:48:56,223 : INFO : orderbook received
+2019-06-27 10:48:58,970 : INFO : orderbook received
+2019-06-27 10:48:59,731 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:48:59,731 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:49:06,521 : INFO : orderbook received
+2019-06-27 10:49:09,179 : INFO : orderbook received
+2019-06-27 10:49:15,296 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:49:15,296 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:49:15,312 : INFO : spread met condition
+2019-06-27 10:49:22,249 : INFO : orderbook received
+2019-06-27 10:49:24,899 : INFO : orderbook received
+2019-06-27 10:49:25,803 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:49:25,804 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:49:32,729 : INFO : orderbook received
+2019-06-27 10:49:35,554 : INFO : orderbook received
+2019-06-27 10:49:41,676 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:49:41,677 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:49:41,710 : INFO : spread met condition
+2019-06-27 10:49:48,740 : INFO : orderbook received
+2019-06-27 10:49:51,621 : INFO : orderbook received
+2019-06-27 10:49:53,127 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:49:53,128 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:49:59,993 : INFO : orderbook received
+2019-06-27 10:50:02,597 : INFO : orderbook received
+2019-06-27 10:50:08,591 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:50:08,591 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:50:08,628 : INFO : spread met condition
+2019-06-27 10:50:15,632 : INFO : orderbook received
+2019-06-27 10:50:18,814 : INFO : orderbook received
+2019-06-27 10:50:19,693 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:50:19,694 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:50:26,470 : INFO : orderbook received
+2019-06-27 10:50:29,315 : INFO : orderbook received
+2019-06-27 10:50:35,235 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:50:35,235 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:50:35,261 : INFO : spread met condition
+2019-06-27 10:50:41,924 : INFO : orderbook received
+2019-06-27 10:50:44,528 : INFO : orderbook received
+2019-06-27 10:50:45,343 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:50:45,343 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:50:52,339 : INFO : orderbook received
+2019-06-27 10:50:55,039 : INFO : orderbook received
+2019-06-27 10:51:01,631 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:51:01,632 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:51:01,669 : INFO : spread met condition
+2019-06-27 10:51:08,859 : INFO : orderbook received
+2019-06-27 10:51:11,558 : INFO : orderbook received
+2019-06-27 10:51:12,556 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:51:12,557 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:51:19,317 : INFO : orderbook received
+2019-06-27 10:51:21,903 : INFO : orderbook received
+2019-06-27 10:51:27,890 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:51:27,892 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:51:27,921 : INFO : spread met condition
+2019-06-27 10:51:34,822 : INFO : orderbook received
+2019-06-27 10:51:37,667 : INFO : orderbook received
+2019-06-27 10:51:38,500 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:51:38,501 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:51:45,473 : INFO : orderbook received
+2019-06-27 10:51:48,057 : INFO : orderbook received
+2019-06-27 10:51:54,130 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:51:54,130 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:51:54,171 : INFO : spread met condition
+2019-06-27 10:52:01,015 : INFO : orderbook received
+2019-06-27 10:52:03,753 : INFO : orderbook received
+2019-06-27 10:52:05,194 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:52:05,194 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:52:11,956 : INFO : orderbook received
+2019-06-27 10:52:14,731 : INFO : orderbook received
+2019-06-27 10:52:20,813 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:52:20,814 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:52:20,837 : INFO : spread met condition
+2019-06-27 10:52:27,718 : INFO : orderbook received
+2019-06-27 10:52:30,562 : INFO : orderbook received
+2019-06-27 10:52:31,440 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:52:31,440 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:52:38,297 : INFO : orderbook received
+2019-06-27 10:52:40,919 : INFO : orderbook received
+2019-06-27 10:52:46,793 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:52:46,793 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:52:46,819 : INFO : spread met condition
+2019-06-27 10:52:53,559 : INFO : orderbook received
+2019-06-27 10:52:56,162 : INFO : orderbook received
+2019-06-27 10:52:56,998 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:52:56,998 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:53:04,093 : INFO : orderbook received
+2019-06-27 10:53:07,165 : INFO : orderbook received
+2019-06-27 10:53:13,821 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:53:13,822 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:53:13,846 : INFO : spread met condition
+2019-06-27 10:53:20,634 : INFO : orderbook received
+2019-06-27 10:53:23,369 : INFO : orderbook received
+2019-06-27 10:53:24,139 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:53:24,139 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:53:30,895 : INFO : orderbook received
+2019-06-27 10:53:33,922 : INFO : orderbook received
+2019-06-27 10:53:40,044 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:53:40,045 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:53:40,068 : INFO : spread met condition
+2019-06-27 10:53:46,898 : INFO : orderbook received
+2019-06-27 10:53:49,825 : INFO : orderbook received
+2019-06-27 10:53:50,628 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:53:50,629 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:53:57,489 : INFO : orderbook received
+2019-06-27 10:54:00,287 : INFO : orderbook received
+2019-06-27 10:54:06,338 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:54:06,338 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:54:06,363 : INFO : spread met condition
+2019-06-27 10:54:13,178 : INFO : orderbook received
+2019-06-27 10:54:15,925 : INFO : orderbook received
+2019-06-27 10:54:17,512 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:54:17,512 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:54:24,456 : INFO : orderbook received
+2019-06-27 10:54:27,437 : INFO : orderbook received
+2019-06-27 10:54:28,395 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:54:28,395 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:54:28,415 : INFO : spread met condition
+2019-06-27 10:54:36,072 : INFO : orderbook received
+2019-06-27 10:54:39,088 : INFO : orderbook received
+2019-06-27 10:54:40,337 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:54:40,338 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:54:46,965 : INFO : orderbook received
+2019-06-27 10:54:50,008 : INFO : orderbook received
+2019-06-27 10:54:51,330 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:54:51,331 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:54:51,355 : INFO : spread met condition
+2019-06-27 10:55:03,301 : INFO : orderbook received
+2019-06-27 10:55:06,339 : INFO : orderbook received
+2019-06-27 10:55:07,517 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:55:07,517 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:55:12,982 : INFO : orderbook received
+2019-06-27 10:55:16,121 : INFO : orderbook received
+2019-06-27 10:55:18,411 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:55:18,411 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:55:18,437 : INFO : spread met condition
+2019-06-27 10:55:25,292 : INFO : orderbook received
+2019-06-27 10:55:28,529 : INFO : orderbook received
+2019-06-27 10:55:29,383 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:55:29,383 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:55:31,074 : INFO : orderbook received
+2019-06-27 10:55:34,131 : INFO : orderbook received
+2019-06-27 10:55:35,131 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:55:35,131 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:55:35,154 : INFO : spread met condition
+2019-06-27 10:55:43,090 : INFO : orderbook received
+2019-06-27 10:55:45,902 : INFO : orderbook received
+2019-06-27 10:55:46,877 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:55:46,877 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:55:48,303 : INFO : orderbook received
+2019-06-27 10:55:51,526 : INFO : orderbook received
+2019-06-27 10:55:52,683 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:55:52,683 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:55:52,708 : INFO : spread met condition
+2019-06-27 10:55:59,437 : INFO : orderbook received
+2019-06-27 10:56:03,256 : INFO : orderbook received
+2019-06-27 10:56:05,603 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:56:05,604 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:56:08,815 : INFO : orderbook received
+2019-06-27 10:56:13,108 : INFO : orderbook received
+2019-06-27 10:56:14,301 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:56:14,301 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:56:14,323 : INFO : spread met condition
+2019-06-27 10:56:20,904 : INFO : orderbook received
+2019-06-27 10:56:23,779 : INFO : orderbook received
+2019-06-27 10:56:25,283 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:56:25,283 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:56:26,771 : INFO : orderbook received
+2019-06-27 10:56:29,593 : INFO : orderbook received
+2019-06-27 10:56:30,793 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:56:30,793 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:56:30,814 : INFO : spread met condition
+2019-06-27 10:56:37,928 : INFO : orderbook received
+2019-06-27 10:56:42,430 : INFO : orderbook received
+2019-06-27 10:56:43,820 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:56:43,821 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:56:46,015 : INFO : orderbook received
+2019-06-27 10:56:49,491 : INFO : orderbook received
+2019-06-27 10:56:51,266 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:56:51,266 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:56:51,291 : INFO : spread met condition
+2019-06-27 10:56:58,861 : INFO : orderbook received
+2019-06-27 10:57:01,919 : INFO : orderbook received
+2019-06-27 10:57:02,638 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:57:02,638 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:57:04,583 : INFO : orderbook received
+2019-06-27 10:57:07,289 : INFO : orderbook received
+2019-06-27 10:57:08,206 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:57:08,207 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:57:08,228 : INFO : spread met condition
+2019-06-27 10:57:14,776 : INFO : orderbook received
+2019-06-27 10:57:17,897 : INFO : orderbook received
+2019-06-27 10:57:19,286 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:57:19,286 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:57:20,917 : INFO : orderbook received
+2019-06-27 10:57:24,606 : INFO : orderbook received
+2019-06-27 10:57:26,132 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:57:26,132 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:57:26,155 : INFO : spread met condition
+2019-06-27 10:57:32,802 : INFO : orderbook received
+2019-06-27 10:57:35,768 : INFO : orderbook received
+2019-06-27 10:57:37,381 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:57:37,381 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:57:39,023 : INFO : orderbook received
+2019-06-27 10:57:42,170 : INFO : orderbook received
+2019-06-27 10:57:43,320 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:57:43,320 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:57:43,343 : INFO : spread met condition
+2019-06-27 10:57:51,078 : INFO : orderbook received
+2019-06-27 10:57:56,125 : INFO : orderbook received
+2019-06-27 10:57:56,953 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:57:56,953 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:57:59,041 : INFO : orderbook received
+2019-06-27 10:58:03,409 : INFO : orderbook received
+2019-06-27 10:58:05,165 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:58:05,166 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:58:05,189 : INFO : spread met condition
+2019-06-27 10:58:11,946 : INFO : orderbook received
+2019-06-27 10:58:14,888 : INFO : orderbook received
+2019-06-27 10:58:16,011 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:58:16,011 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:58:17,621 : INFO : orderbook received
+2019-06-27 10:58:20,600 : INFO : orderbook received
+2019-06-27 10:58:22,576 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:58:22,576 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:58:22,595 : INFO : spread met condition
+2019-06-27 10:58:29,667 : INFO : orderbook received
+2019-06-27 10:58:32,654 : INFO : orderbook received
+2019-06-27 10:58:33,573 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:58:33,573 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:58:35,145 : INFO : orderbook received
+2019-06-27 10:58:38,336 : INFO : orderbook received
+2019-06-27 10:58:39,735 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:58:39,735 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:58:39,761 : INFO : spread met condition
+2019-06-27 10:58:47,021 : INFO : orderbook received
+2019-06-27 10:58:50,179 : INFO : orderbook received
+2019-06-27 10:58:51,249 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:58:51,250 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:58:53,047 : INFO : orderbook received
+2019-06-27 10:58:56,200 : INFO : orderbook received
+2019-06-27 10:59:02,661 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:59:02,662 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:59:02,689 : INFO : spread met condition
+2019-06-27 10:59:09,492 : INFO : orderbook received
+2019-06-27 10:59:12,634 : INFO : orderbook received
+2019-06-27 10:59:14,335 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:59:14,335 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:59:16,199 : INFO : orderbook received
+2019-06-27 10:59:19,199 : INFO : orderbook received
+2019-06-27 10:59:25,183 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:59:25,183 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:59:25,207 : INFO : spread met condition
+2019-06-27 10:59:32,304 : INFO : orderbook received
+2019-06-27 10:59:35,473 : INFO : orderbook received
+2019-06-27 10:59:36,453 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:59:36,454 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:59:38,104 : INFO : orderbook received
+2019-06-27 10:59:41,096 : INFO : orderbook received
+2019-06-27 10:59:47,352 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:59:47,353 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 10:59:47,375 : INFO : spread met condition
+2019-06-27 10:59:54,298 : INFO : orderbook received
+2019-06-27 10:59:57,804 : INFO : orderbook received
+2019-06-27 10:59:59,057 : INFO : No balance for BRIDGE.BTC
+2019-06-27 10:59:59,058 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:00:01,450 : INFO : orderbook received
+2019-06-27 11:00:04,432 : INFO : orderbook received
+2019-06-27 11:00:11,098 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:00:11,098 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:00:11,120 : INFO : spread met condition
+2019-06-27 11:00:17,996 : INFO : orderbook received
+2019-06-27 11:00:21,088 : INFO : orderbook received
+2019-06-27 11:00:22,045 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:00:22,046 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:00:23,897 : INFO : orderbook received
+2019-06-27 11:00:28,912 : INFO : orderbook received
+2019-06-27 11:00:34,867 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:00:34,867 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:00:34,890 : INFO : spread met condition
+2019-06-27 11:00:41,701 : INFO : orderbook received
+2019-06-27 11:00:45,233 : INFO : orderbook received
+2019-06-27 11:00:46,475 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:00:46,475 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:00:48,106 : INFO : orderbook received
+2019-06-27 11:00:51,263 : INFO : orderbook received
+2019-06-27 11:00:57,792 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:00:57,792 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:00:57,819 : INFO : spread met condition
+2019-06-27 11:01:04,668 : INFO : orderbook received
+2019-06-27 11:01:07,907 : INFO : orderbook received
+2019-06-27 11:01:09,421 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:01:09,421 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:01:11,240 : INFO : orderbook received
+2019-06-27 11:01:14,786 : INFO : orderbook received
+2019-06-27 11:01:20,944 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:01:20,944 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:01:20,962 : INFO : spread met condition
+2019-06-27 11:01:28,134 : INFO : orderbook received
+2019-06-27 11:01:31,321 : INFO : orderbook received
+2019-06-27 11:01:32,210 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:01:32,210 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:01:34,056 : INFO : orderbook received
+2019-06-27 11:01:37,193 : INFO : orderbook received
+2019-06-27 11:01:43,447 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:01:43,448 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:01:43,471 : INFO : spread met condition
+2019-06-27 11:01:49,984 : INFO : orderbook received
+2019-06-27 11:01:52,971 : INFO : orderbook received
+2019-06-27 11:01:53,990 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:01:53,991 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:01:55,580 : INFO : orderbook received
+2019-06-27 11:01:58,572 : INFO : orderbook received
+2019-06-27 11:02:05,127 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:02:05,127 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:02:05,147 : INFO : spread met condition
+2019-06-27 11:02:11,794 : INFO : orderbook received
+2019-06-27 11:02:14,707 : INFO : orderbook received
+2019-06-27 11:02:15,498 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:02:15,498 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:02:17,027 : INFO : orderbook received
+2019-06-27 11:02:19,874 : INFO : orderbook received
+2019-06-27 11:02:25,874 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:02:25,874 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:02:25,902 : INFO : spread met condition
+2019-06-27 11:02:32,460 : INFO : orderbook received
+2019-06-27 11:02:35,716 : INFO : orderbook received
+2019-06-27 11:02:37,513 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:02:37,514 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:02:39,616 : INFO : orderbook received
+2019-06-27 11:02:42,852 : INFO : orderbook received
+2019-06-27 11:02:49,221 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:02:49,222 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:02:49,245 : INFO : spread met condition
+2019-06-27 11:02:56,092 : INFO : orderbook received
+2019-06-27 11:02:59,138 : INFO : orderbook received
+2019-06-27 11:03:00,736 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:03:00,736 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:03:02,222 : INFO : orderbook received
+2019-06-27 11:03:05,095 : INFO : orderbook received
+2019-06-27 11:03:10,972 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:03:10,972 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:03:10,994 : INFO : spread met condition
+2019-06-27 11:03:23,494 : INFO : orderbook received
+2019-06-27 11:03:26,464 : INFO : orderbook received
+2019-06-27 11:03:27,458 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:03:27,458 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:03:29,119 : INFO : orderbook received
+2019-06-27 11:03:31,894 : INFO : orderbook received
+2019-06-27 11:03:44,008 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:03:44,008 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:03:44,033 : INFO : spread met condition
+2019-06-27 11:03:57,976 : INFO : orderbook received
+2019-06-27 11:04:00,904 : INFO : orderbook received
+2019-06-27 11:04:01,799 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:04:01,799 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:04:03,463 : INFO : orderbook received
+2019-06-27 11:04:09,228 : INFO : orderbook received
+2019-06-27 11:04:21,149 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:04:21,149 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:04:21,182 : INFO : spread met condition
+2019-06-27 11:04:32,840 : INFO : orderbook received
+2019-06-27 11:04:35,643 : INFO : orderbook received
+2019-06-27 11:04:36,759 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:04:36,759 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:04:38,312 : INFO : orderbook received
+2019-06-27 11:04:41,258 : INFO : orderbook received
+2019-06-27 11:04:52,228 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:04:52,228 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:04:52,252 : INFO : spread met condition
+2019-06-27 11:05:03,853 : INFO : orderbook received
+2019-06-27 11:05:06,933 : INFO : orderbook received
+2019-06-27 11:05:07,742 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:05:07,743 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:05:09,294 : INFO : orderbook received
+2019-06-27 11:05:12,058 : INFO : orderbook received
+2019-06-27 11:05:23,332 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:05:23,333 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:05:23,357 : INFO : spread met condition
+2019-06-27 11:05:34,899 : INFO : orderbook received
+2019-06-27 11:05:37,783 : INFO : orderbook received
+2019-06-27 11:05:39,405 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:05:39,406 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:05:41,018 : INFO : orderbook received
+2019-06-27 11:05:43,700 : INFO : orderbook received
+2019-06-27 11:05:54,884 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:05:54,885 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:05:54,925 : INFO : spread met condition
+2019-06-27 11:06:06,974 : INFO : orderbook received
+2019-06-27 11:06:09,843 : INFO : orderbook received
+2019-06-27 11:06:10,673 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:06:10,673 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:06:12,238 : INFO : orderbook received
+2019-06-27 11:06:15,343 : INFO : orderbook received
+2019-06-27 11:06:26,345 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:06:26,346 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:06:26,369 : INFO : spread met condition
+2019-06-27 11:06:38,003 : INFO : orderbook received
+2019-06-27 11:06:41,081 : INFO : orderbook received
+2019-06-27 11:06:42,063 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:06:42,064 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:06:43,684 : INFO : orderbook received
+2019-06-27 11:06:47,000 : INFO : orderbook received
+2019-06-27 11:07:03,962 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:07:03,962 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:07:03,981 : INFO : spread met condition
+2019-06-27 11:07:15,772 : INFO : orderbook received
+2019-06-27 11:07:18,983 : INFO : orderbook received
+2019-06-27 11:07:20,098 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:07:20,098 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:07:21,842 : INFO : orderbook received
+2019-06-27 11:07:24,712 : INFO : orderbook received
+2019-06-27 11:07:40,716 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:07:40,716 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:07:40,740 : INFO : spread met condition
+2019-06-27 11:07:52,741 : INFO : orderbook received
+2019-06-27 11:07:55,764 : INFO : orderbook received
+2019-06-27 11:07:56,918 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:07:56,918 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:07:58,674 : INFO : orderbook received
+2019-06-27 11:08:02,017 : INFO : orderbook received
+2019-06-27 11:08:18,154 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:08:18,154 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:08:18,180 : INFO : spread met condition
+2019-06-27 11:08:29,806 : INFO : orderbook received
+2019-06-27 11:08:32,744 : INFO : orderbook received
+2019-06-27 11:08:34,865 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:08:34,865 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:08:36,734 : INFO : orderbook received
+2019-06-27 11:08:40,009 : INFO : orderbook received
+2019-06-27 11:08:56,278 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:08:56,279 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:08:56,302 : INFO : spread met condition
+2019-06-27 11:09:08,012 : INFO : orderbook received
+2019-06-27 11:09:10,855 : INFO : orderbook received
+2019-06-27 11:09:11,913 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:09:11,913 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:09:13,586 : INFO : orderbook received
+2019-06-27 11:09:16,400 : INFO : orderbook received
+2019-06-27 11:09:32,440 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:09:32,441 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:09:32,465 : INFO : spread met condition
+2019-06-27 11:09:44,250 : INFO : orderbook received
+2019-06-27 11:09:47,549 : INFO : orderbook received
+2019-06-27 11:09:48,868 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:09:48,868 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:09:50,377 : INFO : orderbook received
+2019-06-27 11:09:53,391 : INFO : orderbook received
+2019-06-27 11:10:10,409 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:10:10,410 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:10:10,439 : INFO : spread met condition
+2019-06-27 11:10:22,474 : INFO : orderbook received
+2019-06-27 11:10:26,004 : INFO : orderbook received
+2019-06-27 11:10:27,091 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:10:27,091 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:10:29,090 : INFO : orderbook received
+2019-06-27 11:10:31,864 : INFO : orderbook received
+2019-06-27 11:10:47,798 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:10:47,798 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:10:47,820 : INFO : spread met condition
+2019-06-27 11:10:59,874 : INFO : orderbook received
+2019-06-27 11:11:02,945 : INFO : orderbook received
+2019-06-27 11:11:03,845 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:11:03,846 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:11:05,474 : INFO : orderbook received
+2019-06-27 11:11:08,987 : INFO : orderbook received
+2019-06-27 11:11:25,243 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:11:25,244 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:11:25,268 : INFO : spread met condition
+2019-06-27 11:11:37,196 : INFO : orderbook received
+2019-06-27 11:11:40,584 : INFO : orderbook received
+2019-06-27 11:11:42,552 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:11:42,552 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:11:44,087 : INFO : orderbook received
+2019-06-27 11:11:47,426 : INFO : orderbook received
+2019-06-27 11:12:04,133 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:12:04,133 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:12:04,159 : INFO : spread met condition
+2019-06-27 11:12:17,063 : INFO : orderbook received
+2019-06-27 11:12:19,945 : INFO : orderbook received
+2019-06-27 11:12:20,705 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:12:20,705 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:12:22,566 : INFO : orderbook received
+2019-06-27 11:12:25,298 : INFO : orderbook received
+2019-06-27 11:12:41,240 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:12:41,240 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:12:41,265 : INFO : spread met condition
+2019-06-27 11:12:57,916 : INFO : orderbook received
+2019-06-27 11:13:00,835 : INFO : orderbook received
+2019-06-27 11:13:01,749 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:13:01,750 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:13:03,362 : INFO : orderbook received
+2019-06-27 11:13:06,327 : INFO : orderbook received
+2019-06-27 11:13:23,288 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:13:23,288 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:13:23,312 : INFO : spread met condition
+2019-06-27 11:13:37,869 : INFO : orderbook received
+2019-06-27 11:13:41,307 : INFO : orderbook received
+2019-06-27 11:13:42,411 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:13:42,412 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:13:43,854 : INFO : orderbook received
+2019-06-27 11:13:47,299 : INFO : orderbook received
+2019-06-27 11:14:03,750 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:14:03,750 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:14:03,790 : INFO : spread met condition
+2019-06-27 11:14:15,592 : INFO : orderbook received
+2019-06-27 11:14:18,385 : INFO : orderbook received
+2019-06-27 11:14:19,513 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:14:19,514 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:14:20,998 : INFO : orderbook received
+2019-06-27 11:14:23,911 : INFO : orderbook received
+2019-06-27 11:14:39,998 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:14:39,998 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:14:40,030 : INFO : spread met condition
+2019-06-27 11:14:51,632 : INFO : orderbook received
+2019-06-27 11:14:54,459 : INFO : orderbook received
+2019-06-27 11:14:55,908 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:14:55,909 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:14:57,710 : INFO : orderbook received
+2019-06-27 11:15:00,364 : INFO : orderbook received
+2019-06-27 11:15:16,269 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:15:16,270 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:15:16,292 : INFO : spread met condition
+2019-06-27 11:15:28,037 : INFO : orderbook received
+2019-06-27 11:15:31,425 : INFO : orderbook received
+2019-06-27 11:15:32,672 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:15:32,672 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:15:34,554 : INFO : orderbook received
+2019-06-27 11:15:37,670 : INFO : orderbook received
+2019-06-27 11:15:53,893 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:15:53,893 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:15:53,914 : INFO : spread met condition
+2019-06-27 11:16:05,800 : INFO : orderbook received
+2019-06-27 11:16:08,780 : INFO : orderbook received
+2019-06-27 11:16:09,713 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:16:09,714 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:16:11,231 : INFO : orderbook received
+2019-06-27 11:16:15,558 : INFO : orderbook received
+2019-06-27 11:16:32,362 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:16:32,362 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:16:32,385 : INFO : spread met condition
+2019-06-27 11:16:44,085 : INFO : orderbook received
+2019-06-27 11:16:47,287 : INFO : orderbook received
+2019-06-27 11:16:48,037 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:16:48,037 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:16:49,712 : INFO : orderbook received
+2019-06-27 11:16:52,698 : INFO : orderbook received
+2019-06-27 11:17:08,882 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:17:08,882 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:17:08,907 : INFO : spread met condition
+2019-06-27 11:17:20,393 : INFO : orderbook received
+2019-06-27 11:17:23,947 : INFO : orderbook received
+2019-06-27 11:17:25,128 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:17:25,128 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:17:26,708 : INFO : orderbook received
+2019-06-27 11:17:29,508 : INFO : orderbook received
+2019-06-27 11:17:45,874 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:17:45,875 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:17:45,894 : INFO : spread met condition
+2019-06-27 11:17:57,956 : INFO : orderbook received
+2019-06-27 11:18:01,590 : INFO : orderbook received
+2019-06-27 11:18:02,904 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:18:02,905 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:18:04,600 : INFO : orderbook received
+2019-06-27 11:18:08,323 : INFO : orderbook received
+2019-06-27 11:18:25,042 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:18:25,042 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:18:25,069 : INFO : spread met condition
+2019-06-27 11:18:36,627 : INFO : orderbook received
+2019-06-27 11:18:39,300 : INFO : orderbook received
+2019-06-27 11:18:40,367 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:18:40,367 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:18:41,807 : INFO : orderbook received
+2019-06-27 11:18:44,650 : INFO : orderbook received
+2019-06-27 11:19:05,898 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:19:05,898 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:19:05,942 : INFO : spread met condition
+2019-06-27 11:19:18,019 : INFO : orderbook received
+2019-06-27 11:19:20,795 : INFO : orderbook received
+2019-06-27 11:19:21,636 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:19:21,636 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:19:23,603 : INFO : orderbook received
+2019-06-27 11:19:26,672 : INFO : orderbook received
+2019-06-27 11:19:48,447 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:19:48,447 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:19:48,471 : INFO : spread met condition
+2019-06-27 11:20:00,295 : INFO : orderbook received
+2019-06-27 11:20:03,148 : INFO : orderbook received
+2019-06-27 11:20:03,963 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:20:03,963 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:20:05,330 : INFO : orderbook received
+2019-06-27 11:20:08,067 : INFO : orderbook received
+2019-06-27 11:20:29,417 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:20:29,418 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:20:29,450 : INFO : spread met condition
+2019-06-27 11:20:40,991 : INFO : orderbook received
+2019-06-27 11:20:43,811 : INFO : orderbook received
+2019-06-27 11:20:44,709 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:20:44,710 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:20:46,563 : INFO : orderbook received
+2019-06-27 11:20:49,155 : INFO : orderbook received
+2019-06-27 11:21:10,254 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:21:10,254 : INFO : balance for BRIDGE.BTC is 7.187854545454545e-05 
+2019-06-27 11:21:10,288 : INFO : spread met condition
+2019-06-27 11:23:13,703 : INFO : length of asks is 25
+2019-06-27 11:23:30,776 : INFO : orderbook received
+2019-06-27 11:23:35,496 : INFO : orderbook received
+2019-06-27 11:23:36,461 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:23:36,462 : INFO : balance for BRIDGE.BTC is 6.70749090909091e-05 
+2019-06-27 11:28:37,832 : INFO : length of asks is 25
+2019-06-27 11:28:55,075 : INFO : orderbook received
+2019-06-27 11:28:59,648 : INFO : orderbook received
+2019-06-27 11:29:00,631 : INFO : No balance for BRIDGE.BTC
+2019-06-27 11:29:00,631 : INFO : balance for BRIDGE.BTC is 6.70749090909091e-05 

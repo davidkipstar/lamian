@@ -1,0 +1,2371 @@
+2019-06-27 10:45:23,213 : INFO : length of asks is 25
+2019-06-27 10:45:25,917 : INFO : length of asks is 25
+2019-06-27 10:45:25,917 : INFO : length of asks is 25
+2019-06-27 10:45:53,372 : INFO : orderbook received
+2019-06-27 10:45:53,372 : INFO : orderbook received
+2019-06-27 10:45:53,456 : INFO : orderbook received
+2019-06-27 10:45:53,456 : INFO : orderbook received
+2019-06-27 10:45:54,301 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:45:54,301 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:45:54,885 : INFO : orderbook received
+2019-06-27 10:45:54,885 : INFO : orderbook received
+2019-06-27 10:45:58,498 : INFO : balance for BRIDGE.BTC is 4.68569981565748 
+2019-06-27 10:45:58,498 : INFO : balance for BRIDGE.BTC is 4.68569981565748 
+2019-06-27 10:45:58,540 : INFO : orderbook received
+2019-06-27 10:45:58,540 : INFO : orderbook received
+2019-06-27 10:45:58,879 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:45:58,879 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:45:58,942 : INFO : spread met condition
+2019-06-27 10:45:58,942 : INFO : spread met condition
+2019-06-27 10:45:59,358 : INFO : orderbook received
+2019-06-27 10:45:59,358 : INFO : orderbook received
+2019-06-27 10:46:00,251 : INFO : orderbook received
+2019-06-27 10:46:00,251 : INFO : orderbook received
+2019-06-27 10:46:03,979 : INFO : balance for BRIDGE.BTC is 4.68569981565748 
+2019-06-27 10:46:03,979 : INFO : balance for BRIDGE.BTC is 4.68569981565748 
+2019-06-27 10:46:04,011 : INFO : spread met condition
+2019-06-27 10:46:04,011 : INFO : spread met condition
+2019-06-27 10:46:04,011 : ERROR : Place order for 0.00001535 
+2019-06-27 10:46:04,011 : ERROR : Place order for 0.00001535 
+2019-06-27 10:46:06,222 : INFO : order placed for 4.67569982 @ 0.00001535
+2019-06-27 10:46:06,222 : INFO : order placed for 4.67569982 @ 0.00001535
+2019-06-27 10:46:06,280 : INFO : Order placed for 0.00001535 4.67569982
+2019-06-27 10:46:06,280 : INFO : Order placed for 0.00001535 4.67569982
+2019-06-27 10:46:19,709 : INFO : orderbook received
+2019-06-27 10:46:19,709 : INFO : orderbook received
+2019-06-27 10:46:20,074 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:46:20,074 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:46:20,449 : INFO : orderbook received
+2019-06-27 10:46:20,449 : INFO : orderbook received
+2019-06-27 10:46:21,016 : INFO : Order found is True
+2019-06-27 10:46:21,016 : INFO : Order found is True
+2019-06-27 10:46:21,016 : INFO : order found
+2019-06-27 10:46:21,016 : INFO : order found
+2019-06-27 10:46:21,029 : INFO : observing open order......
+2019-06-27 10:46:21,029 : INFO : observing open order......
+2019-06-27 10:46:24,591 : INFO : orderbook received
+2019-06-27 10:46:24,591 : INFO : orderbook received
+2019-06-27 10:46:24,924 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:46:24,924 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:46:24,956 : INFO : spread met condition
+2019-06-27 10:46:24,956 : INFO : spread met condition
+2019-06-27 10:46:25,388 : INFO : orderbook received
+2019-06-27 10:46:25,388 : INFO : orderbook received
+2019-06-27 10:46:25,577 : INFO : Order found is True
+2019-06-27 10:46:25,577 : INFO : Order found is True
+2019-06-27 10:46:25,577 : INFO : order found
+2019-06-27 10:46:25,577 : INFO : order found
+2019-06-27 10:46:25,625 : INFO : observing open order......
+2019-06-27 10:46:25,625 : INFO : observing open order......
+2019-06-27 10:46:39,907 : INFO : orderbook received
+2019-06-27 10:46:39,907 : INFO : orderbook received
+2019-06-27 10:46:40,287 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:46:40,287 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:46:40,659 : INFO : orderbook received
+2019-06-27 10:46:40,659 : INFO : orderbook received
+2019-06-27 10:46:40,875 : INFO : Order found is True
+2019-06-27 10:46:40,875 : INFO : Order found is True
+2019-06-27 10:46:40,877 : INFO : order found
+2019-06-27 10:46:40,877 : INFO : order found
+2019-06-27 10:46:40,913 : INFO : observing open order......
+2019-06-27 10:46:40,913 : INFO : observing open order......
+2019-06-27 10:46:45,009 : INFO : orderbook received
+2019-06-27 10:46:45,009 : INFO : orderbook received
+2019-06-27 10:46:45,495 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:46:45,495 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:46:45,531 : INFO : spread met condition
+2019-06-27 10:46:45,531 : INFO : spread met condition
+2019-06-27 10:46:45,963 : INFO : orderbook received
+2019-06-27 10:46:45,963 : INFO : orderbook received
+2019-06-27 10:46:46,187 : INFO : Order found is True
+2019-06-27 10:46:46,187 : INFO : Order found is True
+2019-06-27 10:46:46,188 : INFO : order found
+2019-06-27 10:46:46,188 : INFO : order found
+2019-06-27 10:46:46,252 : INFO : observing open order......
+2019-06-27 10:46:46,252 : INFO : observing open order......
+2019-06-27 10:46:46,916 : INFO : orderbook received
+2019-06-27 10:46:46,916 : INFO : orderbook received
+2019-06-27 10:46:50,374 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:46:50,374 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:47:01,092 : INFO : orderbook received
+2019-06-27 10:47:01,092 : INFO : orderbook received
+2019-06-27 10:47:01,349 : INFO : Order found is True
+2019-06-27 10:47:01,349 : INFO : Order found is True
+2019-06-27 10:47:01,350 : INFO : order found
+2019-06-27 10:47:01,350 : INFO : order found
+2019-06-27 10:47:01,424 : INFO : observing open order......
+2019-06-27 10:47:01,424 : INFO : observing open order......
+2019-06-27 10:47:01,638 : INFO : orderbook received
+2019-06-27 10:47:01,638 : INFO : orderbook received
+2019-06-27 10:47:01,962 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:47:01,962 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:47:02,046 : INFO : spread met condition
+2019-06-27 10:47:02,046 : INFO : spread met condition
+2019-06-27 10:47:06,457 : INFO : orderbook received
+2019-06-27 10:47:06,457 : INFO : orderbook received
+2019-06-27 10:47:06,642 : INFO : Order found is True
+2019-06-27 10:47:06,642 : INFO : Order found is True
+2019-06-27 10:47:06,642 : INFO : order found
+2019-06-27 10:47:06,642 : INFO : order found
+2019-06-27 10:47:06,662 : INFO : observing open order......
+2019-06-27 10:47:06,662 : INFO : observing open order......
+2019-06-27 10:47:06,933 : INFO : orderbook received
+2019-06-27 10:47:06,933 : INFO : orderbook received
+2019-06-27 10:47:07,293 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:47:07,293 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:47:08,004 : INFO : orderbook received
+2019-06-27 10:47:08,004 : INFO : orderbook received
+2019-06-27 10:47:11,568 : INFO : Order found is True
+2019-06-27 10:47:11,568 : INFO : Order found is True
+2019-06-27 10:47:11,568 : INFO : order found
+2019-06-27 10:47:11,568 : INFO : order found
+2019-06-27 10:47:11,584 : INFO : observing open order......
+2019-06-27 10:47:11,584 : INFO : observing open order......
+2019-06-27 10:47:22,202 : INFO : orderbook received
+2019-06-27 10:47:22,202 : INFO : orderbook received
+2019-06-27 10:47:22,563 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:47:22,563 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:47:22,602 : INFO : spread met condition
+2019-06-27 10:47:22,602 : INFO : spread met condition
+2019-06-27 10:47:22,956 : INFO : orderbook received
+2019-06-27 10:47:22,956 : INFO : orderbook received
+2019-06-27 10:47:23,183 : INFO : Order found is True
+2019-06-27 10:47:23,183 : INFO : Order found is True
+2019-06-27 10:47:23,183 : INFO : order found
+2019-06-27 10:47:23,183 : INFO : order found
+2019-06-27 10:47:23,205 : INFO : observing open order......
+2019-06-27 10:47:23,205 : INFO : observing open order......
+2019-06-27 10:47:27,323 : INFO : orderbook received
+2019-06-27 10:47:27,323 : INFO : orderbook received
+2019-06-27 10:47:27,672 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:47:27,672 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:47:28,062 : INFO : orderbook received
+2019-06-27 10:47:28,062 : INFO : orderbook received
+2019-06-27 10:47:28,302 : INFO : Order found is True
+2019-06-27 10:47:28,302 : INFO : Order found is True
+2019-06-27 10:47:28,304 : INFO : order found
+2019-06-27 10:47:28,304 : INFO : order found
+2019-06-27 10:47:28,365 : INFO : observing open order......
+2019-06-27 10:47:28,365 : INFO : observing open order......
+2019-06-27 10:47:32,421 : INFO : orderbook received
+2019-06-27 10:47:32,421 : INFO : orderbook received
+2019-06-27 10:47:43,148 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:47:43,148 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:47:43,188 : INFO : spread met condition
+2019-06-27 10:47:43,188 : INFO : spread met condition
+2019-06-27 10:47:43,589 : INFO : orderbook received
+2019-06-27 10:47:43,589 : INFO : orderbook received
+2019-06-27 10:47:43,819 : INFO : Order found is True
+2019-06-27 10:47:43,819 : INFO : Order found is True
+2019-06-27 10:47:43,819 : INFO : order found
+2019-06-27 10:47:43,819 : INFO : order found
+2019-06-27 10:47:43,859 : INFO : observing open order......
+2019-06-27 10:47:43,859 : INFO : observing open order......
+2019-06-27 10:47:44,454 : INFO : orderbook received
+2019-06-27 10:47:44,454 : INFO : orderbook received
+2019-06-27 10:47:48,151 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:47:48,151 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:47:48,703 : INFO : orderbook received
+2019-06-27 10:47:48,703 : INFO : orderbook received
+2019-06-27 10:47:48,872 : INFO : Order found is True
+2019-06-27 10:47:48,872 : INFO : Order found is True
+2019-06-27 10:47:48,873 : INFO : order found
+2019-06-27 10:47:48,873 : INFO : order found
+2019-06-27 10:47:48,888 : INFO : observing open order......
+2019-06-27 10:47:48,888 : INFO : observing open order......
+2019-06-27 10:47:49,264 : INFO : orderbook received
+2019-06-27 10:47:49,264 : INFO : orderbook received
+2019-06-27 10:47:49,653 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:47:49,653 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:47:49,687 : INFO : spread met condition
+2019-06-27 10:47:49,687 : INFO : spread met condition
+2019-06-27 10:47:53,884 : INFO : orderbook received
+2019-06-27 10:47:53,884 : INFO : orderbook received
+2019-06-27 10:48:04,427 : INFO : Order found is True
+2019-06-27 10:48:04,427 : INFO : Order found is True
+2019-06-27 10:48:04,428 : INFO : order found
+2019-06-27 10:48:04,428 : INFO : order found
+2019-06-27 10:48:04,462 : INFO : observing open order......
+2019-06-27 10:48:04,462 : INFO : observing open order......
+2019-06-27 10:48:04,733 : INFO : orderbook received
+2019-06-27 10:48:04,733 : INFO : orderbook received
+2019-06-27 10:48:05,119 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:48:05,119 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:48:05,888 : INFO : orderbook received
+2019-06-27 10:48:05,888 : INFO : orderbook received
+2019-06-27 10:48:09,501 : INFO : Order found is True
+2019-06-27 10:48:09,501 : INFO : Order found is True
+2019-06-27 10:48:09,503 : INFO : order found
+2019-06-27 10:48:09,503 : INFO : order found
+2019-06-27 10:48:09,556 : INFO : observing open order......
+2019-06-27 10:48:09,556 : INFO : observing open order......
+2019-06-27 10:48:10,008 : INFO : orderbook received
+2019-06-27 10:48:10,008 : INFO : orderbook received
+2019-06-27 10:48:10,481 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:48:10,481 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:48:10,551 : INFO : spread met condition
+2019-06-27 10:48:10,551 : INFO : spread met condition
+2019-06-27 10:48:11,040 : INFO : orderbook received
+2019-06-27 10:48:11,040 : INFO : orderbook received
+2019-06-27 10:48:11,313 : INFO : Order found is True
+2019-06-27 10:48:11,313 : INFO : Order found is True
+2019-06-27 10:48:11,314 : INFO : order found
+2019-06-27 10:48:11,314 : INFO : order found
+2019-06-27 10:48:11,344 : INFO : observing open order......
+2019-06-27 10:48:11,344 : INFO : observing open order......
+2019-06-27 10:48:25,939 : INFO : orderbook received
+2019-06-27 10:48:25,939 : INFO : orderbook received
+2019-06-27 10:48:26,273 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:48:26,273 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:48:26,740 : INFO : orderbook received
+2019-06-27 10:48:26,740 : INFO : orderbook received
+2019-06-27 10:48:27,036 : INFO : Order found is True
+2019-06-27 10:48:27,036 : INFO : Order found is True
+2019-06-27 10:48:27,037 : INFO : order found
+2019-06-27 10:48:27,037 : INFO : order found
+2019-06-27 10:48:27,059 : INFO : observing open order......
+2019-06-27 10:48:27,059 : INFO : observing open order......
+2019-06-27 10:48:32,554 : INFO : orderbook received
+2019-06-27 10:48:32,554 : INFO : orderbook received
+2019-06-27 10:48:32,971 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:48:32,971 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:48:33,029 : INFO : spread met condition
+2019-06-27 10:48:33,029 : INFO : spread met condition
+2019-06-27 10:48:33,565 : INFO : orderbook received
+2019-06-27 10:48:33,565 : INFO : orderbook received
+2019-06-27 10:48:33,850 : INFO : Order found is True
+2019-06-27 10:48:33,850 : INFO : Order found is True
+2019-06-27 10:48:33,850 : INFO : order found
+2019-06-27 10:48:33,850 : INFO : order found
+2019-06-27 10:48:33,870 : INFO : observing open order......
+2019-06-27 10:48:33,870 : INFO : observing open order......
+2019-06-27 10:48:39,766 : INFO : orderbook received
+2019-06-27 10:48:39,766 : INFO : orderbook received
+2019-06-27 10:48:43,804 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:48:43,804 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:48:54,588 : INFO : orderbook received
+2019-06-27 10:48:54,588 : INFO : orderbook received
+2019-06-27 10:48:54,779 : INFO : Order found is True
+2019-06-27 10:48:54,779 : INFO : Order found is True
+2019-06-27 10:48:54,779 : INFO : order found
+2019-06-27 10:48:54,779 : INFO : order found
+2019-06-27 10:48:54,795 : INFO : observing open order......
+2019-06-27 10:48:54,795 : INFO : observing open order......
+2019-06-27 10:48:55,233 : INFO : orderbook received
+2019-06-27 10:48:55,233 : INFO : orderbook received
+2019-06-27 10:48:55,559 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:48:55,559 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:48:55,600 : INFO : spread met condition
+2019-06-27 10:48:55,600 : INFO : spread met condition
+2019-06-27 10:48:59,717 : INFO : orderbook received
+2019-06-27 10:48:59,717 : INFO : orderbook received
+2019-06-27 10:48:59,910 : INFO : Order found is True
+2019-06-27 10:48:59,910 : INFO : Order found is True
+2019-06-27 10:48:59,910 : INFO : order found
+2019-06-27 10:48:59,910 : INFO : order found
+2019-06-27 10:48:59,928 : INFO : observing open order......
+2019-06-27 10:48:59,928 : INFO : observing open order......
+2019-06-27 10:49:00,411 : INFO : orderbook received
+2019-06-27 10:49:00,411 : INFO : orderbook received
+2019-06-27 10:49:05,832 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:49:05,832 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:49:06,637 : INFO : orderbook received
+2019-06-27 10:49:06,637 : INFO : orderbook received
+2019-06-27 10:49:10,080 : INFO : Order found is True
+2019-06-27 10:49:10,080 : INFO : Order found is True
+2019-06-27 10:49:10,080 : INFO : order found
+2019-06-27 10:49:10,080 : INFO : order found
+2019-06-27 10:49:10,106 : INFO : observing open order......
+2019-06-27 10:49:10,106 : INFO : observing open order......
+2019-06-27 10:49:20,455 : INFO : orderbook received
+2019-06-27 10:49:20,455 : INFO : orderbook received
+2019-06-27 10:49:21,378 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:49:21,378 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:49:21,416 : INFO : spread met condition
+2019-06-27 10:49:21,416 : INFO : spread met condition
+2019-06-27 10:49:21,820 : INFO : orderbook received
+2019-06-27 10:49:21,820 : INFO : orderbook received
+2019-06-27 10:49:21,980 : INFO : Order found is True
+2019-06-27 10:49:21,980 : INFO : Order found is True
+2019-06-27 10:49:21,980 : INFO : order found
+2019-06-27 10:49:21,980 : INFO : order found
+2019-06-27 10:49:21,998 : INFO : observing open order......
+2019-06-27 10:49:21,998 : INFO : observing open order......
+2019-06-27 10:49:25,853 : INFO : orderbook received
+2019-06-27 10:49:25,853 : INFO : orderbook received
+2019-06-27 10:49:26,251 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:49:26,251 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:49:27,232 : INFO : orderbook received
+2019-06-27 10:49:27,232 : INFO : orderbook received
+2019-06-27 10:49:32,458 : INFO : Order found is True
+2019-06-27 10:49:32,458 : INFO : Order found is True
+2019-06-27 10:49:32,458 : INFO : order found
+2019-06-27 10:49:32,458 : INFO : order found
+2019-06-27 10:49:32,479 : INFO : observing open order......
+2019-06-27 10:49:32,479 : INFO : observing open order......
+2019-06-27 10:49:36,454 : INFO : orderbook received
+2019-06-27 10:49:36,454 : INFO : orderbook received
+2019-06-27 10:49:47,111 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:49:47,111 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:49:47,148 : INFO : spread met condition
+2019-06-27 10:49:47,148 : INFO : spread met condition
+2019-06-27 10:49:47,646 : INFO : orderbook received
+2019-06-27 10:49:47,646 : INFO : orderbook received
+2019-06-27 10:49:48,326 : INFO : Order found is True
+2019-06-27 10:49:48,326 : INFO : Order found is True
+2019-06-27 10:49:48,327 : INFO : order found
+2019-06-27 10:49:48,327 : INFO : order found
+2019-06-27 10:49:48,368 : INFO : observing open order......
+2019-06-27 10:49:48,368 : INFO : observing open order......
+2019-06-27 10:49:48,903 : INFO : orderbook received
+2019-06-27 10:49:48,903 : INFO : orderbook received
+2019-06-27 10:49:52,765 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:49:52,765 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:49:53,184 : INFO : orderbook received
+2019-06-27 10:49:53,184 : INFO : orderbook received
+2019-06-27 10:49:53,351 : INFO : Order found is True
+2019-06-27 10:49:53,351 : INFO : Order found is True
+2019-06-27 10:49:53,352 : INFO : order found
+2019-06-27 10:49:53,352 : INFO : order found
+2019-06-27 10:49:53,443 : INFO : observing open order......
+2019-06-27 10:49:53,443 : INFO : observing open order......
+2019-06-27 10:49:58,978 : INFO : orderbook received
+2019-06-27 10:49:58,978 : INFO : orderbook received
+2019-06-27 10:49:59,380 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:49:59,380 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:49:59,424 : INFO : spread met condition
+2019-06-27 10:49:59,424 : INFO : spread met condition
+2019-06-27 10:50:03,432 : INFO : orderbook received
+2019-06-27 10:50:03,432 : INFO : orderbook received
+2019-06-27 10:50:13,929 : INFO : Order found is True
+2019-06-27 10:50:13,929 : INFO : Order found is True
+2019-06-27 10:50:13,929 : INFO : order found
+2019-06-27 10:50:13,929 : INFO : order found
+2019-06-27 10:50:13,955 : INFO : observing open order......
+2019-06-27 10:50:13,955 : INFO : observing open order......
+2019-06-27 10:50:14,385 : INFO : orderbook received
+2019-06-27 10:50:14,385 : INFO : orderbook received
+2019-06-27 10:50:14,748 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:50:14,748 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:50:15,759 : INFO : orderbook received
+2019-06-27 10:50:15,759 : INFO : orderbook received
+2019-06-27 10:50:19,658 : INFO : Order found is True
+2019-06-27 10:50:19,658 : INFO : Order found is True
+2019-06-27 10:50:19,659 : INFO : order found
+2019-06-27 10:50:19,659 : INFO : order found
+2019-06-27 10:50:19,684 : INFO : observing open order......
+2019-06-27 10:50:19,684 : INFO : observing open order......
+2019-06-27 10:50:19,761 : INFO : orderbook received
+2019-06-27 10:50:19,761 : INFO : orderbook received
+2019-06-27 10:50:20,497 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:50:20,497 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:50:20,535 : INFO : spread met condition
+2019-06-27 10:50:20,535 : INFO : spread met condition
+2019-06-27 10:50:25,975 : INFO : orderbook received
+2019-06-27 10:50:25,975 : INFO : orderbook received
+2019-06-27 10:50:26,199 : INFO : Order found is True
+2019-06-27 10:50:26,199 : INFO : Order found is True
+2019-06-27 10:50:26,200 : INFO : order found
+2019-06-27 10:50:26,200 : INFO : order found
+2019-06-27 10:50:26,225 : INFO : observing open order......
+2019-06-27 10:50:26,225 : INFO : observing open order......
+2019-06-27 10:50:40,357 : INFO : orderbook received
+2019-06-27 10:50:40,357 : INFO : orderbook received
+2019-06-27 10:50:40,717 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:50:40,717 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:50:41,470 : INFO : orderbook received
+2019-06-27 10:50:41,470 : INFO : orderbook received
+2019-06-27 10:50:41,612 : INFO : Order found is True
+2019-06-27 10:50:41,612 : INFO : Order found is True
+2019-06-27 10:50:41,612 : INFO : order found
+2019-06-27 10:50:41,612 : INFO : order found
+2019-06-27 10:50:41,646 : INFO : observing open order......
+2019-06-27 10:50:41,646 : INFO : observing open order......
+2019-06-27 10:50:45,279 : INFO : orderbook received
+2019-06-27 10:50:45,279 : INFO : orderbook received
+2019-06-27 10:50:45,680 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:50:45,680 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:50:45,701 : INFO : spread met condition
+2019-06-27 10:50:45,701 : INFO : spread met condition
+2019-06-27 10:50:46,263 : INFO : orderbook received
+2019-06-27 10:50:46,263 : INFO : orderbook received
+2019-06-27 10:50:46,956 : INFO : Order found is True
+2019-06-27 10:50:46,956 : INFO : Order found is True
+2019-06-27 10:50:46,957 : INFO : order found
+2019-06-27 10:50:46,957 : INFO : order found
+2019-06-27 10:50:46,980 : INFO : observing open order......
+2019-06-27 10:50:46,980 : INFO : observing open order......
+2019-06-27 10:50:52,485 : INFO : orderbook received
+2019-06-27 10:50:52,485 : INFO : orderbook received
+2019-06-27 10:50:56,124 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:50:56,124 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:51:06,918 : INFO : orderbook received
+2019-06-27 10:51:06,918 : INFO : orderbook received
+2019-06-27 10:51:07,135 : INFO : Order found is True
+2019-06-27 10:51:07,135 : INFO : Order found is True
+2019-06-27 10:51:07,136 : INFO : order found
+2019-06-27 10:51:07,136 : INFO : order found
+2019-06-27 10:51:07,177 : INFO : observing open order......
+2019-06-27 10:51:07,177 : INFO : observing open order......
+2019-06-27 10:51:07,722 : INFO : orderbook received
+2019-06-27 10:51:07,722 : INFO : orderbook received
+2019-06-27 10:51:08,139 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:51:08,139 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:51:08,226 : INFO : spread met condition
+2019-06-27 10:51:08,226 : INFO : spread met condition
+2019-06-27 10:51:12,544 : INFO : orderbook received
+2019-06-27 10:51:12,544 : INFO : orderbook received
+2019-06-27 10:51:12,730 : INFO : Order found is True
+2019-06-27 10:51:12,730 : INFO : Order found is True
+2019-06-27 10:51:12,731 : INFO : order found
+2019-06-27 10:51:12,731 : INFO : order found
+2019-06-27 10:51:12,801 : INFO : observing open order......
+2019-06-27 10:51:12,801 : INFO : observing open order......
+2019-06-27 10:51:13,265 : INFO : orderbook received
+2019-06-27 10:51:13,265 : INFO : orderbook received
+2019-06-27 10:51:18,743 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:51:18,743 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:51:19,418 : INFO : orderbook received
+2019-06-27 10:51:19,418 : INFO : orderbook received
+2019-06-27 10:51:22,688 : INFO : Order found is True
+2019-06-27 10:51:22,688 : INFO : Order found is True
+2019-06-27 10:51:22,689 : INFO : order found
+2019-06-27 10:51:22,689 : INFO : order found
+2019-06-27 10:51:22,705 : INFO : observing open order......
+2019-06-27 10:51:22,705 : INFO : observing open order......
+2019-06-27 10:51:33,078 : INFO : orderbook received
+2019-06-27 10:51:33,078 : INFO : orderbook received
+2019-06-27 10:51:33,929 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:51:33,929 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:51:33,966 : INFO : spread met condition
+2019-06-27 10:51:33,966 : INFO : spread met condition
+2019-06-27 10:51:34,322 : INFO : orderbook received
+2019-06-27 10:51:34,322 : INFO : orderbook received
+2019-06-27 10:51:34,516 : INFO : Order found is True
+2019-06-27 10:51:34,516 : INFO : Order found is True
+2019-06-27 10:51:34,517 : INFO : order found
+2019-06-27 10:51:34,517 : INFO : order found
+2019-06-27 10:51:34,555 : INFO : observing open order......
+2019-06-27 10:51:34,555 : INFO : observing open order......
+2019-06-27 10:51:38,563 : INFO : orderbook received
+2019-06-27 10:51:38,563 : INFO : orderbook received
+2019-06-27 10:51:38,902 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:51:38,902 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:51:39,780 : INFO : orderbook received
+2019-06-27 10:51:39,780 : INFO : orderbook received
+2019-06-27 10:51:45,049 : INFO : Order found is True
+2019-06-27 10:51:45,049 : INFO : Order found is True
+2019-06-27 10:51:45,050 : INFO : order found
+2019-06-27 10:51:45,050 : INFO : order found
+2019-06-27 10:51:45,090 : INFO : observing open order......
+2019-06-27 10:51:45,090 : INFO : observing open order......
+2019-06-27 10:51:48,903 : INFO : orderbook received
+2019-06-27 10:51:48,903 : INFO : orderbook received
+2019-06-27 10:51:59,611 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:51:59,611 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:51:59,646 : INFO : spread met condition
+2019-06-27 10:51:59,646 : INFO : spread met condition
+2019-06-27 10:52:00,067 : INFO : orderbook received
+2019-06-27 10:52:00,067 : INFO : orderbook received
+2019-06-27 10:52:00,652 : INFO : Order found is True
+2019-06-27 10:52:00,652 : INFO : Order found is True
+2019-06-27 10:52:00,653 : INFO : order found
+2019-06-27 10:52:00,653 : INFO : order found
+2019-06-27 10:52:00,711 : INFO : observing open order......
+2019-06-27 10:52:00,711 : INFO : observing open order......
+2019-06-27 10:52:01,125 : INFO : orderbook received
+2019-06-27 10:52:01,125 : INFO : orderbook received
+2019-06-27 10:52:04,814 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:52:04,814 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:52:05,247 : INFO : orderbook received
+2019-06-27 10:52:05,247 : INFO : orderbook received
+2019-06-27 10:52:05,411 : INFO : Order found is True
+2019-06-27 10:52:05,411 : INFO : Order found is True
+2019-06-27 10:52:05,411 : INFO : order found
+2019-06-27 10:52:05,411 : INFO : order found
+2019-06-27 10:52:05,439 : INFO : observing open order......
+2019-06-27 10:52:05,439 : INFO : observing open order......
+2019-06-27 10:52:10,922 : INFO : orderbook received
+2019-06-27 10:52:10,922 : INFO : orderbook received
+2019-06-27 10:52:11,305 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:52:11,305 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:52:11,342 : INFO : spread met condition
+2019-06-27 10:52:11,342 : INFO : spread met condition
+2019-06-27 10:52:15,641 : INFO : orderbook received
+2019-06-27 10:52:15,641 : INFO : orderbook received
+2019-06-27 10:52:26,150 : INFO : Order found is True
+2019-06-27 10:52:26,150 : INFO : Order found is True
+2019-06-27 10:52:26,151 : INFO : order found
+2019-06-27 10:52:26,151 : INFO : order found
+2019-06-27 10:52:26,177 : INFO : observing open order......
+2019-06-27 10:52:26,177 : INFO : observing open order......
+2019-06-27 10:52:26,636 : INFO : orderbook received
+2019-06-27 10:52:26,636 : INFO : orderbook received
+2019-06-27 10:52:26,996 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:52:26,996 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:52:27,844 : INFO : orderbook received
+2019-06-27 10:52:27,844 : INFO : orderbook received
+2019-06-27 10:52:31,397 : INFO : Order found is True
+2019-06-27 10:52:31,397 : INFO : Order found is True
+2019-06-27 10:52:31,398 : INFO : order found
+2019-06-27 10:52:31,398 : INFO : order found
+2019-06-27 10:52:31,422 : INFO : observing open order......
+2019-06-27 10:52:31,422 : INFO : observing open order......
+2019-06-27 10:52:31,506 : INFO : orderbook received
+2019-06-27 10:52:31,506 : INFO : orderbook received
+2019-06-27 10:52:32,247 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:52:32,247 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:52:32,283 : INFO : spread met condition
+2019-06-27 10:52:32,283 : INFO : spread met condition
+2019-06-27 10:52:37,724 : INFO : orderbook received
+2019-06-27 10:52:37,724 : INFO : orderbook received
+2019-06-27 10:52:37,960 : INFO : Order found is True
+2019-06-27 10:52:37,960 : INFO : Order found is True
+2019-06-27 10:52:37,961 : INFO : order found
+2019-06-27 10:52:37,961 : INFO : order found
+2019-06-27 10:52:38,004 : INFO : observing open order......
+2019-06-27 10:52:38,004 : INFO : observing open order......
+2019-06-27 10:52:51,922 : INFO : orderbook received
+2019-06-27 10:52:51,922 : INFO : orderbook received
+2019-06-27 10:52:52,348 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:52:52,348 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:52:53,098 : INFO : orderbook received
+2019-06-27 10:52:53,098 : INFO : orderbook received
+2019-06-27 10:52:53,283 : INFO : Order found is True
+2019-06-27 10:52:53,283 : INFO : Order found is True
+2019-06-27 10:52:53,284 : INFO : order found
+2019-06-27 10:52:53,284 : INFO : order found
+2019-06-27 10:52:53,310 : INFO : observing open order......
+2019-06-27 10:52:53,310 : INFO : observing open order......
+2019-06-27 10:52:56,933 : INFO : orderbook received
+2019-06-27 10:52:56,933 : INFO : orderbook received
+2019-06-27 10:52:57,317 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:52:57,317 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:52:57,395 : INFO : spread met condition
+2019-06-27 10:52:57,395 : INFO : spread met condition
+2019-06-27 10:52:57,979 : INFO : orderbook received
+2019-06-27 10:52:57,979 : INFO : orderbook received
+2019-06-27 10:52:58,594 : INFO : Order found is True
+2019-06-27 10:52:58,594 : INFO : Order found is True
+2019-06-27 10:52:58,595 : INFO : order found
+2019-06-27 10:52:58,595 : INFO : order found
+2019-06-27 10:52:58,631 : INFO : observing open order......
+2019-06-27 10:52:58,631 : INFO : observing open order......
+2019-06-27 10:53:04,197 : INFO : orderbook received
+2019-06-27 10:53:04,197 : INFO : orderbook received
+2019-06-27 10:53:08,269 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:53:08,269 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:53:18,948 : INFO : orderbook received
+2019-06-27 10:53:18,948 : INFO : orderbook received
+2019-06-27 10:53:19,162 : INFO : Order found is True
+2019-06-27 10:53:19,162 : INFO : Order found is True
+2019-06-27 10:53:19,163 : INFO : order found
+2019-06-27 10:53:19,163 : INFO : order found
+2019-06-27 10:53:19,185 : INFO : observing open order......
+2019-06-27 10:53:19,185 : INFO : observing open order......
+2019-06-27 10:53:19,628 : INFO : orderbook received
+2019-06-27 10:53:19,628 : INFO : orderbook received
+2019-06-27 10:53:19,971 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:53:19,971 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:53:20,013 : INFO : spread met condition
+2019-06-27 10:53:20,013 : INFO : spread met condition
+2019-06-27 10:53:24,122 : INFO : orderbook received
+2019-06-27 10:53:24,122 : INFO : orderbook received
+2019-06-27 10:53:24,389 : INFO : Order found is True
+2019-06-27 10:53:24,389 : INFO : Order found is True
+2019-06-27 10:53:24,390 : INFO : order found
+2019-06-27 10:53:24,390 : INFO : order found
+2019-06-27 10:53:24,423 : INFO : observing open order......
+2019-06-27 10:53:24,423 : INFO : observing open order......
+2019-06-27 10:53:24,898 : INFO : orderbook received
+2019-06-27 10:53:24,898 : INFO : orderbook received
+2019-06-27 10:53:30,328 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:53:30,328 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:53:31,026 : INFO : orderbook received
+2019-06-27 10:53:31,026 : INFO : orderbook received
+2019-06-27 10:53:34,841 : INFO : Order found is True
+2019-06-27 10:53:34,841 : INFO : Order found is True
+2019-06-27 10:53:34,841 : INFO : order found
+2019-06-27 10:53:34,841 : INFO : order found
+2019-06-27 10:53:34,865 : INFO : observing open order......
+2019-06-27 10:53:34,865 : INFO : observing open order......
+2019-06-27 10:53:45,217 : INFO : orderbook received
+2019-06-27 10:53:45,217 : INFO : orderbook received
+2019-06-27 10:53:45,988 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:53:45,988 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:53:46,029 : INFO : spread met condition
+2019-06-27 10:53:46,029 : INFO : spread met condition
+2019-06-27 10:53:46,440 : INFO : orderbook received
+2019-06-27 10:53:46,440 : INFO : orderbook received
+2019-06-27 10:53:46,620 : INFO : Order found is True
+2019-06-27 10:53:46,620 : INFO : Order found is True
+2019-06-27 10:53:46,620 : INFO : order found
+2019-06-27 10:53:46,620 : INFO : order found
+2019-06-27 10:53:46,655 : INFO : observing open order......
+2019-06-27 10:53:46,655 : INFO : observing open order......
+2019-06-27 10:53:50,669 : INFO : orderbook received
+2019-06-27 10:53:50,669 : INFO : orderbook received
+2019-06-27 10:53:51,127 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:53:51,127 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:53:51,935 : INFO : orderbook received
+2019-06-27 10:53:51,935 : INFO : orderbook received
+2019-06-27 10:53:57,163 : INFO : Order found is True
+2019-06-27 10:53:57,163 : INFO : Order found is True
+2019-06-27 10:53:57,164 : INFO : order found
+2019-06-27 10:53:57,164 : INFO : order found
+2019-06-27 10:53:57,178 : INFO : observing open order......
+2019-06-27 10:53:57,178 : INFO : observing open order......
+2019-06-27 10:54:01,113 : INFO : orderbook received
+2019-06-27 10:54:01,113 : INFO : orderbook received
+2019-06-27 10:54:11,803 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:54:11,803 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:54:11,841 : INFO : spread met condition
+2019-06-27 10:54:11,841 : INFO : spread met condition
+2019-06-27 10:54:12,323 : INFO : orderbook received
+2019-06-27 10:54:12,323 : INFO : orderbook received
+2019-06-27 10:54:12,904 : INFO : Order found is True
+2019-06-27 10:54:12,904 : INFO : Order found is True
+2019-06-27 10:54:12,904 : INFO : order found
+2019-06-27 10:54:12,904 : INFO : order found
+2019-06-27 10:54:12,928 : INFO : observing open order......
+2019-06-27 10:54:12,928 : INFO : observing open order......
+2019-06-27 10:54:13,296 : INFO : orderbook received
+2019-06-27 10:54:13,296 : INFO : orderbook received
+2019-06-27 10:54:17,161 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:54:17,161 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:54:17,552 : INFO : orderbook received
+2019-06-27 10:54:17,552 : INFO : orderbook received
+2019-06-27 10:54:17,750 : INFO : Order found is True
+2019-06-27 10:54:17,750 : INFO : Order found is True
+2019-06-27 10:54:17,751 : INFO : order found
+2019-06-27 10:54:17,751 : INFO : order found
+2019-06-27 10:54:17,770 : INFO : observing open order......
+2019-06-27 10:54:17,770 : INFO : observing open order......
+2019-06-27 10:54:23,260 : INFO : orderbook received
+2019-06-27 10:54:23,260 : INFO : orderbook received
+2019-06-27 10:54:23,679 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:54:23,679 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:54:23,714 : INFO : spread met condition
+2019-06-27 10:54:23,714 : INFO : spread met condition
+2019-06-27 10:54:28,240 : INFO : orderbook received
+2019-06-27 10:54:28,240 : INFO : orderbook received
+2019-06-27 10:54:33,671 : INFO : Order found is False
+2019-06-27 10:54:33,671 : INFO : Order found is False
+2019-06-27 10:54:33,672 : INFO : order not found, so it has been filled or is gone
+2019-06-27 10:54:33,672 : INFO : order not found, so it has been filled or is gone
+2019-06-27 10:54:34,553 : INFO : Couldnt cancel order in BRIDGE.GIN:BRIDGE.BTC
+2019-06-27 10:54:34,553 : INFO : Couldnt cancel order in BRIDGE.GIN:BRIDGE.BTC
+2019-06-27 10:54:35,072 : INFO : orderbook received
+2019-06-27 10:54:35,072 : INFO : orderbook received
+2019-06-27 10:54:35,458 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:54:35,458 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:54:36,191 : INFO : orderbook received
+2019-06-27 10:54:36,191 : INFO : orderbook received
+2019-06-27 10:54:40,310 : INFO : orderbook received
+2019-06-27 10:54:40,310 : INFO : orderbook received
+2019-06-27 10:54:40,344 : INFO : balance for BRIDGE.BTC is 4.68569981565748 
+2019-06-27 10:54:40,344 : INFO : balance for BRIDGE.BTC is 4.68569981565748 
+2019-06-27 10:54:40,407 : INFO : orderbook received
+2019-06-27 10:54:40,407 : INFO : orderbook received
+2019-06-27 10:54:41,252 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:54:41,252 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:54:41,295 : INFO : spread met condition
+2019-06-27 10:54:41,295 : INFO : spread met condition
+2019-06-27 10:54:47,112 : INFO : orderbook received
+2019-06-27 10:54:47,112 : INFO : orderbook received
+2019-06-27 10:54:51,160 : INFO : orderbook received
+2019-06-27 10:54:51,160 : INFO : orderbook received
+2019-06-27 10:54:56,410 : INFO : balance for BRIDGE.BTC is 4.68569981565748 
+2019-06-27 10:54:56,410 : INFO : balance for BRIDGE.BTC is 4.68569981565748 
+2019-06-27 10:54:56,433 : INFO : spread met condition
+2019-06-27 10:54:56,433 : INFO : spread met condition
+2019-06-27 10:54:56,434 : ERROR : Place order for 0.00001535 
+2019-06-27 10:54:56,434 : ERROR : Place order for 0.00001535 
+2019-06-27 10:55:00,918 : INFO : order placed for 4.67569982 @ 0.00001535
+2019-06-27 10:55:00,918 : INFO : order placed for 4.67569982 @ 0.00001535
+2019-06-27 10:55:01,004 : INFO : Order placed for 0.00001535 4.67569982
+2019-06-27 10:55:01,004 : INFO : Order placed for 0.00001535 4.67569982
+2019-06-27 10:55:01,218 : INFO : orderbook received
+2019-06-27 10:55:01,218 : INFO : orderbook received
+2019-06-27 10:55:01,833 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:55:01,833 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:55:03,396 : INFO : orderbook received
+2019-06-27 10:55:03,396 : INFO : orderbook received
+2019-06-27 10:55:07,390 : INFO : Order found is True
+2019-06-27 10:55:07,390 : INFO : Order found is True
+2019-06-27 10:55:07,391 : INFO : order found
+2019-06-27 10:55:07,391 : INFO : order found
+2019-06-27 10:55:07,435 : INFO : observing open order......
+2019-06-27 10:55:07,435 : INFO : observing open order......
+2019-06-27 10:55:07,472 : INFO : orderbook received
+2019-06-27 10:55:07,472 : INFO : orderbook received
+2019-06-27 10:55:07,833 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:55:07,833 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:55:07,872 : INFO : spread met condition
+2019-06-27 10:55:07,872 : INFO : spread met condition
+2019-06-27 10:55:12,395 : INFO : orderbook received
+2019-06-27 10:55:12,395 : INFO : orderbook received
+2019-06-27 10:55:12,626 : INFO : Order found is True
+2019-06-27 10:55:12,626 : INFO : Order found is True
+2019-06-27 10:55:12,627 : INFO : order found
+2019-06-27 10:55:12,627 : INFO : order found
+2019-06-27 10:55:12,663 : INFO : observing open order......
+2019-06-27 10:55:12,663 : INFO : observing open order......
+2019-06-27 10:55:13,092 : INFO : orderbook received
+2019-06-27 10:55:13,092 : INFO : orderbook received
+2019-06-27 10:55:17,778 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:55:17,778 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:55:23,811 : INFO : orderbook received
+2019-06-27 10:55:23,811 : INFO : orderbook received
+2019-06-27 10:55:24,068 : INFO : Order found is True
+2019-06-27 10:55:24,068 : INFO : Order found is True
+2019-06-27 10:55:24,069 : INFO : order found
+2019-06-27 10:55:24,069 : INFO : order found
+2019-06-27 10:55:24,111 : INFO : observing open order......
+2019-06-27 10:55:24,111 : INFO : observing open order......
+2019-06-27 10:55:24,161 : INFO : orderbook received
+2019-06-27 10:55:24,161 : INFO : orderbook received
+2019-06-27 10:55:24,589 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:55:24,589 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:55:24,626 : INFO : spread met condition
+2019-06-27 10:55:24,626 : INFO : spread met condition
+2019-06-27 10:55:29,640 : INFO : orderbook received
+2019-06-27 10:55:29,640 : INFO : orderbook received
+2019-06-27 10:55:29,828 : INFO : Order found is True
+2019-06-27 10:55:29,828 : INFO : Order found is True
+2019-06-27 10:55:29,829 : INFO : order found
+2019-06-27 10:55:29,829 : INFO : order found
+2019-06-27 10:55:29,855 : INFO : observing open order......
+2019-06-27 10:55:29,855 : INFO : observing open order......
+2019-06-27 10:55:29,896 : INFO : orderbook received
+2019-06-27 10:55:29,896 : INFO : orderbook received
+2019-06-27 10:55:30,424 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:55:30,424 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:55:40,829 : INFO : orderbook received
+2019-06-27 10:55:40,829 : INFO : orderbook received
+2019-06-27 10:55:41,169 : INFO : Order found is True
+2019-06-27 10:55:41,169 : INFO : Order found is True
+2019-06-27 10:55:41,170 : INFO : order found
+2019-06-27 10:55:41,170 : INFO : order found
+2019-06-27 10:55:41,189 : INFO : observing open order......
+2019-06-27 10:55:41,189 : INFO : observing open order......
+2019-06-27 10:55:41,224 : INFO : orderbook received
+2019-06-27 10:55:41,224 : INFO : orderbook received
+2019-06-27 10:55:42,121 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:55:42,121 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:55:42,161 : INFO : spread met condition
+2019-06-27 10:55:42,161 : INFO : spread met condition
+2019-06-27 10:55:46,862 : INFO : orderbook received
+2019-06-27 10:55:46,862 : INFO : orderbook received
+2019-06-27 10:55:47,038 : INFO : Order found is True
+2019-06-27 10:55:47,038 : INFO : Order found is True
+2019-06-27 10:55:47,038 : INFO : order found
+2019-06-27 10:55:47,038 : INFO : order found
+2019-06-27 10:55:47,057 : INFO : observing open order......
+2019-06-27 10:55:47,057 : INFO : observing open order......
+2019-06-27 10:55:47,109 : INFO : orderbook received
+2019-06-27 10:55:47,109 : INFO : orderbook received
+2019-06-27 10:55:47,392 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:55:47,392 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:55:48,399 : INFO : orderbook received
+2019-06-27 10:55:48,399 : INFO : orderbook received
+2019-06-27 10:55:52,413 : INFO : Order found is True
+2019-06-27 10:55:52,413 : INFO : Order found is True
+2019-06-27 10:55:52,413 : INFO : order found
+2019-06-27 10:55:52,413 : INFO : order found
+2019-06-27 10:55:52,439 : INFO : observing open order......
+2019-06-27 10:55:52,439 : INFO : observing open order......
+2019-06-27 10:55:52,476 : INFO : orderbook received
+2019-06-27 10:55:52,476 : INFO : orderbook received
+2019-06-27 10:55:58,247 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:55:58,247 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:55:58,273 : INFO : spread met condition
+2019-06-27 10:55:58,273 : INFO : spread met condition
+2019-06-27 10:55:58,914 : INFO : orderbook received
+2019-06-27 10:55:58,914 : INFO : orderbook received
+2019-06-27 10:55:59,108 : INFO : Order found is True
+2019-06-27 10:55:59,108 : INFO : Order found is True
+2019-06-27 10:55:59,109 : INFO : order found
+2019-06-27 10:55:59,109 : INFO : order found
+2019-06-27 10:55:59,130 : INFO : observing open order......
+2019-06-27 10:55:59,130 : INFO : observing open order......
+2019-06-27 10:55:59,584 : INFO : orderbook received
+2019-06-27 10:55:59,584 : INFO : orderbook received
+2019-06-27 10:56:05,009 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:56:05,009 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:56:06,283 : INFO : orderbook received
+2019-06-27 10:56:06,283 : INFO : orderbook received
+2019-06-27 10:56:06,589 : INFO : Order found is True
+2019-06-27 10:56:06,589 : INFO : Order found is True
+2019-06-27 10:56:06,590 : INFO : order found
+2019-06-27 10:56:06,590 : INFO : order found
+2019-06-27 10:56:06,661 : INFO : observing open order......
+2019-06-27 10:56:06,661 : INFO : observing open order......
+2019-06-27 10:56:06,739 : INFO : orderbook received
+2019-06-27 10:56:06,739 : INFO : orderbook received
+2019-06-27 10:56:07,505 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:56:07,505 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:56:07,543 : INFO : spread met condition
+2019-06-27 10:56:07,543 : INFO : spread met condition
+2019-06-27 10:56:19,660 : INFO : orderbook received
+2019-06-27 10:56:19,660 : INFO : orderbook received
+2019-06-27 10:56:19,829 : INFO : Order found is True
+2019-06-27 10:56:19,829 : INFO : Order found is True
+2019-06-27 10:56:19,829 : INFO : order found
+2019-06-27 10:56:19,829 : INFO : order found
+2019-06-27 10:56:19,847 : INFO : observing open order......
+2019-06-27 10:56:19,847 : INFO : observing open order......
+2019-06-27 10:56:19,876 : INFO : orderbook received
+2019-06-27 10:56:19,876 : INFO : orderbook received
+2019-06-27 10:56:20,272 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:56:20,272 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:56:25,504 : INFO : orderbook received
+2019-06-27 10:56:25,504 : INFO : orderbook received
+2019-06-27 10:56:25,681 : INFO : Order found is True
+2019-06-27 10:56:25,681 : INFO : Order found is True
+2019-06-27 10:56:25,681 : INFO : order found
+2019-06-27 10:56:25,681 : INFO : order found
+2019-06-27 10:56:25,710 : INFO : observing open order......
+2019-06-27 10:56:25,710 : INFO : observing open order......
+2019-06-27 10:56:25,744 : INFO : orderbook received
+2019-06-27 10:56:25,744 : INFO : orderbook received
+2019-06-27 10:56:26,085 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:56:26,085 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:56:26,122 : INFO : spread met condition
+2019-06-27 10:56:26,122 : INFO : spread met condition
+2019-06-27 10:56:30,636 : INFO : orderbook received
+2019-06-27 10:56:30,636 : INFO : orderbook received
+2019-06-27 10:56:36,100 : INFO : Order found is True
+2019-06-27 10:56:36,100 : INFO : Order found is True
+2019-06-27 10:56:36,100 : INFO : order found
+2019-06-27 10:56:36,100 : INFO : order found
+2019-06-27 10:56:36,120 : INFO : observing open order......
+2019-06-27 10:56:36,120 : INFO : observing open order......
+2019-06-27 10:56:36,155 : INFO : orderbook received
+2019-06-27 10:56:36,155 : INFO : orderbook received
+2019-06-27 10:56:36,800 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:56:36,800 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:56:38,057 : INFO : orderbook received
+2019-06-27 10:56:38,057 : INFO : orderbook received
+2019-06-27 10:56:43,706 : INFO : Order found is True
+2019-06-27 10:56:43,706 : INFO : Order found is True
+2019-06-27 10:56:43,707 : INFO : order found
+2019-06-27 10:56:43,707 : INFO : order found
+2019-06-27 10:56:43,735 : INFO : observing open order......
+2019-06-27 10:56:43,735 : INFO : observing open order......
+2019-06-27 10:56:43,766 : INFO : orderbook received
+2019-06-27 10:56:43,766 : INFO : orderbook received
+2019-06-27 10:56:44,283 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:56:44,283 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:56:44,350 : INFO : spread met condition
+2019-06-27 10:56:44,350 : INFO : spread met condition
+2019-06-27 10:56:45,314 : INFO : orderbook received
+2019-06-27 10:56:45,314 : INFO : orderbook received
+2019-06-27 10:56:45,531 : INFO : Order found is True
+2019-06-27 10:56:45,531 : INFO : Order found is True
+2019-06-27 10:56:45,532 : INFO : order found
+2019-06-27 10:56:45,532 : INFO : order found
+2019-06-27 10:56:45,605 : INFO : observing open order......
+2019-06-27 10:56:45,605 : INFO : observing open order......
+2019-06-27 10:56:46,172 : INFO : orderbook received
+2019-06-27 10:56:46,172 : INFO : orderbook received
+2019-06-27 10:56:50,677 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:56:50,677 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:56:56,835 : INFO : orderbook received
+2019-06-27 10:56:56,835 : INFO : orderbook received
+2019-06-27 10:56:57,017 : INFO : Order found is True
+2019-06-27 10:56:57,017 : INFO : Order found is True
+2019-06-27 10:56:57,018 : INFO : order found
+2019-06-27 10:56:57,018 : INFO : order found
+2019-06-27 10:56:57,105 : INFO : observing open order......
+2019-06-27 10:56:57,105 : INFO : observing open order......
+2019-06-27 10:56:57,146 : INFO : orderbook received
+2019-06-27 10:56:57,146 : INFO : orderbook received
+2019-06-27 10:56:57,758 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:56:57,758 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:56:57,857 : INFO : spread met condition
+2019-06-27 10:56:57,857 : INFO : spread met condition
+2019-06-27 10:57:02,987 : INFO : orderbook received
+2019-06-27 10:57:02,987 : INFO : orderbook received
+2019-06-27 10:57:03,184 : INFO : Order found is True
+2019-06-27 10:57:03,184 : INFO : Order found is True
+2019-06-27 10:57:03,185 : INFO : order found
+2019-06-27 10:57:03,185 : INFO : order found
+2019-06-27 10:57:03,221 : INFO : observing open order......
+2019-06-27 10:57:03,221 : INFO : observing open order......
+2019-06-27 10:57:03,273 : INFO : orderbook received
+2019-06-27 10:57:03,273 : INFO : orderbook received
+2019-06-27 10:57:03,947 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:57:03,947 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:57:13,592 : INFO : orderbook received
+2019-06-27 10:57:13,592 : INFO : orderbook received
+2019-06-27 10:57:13,762 : INFO : Order found is True
+2019-06-27 10:57:13,762 : INFO : Order found is True
+2019-06-27 10:57:13,762 : INFO : order found
+2019-06-27 10:57:13,762 : INFO : order found
+2019-06-27 10:57:13,783 : INFO : observing open order......
+2019-06-27 10:57:13,783 : INFO : observing open order......
+2019-06-27 10:57:13,814 : INFO : orderbook received
+2019-06-27 10:57:13,814 : INFO : orderbook received
+2019-06-27 10:57:14,165 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:57:14,165 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:57:14,203 : INFO : spread met condition
+2019-06-27 10:57:14,203 : INFO : spread met condition
+2019-06-27 10:57:19,274 : INFO : orderbook received
+2019-06-27 10:57:19,274 : INFO : orderbook received
+2019-06-27 10:57:19,496 : INFO : Order found is True
+2019-06-27 10:57:19,496 : INFO : Order found is True
+2019-06-27 10:57:19,496 : INFO : order found
+2019-06-27 10:57:19,496 : INFO : order found
+2019-06-27 10:57:19,531 : INFO : observing open order......
+2019-06-27 10:57:19,531 : INFO : observing open order......
+2019-06-27 10:57:19,574 : INFO : orderbook received
+2019-06-27 10:57:19,574 : INFO : orderbook received
+2019-06-27 10:57:19,976 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:57:19,976 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:57:21,059 : INFO : orderbook received
+2019-06-27 10:57:21,059 : INFO : orderbook received
+2019-06-27 10:57:25,870 : INFO : Order found is True
+2019-06-27 10:57:25,870 : INFO : Order found is True
+2019-06-27 10:57:25,871 : INFO : order found
+2019-06-27 10:57:25,871 : INFO : order found
+2019-06-27 10:57:25,910 : INFO : observing open order......
+2019-06-27 10:57:25,910 : INFO : observing open order......
+2019-06-27 10:57:25,946 : INFO : orderbook received
+2019-06-27 10:57:25,946 : INFO : orderbook received
+2019-06-27 10:57:31,571 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:57:31,571 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:57:31,617 : INFO : spread met condition
+2019-06-27 10:57:31,617 : INFO : spread met condition
+2019-06-27 10:57:32,300 : INFO : orderbook received
+2019-06-27 10:57:32,300 : INFO : orderbook received
+2019-06-27 10:57:32,477 : INFO : Order found is True
+2019-06-27 10:57:32,477 : INFO : Order found is True
+2019-06-27 10:57:32,477 : INFO : order found
+2019-06-27 10:57:32,477 : INFO : order found
+2019-06-27 10:57:32,505 : INFO : observing open order......
+2019-06-27 10:57:32,505 : INFO : observing open order......
+2019-06-27 10:57:32,912 : INFO : orderbook received
+2019-06-27 10:57:32,912 : INFO : orderbook received
+2019-06-27 10:57:37,011 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:57:37,011 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:57:37,668 : INFO : orderbook received
+2019-06-27 10:57:37,668 : INFO : orderbook received
+2019-06-27 10:57:37,870 : INFO : Order found is True
+2019-06-27 10:57:37,870 : INFO : Order found is True
+2019-06-27 10:57:37,871 : INFO : order found
+2019-06-27 10:57:37,871 : INFO : order found
+2019-06-27 10:57:37,897 : INFO : observing open order......
+2019-06-27 10:57:37,897 : INFO : observing open order......
+2019-06-27 10:57:37,950 : INFO : orderbook received
+2019-06-27 10:57:37,950 : INFO : orderbook received
+2019-06-27 10:57:38,322 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:57:38,322 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:57:38,358 : INFO : spread met condition
+2019-06-27 10:57:38,358 : INFO : spread met condition
+2019-06-27 10:57:48,867 : INFO : orderbook received
+2019-06-27 10:57:48,867 : INFO : orderbook received
+2019-06-27 10:57:49,166 : INFO : Order found is True
+2019-06-27 10:57:49,166 : INFO : Order found is True
+2019-06-27 10:57:49,167 : INFO : order found
+2019-06-27 10:57:49,167 : INFO : order found
+2019-06-27 10:57:49,204 : INFO : observing open order......
+2019-06-27 10:57:49,204 : INFO : observing open order......
+2019-06-27 10:57:49,247 : INFO : orderbook received
+2019-06-27 10:57:49,247 : INFO : orderbook received
+2019-06-27 10:57:49,876 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:57:49,876 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:57:57,367 : INFO : orderbook received
+2019-06-27 10:57:57,367 : INFO : orderbook received
+2019-06-27 10:57:57,606 : INFO : Order found is True
+2019-06-27 10:57:57,606 : INFO : Order found is True
+2019-06-27 10:57:57,608 : INFO : order found
+2019-06-27 10:57:57,608 : INFO : order found
+2019-06-27 10:57:57,645 : INFO : observing open order......
+2019-06-27 10:57:57,645 : INFO : observing open order......
+2019-06-27 10:57:57,702 : INFO : orderbook received
+2019-06-27 10:57:57,702 : INFO : orderbook received
+2019-06-27 10:57:58,236 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:57:58,236 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:57:58,287 : INFO : spread met condition
+2019-06-27 10:57:58,287 : INFO : spread met condition
+2019-06-27 10:58:05,022 : INFO : orderbook received
+2019-06-27 10:58:05,022 : INFO : orderbook received
+2019-06-27 10:58:10,503 : INFO : Order found is True
+2019-06-27 10:58:10,503 : INFO : Order found is True
+2019-06-27 10:58:10,504 : INFO : order found
+2019-06-27 10:58:10,504 : INFO : order found
+2019-06-27 10:58:10,540 : INFO : observing open order......
+2019-06-27 10:58:10,540 : INFO : observing open order......
+2019-06-27 10:58:10,577 : INFO : orderbook received
+2019-06-27 10:58:10,577 : INFO : orderbook received
+2019-06-27 10:58:11,035 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:58:11,035 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:58:12,187 : INFO : orderbook received
+2019-06-27 10:58:12,187 : INFO : orderbook received
+2019-06-27 10:58:15,883 : INFO : Order found is True
+2019-06-27 10:58:15,883 : INFO : Order found is True
+2019-06-27 10:58:15,883 : INFO : order found
+2019-06-27 10:58:15,883 : INFO : order found
+2019-06-27 10:58:15,905 : INFO : observing open order......
+2019-06-27 10:58:15,905 : INFO : observing open order......
+2019-06-27 10:58:15,935 : INFO : orderbook received
+2019-06-27 10:58:15,935 : INFO : orderbook received
+2019-06-27 10:58:16,326 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:58:16,326 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:58:16,353 : INFO : spread met condition
+2019-06-27 10:58:16,353 : INFO : spread met condition
+2019-06-27 10:58:17,053 : INFO : orderbook received
+2019-06-27 10:58:17,053 : INFO : orderbook received
+2019-06-27 10:58:17,223 : INFO : Order found is True
+2019-06-27 10:58:17,223 : INFO : Order found is True
+2019-06-27 10:58:17,223 : INFO : order found
+2019-06-27 10:58:17,223 : INFO : order found
+2019-06-27 10:58:17,255 : INFO : observing open order......
+2019-06-27 10:58:17,255 : INFO : observing open order......
+2019-06-27 10:58:17,724 : INFO : orderbook received
+2019-06-27 10:58:17,724 : INFO : orderbook received
+2019-06-27 10:58:22,023 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:58:22,023 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:58:28,295 : INFO : orderbook received
+2019-06-27 10:58:28,295 : INFO : orderbook received
+2019-06-27 10:58:28,476 : INFO : Order found is True
+2019-06-27 10:58:28,476 : INFO : Order found is True
+2019-06-27 10:58:28,477 : INFO : order found
+2019-06-27 10:58:28,477 : INFO : order found
+2019-06-27 10:58:28,514 : INFO : observing open order......
+2019-06-27 10:58:28,514 : INFO : observing open order......
+2019-06-27 10:58:28,561 : INFO : orderbook received
+2019-06-27 10:58:28,561 : INFO : orderbook received
+2019-06-27 10:58:28,952 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:58:28,952 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:58:28,996 : INFO : spread met condition
+2019-06-27 10:58:28,996 : INFO : spread met condition
+2019-06-27 10:58:33,916 : INFO : orderbook received
+2019-06-27 10:58:33,916 : INFO : orderbook received
+2019-06-27 10:58:34,105 : INFO : Order found is True
+2019-06-27 10:58:34,105 : INFO : Order found is True
+2019-06-27 10:58:34,107 : INFO : order found
+2019-06-27 10:58:34,107 : INFO : order found
+2019-06-27 10:58:34,131 : INFO : observing open order......
+2019-06-27 10:58:34,131 : INFO : observing open order......
+2019-06-27 10:58:34,160 : INFO : orderbook received
+2019-06-27 10:58:34,160 : INFO : orderbook received
+2019-06-27 10:58:34,543 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:58:34,543 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:58:45,299 : INFO : orderbook received
+2019-06-27 10:58:45,299 : INFO : orderbook received
+2019-06-27 10:58:45,558 : INFO : Order found is True
+2019-06-27 10:58:45,558 : INFO : Order found is True
+2019-06-27 10:58:45,558 : INFO : order found
+2019-06-27 10:58:45,558 : INFO : order found
+2019-06-27 10:58:45,576 : INFO : observing open order......
+2019-06-27 10:58:45,576 : INFO : observing open order......
+2019-06-27 10:58:45,624 : INFO : orderbook received
+2019-06-27 10:58:45,624 : INFO : orderbook received
+2019-06-27 10:58:46,129 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:58:46,129 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:58:46,169 : INFO : spread met condition
+2019-06-27 10:58:46,169 : INFO : spread met condition
+2019-06-27 10:58:51,238 : INFO : orderbook received
+2019-06-27 10:58:51,238 : INFO : orderbook received
+2019-06-27 10:58:51,411 : INFO : Order found is True
+2019-06-27 10:58:51,411 : INFO : Order found is True
+2019-06-27 10:58:51,412 : INFO : order found
+2019-06-27 10:58:51,412 : INFO : order found
+2019-06-27 10:58:51,456 : INFO : observing open order......
+2019-06-27 10:58:51,456 : INFO : observing open order......
+2019-06-27 10:58:51,575 : INFO : orderbook received
+2019-06-27 10:58:51,575 : INFO : orderbook received
+2019-06-27 10:58:52,020 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:58:52,020 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:58:53,177 : INFO : orderbook received
+2019-06-27 10:58:53,177 : INFO : orderbook received
+2019-06-27 10:58:57,349 : INFO : Order found is True
+2019-06-27 10:58:57,349 : INFO : Order found is True
+2019-06-27 10:58:57,350 : INFO : order found
+2019-06-27 10:58:57,350 : INFO : order found
+2019-06-27 10:58:57,383 : INFO : observing open order......
+2019-06-27 10:58:57,383 : INFO : observing open order......
+2019-06-27 10:58:57,475 : INFO : orderbook received
+2019-06-27 10:58:57,475 : INFO : orderbook received
+2019-06-27 10:59:08,142 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:59:08,142 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:59:08,179 : INFO : spread met condition
+2019-06-27 10:59:08,179 : INFO : spread met condition
+2019-06-27 10:59:08,887 : INFO : orderbook received
+2019-06-27 10:59:08,887 : INFO : orderbook received
+2019-06-27 10:59:09,058 : INFO : Order found is True
+2019-06-27 10:59:09,058 : INFO : Order found is True
+2019-06-27 10:59:09,059 : INFO : order found
+2019-06-27 10:59:09,059 : INFO : order found
+2019-06-27 10:59:09,093 : INFO : observing open order......
+2019-06-27 10:59:09,093 : INFO : observing open order......
+2019-06-27 10:59:09,641 : INFO : orderbook received
+2019-06-27 10:59:09,641 : INFO : orderbook received
+2019-06-27 10:59:13,907 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:59:13,907 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:59:14,625 : INFO : orderbook received
+2019-06-27 10:59:14,625 : INFO : orderbook received
+2019-06-27 10:59:14,845 : INFO : Order found is True
+2019-06-27 10:59:14,845 : INFO : Order found is True
+2019-06-27 10:59:14,846 : INFO : order found
+2019-06-27 10:59:14,846 : INFO : order found
+2019-06-27 10:59:14,883 : INFO : observing open order......
+2019-06-27 10:59:14,883 : INFO : observing open order......
+2019-06-27 10:59:14,938 : INFO : orderbook received
+2019-06-27 10:59:14,938 : INFO : orderbook received
+2019-06-27 10:59:15,450 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:59:15,450 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:59:15,489 : INFO : spread met condition
+2019-06-27 10:59:15,489 : INFO : spread met condition
+2019-06-27 10:59:30,999 : INFO : orderbook received
+2019-06-27 10:59:30,999 : INFO : orderbook received
+2019-06-27 10:59:31,226 : INFO : Order found is True
+2019-06-27 10:59:31,226 : INFO : Order found is True
+2019-06-27 10:59:31,227 : INFO : order found
+2019-06-27 10:59:31,227 : INFO : order found
+2019-06-27 10:59:31,266 : INFO : observing open order......
+2019-06-27 10:59:31,266 : INFO : observing open order......
+2019-06-27 10:59:31,309 : INFO : orderbook received
+2019-06-27 10:59:31,309 : INFO : orderbook received
+2019-06-27 10:59:31,679 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:59:31,679 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:59:36,700 : INFO : orderbook received
+2019-06-27 10:59:36,700 : INFO : orderbook received
+2019-06-27 10:59:36,893 : INFO : Order found is True
+2019-06-27 10:59:36,893 : INFO : Order found is True
+2019-06-27 10:59:36,894 : INFO : order found
+2019-06-27 10:59:36,894 : INFO : order found
+2019-06-27 10:59:36,909 : INFO : observing open order......
+2019-06-27 10:59:36,909 : INFO : observing open order......
+2019-06-27 10:59:36,967 : INFO : orderbook received
+2019-06-27 10:59:36,967 : INFO : orderbook received
+2019-06-27 10:59:37,335 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:59:37,335 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:59:37,372 : INFO : spread met condition
+2019-06-27 10:59:37,372 : INFO : spread met condition
+2019-06-27 10:59:42,201 : INFO : orderbook received
+2019-06-27 10:59:42,201 : INFO : orderbook received
+2019-06-27 10:59:52,695 : INFO : Order found is True
+2019-06-27 10:59:52,695 : INFO : Order found is True
+2019-06-27 10:59:52,696 : INFO : order found
+2019-06-27 10:59:52,696 : INFO : order found
+2019-06-27 10:59:52,731 : INFO : observing open order......
+2019-06-27 10:59:52,731 : INFO : observing open order......
+2019-06-27 10:59:52,766 : INFO : orderbook received
+2019-06-27 10:59:52,766 : INFO : orderbook received
+2019-06-27 10:59:53,319 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:59:53,319 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:59:54,490 : INFO : orderbook received
+2019-06-27 10:59:54,490 : INFO : orderbook received
+2019-06-27 10:59:58,945 : INFO : Order found is True
+2019-06-27 10:59:58,945 : INFO : Order found is True
+2019-06-27 10:59:58,946 : INFO : order found
+2019-06-27 10:59:58,946 : INFO : order found
+2019-06-27 10:59:58,973 : INFO : observing open order......
+2019-06-27 10:59:58,973 : INFO : observing open order......
+2019-06-27 10:59:59,010 : INFO : orderbook received
+2019-06-27 10:59:59,010 : INFO : orderbook received
+2019-06-27 10:59:59,447 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:59:59,447 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 10:59:59,484 : INFO : spread met condition
+2019-06-27 10:59:59,484 : INFO : spread met condition
+2019-06-27 11:00:00,150 : INFO : orderbook received
+2019-06-27 11:00:00,150 : INFO : orderbook received
+2019-06-27 11:00:01,181 : INFO : Order found is True
+2019-06-27 11:00:01,181 : INFO : Order found is True
+2019-06-27 11:00:01,182 : INFO : order found
+2019-06-27 11:00:01,182 : INFO : order found
+2019-06-27 11:00:01,200 : INFO : observing open order......
+2019-06-27 11:00:01,200 : INFO : observing open order......
+2019-06-27 11:00:01,569 : INFO : orderbook received
+2019-06-27 11:00:01,569 : INFO : orderbook received
+2019-06-27 11:00:05,572 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:00:05,572 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:00:16,558 : INFO : orderbook received
+2019-06-27 11:00:16,558 : INFO : orderbook received
+2019-06-27 11:00:16,723 : INFO : Order found is True
+2019-06-27 11:00:16,723 : INFO : Order found is True
+2019-06-27 11:00:16,724 : INFO : order found
+2019-06-27 11:00:16,724 : INFO : order found
+2019-06-27 11:00:16,737 : INFO : observing open order......
+2019-06-27 11:00:16,737 : INFO : observing open order......
+2019-06-27 11:00:16,768 : INFO : orderbook received
+2019-06-27 11:00:16,768 : INFO : orderbook received
+2019-06-27 11:00:17,230 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:00:17,230 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:00:17,269 : INFO : spread met condition
+2019-06-27 11:00:17,269 : INFO : spread met condition
+2019-06-27 11:00:22,437 : INFO : orderbook received
+2019-06-27 11:00:22,437 : INFO : orderbook received
+2019-06-27 11:00:22,637 : INFO : Order found is True
+2019-06-27 11:00:22,637 : INFO : Order found is True
+2019-06-27 11:00:22,638 : INFO : order found
+2019-06-27 11:00:22,638 : INFO : order found
+2019-06-27 11:00:22,673 : INFO : observing open order......
+2019-06-27 11:00:22,673 : INFO : observing open order......
+2019-06-27 11:00:22,703 : INFO : orderbook received
+2019-06-27 11:00:22,703 : INFO : orderbook received
+2019-06-27 11:00:23,199 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:00:23,199 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:00:40,297 : INFO : orderbook received
+2019-06-27 11:00:40,297 : INFO : orderbook received
+2019-06-27 11:00:40,479 : INFO : Order found is True
+2019-06-27 11:00:40,479 : INFO : Order found is True
+2019-06-27 11:00:40,480 : INFO : order found
+2019-06-27 11:00:40,480 : INFO : order found
+2019-06-27 11:00:40,519 : INFO : observing open order......
+2019-06-27 11:00:40,519 : INFO : observing open order......
+2019-06-27 11:00:40,564 : INFO : orderbook received
+2019-06-27 11:00:40,564 : INFO : orderbook received
+2019-06-27 11:00:41,038 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:00:41,038 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:00:41,064 : INFO : spread met condition
+2019-06-27 11:00:41,064 : INFO : spread met condition
+2019-06-27 11:00:46,463 : INFO : orderbook received
+2019-06-27 11:00:46,463 : INFO : orderbook received
+2019-06-27 11:00:46,699 : INFO : Order found is True
+2019-06-27 11:00:46,699 : INFO : Order found is True
+2019-06-27 11:00:46,701 : INFO : order found
+2019-06-27 11:00:46,701 : INFO : order found
+2019-06-27 11:00:46,735 : INFO : observing open order......
+2019-06-27 11:00:46,735 : INFO : observing open order......
+2019-06-27 11:00:46,768 : INFO : orderbook received
+2019-06-27 11:00:46,768 : INFO : orderbook received
+2019-06-27 11:00:47,187 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:00:47,187 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:00:48,385 : INFO : orderbook received
+2019-06-27 11:00:48,385 : INFO : orderbook received
+2019-06-27 11:00:52,539 : INFO : Order found is True
+2019-06-27 11:00:52,539 : INFO : Order found is True
+2019-06-27 11:00:52,540 : INFO : order found
+2019-06-27 11:00:52,540 : INFO : order found
+2019-06-27 11:00:52,573 : INFO : observing open order......
+2019-06-27 11:00:52,573 : INFO : observing open order......
+2019-06-27 11:00:52,603 : INFO : orderbook received
+2019-06-27 11:00:52,603 : INFO : orderbook received
+2019-06-27 11:01:03,337 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:01:03,337 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:01:03,370 : INFO : spread met condition
+2019-06-27 11:01:03,370 : INFO : spread met condition
+2019-06-27 11:01:04,158 : INFO : orderbook received
+2019-06-27 11:01:04,158 : INFO : orderbook received
+2019-06-27 11:01:04,355 : INFO : Order found is True
+2019-06-27 11:01:04,355 : INFO : Order found is True
+2019-06-27 11:01:04,356 : INFO : order found
+2019-06-27 11:01:04,356 : INFO : order found
+2019-06-27 11:01:04,389 : INFO : observing open order......
+2019-06-27 11:01:04,389 : INFO : observing open order......
+2019-06-27 11:01:04,806 : INFO : orderbook received
+2019-06-27 11:01:04,806 : INFO : orderbook received
+2019-06-27 11:01:09,080 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:01:09,080 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:01:09,711 : INFO : orderbook received
+2019-06-27 11:01:09,711 : INFO : orderbook received
+2019-06-27 11:01:10,020 : INFO : Order found is True
+2019-06-27 11:01:10,020 : INFO : Order found is True
+2019-06-27 11:01:10,021 : INFO : order found
+2019-06-27 11:01:10,021 : INFO : order found
+2019-06-27 11:01:10,056 : INFO : observing open order......
+2019-06-27 11:01:10,056 : INFO : observing open order......
+2019-06-27 11:01:10,090 : INFO : orderbook received
+2019-06-27 11:01:10,090 : INFO : orderbook received
+2019-06-27 11:01:10,487 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:01:10,487 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:01:10,530 : INFO : spread met condition
+2019-06-27 11:01:10,530 : INFO : spread met condition
+2019-06-27 11:01:26,600 : INFO : orderbook received
+2019-06-27 11:01:26,600 : INFO : orderbook received
+2019-06-27 11:01:26,854 : INFO : Order found is True
+2019-06-27 11:01:26,854 : INFO : Order found is True
+2019-06-27 11:01:26,856 : INFO : order found
+2019-06-27 11:01:26,856 : INFO : order found
+2019-06-27 11:01:26,935 : INFO : observing open order......
+2019-06-27 11:01:26,935 : INFO : observing open order......
+2019-06-27 11:01:26,992 : INFO : orderbook received
+2019-06-27 11:01:26,992 : INFO : orderbook received
+2019-06-27 11:01:27,547 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:01:27,547 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:01:32,506 : INFO : orderbook received
+2019-06-27 11:01:32,506 : INFO : orderbook received
+2019-06-27 11:01:32,702 : INFO : Order found is True
+2019-06-27 11:01:32,702 : INFO : Order found is True
+2019-06-27 11:01:32,703 : INFO : order found
+2019-06-27 11:01:32,703 : INFO : order found
+2019-06-27 11:01:32,735 : INFO : observing open order......
+2019-06-27 11:01:32,735 : INFO : observing open order......
+2019-06-27 11:01:32,773 : INFO : orderbook received
+2019-06-27 11:01:32,773 : INFO : orderbook received
+2019-06-27 11:01:33,122 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:01:33,122 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:01:33,156 : INFO : spread met condition
+2019-06-27 11:01:33,156 : INFO : spread met condition
+2019-06-27 11:01:38,284 : INFO : orderbook received
+2019-06-27 11:01:38,284 : INFO : orderbook received
+2019-06-27 11:01:48,798 : INFO : Order found is True
+2019-06-27 11:01:48,798 : INFO : Order found is True
+2019-06-27 11:01:48,798 : INFO : order found
+2019-06-27 11:01:48,798 : INFO : order found
+2019-06-27 11:01:48,812 : INFO : observing open order......
+2019-06-27 11:01:48,812 : INFO : observing open order......
+2019-06-27 11:01:48,844 : INFO : orderbook received
+2019-06-27 11:01:48,844 : INFO : orderbook received
+2019-06-27 11:01:49,198 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:01:49,198 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:01:50,090 : INFO : orderbook received
+2019-06-27 11:01:50,090 : INFO : orderbook received
+2019-06-27 11:01:53,866 : INFO : Order found is True
+2019-06-27 11:01:53,866 : INFO : Order found is True
+2019-06-27 11:01:53,866 : INFO : order found
+2019-06-27 11:01:53,866 : INFO : order found
+2019-06-27 11:01:53,898 : INFO : observing open order......
+2019-06-27 11:01:53,898 : INFO : observing open order......
+2019-06-27 11:01:53,945 : INFO : orderbook received
+2019-06-27 11:01:53,945 : INFO : orderbook received
+2019-06-27 11:01:54,305 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:01:54,305 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:01:54,344 : INFO : spread met condition
+2019-06-27 11:01:54,344 : INFO : spread met condition
+2019-06-27 11:01:55,072 : INFO : orderbook received
+2019-06-27 11:01:55,072 : INFO : orderbook received
+2019-06-27 11:01:55,247 : INFO : Order found is True
+2019-06-27 11:01:55,247 : INFO : Order found is True
+2019-06-27 11:01:55,248 : INFO : order found
+2019-06-27 11:01:55,248 : INFO : order found
+2019-06-27 11:01:55,267 : INFO : observing open order......
+2019-06-27 11:01:55,267 : INFO : observing open order......
+2019-06-27 11:01:55,722 : INFO : orderbook received
+2019-06-27 11:01:55,722 : INFO : orderbook received
+2019-06-27 11:01:59,641 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:01:59,641 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:02:10,514 : INFO : orderbook received
+2019-06-27 11:02:10,514 : INFO : orderbook received
+2019-06-27 11:02:10,683 : INFO : Order found is True
+2019-06-27 11:02:10,683 : INFO : Order found is True
+2019-06-27 11:02:10,683 : INFO : order found
+2019-06-27 11:02:10,683 : INFO : order found
+2019-06-27 11:02:10,701 : INFO : observing open order......
+2019-06-27 11:02:10,701 : INFO : observing open order......
+2019-06-27 11:02:10,736 : INFO : orderbook received
+2019-06-27 11:02:10,736 : INFO : orderbook received
+2019-06-27 11:02:11,126 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:02:11,126 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:02:11,165 : INFO : spread met condition
+2019-06-27 11:02:11,165 : INFO : spread met condition
+2019-06-27 11:02:15,763 : INFO : orderbook received
+2019-06-27 11:02:15,763 : INFO : orderbook received
+2019-06-27 11:02:15,974 : INFO : Order found is True
+2019-06-27 11:02:15,974 : INFO : Order found is True
+2019-06-27 11:02:15,975 : INFO : order found
+2019-06-27 11:02:15,975 : INFO : order found
+2019-06-27 11:02:16,014 : INFO : observing open order......
+2019-06-27 11:02:16,014 : INFO : observing open order......
+2019-06-27 11:02:16,044 : INFO : orderbook received
+2019-06-27 11:02:16,044 : INFO : orderbook received
+2019-06-27 11:02:16,432 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:02:16,432 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:02:31,230 : INFO : orderbook received
+2019-06-27 11:02:31,230 : INFO : orderbook received
+2019-06-27 11:02:31,450 : INFO : Order found is True
+2019-06-27 11:02:31,450 : INFO : Order found is True
+2019-06-27 11:02:31,450 : INFO : order found
+2019-06-27 11:02:31,450 : INFO : order found
+2019-06-27 11:02:31,476 : INFO : observing open order......
+2019-06-27 11:02:31,476 : INFO : observing open order......
+2019-06-27 11:02:31,509 : INFO : orderbook received
+2019-06-27 11:02:31,509 : INFO : orderbook received
+2019-06-27 11:02:31,855 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:02:31,855 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:02:31,875 : INFO : spread met condition
+2019-06-27 11:02:31,875 : INFO : spread met condition
+2019-06-27 11:02:37,500 : INFO : orderbook received
+2019-06-27 11:02:37,500 : INFO : orderbook received
+2019-06-27 11:02:37,866 : INFO : Order found is True
+2019-06-27 11:02:37,866 : INFO : Order found is True
+2019-06-27 11:02:37,867 : INFO : order found
+2019-06-27 11:02:37,867 : INFO : order found
+2019-06-27 11:02:37,911 : INFO : observing open order......
+2019-06-27 11:02:37,911 : INFO : observing open order......
+2019-06-27 11:02:37,946 : INFO : orderbook received
+2019-06-27 11:02:37,946 : INFO : orderbook received
+2019-06-27 11:02:38,535 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:02:38,535 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:02:39,732 : INFO : orderbook received
+2019-06-27 11:02:39,732 : INFO : orderbook received
+2019-06-27 11:02:43,921 : INFO : Order found is True
+2019-06-27 11:02:43,921 : INFO : Order found is True
+2019-06-27 11:02:43,921 : INFO : order found
+2019-06-27 11:02:43,921 : INFO : order found
+2019-06-27 11:02:43,946 : INFO : observing open order......
+2019-06-27 11:02:43,946 : INFO : observing open order......
+2019-06-27 11:02:43,990 : INFO : orderbook received
+2019-06-27 11:02:43,990 : INFO : orderbook received
+2019-06-27 11:02:54,742 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:02:54,742 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:02:54,783 : INFO : spread met condition
+2019-06-27 11:02:54,783 : INFO : spread met condition
+2019-06-27 11:02:55,587 : INFO : orderbook received
+2019-06-27 11:02:55,587 : INFO : orderbook received
+2019-06-27 11:02:55,772 : INFO : Order found is True
+2019-06-27 11:02:55,772 : INFO : Order found is True
+2019-06-27 11:02:55,772 : INFO : order found
+2019-06-27 11:02:55,772 : INFO : order found
+2019-06-27 11:02:55,804 : INFO : observing open order......
+2019-06-27 11:02:55,804 : INFO : observing open order......
+2019-06-27 11:02:56,232 : INFO : orderbook received
+2019-06-27 11:02:56,232 : INFO : orderbook received
+2019-06-27 11:03:00,354 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:03:00,354 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:03:00,990 : INFO : orderbook received
+2019-06-27 11:03:00,990 : INFO : orderbook received
+2019-06-27 11:03:01,153 : INFO : Order found is True
+2019-06-27 11:03:01,153 : INFO : Order found is True
+2019-06-27 11:03:01,153 : INFO : order found
+2019-06-27 11:03:01,153 : INFO : order found
+2019-06-27 11:03:01,183 : INFO : observing open order......
+2019-06-27 11:03:01,183 : INFO : observing open order......
+2019-06-27 11:03:01,217 : INFO : orderbook received
+2019-06-27 11:03:01,217 : INFO : orderbook received
+2019-06-27 11:03:01,558 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:03:01,558 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:03:01,601 : INFO : spread met condition
+2019-06-27 11:03:01,601 : INFO : spread met condition
+2019-06-27 11:03:21,426 : INFO : orderbook received
+2019-06-27 11:03:21,426 : INFO : orderbook received
+2019-06-27 11:03:21,588 : INFO : Order found is False
+2019-06-27 11:03:21,588 : INFO : Order found is False
+2019-06-27 11:03:21,588 : INFO : order not found, so it has been filled or is gone
+2019-06-27 11:03:21,588 : INFO : order not found, so it has been filled or is gone
+2019-06-27 11:03:22,470 : INFO : Couldnt cancel order in BRIDGE.GIN:BRIDGE.BTC
+2019-06-27 11:03:22,470 : INFO : Couldnt cancel order in BRIDGE.GIN:BRIDGE.BTC
+2019-06-27 11:03:22,522 : INFO : orderbook received
+2019-06-27 11:03:22,522 : INFO : orderbook received
+2019-06-27 11:03:22,926 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:03:22,926 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:03:27,700 : INFO : orderbook received
+2019-06-27 11:03:27,700 : INFO : orderbook received
+2019-06-27 11:03:28,072 : INFO : orderbook received
+2019-06-27 11:03:28,072 : INFO : orderbook received
+2019-06-27 11:03:28,105 : INFO : orderbook received
+2019-06-27 11:03:28,105 : INFO : orderbook received
+2019-06-27 11:03:28,136 : INFO : balance for BRIDGE.BTC is 4.68569981565748 
+2019-06-27 11:03:28,136 : INFO : balance for BRIDGE.BTC is 4.68569981565748 
+2019-06-27 11:03:28,435 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:03:28,435 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:03:28,478 : INFO : spread met condition
+2019-06-27 11:03:28,478 : INFO : spread met condition
+2019-06-27 11:03:54,151 : INFO : orderbook received
+2019-06-27 11:03:54,151 : INFO : orderbook received
+2019-06-27 11:03:54,189 : INFO : orderbook received
+2019-06-27 11:03:54,189 : INFO : orderbook received
+2019-06-27 11:03:54,664 : INFO : orderbook received
+2019-06-27 11:03:54,664 : INFO : orderbook received
+2019-06-27 11:03:55,008 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:03:55,008 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:03:55,335 : INFO : balance for BRIDGE.BTC is 4.68569981565748 
+2019-06-27 11:03:55,335 : INFO : balance for BRIDGE.BTC is 4.68569981565748 
+2019-06-27 11:03:55,370 : INFO : spread met condition
+2019-06-27 11:03:55,370 : INFO : spread met condition
+2019-06-27 11:03:55,370 : ERROR : Place order for 0.00001535 
+2019-06-27 11:03:55,370 : ERROR : Place order for 0.00001535 
+2019-06-27 11:03:57,185 : INFO : order placed for 4.67569982 @ 0.00001535
+2019-06-27 11:03:57,185 : INFO : order placed for 4.67569982 @ 0.00001535
+2019-06-27 11:03:57,269 : INFO : Order placed for 0.00001535 4.67569982
+2019-06-27 11:03:57,269 : INFO : Order placed for 0.00001535 4.67569982
+2019-06-27 11:04:01,760 : INFO : orderbook received
+2019-06-27 11:04:01,760 : INFO : orderbook received
+2019-06-27 11:04:02,094 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:04:02,094 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:04:02,127 : INFO : spread met condition
+2019-06-27 11:04:02,127 : INFO : spread met condition
+2019-06-27 11:04:02,562 : INFO : orderbook received
+2019-06-27 11:04:02,562 : INFO : orderbook received
+2019-06-27 11:04:02,761 : INFO : Order found is True
+2019-06-27 11:04:02,761 : INFO : Order found is True
+2019-06-27 11:04:02,762 : INFO : order found
+2019-06-27 11:04:02,762 : INFO : order found
+2019-06-27 11:04:02,790 : INFO : observing open order......
+2019-06-27 11:04:02,790 : INFO : observing open order......
+2019-06-27 11:04:03,670 : INFO : orderbook received
+2019-06-27 11:04:03,670 : INFO : orderbook received
+2019-06-27 11:04:10,442 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:04:10,442 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:04:10,864 : INFO : orderbook received
+2019-06-27 11:04:10,864 : INFO : orderbook received
+2019-06-27 11:04:31,465 : INFO : Order found is True
+2019-06-27 11:04:31,465 : INFO : Order found is True
+2019-06-27 11:04:31,466 : INFO : order found
+2019-06-27 11:04:31,466 : INFO : order found
+2019-06-27 11:04:31,488 : INFO : observing open order......
+2019-06-27 11:04:31,488 : INFO : observing open order......
+2019-06-27 11:04:31,583 : INFO : orderbook received
+2019-06-27 11:04:31,583 : INFO : orderbook received
+2019-06-27 11:04:32,131 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:04:32,131 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:04:32,159 : INFO : spread met condition
+2019-06-27 11:04:32,159 : INFO : spread met condition
+2019-06-27 11:04:33,023 : INFO : orderbook received
+2019-06-27 11:04:33,023 : INFO : orderbook received
+2019-06-27 11:04:36,721 : INFO : Order found is True
+2019-06-27 11:04:36,721 : INFO : Order found is True
+2019-06-27 11:04:36,721 : INFO : order found
+2019-06-27 11:04:36,721 : INFO : order found
+2019-06-27 11:04:36,741 : INFO : observing open order......
+2019-06-27 11:04:36,741 : INFO : observing open order......
+2019-06-27 11:04:36,844 : INFO : orderbook received
+2019-06-27 11:04:36,844 : INFO : orderbook received
+2019-06-27 11:04:37,444 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:04:37,444 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:04:37,776 : INFO : orderbook received
+2019-06-27 11:04:37,776 : INFO : orderbook received
+2019-06-27 11:04:37,929 : INFO : Order found is True
+2019-06-27 11:04:37,929 : INFO : Order found is True
+2019-06-27 11:04:37,931 : INFO : order found
+2019-06-27 11:04:37,931 : INFO : order found
+2019-06-27 11:04:38,020 : INFO : observing open order......
+2019-06-27 11:04:38,020 : INFO : observing open order......
+2019-06-27 11:05:02,424 : INFO : orderbook received
+2019-06-27 11:05:02,424 : INFO : orderbook received
+2019-06-27 11:05:02,905 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:05:02,905 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:05:02,922 : INFO : spread met condition
+2019-06-27 11:05:02,922 : INFO : spread met condition
+2019-06-27 11:05:03,373 : INFO : orderbook received
+2019-06-27 11:05:03,373 : INFO : orderbook received
+2019-06-27 11:05:03,553 : INFO : Order found is True
+2019-06-27 11:05:03,553 : INFO : Order found is True
+2019-06-27 11:05:03,553 : INFO : order found
+2019-06-27 11:05:03,553 : INFO : order found
+2019-06-27 11:05:03,577 : INFO : observing open order......
+2019-06-27 11:05:03,577 : INFO : observing open order......
+2019-06-27 11:05:07,830 : INFO : orderbook received
+2019-06-27 11:05:07,830 : INFO : orderbook received
+2019-06-27 11:05:08,407 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:05:08,407 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:05:08,741 : INFO : orderbook received
+2019-06-27 11:05:08,741 : INFO : orderbook received
+2019-06-27 11:05:08,895 : INFO : Order found is True
+2019-06-27 11:05:08,895 : INFO : Order found is True
+2019-06-27 11:05:08,896 : INFO : order found
+2019-06-27 11:05:08,896 : INFO : order found
+2019-06-27 11:05:08,923 : INFO : observing open order......
+2019-06-27 11:05:08,923 : INFO : observing open order......
+2019-06-27 11:05:13,054 : INFO : orderbook received
+2019-06-27 11:05:13,054 : INFO : orderbook received
+2019-06-27 11:05:34,025 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:05:34,025 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:05:34,068 : INFO : spread met condition
+2019-06-27 11:05:34,068 : INFO : spread met condition
+2019-06-27 11:05:34,462 : INFO : orderbook received
+2019-06-27 11:05:34,462 : INFO : orderbook received
+2019-06-27 11:05:34,632 : INFO : Order found is True
+2019-06-27 11:05:34,632 : INFO : Order found is True
+2019-06-27 11:05:34,633 : INFO : order found
+2019-06-27 11:05:34,633 : INFO : order found
+2019-06-27 11:05:34,666 : INFO : observing open order......
+2019-06-27 11:05:34,666 : INFO : observing open order......
+2019-06-27 11:05:35,073 : INFO : orderbook received
+2019-06-27 11:05:35,073 : INFO : orderbook received
+2019-06-27 11:05:38,993 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:05:38,993 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:05:39,395 : INFO : orderbook received
+2019-06-27 11:05:39,395 : INFO : orderbook received
+2019-06-27 11:05:39,652 : INFO : Order found is True
+2019-06-27 11:05:39,652 : INFO : Order found is True
+2019-06-27 11:05:39,654 : INFO : order found
+2019-06-27 11:05:39,654 : INFO : order found
+2019-06-27 11:05:39,703 : INFO : observing open order......
+2019-06-27 11:05:39,703 : INFO : observing open order......
+2019-06-27 11:05:39,798 : INFO : orderbook received
+2019-06-27 11:05:39,798 : INFO : orderbook received
+2019-06-27 11:05:40,377 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:05:40,377 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:05:40,418 : INFO : spread met condition
+2019-06-27 11:05:40,418 : INFO : spread met condition
+2019-06-27 11:05:41,132 : INFO : orderbook received
+2019-06-27 11:05:41,132 : INFO : orderbook received
+2019-06-27 11:05:44,642 : INFO : Order found is True
+2019-06-27 11:05:44,642 : INFO : Order found is True
+2019-06-27 11:05:44,643 : INFO : order found
+2019-06-27 11:05:44,643 : INFO : order found
+2019-06-27 11:05:44,673 : INFO : observing open order......
+2019-06-27 11:05:44,673 : INFO : observing open order......
+2019-06-27 11:06:05,133 : INFO : orderbook received
+2019-06-27 11:06:05,133 : INFO : orderbook received
+2019-06-27 11:06:05,968 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:06:05,968 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:06:06,496 : INFO : orderbook received
+2019-06-27 11:06:06,496 : INFO : orderbook received
+2019-06-27 11:06:06,668 : INFO : Order found is True
+2019-06-27 11:06:06,668 : INFO : Order found is True
+2019-06-27 11:06:06,669 : INFO : order found
+2019-06-27 11:06:06,669 : INFO : order found
+2019-06-27 11:06:06,694 : INFO : observing open order......
+2019-06-27 11:06:06,694 : INFO : observing open order......
+2019-06-27 11:06:10,746 : INFO : orderbook received
+2019-06-27 11:06:10,746 : INFO : orderbook received
+2019-06-27 11:06:11,321 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:06:11,321 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:06:11,368 : INFO : spread met condition
+2019-06-27 11:06:11,368 : INFO : spread met condition
+2019-06-27 11:06:11,766 : INFO : orderbook received
+2019-06-27 11:06:11,766 : INFO : orderbook received
+2019-06-27 11:06:11,934 : INFO : Order found is True
+2019-06-27 11:06:11,934 : INFO : Order found is True
+2019-06-27 11:06:11,935 : INFO : order found
+2019-06-27 11:06:11,935 : INFO : order found
+2019-06-27 11:06:11,954 : INFO : observing open order......
+2019-06-27 11:06:11,954 : INFO : observing open order......
+2019-06-27 11:06:36,636 : INFO : orderbook received
+2019-06-27 11:06:36,636 : INFO : orderbook received
+2019-06-27 11:06:37,223 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:06:37,223 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:06:37,585 : INFO : orderbook received
+2019-06-27 11:06:37,585 : INFO : orderbook received
+2019-06-27 11:06:37,751 : INFO : Order found is True
+2019-06-27 11:06:37,751 : INFO : Order found is True
+2019-06-27 11:06:37,752 : INFO : order found
+2019-06-27 11:06:37,752 : INFO : order found
+2019-06-27 11:06:37,770 : INFO : observing open order......
+2019-06-27 11:06:37,770 : INFO : observing open order......
+2019-06-27 11:06:42,018 : INFO : orderbook received
+2019-06-27 11:06:42,018 : INFO : orderbook received
+2019-06-27 11:06:42,696 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:06:42,696 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:06:42,734 : INFO : spread met condition
+2019-06-27 11:06:42,734 : INFO : spread met condition
+2019-06-27 11:06:43,169 : INFO : orderbook received
+2019-06-27 11:06:43,169 : INFO : orderbook received
+2019-06-27 11:06:43,344 : INFO : Order found is True
+2019-06-27 11:06:43,344 : INFO : Order found is True
+2019-06-27 11:06:43,344 : INFO : order found
+2019-06-27 11:06:43,344 : INFO : order found
+2019-06-27 11:06:43,367 : INFO : observing open order......
+2019-06-27 11:06:43,367 : INFO : observing open order......
+2019-06-27 11:06:43,889 : INFO : orderbook received
+2019-06-27 11:06:43,889 : INFO : orderbook received
+2019-06-27 11:06:48,373 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:06:48,373 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:06:48,758 : INFO : orderbook received
+2019-06-27 11:06:48,758 : INFO : orderbook received
+2019-06-27 11:07:14,298 : INFO : Order found is True
+2019-06-27 11:07:14,298 : INFO : Order found is True
+2019-06-27 11:07:14,304 : INFO : order found
+2019-06-27 11:07:14,304 : INFO : order found
+2019-06-27 11:07:14,339 : INFO : observing open order......
+2019-06-27 11:07:14,339 : INFO : observing open order......
+2019-06-27 11:07:14,422 : INFO : orderbook received
+2019-06-27 11:07:14,422 : INFO : orderbook received
+2019-06-27 11:07:15,004 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:07:15,004 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:07:15,037 : INFO : spread met condition
+2019-06-27 11:07:15,037 : INFO : spread met condition
+2019-06-27 11:07:15,930 : INFO : orderbook received
+2019-06-27 11:07:15,930 : INFO : orderbook received
+2019-06-27 11:07:20,044 : INFO : Order found is True
+2019-06-27 11:07:20,044 : INFO : Order found is True
+2019-06-27 11:07:20,045 : INFO : order found
+2019-06-27 11:07:20,045 : INFO : order found
+2019-06-27 11:07:20,080 : INFO : observing open order......
+2019-06-27 11:07:20,080 : INFO : observing open order......
+2019-06-27 11:07:20,195 : INFO : orderbook received
+2019-06-27 11:07:20,195 : INFO : orderbook received
+2019-06-27 11:07:20,821 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:07:20,821 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:07:21,232 : INFO : orderbook received
+2019-06-27 11:07:21,232 : INFO : orderbook received
+2019-06-27 11:07:21,405 : INFO : Order found is True
+2019-06-27 11:07:21,405 : INFO : Order found is True
+2019-06-27 11:07:21,405 : INFO : order found
+2019-06-27 11:07:21,405 : INFO : order found
+2019-06-27 11:07:21,430 : INFO : observing open order......
+2019-06-27 11:07:21,430 : INFO : observing open order......
+2019-06-27 11:07:50,893 : INFO : orderbook received
+2019-06-27 11:07:50,893 : INFO : orderbook received
+2019-06-27 11:07:51,860 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:07:51,860 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:07:51,897 : INFO : spread met condition
+2019-06-27 11:07:51,897 : INFO : spread met condition
+2019-06-27 11:07:52,315 : INFO : orderbook received
+2019-06-27 11:07:52,315 : INFO : orderbook received
+2019-06-27 11:07:52,483 : INFO : Order found is True
+2019-06-27 11:07:52,483 : INFO : Order found is True
+2019-06-27 11:07:52,483 : INFO : order found
+2019-06-27 11:07:52,483 : INFO : order found
+2019-06-27 11:07:52,504 : INFO : observing open order......
+2019-06-27 11:07:52,504 : INFO : observing open order......
+2019-06-27 11:07:56,988 : INFO : orderbook received
+2019-06-27 11:07:56,988 : INFO : orderbook received
+2019-06-27 11:07:57,706 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:07:57,706 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:07:58,155 : INFO : orderbook received
+2019-06-27 11:07:58,155 : INFO : orderbook received
+2019-06-27 11:07:58,366 : INFO : Order found is True
+2019-06-27 11:07:58,366 : INFO : Order found is True
+2019-06-27 11:07:58,367 : INFO : order found
+2019-06-27 11:07:58,367 : INFO : order found
+2019-06-27 11:07:58,406 : INFO : observing open order......
+2019-06-27 11:07:58,406 : INFO : observing open order......
+2019-06-27 11:08:02,853 : INFO : orderbook received
+2019-06-27 11:08:02,853 : INFO : orderbook received
+2019-06-27 11:08:28,865 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:08:28,865 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:08:28,903 : INFO : spread met condition
+2019-06-27 11:08:28,903 : INFO : spread met condition
+2019-06-27 11:08:29,288 : INFO : orderbook received
+2019-06-27 11:08:29,288 : INFO : orderbook received
+2019-06-27 11:08:29,480 : INFO : Order found is True
+2019-06-27 11:08:29,480 : INFO : Order found is True
+2019-06-27 11:08:29,480 : INFO : order found
+2019-06-27 11:08:29,480 : INFO : order found
+2019-06-27 11:08:29,517 : INFO : observing open order......
+2019-06-27 11:08:29,517 : INFO : observing open order......
+2019-06-27 11:08:29,974 : INFO : orderbook received
+2019-06-27 11:08:29,974 : INFO : orderbook received
+2019-06-27 11:08:34,473 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:08:34,473 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:08:34,848 : INFO : orderbook received
+2019-06-27 11:08:34,848 : INFO : orderbook received
+2019-06-27 11:08:35,035 : INFO : Order found is True
+2019-06-27 11:08:35,035 : INFO : Order found is True
+2019-06-27 11:08:35,036 : INFO : order found
+2019-06-27 11:08:35,036 : INFO : order found
+2019-06-27 11:08:35,073 : INFO : observing open order......
+2019-06-27 11:08:35,073 : INFO : observing open order......
+2019-06-27 11:08:35,181 : INFO : orderbook received
+2019-06-27 11:08:35,181 : INFO : orderbook received
+2019-06-27 11:08:35,828 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:08:35,828 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:08:35,867 : INFO : spread met condition
+2019-06-27 11:08:35,867 : INFO : spread met condition
+2019-06-27 11:08:36,879 : INFO : orderbook received
+2019-06-27 11:08:36,879 : INFO : orderbook received
+2019-06-27 11:08:41,002 : INFO : Order found is True
+2019-06-27 11:08:41,002 : INFO : Order found is True
+2019-06-27 11:08:41,002 : INFO : order found
+2019-06-27 11:08:41,002 : INFO : order found
+2019-06-27 11:08:41,033 : INFO : observing open order......
+2019-06-27 11:08:41,033 : INFO : observing open order......
+2019-06-27 11:09:06,483 : INFO : orderbook received
+2019-06-27 11:09:06,483 : INFO : orderbook received
+2019-06-27 11:09:07,073 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:09:07,073 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:09:07,477 : INFO : orderbook received
+2019-06-27 11:09:07,477 : INFO : orderbook received
+2019-06-27 11:09:07,671 : INFO : Order found is True
+2019-06-27 11:09:07,671 : INFO : Order found is True
+2019-06-27 11:09:07,672 : INFO : order found
+2019-06-27 11:09:07,672 : INFO : order found
+2019-06-27 11:09:07,700 : INFO : observing open order......
+2019-06-27 11:09:07,700 : INFO : observing open order......
+2019-06-27 11:09:11,979 : INFO : orderbook received
+2019-06-27 11:09:11,979 : INFO : orderbook received
+2019-06-27 11:09:12,580 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:09:12,580 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:09:12,619 : INFO : spread met condition
+2019-06-27 11:09:12,619 : INFO : spread met condition
+2019-06-27 11:09:13,082 : INFO : orderbook received
+2019-06-27 11:09:13,082 : INFO : orderbook received
+2019-06-27 11:09:13,268 : INFO : Order found is True
+2019-06-27 11:09:13,268 : INFO : Order found is True
+2019-06-27 11:09:13,269 : INFO : order found
+2019-06-27 11:09:13,269 : INFO : order found
+2019-06-27 11:09:13,284 : INFO : observing open order......
+2019-06-27 11:09:13,284 : INFO : observing open order......
+2019-06-27 11:09:42,636 : INFO : orderbook received
+2019-06-27 11:09:42,636 : INFO : orderbook received
+2019-06-27 11:09:43,229 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:09:43,229 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:09:43,803 : INFO : orderbook received
+2019-06-27 11:09:43,803 : INFO : orderbook received
+2019-06-27 11:09:43,981 : INFO : Order found is True
+2019-06-27 11:09:43,981 : INFO : Order found is True
+2019-06-27 11:09:43,981 : INFO : order found
+2019-06-27 11:09:43,981 : INFO : order found
+2019-06-27 11:09:44,002 : INFO : observing open order......
+2019-06-27 11:09:44,002 : INFO : observing open order......
+2019-06-27 11:09:48,828 : INFO : orderbook received
+2019-06-27 11:09:48,828 : INFO : orderbook received
+2019-06-27 11:09:49,414 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:09:49,414 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:09:49,459 : INFO : spread met condition
+2019-06-27 11:09:49,459 : INFO : spread met condition
+2019-06-27 11:09:49,885 : INFO : orderbook received
+2019-06-27 11:09:49,885 : INFO : orderbook received
+2019-06-27 11:09:50,074 : INFO : Order found is True
+2019-06-27 11:09:50,074 : INFO : Order found is True
+2019-06-27 11:09:50,075 : INFO : order found
+2019-06-27 11:09:50,075 : INFO : order found
+2019-06-27 11:09:50,111 : INFO : observing open order......
+2019-06-27 11:09:50,111 : INFO : observing open order......
+2019-06-27 11:09:50,513 : INFO : orderbook received
+2019-06-27 11:09:50,513 : INFO : orderbook received
+2019-06-27 11:09:54,742 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:09:54,742 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:09:55,132 : INFO : orderbook received
+2019-06-27 11:09:55,132 : INFO : orderbook received
+2019-06-27 11:10:20,725 : INFO : Order found is True
+2019-06-27 11:10:20,725 : INFO : Order found is True
+2019-06-27 11:10:20,727 : INFO : order found
+2019-06-27 11:10:20,727 : INFO : order found
+2019-06-27 11:10:20,778 : INFO : observing open order......
+2019-06-27 11:10:20,778 : INFO : observing open order......
+2019-06-27 11:10:20,869 : INFO : orderbook received
+2019-06-27 11:10:20,869 : INFO : orderbook received
+2019-06-27 11:10:21,479 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:10:21,479 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:10:21,552 : INFO : spread met condition
+2019-06-27 11:10:21,552 : INFO : spread met condition
+2019-06-27 11:10:22,562 : INFO : orderbook received
+2019-06-27 11:10:22,562 : INFO : orderbook received
+2019-06-27 11:10:26,998 : INFO : Order found is True
+2019-06-27 11:10:26,998 : INFO : Order found is True
+2019-06-27 11:10:27,000 : INFO : order found
+2019-06-27 11:10:27,000 : INFO : order found
+2019-06-27 11:10:27,070 : INFO : observing open order......
+2019-06-27 11:10:27,070 : INFO : observing open order......
+2019-06-27 11:10:27,174 : INFO : orderbook received
+2019-06-27 11:10:27,174 : INFO : orderbook received
+2019-06-27 11:10:28,043 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:10:28,043 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:10:28,560 : INFO : orderbook received
+2019-06-27 11:10:28,560 : INFO : orderbook received
+2019-06-27 11:10:28,771 : INFO : Order found is True
+2019-06-27 11:10:28,771 : INFO : Order found is True
+2019-06-27 11:10:28,772 : INFO : order found
+2019-06-27 11:10:28,772 : INFO : order found
+2019-06-27 11:10:28,792 : INFO : observing open order......
+2019-06-27 11:10:28,792 : INFO : observing open order......
+2019-06-27 11:10:58,022 : INFO : orderbook received
+2019-06-27 11:10:58,022 : INFO : orderbook received
+2019-06-27 11:10:58,897 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:10:58,897 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:10:58,915 : INFO : spread met condition
+2019-06-27 11:10:58,915 : INFO : spread met condition
+2019-06-27 11:10:59,474 : INFO : orderbook received
+2019-06-27 11:10:59,474 : INFO : orderbook received
+2019-06-27 11:10:59,615 : INFO : Order found is True
+2019-06-27 11:10:59,615 : INFO : Order found is True
+2019-06-27 11:10:59,616 : INFO : order found
+2019-06-27 11:10:59,616 : INFO : order found
+2019-06-27 11:10:59,636 : INFO : observing open order......
+2019-06-27 11:10:59,636 : INFO : observing open order......
+2019-06-27 11:11:03,934 : INFO : orderbook received
+2019-06-27 11:11:03,934 : INFO : orderbook received
+2019-06-27 11:11:04,522 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:11:04,522 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:11:04,911 : INFO : orderbook received
+2019-06-27 11:11:04,911 : INFO : orderbook received
+2019-06-27 11:11:05,114 : INFO : Order found is True
+2019-06-27 11:11:05,114 : INFO : Order found is True
+2019-06-27 11:11:05,116 : INFO : order found
+2019-06-27 11:11:05,116 : INFO : order found
+2019-06-27 11:11:05,151 : INFO : observing open order......
+2019-06-27 11:11:05,151 : INFO : observing open order......
+2019-06-27 11:11:09,973 : INFO : orderbook received
+2019-06-27 11:11:09,973 : INFO : orderbook received
+2019-06-27 11:11:35,972 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:11:35,972 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:11:36,013 : INFO : spread met condition
+2019-06-27 11:11:36,013 : INFO : spread met condition
+2019-06-27 11:11:36,622 : INFO : orderbook received
+2019-06-27 11:11:36,622 : INFO : orderbook received
+2019-06-27 11:11:36,826 : INFO : Order found is True
+2019-06-27 11:11:36,826 : INFO : Order found is True
+2019-06-27 11:11:36,826 : INFO : order found
+2019-06-27 11:11:36,826 : INFO : order found
+2019-06-27 11:11:36,852 : INFO : observing open order......
+2019-06-27 11:11:36,852 : INFO : observing open order......
+2019-06-27 11:11:37,352 : INFO : orderbook received
+2019-06-27 11:11:37,352 : INFO : orderbook received
+2019-06-27 11:11:41,900 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:11:41,900 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:11:42,538 : INFO : orderbook received
+2019-06-27 11:11:42,538 : INFO : orderbook received
+2019-06-27 11:11:42,752 : INFO : Order found is True
+2019-06-27 11:11:42,752 : INFO : Order found is True
+2019-06-27 11:11:42,753 : INFO : order found
+2019-06-27 11:11:42,753 : INFO : order found
+2019-06-27 11:11:42,774 : INFO : observing open order......
+2019-06-27 11:11:42,774 : INFO : observing open order......
+2019-06-27 11:11:42,854 : INFO : orderbook received
+2019-06-27 11:11:42,854 : INFO : orderbook received
+2019-06-27 11:11:43,449 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:11:43,449 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:11:43,489 : INFO : spread met condition
+2019-06-27 11:11:43,489 : INFO : spread met condition
+2019-06-27 11:11:44,201 : INFO : orderbook received
+2019-06-27 11:11:44,201 : INFO : orderbook received
+2019-06-27 11:11:48,898 : INFO : Order found is True
+2019-06-27 11:11:48,898 : INFO : Order found is True
+2019-06-27 11:11:48,899 : INFO : order found
+2019-06-27 11:11:48,899 : INFO : order found
+2019-06-27 11:11:48,923 : INFO : observing open order......
+2019-06-27 11:11:48,923 : INFO : observing open order......
+2019-06-27 11:12:14,349 : INFO : orderbook received
+2019-06-27 11:12:14,349 : INFO : orderbook received
+2019-06-27 11:12:14,968 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:12:14,968 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:12:15,568 : INFO : orderbook received
+2019-06-27 11:12:15,568 : INFO : orderbook received
+2019-06-27 11:12:15,762 : INFO : Order found is False
+2019-06-27 11:12:15,762 : INFO : Order found is False
+2019-06-27 11:12:15,763 : INFO : order not found, so it has been filled or is gone
+2019-06-27 11:12:15,763 : INFO : order not found, so it has been filled or is gone
+2019-06-27 11:12:16,721 : INFO : Couldnt cancel order in BRIDGE.GIN:BRIDGE.BTC
+2019-06-27 11:12:16,721 : INFO : Couldnt cancel order in BRIDGE.GIN:BRIDGE.BTC
+2019-06-27 11:12:20,808 : INFO : orderbook received
+2019-06-27 11:12:20,808 : INFO : orderbook received
+2019-06-27 11:12:21,391 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:12:21,391 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:12:21,429 : INFO : spread met condition
+2019-06-27 11:12:21,429 : INFO : spread met condition
+2019-06-27 11:12:21,962 : INFO : orderbook received
+2019-06-27 11:12:21,962 : INFO : orderbook received
+2019-06-27 11:12:22,340 : INFO : orderbook received
+2019-06-27 11:12:22,340 : INFO : orderbook received
+2019-06-27 11:12:22,345 : INFO : balance for BRIDGE.BTC is 4.68569981565748 
+2019-06-27 11:12:22,345 : INFO : balance for BRIDGE.BTC is 4.68569981565748 
+2019-06-27 11:12:51,446 : INFO : orderbook received
+2019-06-27 11:12:51,446 : INFO : orderbook received
+2019-06-27 11:12:52,902 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:12:52,902 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:12:53,238 : INFO : orderbook received
+2019-06-27 11:12:53,238 : INFO : orderbook received
+2019-06-27 11:12:53,618 : INFO : orderbook received
+2019-06-27 11:12:53,618 : INFO : orderbook received
+2019-06-27 11:12:53,623 : INFO : balance for BRIDGE.BTC is 4.68569981565748 
+2019-06-27 11:12:53,623 : INFO : balance for BRIDGE.BTC is 4.68569981565748 
+2019-06-27 11:12:53,650 : INFO : spread met condition
+2019-06-27 11:12:53,650 : INFO : spread met condition
+2019-06-27 11:12:53,651 : ERROR : Place order for 0.00001535 
+2019-06-27 11:12:53,651 : ERROR : Place order for 0.00001535 
+2019-06-27 11:12:57,530 : INFO : order placed for 4.67569982 @ 0.00001535
+2019-06-27 11:12:57,530 : INFO : order placed for 4.67569982 @ 0.00001535
+2019-06-27 11:12:57,596 : INFO : Order placed for 0.00001535 4.67569982
+2019-06-27 11:12:57,596 : INFO : Order placed for 0.00001535 4.67569982
+2019-06-27 11:13:01,707 : INFO : orderbook received
+2019-06-27 11:13:01,707 : INFO : orderbook received
+2019-06-27 11:13:02,406 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:13:02,406 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:13:02,441 : INFO : spread met condition
+2019-06-27 11:13:02,441 : INFO : spread met condition
+2019-06-27 11:13:02,862 : INFO : orderbook received
+2019-06-27 11:13:02,862 : INFO : orderbook received
+2019-06-27 11:13:03,038 : INFO : Order found is True
+2019-06-27 11:13:03,038 : INFO : Order found is True
+2019-06-27 11:13:03,038 : INFO : order found
+2019-06-27 11:13:03,038 : INFO : order found
+2019-06-27 11:13:03,073 : INFO : observing open order......
+2019-06-27 11:13:03,073 : INFO : observing open order......
+2019-06-27 11:13:03,656 : INFO : orderbook received
+2019-06-27 11:13:03,656 : INFO : orderbook received
+2019-06-27 11:13:07,663 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:13:07,663 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:13:36,552 : INFO : orderbook received
+2019-06-27 11:13:36,552 : INFO : orderbook received
+2019-06-27 11:13:36,730 : INFO : Order found is True
+2019-06-27 11:13:36,730 : INFO : Order found is True
+2019-06-27 11:13:36,730 : INFO : order found
+2019-06-27 11:13:36,730 : INFO : order found
+2019-06-27 11:13:36,755 : INFO : observing open order......
+2019-06-27 11:13:36,755 : INFO : observing open order......
+2019-06-27 11:13:36,795 : INFO : orderbook received
+2019-06-27 11:13:36,795 : INFO : orderbook received
+2019-06-27 11:13:37,205 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:13:37,205 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:13:37,256 : INFO : spread met condition
+2019-06-27 11:13:37,256 : INFO : spread met condition
+2019-06-27 11:13:42,685 : INFO : orderbook received
+2019-06-27 11:13:42,685 : INFO : orderbook received
+2019-06-27 11:13:42,841 : INFO : Order found is True
+2019-06-27 11:13:42,841 : INFO : Order found is True
+2019-06-27 11:13:42,841 : INFO : order found
+2019-06-27 11:13:42,841 : INFO : order found
+2019-06-27 11:13:42,870 : INFO : observing open order......
+2019-06-27 11:13:42,870 : INFO : observing open order......
+2019-06-27 11:13:42,910 : INFO : orderbook received
+2019-06-27 11:13:42,910 : INFO : orderbook received
+2019-06-27 11:13:43,242 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:13:43,242 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:13:48,451 : INFO : orderbook received
+2019-06-27 11:13:48,451 : INFO : orderbook received
+2019-06-27 11:14:14,082 : INFO : Order found is True
+2019-06-27 11:14:14,082 : INFO : Order found is True
+2019-06-27 11:14:14,083 : INFO : order found
+2019-06-27 11:14:14,083 : INFO : order found
+2019-06-27 11:14:14,111 : INFO : observing open order......
+2019-06-27 11:14:14,111 : INFO : observing open order......
+2019-06-27 11:14:14,152 : INFO : orderbook received
+2019-06-27 11:14:14,152 : INFO : orderbook received
+2019-06-27 11:14:14,539 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:14:14,539 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:14:14,587 : INFO : spread met condition
+2019-06-27 11:14:14,587 : INFO : spread met condition
+2019-06-27 11:14:15,693 : INFO : orderbook received
+2019-06-27 11:14:15,693 : INFO : orderbook received
+2019-06-27 11:14:19,469 : INFO : Order found is True
+2019-06-27 11:14:19,469 : INFO : Order found is True
+2019-06-27 11:14:19,469 : INFO : order found
+2019-06-27 11:14:19,469 : INFO : order found
+2019-06-27 11:14:19,495 : INFO : observing open order......
+2019-06-27 11:14:19,495 : INFO : observing open order......
+2019-06-27 11:14:19,572 : INFO : orderbook received
+2019-06-27 11:14:19,572 : INFO : orderbook received
+2019-06-27 11:14:19,919 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:14:19,919 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:14:20,512 : INFO : orderbook received
+2019-06-27 11:14:20,512 : INFO : orderbook received
+2019-06-27 11:14:20,658 : INFO : Order found is True
+2019-06-27 11:14:20,658 : INFO : Order found is True
+2019-06-27 11:14:20,658 : INFO : order found
+2019-06-27 11:14:20,658 : INFO : order found
+2019-06-27 11:14:20,678 : INFO : observing open order......
+2019-06-27 11:14:20,678 : INFO : observing open order......
+2019-06-27 11:14:24,709 : INFO : orderbook received
+2019-06-27 11:14:24,709 : INFO : orderbook received
+2019-06-27 11:14:50,496 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:14:50,496 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:14:50,512 : INFO : spread met condition
+2019-06-27 11:14:50,512 : INFO : spread met condition
+2019-06-27 11:14:51,118 : INFO : orderbook received
+2019-06-27 11:14:51,118 : INFO : orderbook received
+2019-06-27 11:14:51,298 : INFO : Order found is True
+2019-06-27 11:14:51,298 : INFO : Order found is True
+2019-06-27 11:14:51,298 : INFO : order found
+2019-06-27 11:14:51,298 : INFO : order found
+2019-06-27 11:14:51,328 : INFO : observing open order......
+2019-06-27 11:14:51,328 : INFO : observing open order......
+2019-06-27 11:14:51,748 : INFO : orderbook received
+2019-06-27 11:14:51,748 : INFO : orderbook received
+2019-06-27 11:14:55,549 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:14:55,549 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:14:56,227 : INFO : orderbook received
+2019-06-27 11:14:56,227 : INFO : orderbook received
+2019-06-27 11:14:56,399 : INFO : Order found is True
+2019-06-27 11:14:56,399 : INFO : Order found is True
+2019-06-27 11:14:56,400 : INFO : order found
+2019-06-27 11:14:56,400 : INFO : order found
+2019-06-27 11:14:56,429 : INFO : observing open order......
+2019-06-27 11:14:56,429 : INFO : observing open order......
+2019-06-27 11:14:56,460 : INFO : orderbook received
+2019-06-27 11:14:56,460 : INFO : orderbook received
+2019-06-27 11:14:56,841 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:14:56,841 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:14:56,874 : INFO : spread met condition
+2019-06-27 11:14:56,874 : INFO : spread met condition
+2019-06-27 11:15:26,640 : INFO : orderbook received
+2019-06-27 11:15:26,640 : INFO : orderbook received
+2019-06-27 11:15:26,808 : INFO : Order found is True
+2019-06-27 11:15:26,808 : INFO : Order found is True
+2019-06-27 11:15:26,809 : INFO : order found
+2019-06-27 11:15:26,809 : INFO : order found
+2019-06-27 11:15:26,891 : INFO : observing open order......
+2019-06-27 11:15:26,891 : INFO : observing open order......
+2019-06-27 11:15:26,930 : INFO : orderbook received
+2019-06-27 11:15:26,930 : INFO : orderbook received
+2019-06-27 11:15:27,407 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:15:27,407 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:15:32,659 : INFO : orderbook received
+2019-06-27 11:15:32,659 : INFO : orderbook received
+2019-06-27 11:15:32,822 : INFO : Order found is True
+2019-06-27 11:15:32,822 : INFO : Order found is True
+2019-06-27 11:15:32,822 : INFO : order found
+2019-06-27 11:15:32,822 : INFO : order found
+2019-06-27 11:15:32,846 : INFO : observing open order......
+2019-06-27 11:15:32,846 : INFO : observing open order......
+2019-06-27 11:15:32,880 : INFO : orderbook received
+2019-06-27 11:15:32,880 : INFO : orderbook received
+2019-06-27 11:15:33,376 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:15:33,376 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:15:33,395 : INFO : spread met condition
+2019-06-27 11:15:33,395 : INFO : spread met condition
+2019-06-27 11:15:34,683 : INFO : orderbook received
+2019-06-27 11:15:34,683 : INFO : orderbook received
+2019-06-27 11:15:38,667 : INFO : Order found is True
+2019-06-27 11:15:38,667 : INFO : Order found is True
+2019-06-27 11:15:38,668 : INFO : order found
+2019-06-27 11:15:38,668 : INFO : order found
+2019-06-27 11:15:38,697 : INFO : observing open order......
+2019-06-27 11:15:38,697 : INFO : observing open order......
+2019-06-27 11:16:04,093 : INFO : orderbook received
+2019-06-27 11:16:04,093 : INFO : orderbook received
+2019-06-27 11:16:04,496 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:16:04,496 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:16:05,195 : INFO : orderbook received
+2019-06-27 11:16:05,195 : INFO : orderbook received
+2019-06-27 11:16:05,426 : INFO : Order found is True
+2019-06-27 11:16:05,426 : INFO : Order found is True
+2019-06-27 11:16:05,428 : INFO : order found
+2019-06-27 11:16:05,428 : INFO : order found
+2019-06-27 11:16:05,481 : INFO : observing open order......
+2019-06-27 11:16:05,481 : INFO : observing open order......
+2019-06-27 11:16:09,675 : INFO : orderbook received
+2019-06-27 11:16:09,675 : INFO : orderbook received
+2019-06-27 11:16:10,012 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:16:10,012 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:16:10,054 : INFO : spread met condition
+2019-06-27 11:16:10,054 : INFO : spread met condition
+2019-06-27 11:16:10,672 : INFO : orderbook received
+2019-06-27 11:16:10,672 : INFO : orderbook received
+2019-06-27 11:16:10,876 : INFO : Order found is True
+2019-06-27 11:16:10,876 : INFO : Order found is True
+2019-06-27 11:16:10,878 : INFO : order found
+2019-06-27 11:16:10,878 : INFO : order found
+2019-06-27 11:16:10,952 : INFO : observing open order......
+2019-06-27 11:16:10,952 : INFO : observing open order......
+2019-06-27 11:16:11,397 : INFO : orderbook received
+2019-06-27 11:16:11,397 : INFO : orderbook received
+2019-06-27 11:16:16,750 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:16:16,750 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:16:42,800 : INFO : orderbook received
+2019-06-27 11:16:42,800 : INFO : orderbook received
+2019-06-27 11:16:42,971 : INFO : Order found is True
+2019-06-27 11:16:42,971 : INFO : Order found is True
+2019-06-27 11:16:42,972 : INFO : order found
+2019-06-27 11:16:42,972 : INFO : order found
+2019-06-27 11:16:42,991 : INFO : observing open order......
+2019-06-27 11:16:42,991 : INFO : observing open order......
+2019-06-27 11:16:43,029 : INFO : orderbook received
+2019-06-27 11:16:43,029 : INFO : orderbook received
+2019-06-27 11:16:43,410 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:16:43,410 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:16:43,427 : INFO : spread met condition
+2019-06-27 11:16:43,427 : INFO : spread met condition
+2019-06-27 11:16:48,242 : INFO : orderbook received
+2019-06-27 11:16:48,242 : INFO : orderbook received
+2019-06-27 11:16:48,433 : INFO : Order found is True
+2019-06-27 11:16:48,433 : INFO : Order found is True
+2019-06-27 11:16:48,433 : INFO : order found
+2019-06-27 11:16:48,433 : INFO : order found
+2019-06-27 11:16:48,451 : INFO : observing open order......
+2019-06-27 11:16:48,451 : INFO : observing open order......
+2019-06-27 11:16:48,488 : INFO : orderbook received
+2019-06-27 11:16:48,488 : INFO : orderbook received
+2019-06-27 11:16:49,157 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:16:49,157 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:16:53,581 : INFO : orderbook received
+2019-06-27 11:16:53,581 : INFO : orderbook received
+2019-06-27 11:17:19,175 : INFO : Order found is True
+2019-06-27 11:17:19,175 : INFO : Order found is True
+2019-06-27 11:17:19,175 : INFO : order found
+2019-06-27 11:17:19,175 : INFO : order found
+2019-06-27 11:17:19,189 : INFO : observing open order......
+2019-06-27 11:17:19,189 : INFO : observing open order......
+2019-06-27 11:17:19,218 : INFO : orderbook received
+2019-06-27 11:17:19,218 : INFO : orderbook received
+2019-06-27 11:17:19,576 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:17:19,576 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:17:19,597 : INFO : spread met condition
+2019-06-27 11:17:19,597 : INFO : spread met condition
+2019-06-27 11:17:20,552 : INFO : orderbook received
+2019-06-27 11:17:20,552 : INFO : orderbook received
+2019-06-27 11:17:25,084 : INFO : Order found is True
+2019-06-27 11:17:25,084 : INFO : Order found is True
+2019-06-27 11:17:25,086 : INFO : order found
+2019-06-27 11:17:25,086 : INFO : order found
+2019-06-27 11:17:25,112 : INFO : observing open order......
+2019-06-27 11:17:25,112 : INFO : observing open order......
+2019-06-27 11:17:25,179 : INFO : orderbook received
+2019-06-27 11:17:25,179 : INFO : orderbook received
+2019-06-27 11:17:25,585 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:17:25,585 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:17:26,216 : INFO : orderbook received
+2019-06-27 11:17:26,216 : INFO : orderbook received
+2019-06-27 11:17:26,398 : INFO : Order found is True
+2019-06-27 11:17:26,398 : INFO : Order found is True
+2019-06-27 11:17:26,398 : INFO : order found
+2019-06-27 11:17:26,398 : INFO : order found
+2019-06-27 11:17:26,417 : INFO : observing open order......
+2019-06-27 11:17:26,417 : INFO : observing open order......
+2019-06-27 11:17:30,649 : INFO : orderbook received
+2019-06-27 11:17:30,649 : INFO : orderbook received
+2019-06-27 11:17:56,280 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:17:56,280 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:17:56,298 : INFO : spread met condition
+2019-06-27 11:17:56,298 : INFO : spread met condition
+2019-06-27 11:17:57,341 : INFO : orderbook received
+2019-06-27 11:17:57,341 : INFO : orderbook received
+2019-06-27 11:17:57,603 : INFO : Order found is True
+2019-06-27 11:17:57,603 : INFO : Order found is True
+2019-06-27 11:17:57,603 : INFO : order found
+2019-06-27 11:17:57,603 : INFO : order found
+2019-06-27 11:17:57,623 : INFO : observing open order......
+2019-06-27 11:17:57,623 : INFO : observing open order......
+2019-06-27 11:17:58,114 : INFO : orderbook received
+2019-06-27 11:17:58,114 : INFO : orderbook received
+2019-06-27 11:18:02,549 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:18:02,549 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:18:03,381 : INFO : orderbook received
+2019-06-27 11:18:03,381 : INFO : orderbook received
+2019-06-27 11:18:03,547 : INFO : Order found is True
+2019-06-27 11:18:03,547 : INFO : Order found is True
+2019-06-27 11:18:03,548 : INFO : order found
+2019-06-27 11:18:03,548 : INFO : order found
+2019-06-27 11:18:03,579 : INFO : observing open order......
+2019-06-27 11:18:03,579 : INFO : observing open order......
+2019-06-27 11:18:03,611 : INFO : orderbook received
+2019-06-27 11:18:03,611 : INFO : orderbook received
+2019-06-27 11:18:03,970 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:18:03,970 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:18:04,012 : INFO : spread met condition
+2019-06-27 11:18:04,012 : INFO : spread met condition
+2019-06-27 11:18:35,414 : INFO : orderbook received
+2019-06-27 11:18:35,414 : INFO : orderbook received
+2019-06-27 11:18:35,577 : INFO : Order found is True
+2019-06-27 11:18:35,577 : INFO : Order found is True
+2019-06-27 11:18:35,578 : INFO : order found
+2019-06-27 11:18:35,578 : INFO : order found
+2019-06-27 11:18:35,616 : INFO : observing open order......
+2019-06-27 11:18:35,616 : INFO : observing open order......
+2019-06-27 11:18:35,651 : INFO : orderbook received
+2019-06-27 11:18:35,651 : INFO : orderbook received
+2019-06-27 11:18:35,996 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:18:35,996 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:18:40,353 : INFO : orderbook received
+2019-06-27 11:18:40,353 : INFO : orderbook received
+2019-06-27 11:18:40,521 : INFO : Order found is True
+2019-06-27 11:18:40,521 : INFO : Order found is True
+2019-06-27 11:18:40,521 : INFO : order found
+2019-06-27 11:18:40,521 : INFO : order found
+2019-06-27 11:18:40,548 : INFO : observing open order......
+2019-06-27 11:18:40,548 : INFO : observing open order......
+2019-06-27 11:18:40,581 : INFO : orderbook received
+2019-06-27 11:18:40,581 : INFO : orderbook received
+2019-06-27 11:18:40,938 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:18:40,938 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:18:40,967 : INFO : spread met condition
+2019-06-27 11:18:40,967 : INFO : spread met condition
+2019-06-27 11:18:41,925 : INFO : orderbook received
+2019-06-27 11:18:41,925 : INFO : orderbook received
+2019-06-27 11:18:45,599 : INFO : Order found is True
+2019-06-27 11:18:45,599 : INFO : Order found is True
+2019-06-27 11:18:45,599 : INFO : order found
+2019-06-27 11:18:45,599 : INFO : order found
+2019-06-27 11:18:45,626 : INFO : observing open order......
+2019-06-27 11:18:45,626 : INFO : observing open order......
+2019-06-27 11:19:16,132 : INFO : orderbook received
+2019-06-27 11:19:16,132 : INFO : orderbook received
+2019-06-27 11:19:16,638 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:19:16,638 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:19:17,407 : INFO : orderbook received
+2019-06-27 11:19:17,407 : INFO : orderbook received
+2019-06-27 11:19:17,568 : INFO : Order found is True
+2019-06-27 11:19:17,568 : INFO : Order found is True
+2019-06-27 11:19:17,569 : INFO : order found
+2019-06-27 11:19:17,569 : INFO : order found
+2019-06-27 11:19:17,652 : INFO : observing open order......
+2019-06-27 11:19:17,652 : INFO : observing open order......
+2019-06-27 11:19:21,590 : INFO : orderbook received
+2019-06-27 11:19:21,590 : INFO : orderbook received
+2019-06-27 11:19:22,238 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:19:22,238 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:19:22,272 : INFO : spread met condition
+2019-06-27 11:19:22,272 : INFO : spread met condition
+2019-06-27 11:19:23,001 : INFO : orderbook received
+2019-06-27 11:19:23,001 : INFO : orderbook received
+2019-06-27 11:19:23,206 : INFO : Order found is True
+2019-06-27 11:19:23,206 : INFO : Order found is True
+2019-06-27 11:19:23,207 : INFO : order found
+2019-06-27 11:19:23,207 : INFO : order found
+2019-06-27 11:19:23,279 : INFO : observing open order......
+2019-06-27 11:19:23,279 : INFO : observing open order......
+2019-06-27 11:19:23,732 : INFO : orderbook received
+2019-06-27 11:19:23,732 : INFO : orderbook received
+2019-06-27 11:19:27,830 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:19:27,830 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:19:58,865 : INFO : orderbook received
+2019-06-27 11:19:58,865 : INFO : orderbook received
+2019-06-27 11:19:59,087 : INFO : Order found is True
+2019-06-27 11:19:59,087 : INFO : Order found is True
+2019-06-27 11:19:59,087 : INFO : order found
+2019-06-27 11:19:59,087 : INFO : order found
+2019-06-27 11:19:59,107 : INFO : observing open order......
+2019-06-27 11:19:59,107 : INFO : observing open order......
+2019-06-27 11:19:59,147 : INFO : orderbook received
+2019-06-27 11:19:59,147 : INFO : orderbook received
+2019-06-27 11:19:59,584 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:19:59,584 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:19:59,641 : INFO : spread met condition
+2019-06-27 11:19:59,641 : INFO : spread met condition
+2019-06-27 11:20:04,171 : INFO : orderbook received
+2019-06-27 11:20:04,171 : INFO : orderbook received
+2019-06-27 11:20:04,307 : INFO : Order found is True
+2019-06-27 11:20:04,307 : INFO : Order found is True
+2019-06-27 11:20:04,307 : INFO : order found
+2019-06-27 11:20:04,307 : INFO : order found
+2019-06-27 11:20:04,337 : INFO : observing open order......
+2019-06-27 11:20:04,337 : INFO : observing open order......
+2019-06-27 11:20:04,380 : INFO : orderbook received
+2019-06-27 11:20:04,380 : INFO : orderbook received
+2019-06-27 11:20:04,729 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:20:04,729 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:20:09,080 : INFO : orderbook received
+2019-06-27 11:20:09,080 : INFO : orderbook received
+2019-06-27 11:20:39,712 : INFO : Order found is True
+2019-06-27 11:20:39,712 : INFO : Order found is True
+2019-06-27 11:20:39,712 : INFO : order found
+2019-06-27 11:20:39,712 : INFO : order found
+2019-06-27 11:20:39,732 : INFO : observing open order......
+2019-06-27 11:20:39,732 : INFO : observing open order......
+2019-06-27 11:20:39,774 : INFO : orderbook received
+2019-06-27 11:20:39,774 : INFO : orderbook received
+2019-06-27 11:20:40,125 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:20:40,125 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:20:40,160 : INFO : spread met condition
+2019-06-27 11:20:40,160 : INFO : spread met condition
+2019-06-27 11:20:41,142 : INFO : orderbook received
+2019-06-27 11:20:41,142 : INFO : orderbook received
+2019-06-27 11:20:44,663 : INFO : Order found is True
+2019-06-27 11:20:44,663 : INFO : Order found is True
+2019-06-27 11:20:44,664 : INFO : order found
+2019-06-27 11:20:44,664 : INFO : order found
+2019-06-27 11:20:44,693 : INFO : observing open order......
+2019-06-27 11:20:44,693 : INFO : observing open order......
+2019-06-27 11:20:44,745 : INFO : orderbook received
+2019-06-27 11:20:44,745 : INFO : orderbook received
+2019-06-27 11:20:45,091 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:20:45,091 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:20:45,693 : INFO : orderbook received
+2019-06-27 11:20:45,693 : INFO : orderbook received
+2019-06-27 11:20:45,860 : INFO : Order found is True
+2019-06-27 11:20:45,860 : INFO : Order found is True
+2019-06-27 11:20:45,861 : INFO : order found
+2019-06-27 11:20:45,861 : INFO : order found
+2019-06-27 11:20:45,915 : INFO : observing open order......
+2019-06-27 11:20:45,915 : INFO : observing open order......
+2019-06-27 11:20:49,969 : INFO : orderbook received
+2019-06-27 11:20:49,969 : INFO : orderbook received
+2019-06-27 11:21:20,706 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:21:20,706 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:21:20,745 : INFO : spread met condition
+2019-06-27 11:21:20,745 : INFO : spread met condition
+2019-06-27 11:21:22,271 : INFO : orderbook received
+2019-06-27 11:21:22,271 : INFO : orderbook received
+2019-06-27 11:23:00,097 : INFO : length of asks is 25
+2019-06-27 11:23:02,728 : INFO : length of asks is 25
+2019-06-27 11:23:02,728 : INFO : length of asks is 25
+2019-06-27 11:23:30,385 : INFO : orderbook received
+2019-06-27 11:23:30,385 : INFO : orderbook received
+2019-06-27 11:23:30,455 : INFO : orderbook received
+2019-06-27 11:23:30,455 : INFO : orderbook received
+2019-06-27 11:23:31,217 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:23:31,217 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:23:32,019 : INFO : orderbook received
+2019-06-27 11:23:32,019 : INFO : orderbook received
+2019-06-27 11:23:36,431 : INFO : balance for BRIDGE.BTC is 4.372554942159583 
+2019-06-27 11:23:36,431 : INFO : balance for BRIDGE.BTC is 4.372554942159583 
+2019-06-27 11:28:23,564 : INFO : length of asks is 25
+2019-06-27 11:28:26,611 : INFO : length of asks is 25
+2019-06-27 11:28:26,611 : INFO : length of asks is 25
+2019-06-27 11:28:54,687 : INFO : orderbook received
+2019-06-27 11:28:54,687 : INFO : orderbook received
+2019-06-27 11:28:54,774 : INFO : orderbook received
+2019-06-27 11:28:54,774 : INFO : orderbook received
+2019-06-27 11:28:55,576 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:28:55,576 : INFO : balance for BRIDGE.BTC is 0 
+2019-06-27 11:28:56,299 : INFO : orderbook received
+2019-06-27 11:28:56,299 : INFO : orderbook received
+2019-06-27 11:29:00,604 : INFO : balance for BRIDGE.BTC is 4.372554942159583 
+2019-06-27 11:29:00,604 : INFO : balance for BRIDGE.BTC is 4.372554942159583 

@@ -332,7 +332,7 @@ class CheckSpread(Agent):
         self.logger.info("length of asks is {}".format(len(asks)))
         #logger.info("Starting to {} {} of {}".format(self.tradingside,self._tsize, self.major_coin))
         #self.og_tsize = self.tsize # save, will be reduced once having bought
-        #self.executed_trades = []
+        self.executed_trades = []
         self.tradinghistory = TradingHistory(self.error)
         self.current_trades = []
         self.spread_history = []
