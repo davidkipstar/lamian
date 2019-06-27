@@ -5,12 +5,10 @@ import asyncio
 import sys
 import logging 
 import time
-import numpy
 from bitshares import BitShares
 from bitshares.account import Account
 from bitshares.market import Market
 from arbitrage import ArbitrageException
-from TradingHistory import TradingHistory
 from Chat import ErrorBot, InfoBot
 
 import re 
@@ -18,21 +16,30 @@ class Agent:
 
     def __init__(self, logger, *args, **kwargs):    
         self.og_tsize = kwargs['tsize'] # only need this for buy atm
-        self.logger = logging.getLogger("{}_{}".format(__name__,re.sub('BRIDGE.','', kwargs['market_key'])))
-        self.error = ErrorBot("{}_{}".format(__name__,re.sub('BRIDGE.','', kwargs['market_key'])))
-        self.info = InfoBot("{}_{}".format(__name__,re.sub('BRIDGE.','', kwargs['market_key'])))
+        self.og_th = kwargs['th']
+        self.is_dump = False
+        name = "{}_{}".format(__name__,re.sub('BRIDGE.','', kwargs['market_key']))
+        self.error = ErrorBot(name)
+        self.info = InfoBot(name)
 
+        
     @property 
     async def orderbook(self):
         try:
             ob = self.market.orderbook(self.orderbooklimit)
             if len(ob['asks']) >= self.orderbooklimit and len(ob['asks']) >= self.orderbooklimit:
                 asks, bids = pd.DataFrame(ob['asks']), pd.DataFrame(ob['bids'])
+<<<<<<< HEAD
+                self.info("orderbook received")
+||||||| merged common ancestors
+                self.logger.info("orderbook received")
+=======
                 self.logger.info("orderbook received")
             else: # if connection fails / new bug
                 asks, bids = None, None
+>>>>>>> 82ca8e2673b412dda7f31ae331731f7113cf00ba
         except:
-            self.logger.info("not liquid.")
+            self.info("not liquid.")
             asks, bids = None, None
         await asyncio.sleep(0)
         return asks, bids 
@@ -56,17 +63,14 @@ class Agent:
                 # Retrieve sell data for comment above
                 # Added in quote_inventory
                 sell_orders = list(filter(lambda x: x['for_sale']['symbol'] == self.buy, self.current_open_orders))
-                self.quote_inventory_in_sells = sum(list(map(lambda x: x['for_sale']['amount'], sell_orders))) # is min 0
-
+                self.quote_inventory = sum(list(map(lambda x: x['for_sale']['amount'], sell_orders))) # is min 0
                 self.balance_in_quote = convert_to_quote(asks, bids, self.og_tsize)
-                self.quote_inventory = self.quote_inventory_in_sells + max(self.balance_in_quote - 0.01, 0) # must exist for lifo, however we subtract some of that in self._tsize again. slightly inefficient, but hotfix.
+                self.quote_inventory += max(self.balance_in_quote - 0.01, 0) # must exist for lifo
 
                 # check how much we have on sell side and compensate so that we dont continue to buy if we have sufficient inventory
-                # warning: if we have 0 of a coin, then below expression will fail. So buy a little of each coin in advance or change this try-except structure.
                 self.inventory = max(self.balance[self.buy].amount - 0.01, 0)
 
-                # All in quote: Planned tsize - balance - balance in sells
-                self._tsize = max(self.balance_in_quote - self.inventory - self.quote_inventory_in_sells, 0) # also subtract what we already have in orders! This is done in self.quote_inventory_in_sells
+                self._tsize = max(self.quote_inventory - self.inventory, 0) # also subtract what we already have in orders!
 
             else:
                 try:
@@ -79,10 +83,10 @@ class Agent:
             
         # Error can occur when balance of a coin is precisely zero, then it doesnt exist in the balance list. 
         except Exception as e:
-            self.logger.info("No balance for {}".format(self.major_coin)) 
+            self.info("No balance for {}".format(self.major_coin)) 
             
         finally:
-            self.logger.info("balance for {} is {} ".format(self.major_coin, self._tsize))
+            self.info("balance for {} is {} ".format(self.major_coin, self._tsize))
             return self._tsize
 
     #change tsize 
@@ -108,13 +112,12 @@ class Agent:
             #print("Comparing {} with {}".format(morder['id'], order['order']['orderid']))
             if morder['id'] == order['orderid']:
                 full_order_l.append(order['orderid'])
-        self.logger.info("Order found")
+        self.info("Order found")
         #print("Order found: {}".format(order_found))
         return full_order_l
 
     def place_order(self, **kwargs):
         try:
-            self.error("Place order for {} ".format(kwargs['price']))
             if kwargs:
                 # price and amount must both be Decimal here!
                 price = kwargs['price'] # already Decimal bc of state0
@@ -147,8 +150,8 @@ class Agent:
                                     account = self.account,
                                     expiration = 500)
             
-            self.logger.info("order placed for {} @ {}".format(amount ,price))
-            #self.logger.info('order object {}'.format(order))
+            self.info("order placed for {} @ {}".format(amount ,price))
+            #self.info('order object {}'.format(order))
             if order:
                 self.account.refresh()
                 # return[0] = price and return[1] = amount
@@ -157,6 +160,7 @@ class Agent:
                 # this goes straight to state0 for previous_order, which is then needed in find_price for dropidx!
                 return order, price, amount  # actually order object but its annoying to extract price and amount (converted)
         except Exception as e:
+            self.info("Orderfailed")
             raise ValueError('Order failed!', e)
 
     @property
@@ -170,11 +174,11 @@ class Agent:
                     deviation = 0
                     if deviation:
                         self._order = order
-                        self.logger.info("order has been changed: {} {}".format(1,2))
-                    self.logger.info("order found")
+                        self.info("order has been changed: {} {}".format(1,2))
+                    self.info("order found")
                     return self._order
                 else:
-                    self.logger.info("order not found, so it has been filled or is gone")
+                    self.info("order not found, so it has been filled or is gone")
                     return None 
         except Exception as e:
             self._order = None 
@@ -187,9 +191,9 @@ class Agent:
     def my_order(self, conf):
         try:
             if self._order:
-                self.logger.info("overwrite order")
+                self.info("overwrite order")
             self._order, self._price, self._amount = self.place_order(**conf)
-            self.logger.info("Order placed for {} {}".format(self._price, self._amount))
+            self.info("Order placed for {} {}".format(self._price, self._amount))
         except Exception as e:
             self.logger.error(" Error in setting order {}".format(e))
     
@@ -199,12 +203,12 @@ class Agent:
             if self._order:
                 cancelled = self.cancel(self._order)
                 if cancelled:
-                    self.logger.info("Canceled order in {}".format(self.market_key))
+                    self.info("Canceled order in {}".format(self.market_key))
                 else:
-                    self.logger.info('Couldnt cancel order in {}'.format(self.market_key))
+                    self.info('Couldnt cancel order in {}'.format(self.market_key))
         
             else:
-                self.logger.info("Order already deleted")
+                self.info("Order already deleted")
             self._order = None
             self._price = None
             self._amount = None 
@@ -221,16 +225,32 @@ class Agent:
         for open_order in open_os:
             if order['orderid'] == open_order['id']:
                 order_found = True
-        self.logger.info("Order found is {}".format(order_found))
+        self.info("Order found is {}".format(order_found))
         return order_found
 
     def market_open_orders(self):
         return self.market.accountopenorders(self.acc)
 
     def trades(self):
-        trades = self.market.accounttrades(self.acc, limit = 50)
-        self.tradinghistory.update(trades)
-        return self.tradinghistory.history.values()
+        try:
+            t = self.market.accounttrades(self.acc, limit = 50) #currencyPair is not supported ;) 
+            if len(t):
+                logging.debug("Found trades {}".format(t))
+                self.executed_trades.append(t)
+                max_len = 50
+                # Prevent memory leak!!
+                if len(self.executed_trades) > max_len:
+                    self.executed_trades = self.executed_trades[(len(self.executed_trades) - max_len):len(self.executed_trades)]
+            return t
+        except:
+<<<<<<< HEAD
+            self.info('Couldnt retrieve trades')
+||||||| merged common ancestors
+            self.logger.info('Couldnt retrieve trades')
+=======
+            self.logger.info('Couldnt retrieve trades')
+            return []
+>>>>>>> 82ca8e2673b412dda7f31ae331731f7113cf00ba
 
     def cancel(self, order):
         # cancelling specific order
@@ -296,19 +316,23 @@ class Agent:
             print('Couldnt calculate average price, ', e)
             return 0
 
-    def running_mean(self, N):
-        cumsum = numpy.cumsum(numpy.insert(self.spread_history[(len(self.spread_history) - N):len(self.spread_history)], 0, 0))
-        return Decimal(0.9) * (cumsum[N:] - cumsum[:-N]) / N # trimmed down to 90% for buy condition
+    def is_dump(self, buy_price, avg_price, waiting_time):
+        
+        if self.is_dump:
+            curr_time = time.time()
+            timediff = curr_time - self.dump_starttime
+            if timediff > waiting_time:
+                self.th = self.og_th
+                self.is_dump = False
 
-    def calc_avg_spread(self, estimated_spread):
-        max_len = 1000
-        self.spread_history.append(estimated_spread)
-        _N = min(len(self.spread_history), 500)
-        if len(self.spread_history) > max_len:
-            self.spread_history = self.spread_history[(len(self.spread_history)-_N):len(self.spread_history)]
-        avg_spread = self.running_mean(_N)
-        #self._avg_spread_history.append(avg_spread) # debug
-        return avg_spread
+        if buy_price < avg_price and not self.is_dump:
+            self.is_dump = True
+            self.dump_starttime = time.time()
+            self.th = 0.5 * self.og_th
+            self.info('is_dump')
+        
+        return None
+    
 
 
 class CheckSpread(Agent):
@@ -328,18 +352,15 @@ class CheckSpread(Agent):
             setattr(self, key, arg)
         
         ob = self.market.orderbook(self.orderbooklimit)
-        asks, bids = pd.DataFrame(ob['asks']), pd.DataFrame(ob['bids']) # Todo: Require trader diversity. 
-        self.logger.info("length of asks is {}".format(len(asks)))
-        #logger.info("Starting to {} {} of {}".format(self.tradingside,self._tsize, self.major_coin))
+        asks, bids = pd.DataFrame(ob['asks']), pd.DataFrame(ob['bids'])
+        self.info("length of asks is {}".format(len(asks)))
+
+        #logger.debug("Starting to {} {} of {}".format(self.tradingside,self._tsize, self.major_coin))
         #self.og_tsize = self.tsize # save, will be reduced once having bought
-        #self.executed_trades = []
-        self.tradinghistory = TradingHistory(self.error)
+        self.executed_trades = []
         self.current_trades = []
-        self.spread_history = []
         self._order = None 
         self._avg_price = None
-        self._avg_spread_history = []
-
 
         #self.major_coin = self.sell['symbol'] if self.tradingside == 'sell' else self.buy['symbol']
 
@@ -363,18 +384,38 @@ class CheckSpread(Agent):
         avg_buy_price_lifo = 0
         
         if asks is None or bids is None:
-            self.logger.info('sleeping, no orderbook')
+            self.info('sleeping, no orderbook')
             return asyncio.sleep(10)
 
         self.current_trades = self.trades()  
+        # Todo: 
+        # Spam filter for executed trades, else its just gonna grow without limit!
         if len(self.current_trades) > 0:
-            # Fails first time because tsize doesnt exist yet
-            # Need this as lower bound for sell price
-            if self.tradingside == 'sell':
-                avg_buy_price_lifo = self.calc_avg_price('buy', self.executed_trades, True)
+<<<<<<< HEAD
+            avg_sell_price = self.calc_avg_price('sell', self.executed_trades[-1])
+            avg_buy_price = self.calc_avg_price('buy', self.executed_trades[-1])
+            print('current avg buy price: ', avg_buy_price)
+            print('current avg sell price: ', avg_sell_price)
+            self._avg_price = avg_buy_price - avg_sell_price
+            self.infO("CUrrent avg_price {}".format(self._avg_price))
+||||||| merged common ancestors
+            avg_sell_price = self.calc_avg_price('sell', self.executed_trades[-1])
+            avg_buy_price = self.calc_avg_price('buy', self.executed_trades[-1])
+            print('current avg buy price: ', avg_buy_price)
+            print('current avg sell price: ', avg_sell_price)
+
+
+=======
+            #avg_sell_price = self.calc_avg_price('sell', self.executed_trades[-1])
+            #avg_buy_price = self.calc_avg_price('buy', self.executed_trades[-1])
+            #print('current avg buy price: ', avg_buy_price)
+            #print('current avg sell price: ', avg_sell_price)
+
+            avg_buy_price_lifo = self.calc_avg_price('buy', self.executed_trades[-1], True)
 
 
 
+>>>>>>> 82ca8e2673b412dda7f31ae331731f7113cf00ba
 
         if self.state == 0:
 
@@ -394,6 +435,8 @@ class CheckSpread(Agent):
                 'account' : self.account,
                 'expiration' : 60
             }
+            if self._avg_price is not None and self._avg_price > 0:
+                self.is_dump(conf['price'], self._avg_price, 200000)
 
             if self.state == 1  and not self._order and conf['amount'] > 0.02: # and len(self.current_open_orders) < 3
                 self.my_order = conf
@@ -435,33 +478,30 @@ class CheckSpread(Agent):
         #print(self.market, ' : entering state0')
         #asks, bids = entry['asks'], entry['bids']
         #print(self.market_key, ': state0 activated')
-        price_bid = find_price(bids, getattr(self, 'ob_th'), getattr(self, '_tsize'), 0, minimum_liquidity=1)
-        price_ask = find_price(asks, getattr(self, 'ob_th'), getattr(self, '_tsize'), avg_buy_price_lifo, minimum_liquidity=0)
+        price_bid = find_price(bids, getattr(self, 'ob_th'), getattr(self, '_tsize'), 0, minimum_liquidity=1) + self.satoshi
+        price_ask = find_price(asks, getattr(self, 'ob_th'), getattr(self, '_tsize'), avg_buy_price_lifo, minimum_liquidity=0) - self.satoshi
         if price_bid is None or price_ask is None:
             # case when too illiquid
             self.orderbooklimit += 5
             if self.orderbooklimit > 50:
                 self.orderbooklimit = 25
                 self.logger.info('reducing orderbooklimit')
-                
-            return 0
-        else:
-            price_bid += self.satoshi
-            price_ask -= self.satoshi
+                return 0
         spread_estimated = ((price_ask - price_bid)/price_bid).quantize(CheckSpread.satoshi)
-        avg_spread = self.calc_avg_spread(spread_estimated)
-
-        if self.tradingside == 'buy' and spread_estimated > self.th and spread_estimated >= avg_spread:
+        #print(self.market, " : Strategy: Spread: {}".format(spread_estimated))
+        if spread_estimated > self.th:
             # if we use the lifo min price, then the spread can be pretty damn low. So we need a low self.th for the sell side!
             self.state = 1
-            self.logger.info("spread met condition")
-            return price_bid
-        elif self.tradingside == 'sell' and spread_estimated > self.th:
-            self.state = 1
-            self.logger.info("spread met condition")
-            return price_ask
+            self.info("spread met condition")
+            return price_bid if self.tradingside == 'buy' else price_ask  
+#        elif spread_estimated > 0:
+#            self.ob_th = 
+        elif spread_estimated < -0.11:
+            # exception unhandled yet, so increasing that it wont trigger.
+            self.logger.warning("arbitrage")
+            raise ArbitrageException
         else:
-            self.logger.info("spread too low currently at {}".format(spread_estimated))
+            self.info("spread too low currently at {}".format(spread_estimated))
             time.sleep(5)
             return 0
             
@@ -471,11 +511,11 @@ class CheckSpread(Agent):
             max_deviation = Decimal('0.00000001')
             # always 0 for lifo price, as this only concerns the sell value.
             # else the spread becomes reeeally narrow such that we would be unable to trade!
-            estimated_price = find_price(bids, getattr(self, 'ob_th'), getattr(self, '_tsize'), 0, previous_order=order, previous_amount=self._amount, previous_price=self._price) # self.which_order(order['orderid'])
+            estimated_price = find_price(bids, getattr(self, 'ob_th'), getattr(self, '_tsize'), 0, previous_order=order, previous_amount=self._amount, previous_price=self._price) + self.satoshi # self.which_order(order['orderid'])
         else:
             max_deviation = Decimal('0.00000001') #Decimal('1')
             # first argument bids is actually asks as input
-            estimated_price = find_price(bids, getattr(self, 'ob_th'), getattr(self, '_tsize'), avg_buy_price_lifo, previous_order=order, previous_amount=self._amount, previous_price=self._price) # self.which_order(order['orderid'])
+            estimated_price = find_price(bids, getattr(self, 'ob_th'), getattr(self, '_tsize'), avg_buy_price_lifo, previous_order=order, previous_amount=self._amount, previous_price=self._price) - self.satoshi # self.which_order(order['orderid'])
         if estimated_price is None:
             # case when too illiquid
             self.orderbooklimit += 5
@@ -483,25 +523,17 @@ class CheckSpread(Agent):
                 self.orderbooklimit = 25
                 self.logger.info('reducing orderbooklimit')
                 self.state = 0
-                
-            return False
-        else:
-            if self.tradingside == 'buy':
-                estimated_price += self.satoshi
-            else:
-                estimated_price -= self.satoshi
-
-
+                return False
         # Checks if better price exists
         
         order_price = self._price.quantize(self.satoshi)
 
         if abs(estimated_price - order_price) > max_deviation:
-            self.logger.info("deviation  {} too large".format(estimated_price - order_price))
+            self.info("deviation  {} too large".format(estimated_price - order_price))
             self.state = 0
             return False
         else:
-            self.logger.info("observing open order......")
+            self.info("observing open order......")
             return True
 
                 

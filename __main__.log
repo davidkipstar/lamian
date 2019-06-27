@@ -1,0 +1,25 @@
+2019-05-02 14:06:03,795 : INFO : info
+2019-05-02 14:06:03,795 : WARNING : warning
+2019-05-02 14:06:03,795 : ERROR : error
+2019-05-02 14:06:03,796 : ERROR : exp
+NoneType: None
+2019-05-02 14:07:27,536 : INFO : info
+2019-05-02 14:07:27,536 : WARNING : warning
+2019-05-02 14:07:27,537 : ERROR : error
+2019-05-02 14:07:27,537 : ERROR : exp
+NoneType: None
+2019-05-02 14:07:50,088 : INFO : info
+2019-05-02 14:07:50,088 : WARNING : warning
+2019-05-02 14:07:50,088 : ERROR : error
+2019-05-02 14:07:50,088 : ERROR : exp
+NoneType: None
+2019-05-02 14:08:21,091 : root : INFO : info
+2019-05-02 14:08:21,091 : root : WARNING : warning
+2019-05-02 14:08:21,091 : root : ERROR : error
+2019-05-02 14:08:21,091 : root : ERROR : exp
+NoneType: None
+2019-05-02 14:08:53,954 : INFO : info
+2019-05-02 14:08:53,954 : WARNING : warning
+2019-05-02 14:08:53,955 : ERROR : error
+2019-05-02 14:08:53,955 : ERROR : exp
+NoneType: None

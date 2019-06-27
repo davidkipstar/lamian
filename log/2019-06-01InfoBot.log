@@ -1,0 +1,55 @@
+2019-06-01 14:43:23,732 : INFO : kekx
+2019-06-01 14:43:23,919 : INFO : kekx
+2019-06-01 14:43:23,979 : INFO : kekx
+2019-06-01 14:43:24,045 : INFO : kekx
+2019-06-01 14:43:24,107 : INFO : kekx
+2019-06-01 14:43:24,184 : INFO : kekx
+2019-06-01 14:43:24,264 : INFO : kekx
+2019-06-01 14:43:24,338 : INFO : kekx
+2019-06-01 14:43:24,540 : INFO : kekx
+2019-06-01 14:43:24,647 : INFO : kekx
+2019-06-01 14:44:14,538 : INFO : kekx
+2019-06-01 14:44:19,544 : INFO : kekx
+2019-06-01 14:44:24,549 : INFO : kekx
+2019-06-01 14:48:09,113 : INFO : kekx
+2019-06-01 14:48:14,119 : INFO : kekx
+2019-06-01 14:48:52,061 : INFO : kekx
+2019-06-01 14:48:57,065 : INFO : kekx
+2019-06-01 14:49:02,405 : INFO : kekx
+2019-06-01 14:49:07,409 : INFO : kekx
+2019-06-01 14:49:12,512 : INFO : kekx
+2019-06-01 14:49:17,517 : INFO : kekx
+2019-06-01 14:49:22,638 : INFO : kekx
+2019-06-01 14:49:27,640 : INFO : kekx
+2019-06-01 14:51:59,726 : INFO : kekx
+2019-06-01 15:03:34,154 : INFO : hallo
+2019-06-01 15:03:39,157 : INFO : hallo
+2019-06-01 15:04:17,444 : INFO : hallo
+2019-06-01 15:07:32,246 : INFO : petr:hallo
+2019-06-01 15:16:00,775 : INFO : Strategy_GIN:BTC:Order found is True
+2019-06-01 15:16:00,781 : INFO : Strategy_GIN:BTC:order found
+2019-06-01 15:16:00,830 : INFO : Strategy_GIN:BTC:observing open order......
+2019-06-01 15:16:04,374 : INFO : Strategy_GIN:BTC:orderbook received
+2019-06-01 15:16:04,594 : INFO : Strategy_GIN:BTC:Order found is True
+2019-06-01 15:16:04,595 : INFO : Strategy_GIN:BTC:order found
+2019-06-01 15:16:04,611 : INFO : Strategy_GIN:BTC:observing open order......
+2019-06-01 15:16:12,183 : INFO : Strategy_GIN:BTC:orderbook received
+2019-06-01 15:16:12,374 : INFO : Strategy_GIN:BTC:Order found is True
+2019-06-01 15:16:12,375 : INFO : Strategy_GIN:BTC:order found
+2019-06-01 15:16:12,439 : INFO : Strategy_GIN:BTC:observing open order......
+2019-06-01 15:16:17,043 : INFO : Strategy_GIN:BTC:orderbook received
+2019-06-01 15:16:17,285 : INFO : Strategy_GIN:BTC:Order found is True
+2019-06-01 15:16:17,286 : INFO : Strategy_GIN:BTC:order found
+2019-06-01 15:16:17,362 : INFO : Strategy_GIN:BTC:observing open order......
+2019-06-01 15:16:17,923 : INFO : Strategy_GIN:BTC:orderbook received
+2019-06-01 15:16:18,106 : INFO : Strategy_GIN:BTC:Order found is True
+2019-06-01 15:16:18,107 : INFO : Strategy_GIN:BTC:order found
+2019-06-01 15:16:18,187 : INFO : Strategy_GIN:BTC:observing open order......
+2019-06-01 15:16:23,752 : INFO : Strategy_GIN:BTC:orderbook received
+2019-06-01 15:16:23,965 : INFO : Strategy_GIN:BTC:Order found is True
+2019-06-01 15:16:23,965 : INFO : Strategy_GIN:BTC:order found
+2019-06-01 15:16:23,987 : INFO : Strategy_GIN:BTC:observing open order......
+2019-06-01 15:16:24,550 : INFO : Strategy_GIN:BTC:orderbook received
+2019-06-01 15:16:24,824 : INFO : Strategy_GIN:BTC:Order found is True
+2019-06-01 15:16:24,825 : INFO : Strategy_GIN:BTC:order found
+2019-06-01 15:16:24,848 : INFO : Strategy_GIN:BTC:observing open order......
