@@ -141,7 +141,7 @@ class Analyst:
 
     @classmethod
     def from_kwargs(cls,loop, logger, **kwargs):
-        instance = BitShares(witness_url = kwargs['url'])
+        instance = BitShares(kwargs['url'])
         account = Account(kwargs['acc'], bitshares_instance = instance, full = True)
         account.bitshares.wallet.unlock(kwargs['pw'])
         kwargs.update({'account' : account, 'instance': 'instance'})

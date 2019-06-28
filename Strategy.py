@@ -118,7 +118,7 @@ class Agent:
             if self.market:
                 self.market.clear()  # Else fails after first successful order, check: https://github.com/bitshares/python-bitshares/issues/86
                 # That issue is NOT fixed obviously
-            self.market = Market(self.market_key)
+            self.market = Market(self.market_key, instance = self.instance)
             self.market.bitshares.wallet.unlock(self.pw)
             #self.market.bitshares.wallet.addPrivateKey('5KgkgfK4suQqLJY1Uv8mY4tPx4e8V8a2q2SX8xbS5o8UN9rxBJJ')
             #print(self.market_key, ': setting order')
