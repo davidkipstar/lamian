@@ -15,7 +15,7 @@ if __name__ == '__main__':
     data = {
         'pw' : j['pw'],
         'acc' : j['acc'],
-        'url' : 'wss://us.nodes.bitshares.ws',
+        'url' : '',
         'major_coin' : 'BRIDGE.BTC',
         'whitelist' : ['BRIDGE.GIN', 'BRIDGE.ZNN', 'BRIDGE.SINS', 'BRIDGE.XGA', 'BRIDGE.ONEX',
                        'BRIDGE.XMR', 'BRIDGE.HISC', 'BRIDGE.BCH', 'BRIDGE.POLIS', 'BRIDGE.ETH', 'BRIDGE.BITG'],
