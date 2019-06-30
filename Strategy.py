@@ -44,15 +44,19 @@ class Agent:
             my_coins = self.account.balances
             self.balance = dict(zip(map(lambda x: getattr(x,'symbol'),my_coins),my_coins))
             self.current_open_orders = self.market_open_orders()
-                      
+            # Retrieve sell data for comment above
+            # Added in quote_inventory
+            try:
+                # das hier verkackt wenn keine sell orders da sind...
+                # dann ist inventory und quote inventory nicht da, d.h. lifo preis ist 0 und dann verkaufen wir zu billig
+                sell_orders = list(filter(lambda x: x['base']['symbol'] == self.buy, self.current_open_orders))  # vorher  key; 'for_sale', wie unten
+                self.quote_inventory_in_sells = sum(list(map(lambda x: x['for_sale']['amount'], sell_orders)))  # is min 0
+            except:
+                self.quote_inventory_in_sells = 0
+
             if self.tradingside == 'buy':
                 #case btc
                 asks, bids = await self.orderbook
-                
-                # Retrieve sell data for comment above
-                # Added in quote_inventory
-                sell_orders = list(filter(lambda x: x['for_sale']['symbol'] == self.buy, self.current_open_orders))
-                self.quote_inventory_in_sells = sum(list(map(lambda x: x['for_sale']['amount'], sell_orders))) # is min 0
 
                 self.balance_in_quote = convert_to_quote(asks, bids, self.og_tsize)
                 self.quote_inventory = self.quote_inventory_in_sells + max(self.balance_in_quote - 0.01, 0) # must exist for lifo, however we subtract some of that in self._tsize again. slightly inefficient, but hotfix.
@@ -66,16 +70,18 @@ class Agent:
 
             else:
                 try:
-                    self.inventory = max(self.balance[self.sell].amount - 0.01, 0)
+                    self.inventory = self.quote_inventory_in_sells + max(self.balance[self.sell].amount - 0.01, 0)
                     self._tsize = self.inventory
                 except:
+                    self.quote_inventory_in_sells = 0
                     self.inventory = 0
                     self._tsize = self.inventory
 
             
         # Error can occur when balance of a coin is precisely zero, then it doesnt exist in the balance list. 
         except Exception as e:
-            self.logger.info("No balance for {}".format(self.major_coin)) 
+            self.logger.info("No balance for {}".format(self.major_coin))
+            print('error in tsize:', e)
             
         finally:
             self.logger.info("balance for {} is {} ".format(self.major_coin, self._tsize))
@@ -289,7 +295,7 @@ class Agent:
                     # Which kind of inventory we have depends on tsize!
                     curr_inv = max(self.balance[self.buy].amount + self.quote_inventory, 0)
                 else:
-                    curr_inv = max(self.balance[self.buy].amount + self.inventory, 0)
+                    curr_inv = max(self.balance[self.buy].amount + self.inventory, 0) + self.quote_inventory_in_sells
                 if curr_inv > 0:
                     lista.reverse()
                     listb.reverse()
@@ -466,11 +472,11 @@ class CheckSpread(Agent):
 
         if self.tradingside == 'buy' and spread_estimated > self.th and spread_estimated >= avg_spread:
             # if we use the lifo min price, then the spread can be pretty damn low. So we need a low self.th for the sell side!
-            self.state = 1
+            self.state = 0
             self.logger.info("spread met condition")
             return price_bid
         elif self.tradingside == 'sell' and spread_estimated > self.th:
-            self.state = 1
+            self.state = 0
             self.logger.info("spread met condition")
             return price_ask
         else:
