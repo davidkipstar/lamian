@@ -37,6 +37,8 @@ class Agent:
         await asyncio.sleep(0)
         return asks, bids 
 
+
+
     #get tsize
     @property
     async def tsize(self):
@@ -119,9 +121,10 @@ class Agent:
                 # price and amount must both be Decimal here!
                 price = kwargs['price'] # already Decimal bc of state0
                 amount = Decimal(kwargs['amount']).quantize(CheckSpread.satoshi)
-            # amhttps://www.kicker.de/ount = 0.000002
+            # amount = 0.000002
             if self.market:
-                self.market.clear()  # Else fails after first successful order, check: https://github.com/bitshares/python-bitshares/issues/86
+                self.market.clear()  
+                # Else fails after first successful order, check: https://github.com/bitshares/python-bitshares/issues/86
                 # That issue is NOT fixed obviously
             self.market = Market(self.market_key)
             self.market.bitshares.wallet.unlock(self.pw)

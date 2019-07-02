@@ -9,6 +9,7 @@ from async_Analyst import Analyst
 
 if __name__ == '__main__':    
     
+    
     with open('credentials.json') as f:
         j = json.load(f)
 
