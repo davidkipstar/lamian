@@ -1,28 +1,38 @@
 from bitshares.account import Account
+import time
 
 account = Account("sxmoli9")
 
-# Query at the same time...
-current_orders = account.openorders
-current_balances = account.balances
+other_balance = []
+iteration = 0
 
-# Balance in orders
+while len(other_balance) != 1:
 
-buy_orders = list(filter(lambda x: x['quote']['symbol'] == 'BRIDGE.BTC', current_orders))
-quote_inventory_in_buys = sum(list(map(lambda x: x['quote']['amount'], buy_orders)))
+    # Query at the same time...
+    current_orders = account.openorders
+    current_balances = account.balances
 
-sell_orders = list(filter(lambda x: x['quote']['symbol'] != 'BRIDGE.BTC' and x['quote']['symbol'] != 'OPEN.BTC', current_orders))
-quote_inventory_in_sells = sum(list(map(lambda x: x['base']['amount'], sell_orders)))
+    # Balance in orders
 
-open_btc_orders = list(filter(lambda x: x['quote']['symbol'] == 'OPEN.BTC', current_orders))
+    buy_orders = list(filter(lambda x: x['quote']['symbol'] == 'BRIDGE.BTC', current_orders))
+    quote_inventory_in_buys = sum(list(map(lambda x: x['quote']['amount'], buy_orders)))
 
-# BTC balance
-btc_balance = list(filter(lambda x: x['symbol'] == 'BRIDGE.BTC', current_balances))
-btc_amount = btc_balance[0]['amount'] + open_btc_orders[0]['quote']['amount']
+    sell_orders = list(filter(lambda x: x['quote']['symbol'] != 'BRIDGE.BTC' and x['quote']['symbol'] != 'OPEN.BTC', current_orders))
+    quote_inventory_in_sells = sum(list(map(lambda x: x['base']['amount'], sell_orders)))
 
-# Remaining Balances
-other_balance = list(filter(lambda x: x['symbol'] != 'BRIDGE.BTC' and x['amount'] > 0.021, current_balances))
+    open_btc_orders = list(filter(lambda x: x['quote']['symbol'] == 'OPEN.BTC', current_orders))
 
+    # BTC balance
+    btc_balance = list(filter(lambda x: x['symbol'] == 'BRIDGE.BTC', current_balances))
+    btc_amount = btc_balance[0]['amount'] + open_btc_orders[0]['quote']['amount']
+
+    # Remaining Balances
+    other_balance = list(filter(lambda x: x['symbol'] != 'BRIDGE.BTC' and x['amount'] > 0.021, current_balances))
+
+    print(other_balance)
+    print('trying to catch a clean balance...')
+    iteration += 1
+    time.sleep(2)
 
 pf_market_value = quote_inventory_in_buys + quote_inventory_in_sells + btc_amount
 print('pf market value: ', pf_market_value)
