@@ -152,6 +152,14 @@ class Agent:
                 # this goes straight to state0 for previous_order, which is then needed in find_price for dropidx!
                 return order, price, amount  # actually order object but its annoying to extract price and amount (converted)
         except Exception as e:
+            # Try to reconnect if shit fails using from_kwargs:
+            instance = BitShares(witness_url = kwargs['url'])
+            account = Account(kwargs['acc'], bitshares_instance = instance, full = True)
+            account.bitshares.wallet.unlock(kwargs['pw'])
+            #doppeltgemoppelt
+            market = Market(kwargs['market_key'], block_instance = instance)
+            market.bitshares.wallet.unlock(kwargs['pw'])
+            kwargs.update({'account' : account, 'instance': instance, 'market' : market})
             raise ValueError('Order failed!', e)
 
     @property
@@ -448,7 +456,7 @@ class CheckSpread(Agent):
         #print(self.market, ' : entering state0')
         #asks, bids = entry['asks'], entry['bids']
         #print(self.market_key, ': state0 activated')
-        price_bid = find_price(bids, getattr(self, 'ob_th'), getattr(self, '_tsize'), 0, minimum_liquidity=1)
+        price_bid = find_price(bids, getattr(self, 'ob_th'), getattr(self, '_tsize'), 0, minimum_liquidity=3)
         price_ask = find_price(asks, getattr(self, 'ob_th'), getattr(self, '_tsize'), avg_buy_price_lifo, minimum_liquidity=0)
         if price_bid is None or price_ask is None:
             # case when too illiquid
@@ -484,11 +492,11 @@ class CheckSpread(Agent):
             max_deviation = Decimal('0.00000001')
             # always 0 for lifo price, as this only concerns the sell value.
             # else the spread becomes reeeally narrow such that we would be unable to trade!
-            estimated_price = find_price(bids, getattr(self, 'ob_th'), getattr(self, '_tsize'), 0, previous_order=order, previous_amount=self._amount, previous_price=self._price) # self.which_order(order['orderid'])
+            estimated_price = find_price(bids, getattr(self, 'ob_th'), getattr(self, '_tsize'), 0, previous_order=order, previous_amount=self._amount, previous_price=self._price, minimum_liquidity = 3) # self.which_order(order['orderid'])
         else:
             max_deviation = Decimal('0.00000001') #Decimal('1')
             # first argument bids is actually asks as input
-            estimated_price = find_price(bids, getattr(self, 'ob_th'), getattr(self, '_tsize'), avg_buy_price_lifo, previous_order=order, previous_amount=self._amount, previous_price=self._price) # self.which_order(order['orderid'])
+            estimated_price = find_price(bids, getattr(self, 'ob_th'), getattr(self, '_tsize'), avg_buy_price_lifo, previous_order=order, previous_amount=self._amount, previous_price=self._price, minimum_liquidity = 0) # self.which_order(order['orderid'])
         if estimated_price is None:
             # case when too illiquid
             self.orderbooklimit += 5
@@ -517,13 +525,3 @@ class CheckSpread(Agent):
             self.logger.info("observing open order......")
             return True
 
-                
-"""
-        elif spread_estimated > 0 and self._avg_price > 0:
-            if self.tradingside == 'buy':
-                return(self._avg_price + 0.000001)
-            else:
-                return(self._avg_price - 0.000001)
-
-"""
-        
