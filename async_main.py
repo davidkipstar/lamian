@@ -18,7 +18,7 @@ if __name__ == '__main__':
         'url' : '',
         'major_coin' : 'BRIDGE.BTC',
         'whitelist' : ['BRIDGE.GIN', 'BRIDGE.SINS', 'BRIDGE.XGA',
-                       'BRIDGE.XMR', 'BRIDGE.HISC', 'BRIDGE.POLIS', 'BRIDGE.BITG'],
+                       'BRIDGE.XMR', 'BRIDGE.HISC', 'BRIDGE.POLIS', 'BRIDGE.BITG', 'BRIDGE.ZNN'],
         'blacklist' : ['BRIDGE.BTS'],
     }
 
