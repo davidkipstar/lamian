@@ -323,13 +323,33 @@ class Agent:
 
     def calc_avg_spread(self, estimated_spread):
         max_len = 1000
-        self.spread_history.append(estimated_spread)
-        _N = min(len(self.spread_history), 500)
+        if self.counter == 0:
+            self.spread_history.append(estimated_spread)
+        elif self.counter == 10: # reset, only count every tenth iteration for the avg spread
+            self.counter = 0
+        _N = min(len(self.spread_history), 800)
         if len(self.spread_history) > max_len:
             self.spread_history = self.spread_history[(len(self.spread_history)-_N):len(self.spread_history)]
         avg_spread = self.running_mean(_N)
-        #self._avg_spread_history.append(avg_spread) # debug
         return avg_spread
+
+    # This is repeated. Yea thats ugly but its for testing. just exchange the variables later
+    # LOOK OUT FOR INFLATED AND DEFLATED STAT!! See buy condition!
+    def running_mean_bids(self, N):
+        cumsum = numpy.cumsum(numpy.insert(self.bid_history[(len(self.bid_history) - N):len(self.bid_history)], 0, 0))
+        return Decimal(1.05) * (cumsum[N:] - cumsum[:-N]) / N # INFLATED111111111
+
+    def calc_avg_bid(self, estimated_bid):
+        max_len = 1000
+        if self.counter == 0:
+            self.bid_history.append(estimated_bid)
+        elif self.counter == 10: # reset, only count every tenth iteration for the avg spread
+            self.counter = 0
+        _N = min(len(self.bid_history), 800)
+        if len(self.bid_history) > max_len:
+            self.bid_history = self.bid_history[(len(self.bid_history)-_N):len(self.bid_history)]
+        avg_bid = self.running_mean_bids(_N)
+        return avg_bid
 
 
 class CheckSpread(Agent):
@@ -357,16 +377,15 @@ class CheckSpread(Agent):
         self.executed_trades = []
         self.current_trades = []
         self.spread_history = []
+        self.bid_history = []
         self._order = None 
         self._avg_price = None
-        self._avg_spread_history = []
+        self.counter = 0
 
-
-        #self.major_coin = self.sell['symbol'] if self.tradingside == 'sell' else self.buy['symbol']
 
     @classmethod
     def from_kwargs(cls, logger, **kwargs):
-        instance = BitShares(witness_url = kwargs['url'])
+        instance = BitShares(kwargs['url'])
         account = Account(kwargs['acc'], bitshares_instance = instance, full = True)
         account.bitshares.wallet.unlock(kwargs['pw'])
         #doppeltgemoppelt
@@ -471,8 +490,14 @@ class CheckSpread(Agent):
             price_ask -= self.satoshi
         spread_estimated = ((price_ask - price_bid)/price_bid).quantize(CheckSpread.satoshi)
         avg_spread = self.calc_avg_spread(spread_estimated)
-
-        if self.tradingside == 'buy' and spread_estimated > self.th and spread_estimated >= avg_spread:
+        avg_bid = self.calc_avg_bid(price_bid)
+        
+        # avg_spread and avg_bid are anti-pump-n-dump insurance.
+        # hence we do not buy if either the spread spontaneously diminishes or the bid price rises quickly.
+        # todo: define 'quickly' inside the functions and integrate the functions.
+        if self.tradingside == 'buy' and spread_estimated > self.th and spread_estimated >= avg_spread and price_bid <= avg_bid: 
+            # avg_bid is a little inflated so we can stay below, whereas
+            # avg_spread is a little deflated so we can stay above.
             # if we use the lifo min price, then the spread can be pretty damn low. So we need a low self.th for the sell side!
             self.state = 1
             self.logger.info("spread met condition")
