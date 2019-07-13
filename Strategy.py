@@ -490,7 +490,7 @@ class CheckSpread(Agent):
             price_ask -= self.satoshi
         spread_estimated = ((price_ask - price_bid)/price_bid).quantize(CheckSpread.satoshi)
         avg_spread = self.calc_avg_spread(spread_estimated)
-        avg_bid = self.calc_avg_bid(bids.price[0]) #price_bid
+        avg_bid = self.calc_avg_bid(Decimal(bids.price[0]).quantize(self.satoshi)) # price_bid
         
         # avg_spread and avg_bid are anti-pump-n-dump insurance.
         # hence we do not buy if either the spread spontaneously diminishes or the bid price rises quickly.
