@@ -1,0 +1,1448 @@
+06/12/2019 11:57:02 AM Major Coin: BRIDGE.BTC
+06/12/2019 11:57:02 AM Major Balance: 0.00155131 BRIDGE.BTC
+06/12/2019 11:57:02 AM Welcome !
+06/12/2019 11:57:02 AM Buying BRIDGE.GIN owning 0.00155131 BRIDGE.BTC
+06/12/2019 11:57:03 AM Created worker buy on BRIDGE.GIN:BRIDGE.BTC
+06/12/2019 11:57:03 AM length of asks is 25
+06/12/2019 11:57:05 AM Worker starts on GIN:BTC
+06/12/2019 11:57:05 AM orderbook received
+06/12/2019 11:57:06 AM orderbook received
+06/12/2019 11:57:06 AM balance for BRIDGE.BTC is 25.404646133041634 
+06/12/2019 11:57:06 AM Event created <coroutine object sleep at 0x000001813D987F48>
+06/12/2019 11:57:06 AM orderbook received
+06/12/2019 11:57:06 AM orderbook received
+06/12/2019 11:57:06 AM balance for BRIDGE.BTC is 25.404646133041634 
+06/12/2019 11:57:06 AM spread met condition
+06/12/2019 11:57:10 AM order placed for 25.39464613 @ 0.00003053
+06/12/2019 11:57:11 AM Order placed for 0.00003053 25.39464613
+06/12/2019 11:57:11 AM Event created <coroutine object sleep at 0x000001813EA55148>
+06/12/2019 11:57:11 AM orderbook received
+06/12/2019 11:57:11 AM Order found is True
+06/12/2019 11:57:11 AM order found
+06/12/2019 11:57:11 AM observing open order......
+06/12/2019 11:57:11 AM Event created <coroutine object sleep at 0x000001813D987D48>
+06/12/2019 11:57:11 AM orderbook received
+06/12/2019 11:57:11 AM Order found is True
+06/12/2019 11:57:11 AM order found
+06/12/2019 11:57:11 AM observing open order......
+06/12/2019 11:57:11 AM Event created <coroutine object sleep at 0x000001813D987EC8>
+06/12/2019 11:57:12 AM orderbook received
+06/12/2019 11:57:12 AM Order found is True
+06/12/2019 11:57:12 AM order found
+06/12/2019 11:57:12 AM observing open order......
+06/12/2019 11:57:12 AM Event created <coroutine object sleep at 0x000001813EA55748>
+06/12/2019 11:57:12 AM orderbook received
+06/12/2019 11:57:12 AM Order found is True
+06/12/2019 11:57:12 AM order found
+06/12/2019 11:57:12 AM observing open order......
+06/12/2019 11:57:12 AM Event created <coroutine object sleep at 0x000001813EA557C8>
+06/12/2019 11:57:12 AM orderbook received
+06/12/2019 11:57:13 AM Order found is True
+06/12/2019 11:57:13 AM order found
+06/12/2019 11:57:13 AM observing open order......
+06/12/2019 11:57:13 AM Event created <coroutine object sleep at 0x000001813EA55848>
+06/12/2019 11:57:13 AM orderbook received
+06/12/2019 11:57:13 AM Order found is True
+06/12/2019 11:57:13 AM order found
+06/12/2019 11:57:13 AM observing open order......
+06/12/2019 11:57:13 AM Event created <coroutine object sleep at 0x000001813EA558C8>
+06/12/2019 11:57:13 AM orderbook received
+06/12/2019 11:57:14 AM Order found is True
+06/12/2019 11:57:14 AM order found
+06/12/2019 11:57:14 AM observing open order......
+06/12/2019 11:57:14 AM Event created <coroutine object sleep at 0x000001813EA55948>
+06/12/2019 11:57:14 AM orderbook received
+06/12/2019 11:57:14 AM Order found is True
+06/12/2019 11:57:14 AM order found
+06/12/2019 11:57:14 AM observing open order......
+06/12/2019 11:57:14 AM Event created <coroutine object sleep at 0x000001813EA559C8>
+06/12/2019 11:57:14 AM orderbook received
+06/12/2019 11:57:15 AM Order found is True
+06/12/2019 11:57:15 AM order found
+06/12/2019 11:57:15 AM observing open order......
+06/12/2019 11:57:15 AM Event created <coroutine object sleep at 0x000001813EA55A48>
+06/12/2019 11:57:15 AM orderbook received
+06/12/2019 11:57:15 AM Order found is True
+06/12/2019 11:57:15 AM order found
+06/12/2019 11:57:15 AM observing open order......
+06/12/2019 11:57:15 AM Event created <coroutine object sleep at 0x000001813EA55AC8>
+06/12/2019 11:57:15 AM orderbook received
+06/12/2019 11:57:15 AM Order found is True
+06/12/2019 11:57:15 AM order found
+06/12/2019 11:57:15 AM observing open order......
+06/12/2019 11:57:15 AM Event created <coroutine object sleep at 0x000001813EA55B48>
+06/12/2019 11:57:16 AM orderbook received
+06/12/2019 11:57:16 AM Order found is True
+06/12/2019 11:57:16 AM order found
+06/12/2019 11:57:16 AM observing open order......
+06/12/2019 11:57:16 AM Event created <coroutine object sleep at 0x000001813EA55BC8>
+06/12/2019 11:57:16 AM received None
+06/12/2019 11:57:16 AM orderbook received
+06/12/2019 11:57:16 AM Order found is True
+06/12/2019 11:57:16 AM order found
+06/12/2019 11:57:16 AM observing open order......
+06/12/2019 11:57:16 AM Event created <coroutine object sleep at 0x000001813EA55C48>
+06/12/2019 11:57:16 AM orderbook received
+06/12/2019 11:57:17 AM Order found is True
+06/12/2019 11:57:17 AM order found
+06/12/2019 11:57:17 AM observing open order......
+06/12/2019 11:57:17 AM Event created <coroutine object sleep at 0x000001813D987E48>
+06/12/2019 11:57:17 AM orderbook received
+06/12/2019 11:57:17 AM Order found is True
+06/12/2019 11:57:17 AM order found
+06/12/2019 11:57:17 AM observing open order......
+06/12/2019 11:57:17 AM Event created <coroutine object sleep at 0x000001813EA55548>
+06/12/2019 11:57:17 AM received None
+06/12/2019 11:57:17 AM orderbook received
+06/12/2019 11:57:17 AM Order found is True
+06/12/2019 11:57:17 AM order found
+06/12/2019 11:57:17 AM observing open order......
+06/12/2019 11:57:17 AM Event created <coroutine object sleep at 0x000001813EA55D48>
+06/12/2019 11:57:18 AM orderbook received
+06/12/2019 11:57:18 AM Order found is True
+06/12/2019 11:57:18 AM order found
+06/12/2019 11:57:18 AM observing open order......
+06/12/2019 11:57:18 AM Event created <coroutine object sleep at 0x000001813D987F48>
+06/12/2019 11:57:18 AM orderbook received
+06/12/2019 11:57:18 AM Order found is True
+06/12/2019 11:57:18 AM order found
+06/12/2019 11:57:18 AM observing open order......
+06/12/2019 11:57:18 AM Event created <coroutine object sleep at 0x000001813EA55248>
+06/12/2019 11:57:18 AM received None
+06/12/2019 11:57:18 AM orderbook received
+06/12/2019 11:57:19 AM Order found is True
+06/12/2019 11:57:19 AM order found
+06/12/2019 11:57:19 AM observing open order......
+06/12/2019 11:57:19 AM Event created <coroutine object sleep at 0x000001813EA55E48>
+06/12/2019 11:57:19 AM orderbook received
+06/12/2019 11:57:19 AM Order found is True
+06/12/2019 11:57:19 AM order found
+06/12/2019 11:57:19 AM observing open order......
+06/12/2019 11:57:19 AM Event created <coroutine object sleep at 0x000001813EA55EC8>
+06/12/2019 11:57:19 AM orderbook received
+06/12/2019 11:57:20 AM Order found is True
+06/12/2019 11:57:20 AM order found
+06/12/2019 11:57:20 AM observing open order......
+06/12/2019 11:57:20 AM Event created <coroutine object sleep at 0x000001813EA55148>
+06/12/2019 11:57:20 AM received None
+06/12/2019 11:57:20 AM orderbook received
+06/12/2019 11:57:20 AM Order found is True
+06/12/2019 11:57:20 AM order found
+06/12/2019 11:57:20 AM observing open order......
+06/12/2019 11:57:20 AM Event created <coroutine object sleep at 0x000001813EA55F48>
+06/12/2019 11:57:20 AM orderbook received
+06/12/2019 11:57:20 AM Order found is True
+06/12/2019 11:57:20 AM order found
+06/12/2019 11:57:20 AM observing open order......
+06/12/2019 11:57:20 AM Event created <coroutine object sleep at 0x000001813D987D48>
+06/12/2019 11:57:20 AM orderbook received
+06/12/2019 11:57:21 AM Order found is True
+06/12/2019 11:57:21 AM order found
+06/12/2019 11:57:21 AM observing open order......
+06/12/2019 11:57:21 AM Event created <coroutine object sleep at 0x000001813EA555C8>
+06/12/2019 11:57:21 AM received None
+06/12/2019 11:57:21 AM orderbook received
+06/12/2019 11:57:21 AM Order found is True
+06/12/2019 11:57:21 AM order found
+06/12/2019 11:57:21 AM observing open order......
+06/12/2019 11:57:21 AM Event created <coroutine object sleep at 0x000001813EA55DC8>
+06/12/2019 11:57:21 AM orderbook received
+06/12/2019 11:57:22 AM Order found is True
+06/12/2019 11:57:22 AM order found
+06/12/2019 11:57:22 AM observing open order......
+06/12/2019 11:57:22 AM Event created <coroutine object sleep at 0x000001813EA55CC8>
+06/12/2019 11:57:22 AM orderbook received
+06/12/2019 11:57:22 AM Order found is True
+06/12/2019 11:57:22 AM order found
+06/12/2019 11:57:22 AM observing open order......
+06/12/2019 11:57:22 AM Event created <coroutine object sleep at 0x000001813EA55648>
+06/12/2019 11:57:22 AM received None
+06/12/2019 11:57:22 AM orderbook received
+06/12/2019 11:57:23 AM Order found is True
+06/12/2019 11:57:23 AM order found
+06/12/2019 11:57:23 AM observing open order......
+06/12/2019 11:57:23 AM Event created <coroutine object sleep at 0x000001813EA55748>
+06/12/2019 11:57:23 AM orderbook received
+06/12/2019 11:57:23 AM Order found is True
+06/12/2019 11:57:23 AM order found
+06/12/2019 11:57:23 AM observing open order......
+06/12/2019 11:57:23 AM Event created <coroutine object sleep at 0x000001813D987EC8>
+06/12/2019 11:57:23 AM received None
+06/12/2019 11:57:23 AM orderbook received
+06/12/2019 11:57:23 AM Order found is True
+06/12/2019 11:57:23 AM order found
+06/12/2019 11:57:23 AM observing open order......
+06/12/2019 11:57:23 AM Event created <coroutine object sleep at 0x000001813EA554C8>
+06/12/2019 11:57:23 AM orderbook received
+06/12/2019 11:57:24 AM Order found is True
+06/12/2019 11:57:24 AM order found
+06/12/2019 11:57:24 AM observing open order......
+06/12/2019 11:57:24 AM Event created <coroutine object sleep at 0x000001813EA557C8>
+06/12/2019 11:57:24 AM orderbook received
+06/12/2019 11:57:24 AM Order found is True
+06/12/2019 11:57:24 AM order found
+06/12/2019 11:57:24 AM observing open order......
+06/12/2019 11:57:24 AM Event created <coroutine object sleep at 0x000001813EAD6048>
+06/12/2019 11:57:24 AM received None
+06/12/2019 11:57:24 AM orderbook received
+06/12/2019 11:57:25 AM Order found is True
+06/12/2019 11:57:25 AM order found
+06/12/2019 11:57:25 AM observing open order......
+06/12/2019 11:57:25 AM Event created <coroutine object sleep at 0x000001813EAD6348>
+06/12/2019 11:57:25 AM orderbook received
+06/12/2019 11:57:25 AM Order found is True
+06/12/2019 11:57:25 AM order found
+06/12/2019 11:57:25 AM observing open order......
+06/12/2019 11:57:25 AM Event created <coroutine object sleep at 0x000001813EA55848>
+06/12/2019 11:57:25 AM orderbook received
+06/12/2019 11:57:25 AM Order found is True
+06/12/2019 11:57:25 AM order found
+06/12/2019 11:57:25 AM observing open order......
+06/12/2019 11:57:25 AM Event created <coroutine object sleep at 0x000001813EAD6248>
+06/12/2019 11:57:25 AM received None
+06/12/2019 11:57:25 AM orderbook received
+06/12/2019 11:57:26 AM Order found is True
+06/12/2019 11:57:26 AM order found
+06/12/2019 11:57:26 AM observing open order......
+06/12/2019 11:57:26 AM Event created <coroutine object sleep at 0x000001813EAD6448>
+06/12/2019 11:57:26 AM orderbook received
+06/12/2019 11:57:26 AM Order found is True
+06/12/2019 11:57:26 AM order found
+06/12/2019 11:57:26 AM observing open order......
+06/12/2019 11:57:26 AM Event created <coroutine object sleep at 0x000001813EA558C8>
+06/12/2019 11:57:26 AM orderbook received
+06/12/2019 11:57:27 AM Order found is True
+06/12/2019 11:57:27 AM order found
+06/12/2019 11:57:27 AM observing open order......
+06/12/2019 11:57:27 AM Event created <coroutine object sleep at 0x000001813EAD60C8>
+06/12/2019 11:57:27 AM received None
+06/12/2019 11:57:27 AM orderbook received
+06/12/2019 11:57:27 AM Order found is True
+06/12/2019 11:57:27 AM order found
+06/12/2019 11:57:27 AM observing open order......
+06/12/2019 11:57:27 AM Event created <coroutine object sleep at 0x000001813EAD6548>
+06/12/2019 11:57:27 AM orderbook received
+06/12/2019 11:57:28 AM Order found is True
+06/12/2019 11:57:28 AM order found
+06/12/2019 11:57:28 AM observing open order......
+06/12/2019 11:57:28 AM Event created <coroutine object sleep at 0x000001813EA55948>
+06/12/2019 11:57:28 AM received None
+06/12/2019 11:57:28 AM orderbook received
+06/12/2019 11:57:28 AM Order found is True
+06/12/2019 11:57:28 AM order found
+06/12/2019 11:57:28 AM observing open order......
+06/12/2019 11:57:28 AM Event created <coroutine object sleep at 0x000001813EAD6148>
+06/12/2019 11:57:29 AM orderbook received
+06/12/2019 11:57:29 AM Order found is True
+06/12/2019 11:57:29 AM order found
+06/12/2019 11:57:29 AM observing open order......
+06/12/2019 11:57:29 AM Event created <coroutine object sleep at 0x000001813EA559C8>
+06/12/2019 11:57:29 AM received None
+06/12/2019 11:57:29 AM orderbook received
+06/12/2019 11:57:29 AM Order found is True
+06/12/2019 11:57:29 AM order found
+06/12/2019 11:57:29 AM observing open order......
+06/12/2019 11:57:29 AM Event created <coroutine object sleep at 0x000001813EAD6648>
+06/12/2019 11:57:29 AM orderbook received
+06/12/2019 11:57:30 AM Order found is True
+06/12/2019 11:57:30 AM order found
+06/12/2019 11:57:30 AM observing open order......
+06/12/2019 11:57:30 AM Event created <coroutine object sleep at 0x000001813EA55A48>
+06/12/2019 11:57:30 AM orderbook received
+06/12/2019 11:57:30 AM Order found is True
+06/12/2019 11:57:30 AM order found
+06/12/2019 11:57:30 AM observing open order......
+06/12/2019 11:57:30 AM Event created <coroutine object sleep at 0x000001813EAD65C8>
+06/12/2019 11:57:30 AM received None
+06/12/2019 11:57:30 AM orderbook received
+06/12/2019 11:57:31 AM Order found is True
+06/12/2019 11:57:31 AM order found
+06/12/2019 11:57:31 AM observing open order......
+06/12/2019 11:57:31 AM Event created <coroutine object sleep at 0x000001813EAD6748>
+06/12/2019 11:57:31 AM orderbook received
+06/12/2019 11:57:31 AM Order found is True
+06/12/2019 11:57:31 AM order found
+06/12/2019 11:57:31 AM observing open order......
+06/12/2019 11:57:31 AM Event created <coroutine object sleep at 0x000001813EA55AC8>
+06/12/2019 11:57:31 AM orderbook received
+06/12/2019 11:57:31 AM Order found is True
+06/12/2019 11:57:31 AM order found
+06/12/2019 11:57:32 AM observing open order......
+06/12/2019 11:57:32 AM Event created <coroutine object sleep at 0x000001813EAD62C8>
+06/12/2019 11:57:32 AM received None
+06/12/2019 11:57:32 AM orderbook received
+06/12/2019 11:57:32 AM Order found is True
+06/12/2019 11:57:32 AM order found
+06/12/2019 11:57:32 AM observing open order......
+06/12/2019 11:57:32 AM Event created <coroutine object sleep at 0x000001813EAD6848>
+06/12/2019 11:57:32 AM orderbook received
+06/12/2019 11:57:32 AM Order found is True
+06/12/2019 11:57:32 AM order found
+06/12/2019 11:57:32 AM observing open order......
+06/12/2019 11:57:32 AM Event created <coroutine object sleep at 0x000001813EA55B48>
+06/12/2019 11:57:32 AM orderbook received
+06/12/2019 11:57:33 AM Order found is True
+06/12/2019 11:57:33 AM order found
+06/12/2019 11:57:33 AM observing open order......
+06/12/2019 11:57:33 AM Event created <coroutine object sleep at 0x000001813EAD63C8>
+06/12/2019 11:57:33 AM received None
+06/12/2019 11:57:33 AM orderbook received
+06/12/2019 11:57:33 AM Order found is True
+06/12/2019 11:57:33 AM order found
+06/12/2019 11:57:33 AM observing open order......
+06/12/2019 11:57:33 AM Event created <coroutine object sleep at 0x000001813EAD6948>
+06/12/2019 11:57:33 AM orderbook received
+06/12/2019 11:57:34 AM Order found is True
+06/12/2019 11:57:34 AM order found
+06/12/2019 11:57:34 AM observing open order......
+06/12/2019 11:57:34 AM Event created <coroutine object sleep at 0x000001813EA55BC8>
+06/12/2019 11:57:34 AM orderbook received
+06/12/2019 11:57:34 AM Order found is True
+06/12/2019 11:57:34 AM order found
+06/12/2019 11:57:34 AM observing open order......
+06/12/2019 11:57:34 AM Event created <coroutine object sleep at 0x000001813EAD64C8>
+06/12/2019 11:57:34 AM received None
+06/12/2019 11:57:34 AM orderbook received
+06/12/2019 11:57:34 AM Order found is True
+06/12/2019 11:57:34 AM order found
+06/12/2019 11:57:34 AM observing open order......
+06/12/2019 11:57:34 AM Event created <coroutine object sleep at 0x000001813EAD6A48>
+06/12/2019 11:57:34 AM orderbook received
+06/12/2019 11:57:35 AM Order found is True
+06/12/2019 11:57:35 AM order found
+06/12/2019 11:57:35 AM observing open order......
+06/12/2019 11:57:35 AM Event created <coroutine object sleep at 0x000001813EA55C48>
+06/12/2019 11:57:35 AM orderbook received
+06/12/2019 11:57:35 AM Order found is True
+06/12/2019 11:57:35 AM order found
+06/12/2019 11:57:35 AM observing open order......
+06/12/2019 11:57:35 AM Event created <coroutine object sleep at 0x000001813EAD66C8>
+06/12/2019 11:57:35 AM received None
+06/12/2019 11:57:35 AM orderbook received
+06/12/2019 11:57:36 AM Order found is True
+06/12/2019 11:57:36 AM order found
+06/12/2019 11:57:36 AM observing open order......
+06/12/2019 11:57:36 AM Event created <coroutine object sleep at 0x000001813EAD6B48>
+06/12/2019 11:57:36 AM orderbook received
+06/12/2019 11:57:36 AM Order found is True
+06/12/2019 11:57:36 AM order found
+06/12/2019 11:57:36 AM observing open order......
+06/12/2019 11:57:36 AM Event created <coroutine object sleep at 0x000001813D987E48>
+06/12/2019 11:57:36 AM orderbook received
+06/12/2019 11:57:36 AM Order found is True
+06/12/2019 11:57:36 AM order found
+06/12/2019 11:57:36 AM observing open order......
+06/12/2019 11:57:36 AM Event created <coroutine object sleep at 0x000001813EAD67C8>
+06/12/2019 11:57:36 AM received None
+06/12/2019 11:57:36 AM orderbook received
+06/12/2019 11:57:37 AM Order found is True
+06/12/2019 11:57:37 AM order found
+06/12/2019 11:57:37 AM observing open order......
+06/12/2019 11:57:37 AM Event created <coroutine object sleep at 0x000001813EAD6C48>
+06/12/2019 11:57:37 AM orderbook received
+06/12/2019 11:57:37 AM Order found is True
+06/12/2019 11:57:37 AM order found
+06/12/2019 11:57:37 AM observing open order......
+06/12/2019 11:57:37 AM Event created <coroutine object sleep at 0x000001813EA55548>
+06/12/2019 11:57:37 AM orderbook received
+06/12/2019 11:57:38 AM Order found is True
+06/12/2019 11:57:38 AM order found
+06/12/2019 11:57:38 AM observing open order......
+06/12/2019 11:57:38 AM Event created <coroutine object sleep at 0x000001813EAD68C8>
+06/12/2019 11:57:38 AM received None
+06/12/2019 11:57:38 AM orderbook received
+06/12/2019 11:57:38 AM Order found is True
+06/12/2019 11:57:38 AM order found
+06/12/2019 11:57:38 AM observing open order......
+06/12/2019 11:57:38 AM Event created <coroutine object sleep at 0x000001813EAD6D48>
+06/12/2019 11:57:38 AM orderbook received
+06/12/2019 11:57:38 AM Order found is True
+06/12/2019 11:57:38 AM order found
+06/12/2019 11:57:38 AM observing open order......
+06/12/2019 11:57:38 AM Event created <coroutine object sleep at 0x000001813EA55D48>
+06/12/2019 11:57:39 AM orderbook received
+06/12/2019 11:57:39 AM Order found is True
+06/12/2019 11:57:39 AM order found
+06/12/2019 11:57:39 AM observing open order......
+06/12/2019 11:57:39 AM Event created <coroutine object sleep at 0x000001813EAD69C8>
+06/12/2019 11:57:39 AM received None
+06/12/2019 11:57:39 AM orderbook received
+06/12/2019 11:57:39 AM Order found is True
+06/12/2019 11:57:39 AM order found
+06/12/2019 11:57:39 AM observing open order......
+06/12/2019 11:57:39 AM Event created <coroutine object sleep at 0x000001813EAD6E48>
+06/12/2019 11:57:39 AM orderbook received
+06/12/2019 11:57:40 AM Order found is True
+06/12/2019 11:57:40 AM order found
+06/12/2019 11:57:40 AM observing open order......
+06/12/2019 11:57:40 AM Event created <coroutine object sleep at 0x000001813D987F48>
+06/12/2019 11:57:40 AM orderbook received
+06/12/2019 11:57:40 AM Order found is True
+06/12/2019 11:57:40 AM order found
+06/12/2019 11:57:40 AM observing open order......
+06/12/2019 11:57:40 AM Event created <coroutine object sleep at 0x000001813EAD6AC8>
+06/12/2019 11:57:40 AM received None
+06/12/2019 11:57:40 AM orderbook received
+06/12/2019 11:57:41 AM Order found is True
+06/12/2019 11:57:41 AM order found
+06/12/2019 11:57:41 AM observing open order......
+06/12/2019 11:57:41 AM Event created <coroutine object sleep at 0x000001813EAD6F48>
+06/12/2019 11:57:41 AM orderbook received
+06/12/2019 11:57:41 AM Order found is True
+06/12/2019 11:57:41 AM order found
+06/12/2019 11:57:41 AM observing open order......
+06/12/2019 11:57:41 AM Event created <coroutine object sleep at 0x000001813EA55248>
+06/12/2019 11:57:41 AM received None
+06/12/2019 11:57:41 AM orderbook received
+06/12/2019 11:57:41 AM Order found is True
+06/12/2019 11:57:41 AM order found
+06/12/2019 11:57:41 AM observing open order......
+06/12/2019 11:57:41 AM Event created <coroutine object sleep at 0x000001813EAD6EC8>
+06/12/2019 11:57:41 AM orderbook received
+06/12/2019 11:57:42 AM Order found is True
+06/12/2019 11:57:42 AM order found
+06/12/2019 11:57:42 AM observing open order......
+06/12/2019 11:57:42 AM Event created <coroutine object sleep at 0x000001813EAD6DC8>
+06/12/2019 11:57:42 AM orderbook received
+06/12/2019 11:57:42 AM Order found is True
+06/12/2019 11:57:42 AM order found
+06/12/2019 11:57:42 AM observing open order......
+06/12/2019 11:57:42 AM Event created <coroutine object sleep at 0x000001813EAD6CC8>
+06/12/2019 11:57:42 AM received None
+06/12/2019 11:57:42 AM orderbook received
+06/12/2019 11:57:43 AM Order found is True
+06/12/2019 11:57:43 AM order found
+06/12/2019 11:57:43 AM observing open order......
+06/12/2019 11:57:43 AM Event created <coroutine object sleep at 0x000001813EA55EC8>
+06/12/2019 11:57:43 AM orderbook received
+06/12/2019 11:57:43 AM Order found is True
+06/12/2019 11:57:43 AM order found
+06/12/2019 11:57:43 AM observing open order......
+06/12/2019 11:57:43 AM Event created <coroutine object sleep at 0x000001813EA55E48>
+06/12/2019 11:57:43 AM orderbook received
+06/12/2019 11:57:43 AM Order found is True
+06/12/2019 11:57:43 AM order found
+06/12/2019 11:57:43 AM observing open order......
+06/12/2019 11:57:43 AM Event created <coroutine object sleep at 0x000001813EAD6BC8>
+06/12/2019 11:57:43 AM received None
+06/12/2019 11:57:43 AM orderbook received
+06/12/2019 11:57:44 AM Order found is True
+06/12/2019 11:57:44 AM order found
+06/12/2019 11:57:44 AM observing open order......
+06/12/2019 11:57:44 AM Event created <coroutine object sleep at 0x000001813EAD61C8>
+06/12/2019 11:57:44 AM orderbook received
+06/12/2019 11:57:44 AM Order found is True
+06/12/2019 11:57:44 AM order found
+06/12/2019 11:57:44 AM observing open order......
+06/12/2019 11:57:44 AM Event created <coroutine object sleep at 0x000001813EA55148>
+06/12/2019 11:57:44 AM received None
+06/12/2019 11:57:44 AM orderbook received
+06/12/2019 11:57:45 AM Order found is True
+06/12/2019 11:57:45 AM order found
+06/12/2019 11:57:45 AM observing open order......
+06/12/2019 11:57:45 AM Event created <coroutine object sleep at 0x000001813EAE22C8>
+06/12/2019 11:57:45 AM orderbook received
+06/12/2019 11:57:45 AM Order found is True
+06/12/2019 11:57:45 AM order found
+06/12/2019 11:57:45 AM observing open order......
+06/12/2019 11:57:45 AM Event created <coroutine object sleep at 0x000001813EA55F48>
+06/12/2019 11:57:45 AM orderbook received
+06/12/2019 11:57:46 AM Order found is True
+06/12/2019 11:57:46 AM order found
+06/12/2019 11:57:46 AM observing open order......
+06/12/2019 11:57:46 AM Event created <coroutine object sleep at 0x000001813EAE2148>
+06/12/2019 11:57:46 AM received None
+06/12/2019 11:57:46 AM orderbook received
+06/12/2019 11:57:46 AM Order found is True
+06/12/2019 11:57:46 AM order found
+06/12/2019 11:57:46 AM observing open order......
+06/12/2019 11:57:46 AM Event created <coroutine object sleep at 0x000001813EAE23C8>
+06/12/2019 11:57:46 AM orderbook received
+06/12/2019 11:57:46 AM Order found is True
+06/12/2019 11:57:46 AM order found
+06/12/2019 11:57:46 AM observing open order......
+06/12/2019 11:57:46 AM Event created <coroutine object sleep at 0x000001813D987D48>
+06/12/2019 11:57:47 AM orderbook received
+06/12/2019 11:57:47 AM Order found is True
+06/12/2019 11:57:47 AM order found
+06/12/2019 11:57:47 AM observing open order......
+06/12/2019 11:57:47 AM Event created <coroutine object sleep at 0x000001813EAE21C8>
+06/12/2019 11:57:47 AM received None
+06/12/2019 11:57:47 AM orderbook received
+06/12/2019 11:57:47 AM Order found is True
+06/12/2019 11:57:47 AM order found
+06/12/2019 11:57:47 AM observing open order......
+06/12/2019 11:57:47 AM Event created <coroutine object sleep at 0x000001813EAE24C8>
+06/12/2019 11:57:47 AM orderbook received
+06/12/2019 11:57:48 AM Order found is True
+06/12/2019 11:57:48 AM order found
+06/12/2019 11:57:48 AM observing open order......
+06/12/2019 11:57:48 AM Event created <coroutine object sleep at 0x000001813EA555C8>
+06/12/2019 11:57:48 AM orderbook received
+06/12/2019 11:57:48 AM Order found is True
+06/12/2019 11:57:48 AM order found
+06/12/2019 11:57:48 AM observing open order......
+06/12/2019 11:57:48 AM Event created <coroutine object sleep at 0x000001813EAE2048>
+06/12/2019 11:57:48 AM received None
+06/12/2019 11:57:48 AM orderbook received
+06/12/2019 11:57:48 AM Order found is True
+06/12/2019 11:57:48 AM order found
+06/12/2019 11:57:48 AM observing open order......
+06/12/2019 11:57:48 AM Event created <coroutine object sleep at 0x000001813EAE25C8>
+06/12/2019 11:57:48 AM orderbook received
+06/12/2019 11:57:49 AM Order found is True
+06/12/2019 11:57:49 AM order found
+06/12/2019 11:57:49 AM observing open order......
+06/12/2019 11:57:49 AM Event created <coroutine object sleep at 0x000001813EA55DC8>
+06/12/2019 11:57:49 AM orderbook received
+06/12/2019 11:57:49 AM Order found is True
+06/12/2019 11:57:49 AM order found
+06/12/2019 11:57:49 AM observing open order......
+06/12/2019 11:57:49 AM Event created <coroutine object sleep at 0x000001813EAE2248>
+06/12/2019 11:57:49 AM received None
+06/12/2019 11:57:49 AM orderbook received
+06/12/2019 11:57:50 AM Order found is True
+06/12/2019 11:57:50 AM order found
+06/12/2019 11:57:50 AM observing open order......
+06/12/2019 11:57:50 AM Event created <coroutine object sleep at 0x000001813EAE26C8>
+06/12/2019 11:57:50 AM orderbook received
+06/12/2019 11:57:50 AM Order found is True
+06/12/2019 11:57:50 AM order found
+06/12/2019 11:57:50 AM observing open order......
+06/12/2019 11:57:50 AM Event created <coroutine object sleep at 0x000001813EA55CC8>
+06/12/2019 11:57:50 AM orderbook received
+06/12/2019 11:57:50 AM Order found is True
+06/12/2019 11:57:50 AM order found
+06/12/2019 11:57:50 AM observing open order......
+06/12/2019 11:57:50 AM Event created <coroutine object sleep at 0x000001813EAE2348>
+06/12/2019 11:57:50 AM received None
+06/12/2019 11:57:50 AM orderbook received
+06/12/2019 11:57:51 AM Order found is True
+06/12/2019 11:57:51 AM order found
+06/12/2019 11:57:51 AM observing open order......
+06/12/2019 11:57:51 AM Event created <coroutine object sleep at 0x000001813EAE27C8>
+06/12/2019 11:57:51 AM orderbook received
+06/12/2019 11:57:51 AM Order found is True
+06/12/2019 11:57:51 AM order found
+06/12/2019 11:57:51 AM observing open order......
+06/12/2019 11:57:51 AM Event created <coroutine object sleep at 0x000001813EA55648>
+06/12/2019 11:57:51 AM orderbook received
+06/12/2019 11:57:52 AM Order found is True
+06/12/2019 11:57:52 AM order found
+06/12/2019 11:57:52 AM observing open order......
+06/12/2019 11:57:52 AM Event created <coroutine object sleep at 0x000001813EAE2448>
+06/12/2019 11:57:52 AM received None
+06/12/2019 11:57:52 AM orderbook received
+06/12/2019 11:57:52 AM Order found is True
+06/12/2019 11:57:52 AM order found
+06/12/2019 11:57:52 AM observing open order......
+06/12/2019 11:57:52 AM Event created <coroutine object sleep at 0x000001813EAE28C8>
+06/12/2019 11:57:52 AM orderbook received
+06/12/2019 11:57:52 AM Order found is True
+06/12/2019 11:57:52 AM order found
+06/12/2019 11:57:52 AM observing open order......
+06/12/2019 11:57:52 AM Event created <coroutine object sleep at 0x000001813EA55748>
+06/12/2019 11:57:53 AM orderbook received
+06/12/2019 11:57:53 AM Order found is True
+06/12/2019 11:57:53 AM order found
+06/12/2019 11:57:53 AM observing open order......
+06/12/2019 11:57:53 AM Event created <coroutine object sleep at 0x000001813EAE2548>
+06/12/2019 11:57:53 AM received None
+06/12/2019 11:57:53 AM orderbook received
+06/12/2019 11:57:53 AM Order found is True
+06/12/2019 11:57:53 AM order found
+06/12/2019 11:57:53 AM observing open order......
+06/12/2019 11:57:53 AM Event created <coroutine object sleep at 0x000001813EAE29C8>
+06/12/2019 11:57:54 AM orderbook received
+06/12/2019 11:57:54 AM Order found is True
+06/12/2019 11:57:54 AM order found
+06/12/2019 11:57:54 AM observing open order......
+06/12/2019 11:57:54 AM Event created <coroutine object sleep at 0x000001813D987EC8>
+06/12/2019 11:57:54 AM orderbook received
+06/12/2019 11:57:54 AM Order found is True
+06/12/2019 11:57:54 AM order found
+06/12/2019 11:57:54 AM observing open order......
+06/12/2019 11:57:54 AM Event created <coroutine object sleep at 0x000001813EAE2648>
+06/12/2019 11:57:54 AM received None
+06/12/2019 11:57:54 AM orderbook received
+06/12/2019 11:57:55 AM Order found is True
+06/12/2019 11:57:55 AM order found
+06/12/2019 11:57:55 AM observing open order......
+06/12/2019 11:57:55 AM Event created <coroutine object sleep at 0x000001813EAE2AC8>
+06/12/2019 11:57:55 AM orderbook received
+06/12/2019 11:57:55 AM Order found is True
+06/12/2019 11:57:55 AM order found
+06/12/2019 11:57:55 AM observing open order......
+06/12/2019 11:57:55 AM Event created <coroutine object sleep at 0x000001813EA554C8>
+06/12/2019 11:57:55 AM orderbook received
+06/12/2019 11:57:55 AM Order found is True
+06/12/2019 11:57:55 AM order found
+06/12/2019 11:57:55 AM observing open order......
+06/12/2019 11:57:55 AM Event created <coroutine object sleep at 0x000001813EAE2748>
+06/12/2019 11:57:55 AM received None
+06/12/2019 11:57:55 AM orderbook received
+06/12/2019 11:57:56 AM Order found is True
+06/12/2019 11:57:56 AM order found
+06/12/2019 11:57:56 AM observing open order......
+06/12/2019 11:57:56 AM Event created <coroutine object sleep at 0x000001813EAE2BC8>
+06/12/2019 11:57:56 AM orderbook received
+06/12/2019 11:57:56 AM Order found is True
+06/12/2019 11:57:56 AM order found
+06/12/2019 11:57:56 AM observing open order......
+06/12/2019 11:57:56 AM Event created <coroutine object sleep at 0x000001813EA557C8>
+06/12/2019 11:57:56 AM orderbook received
+06/12/2019 11:58:09 AM Major Coin: BRIDGE.BTC
+06/12/2019 11:58:09 AM Major Balance: 0.00077601 BRIDGE.BTC
+06/12/2019 11:58:09 AM Welcome !
+06/12/2019 11:58:09 AM Buying BRIDGE.GIN owning 0.00077601 BRIDGE.BTC
+06/12/2019 11:58:09 AM Created worker buy on BRIDGE.GIN:BRIDGE.BTC
+06/12/2019 11:58:10 AM length of asks is 25
+06/12/2019 11:58:12 AM Worker starts on GIN:BTC
+06/12/2019 11:58:12 AM orderbook received
+06/12/2019 11:58:12 AM orderbook received
+06/12/2019 11:58:12 AM balance for BRIDGE.BTC is 12.698950950174966 
+06/12/2019 11:58:12 AM Event created <coroutine object sleep at 0x00000212D6C98F48>
+06/12/2019 11:58:13 AM orderbook received
+06/12/2019 11:58:13 AM orderbook received
+06/12/2019 11:58:13 AM balance for BRIDGE.BTC is 12.698950950174966 
+06/12/2019 11:58:13 AM spread met condition
+06/12/2019 11:58:16 AM order placed for 12.68895095 @ 0.00003054
+06/12/2019 11:58:17 AM Order placed for 0.00003054 12.68895095
+06/12/2019 11:58:17 AM Event created <coroutine object sleep at 0x00000212D7D35148>
+06/12/2019 11:58:17 AM orderbook received
+06/12/2019 11:58:17 AM Order found is True
+06/12/2019 11:58:17 AM order found
+06/12/2019 11:58:17 AM observing open order......
+06/12/2019 11:58:17 AM Event created <coroutine object sleep at 0x00000212D6C98D48>
+06/12/2019 11:58:17 AM orderbook received
+06/12/2019 11:58:17 AM Order found is True
+06/12/2019 11:58:17 AM order found
+06/12/2019 11:58:17 AM observing open order......
+06/12/2019 11:58:17 AM Event created <coroutine object sleep at 0x00000212D7D35648>
+06/12/2019 11:58:17 AM orderbook received
+06/12/2019 11:58:18 AM Order found is True
+06/12/2019 11:58:18 AM order found
+06/12/2019 11:58:18 AM observing open order......
+06/12/2019 11:58:18 AM Event created <coroutine object sleep at 0x00000212D6C98EC8>
+06/12/2019 11:58:18 AM orderbook received
+06/12/2019 11:58:18 AM Order found is True
+06/12/2019 11:58:18 AM order found
+06/12/2019 11:58:18 AM observing open order......
+06/12/2019 11:58:18 AM Event created <coroutine object sleep at 0x00000212D7D357C8>
+06/12/2019 11:58:18 AM orderbook received
+06/12/2019 11:58:19 AM Order found is True
+06/12/2019 11:58:19 AM order found
+06/12/2019 11:58:19 AM observing open order......
+06/12/2019 11:58:19 AM Event created <coroutine object sleep at 0x00000212D7D35848>
+06/12/2019 11:58:19 AM orderbook received
+06/12/2019 11:58:19 AM Order found is True
+06/12/2019 11:58:19 AM order found
+06/12/2019 11:58:19 AM observing open order......
+06/12/2019 11:58:19 AM Event created <coroutine object sleep at 0x00000212D7D358C8>
+06/12/2019 11:58:19 AM orderbook received
+06/12/2019 11:58:20 AM Order found is True
+06/12/2019 11:58:20 AM order found
+06/12/2019 11:58:20 AM observing open order......
+06/12/2019 11:58:20 AM Event created <coroutine object sleep at 0x00000212D7D35948>
+06/12/2019 11:58:20 AM orderbook received
+06/12/2019 11:58:20 AM Order found is True
+06/12/2019 11:58:20 AM order found
+06/12/2019 11:58:20 AM observing open order......
+06/12/2019 11:58:20 AM Event created <coroutine object sleep at 0x00000212D7D359C8>
+06/12/2019 11:58:20 AM orderbook received
+06/12/2019 11:58:21 AM Order found is True
+06/12/2019 11:58:21 AM order found
+06/12/2019 11:58:21 AM observing open order......
+06/12/2019 11:58:21 AM Event created <coroutine object sleep at 0x00000212D7D35A48>
+06/12/2019 11:58:21 AM orderbook received
+06/12/2019 11:58:21 AM Order found is True
+06/12/2019 11:58:21 AM order found
+06/12/2019 11:58:21 AM observing open order......
+06/12/2019 11:58:21 AM Event created <coroutine object sleep at 0x00000212D7D35AC8>
+06/12/2019 11:58:21 AM orderbook received
+06/12/2019 11:58:21 AM Order found is True
+06/12/2019 11:58:21 AM order found
+06/12/2019 11:58:21 AM observing open order......
+06/12/2019 11:58:21 AM Event created <coroutine object sleep at 0x00000212D7D35B48>
+06/12/2019 11:58:21 AM orderbook received
+06/12/2019 11:58:22 AM Order found is True
+06/12/2019 11:58:22 AM order found
+06/12/2019 11:58:22 AM observing open order......
+06/12/2019 11:58:22 AM Event created <coroutine object sleep at 0x00000212D7D35BC8>
+06/12/2019 11:58:22 AM orderbook received
+06/12/2019 11:58:22 AM Order found is True
+06/12/2019 11:58:22 AM order found
+06/12/2019 11:58:22 AM observing open order......
+06/12/2019 11:58:22 AM Event created <coroutine object sleep at 0x00000212D7D35C48>
+06/12/2019 11:58:22 AM received None
+06/12/2019 11:58:22 AM orderbook received
+06/12/2019 11:58:23 AM Order found is True
+06/12/2019 11:58:23 AM order found
+06/12/2019 11:58:23 AM observing open order......
+06/12/2019 11:58:23 AM Event created <coroutine object sleep at 0x00000212D7D35CC8>
+06/12/2019 11:58:23 AM orderbook received
+06/12/2019 11:58:23 AM Order found is True
+06/12/2019 11:58:23 AM order found
+06/12/2019 11:58:23 AM observing open order......
+06/12/2019 11:58:23 AM Event created <coroutine object sleep at 0x00000212D6C98E48>
+06/12/2019 11:58:23 AM received None
+06/12/2019 11:58:23 AM orderbook received
+06/12/2019 11:58:23 AM Order found is True
+06/12/2019 11:58:23 AM order found
+06/12/2019 11:58:24 AM observing open order......
+06/12/2019 11:58:24 AM Event created <coroutine object sleep at 0x00000212D7D35D48>
+06/12/2019 11:58:24 AM orderbook received
+06/12/2019 11:58:24 AM Order found is True
+06/12/2019 11:58:24 AM order found
+06/12/2019 11:58:24 AM observing open order......
+06/12/2019 11:58:24 AM Event created <coroutine object sleep at 0x00000212D6C98F48>
+06/12/2019 11:58:24 AM orderbook received
+06/12/2019 11:58:24 AM Order found is True
+06/12/2019 11:58:24 AM order found
+06/12/2019 11:58:24 AM observing open order......
+06/12/2019 11:58:24 AM Event created <coroutine object sleep at 0x00000212D7D35548>
+06/12/2019 11:58:24 AM received None
+06/12/2019 11:58:24 AM orderbook received
+06/12/2019 11:58:25 AM Order found is True
+06/12/2019 11:58:25 AM order found
+06/12/2019 11:58:25 AM observing open order......
+06/12/2019 11:58:25 AM Event created <coroutine object sleep at 0x00000212D7D35E48>
+06/12/2019 11:58:25 AM orderbook received
+06/12/2019 11:58:25 AM Order found is True
+06/12/2019 11:58:25 AM order found
+06/12/2019 11:58:25 AM observing open order......
+06/12/2019 11:58:25 AM Event created <coroutine object sleep at 0x00000212D7D35EC8>
+06/12/2019 11:58:25 AM orderbook received
+06/12/2019 11:58:25 AM Order found is True
+06/12/2019 11:58:26 AM order found
+06/12/2019 11:58:26 AM observing open order......
+06/12/2019 11:58:26 AM Event created <coroutine object sleep at 0x00000212D7D35148>
+06/12/2019 11:58:26 AM received None
+06/12/2019 11:58:26 AM orderbook received
+06/12/2019 11:58:26 AM Order found is True
+06/12/2019 11:58:26 AM order found
+06/12/2019 11:58:26 AM observing open order......
+06/12/2019 11:58:26 AM Event created <coroutine object sleep at 0x00000212D7D35F48>
+06/12/2019 11:58:26 AM orderbook received
+06/12/2019 11:58:26 AM Order found is True
+06/12/2019 11:58:26 AM order found
+06/12/2019 11:58:26 AM observing open order......
+06/12/2019 11:58:26 AM Event created <coroutine object sleep at 0x00000212D6C98D48>
+06/12/2019 11:58:26 AM orderbook received
+06/12/2019 11:58:27 AM Order found is True
+06/12/2019 11:58:27 AM order found
+06/12/2019 11:58:27 AM observing open order......
+06/12/2019 11:58:27 AM Event created <coroutine object sleep at 0x00000212D7D355C8>
+06/12/2019 11:58:27 AM received None
+06/12/2019 11:58:27 AM orderbook received
+06/12/2019 11:58:27 AM Order found is True
+06/12/2019 11:58:27 AM order found
+06/12/2019 11:58:27 AM observing open order......
+06/12/2019 11:58:27 AM Event created <coroutine object sleep at 0x00000212D7D35DC8>
+06/12/2019 11:58:27 AM orderbook received
+06/12/2019 11:58:28 AM Order found is True
+06/12/2019 11:58:28 AM order found
+06/12/2019 11:58:28 AM observing open order......
+06/12/2019 11:58:28 AM Event created <coroutine object sleep at 0x00000212D7D354C8>
+06/12/2019 11:58:28 AM orderbook received
+06/12/2019 11:58:28 AM Order found is True
+06/12/2019 11:58:28 AM order found
+06/12/2019 11:58:28 AM observing open order......
+06/12/2019 11:58:28 AM Event created <coroutine object sleep at 0x00000212D7D35248>
+06/12/2019 11:58:28 AM received None
+06/12/2019 11:58:28 AM orderbook received
+06/12/2019 11:58:28 AM Order found is True
+06/12/2019 11:58:28 AM order found
+06/12/2019 11:58:28 AM observing open order......
+06/12/2019 11:58:28 AM Event created <coroutine object sleep at 0x00000212D6C98EC8>
+06/12/2019 11:58:28 AM orderbook received
+06/12/2019 11:58:29 AM Order found is True
+06/12/2019 11:58:29 AM order found
+06/12/2019 11:58:29 AM observing open order......
+06/12/2019 11:58:29 AM Event created <coroutine object sleep at 0x00000212D7D35648>
+06/12/2019 11:58:29 AM orderbook received
+06/12/2019 11:58:29 AM Order found is True
+06/12/2019 11:58:29 AM order found
+06/12/2019 11:58:29 AM observing open order......
+06/12/2019 11:58:29 AM Event created <coroutine object sleep at 0x00000212D7D35748>
+06/12/2019 11:58:29 AM received None
+06/12/2019 11:58:29 AM orderbook received
+06/12/2019 11:58:30 AM Order found is True
+06/12/2019 11:58:30 AM order found
+06/12/2019 11:58:30 AM observing open order......
+06/12/2019 11:58:30 AM Event created <coroutine object sleep at 0x00000212D7D662C8>
+06/12/2019 11:58:30 AM orderbook received
+06/12/2019 11:58:30 AM Order found is True
+06/12/2019 11:58:30 AM order found
+06/12/2019 11:58:30 AM observing open order......
+06/12/2019 11:58:30 AM Event created <coroutine object sleep at 0x00000212D7D357C8>
+06/12/2019 11:58:30 AM orderbook received
+06/12/2019 11:58:31 AM Order found is True
+06/12/2019 11:58:31 AM order found
+06/12/2019 11:58:31 AM observing open order......
+06/12/2019 11:58:31 AM Event created <coroutine object sleep at 0x00000212D7D66148>
+06/12/2019 11:58:31 AM received None
+06/12/2019 11:58:31 AM orderbook received
+06/12/2019 11:58:31 AM Order found is True
+06/12/2019 11:58:31 AM order found
+06/12/2019 11:58:31 AM observing open order......
+06/12/2019 11:58:31 AM Event created <coroutine object sleep at 0x00000212D7D663C8>
+06/12/2019 11:58:31 AM orderbook received
+06/12/2019 11:58:31 AM Order found is True
+06/12/2019 11:58:31 AM order found
+06/12/2019 11:58:31 AM observing open order......
+06/12/2019 11:58:31 AM Event created <coroutine object sleep at 0x00000212D7D35848>
+06/12/2019 11:58:31 AM orderbook received
+06/12/2019 11:58:32 AM Order found is True
+06/12/2019 11:58:32 AM order found
+06/12/2019 11:58:32 AM observing open order......
+06/12/2019 11:58:32 AM Event created <coroutine object sleep at 0x00000212D7D660C8>
+06/12/2019 11:58:32 AM received None
+06/12/2019 11:58:32 AM orderbook received
+06/12/2019 11:58:32 AM Order found is True
+06/12/2019 11:58:32 AM order found
+06/12/2019 11:58:32 AM observing open order......
+06/12/2019 11:58:32 AM Event created <coroutine object sleep at 0x00000212D7D664C8>
+06/12/2019 11:58:32 AM orderbook received
+06/12/2019 11:58:33 AM Order found is True
+06/12/2019 11:58:33 AM order found
+06/12/2019 11:58:33 AM observing open order......
+06/12/2019 11:58:33 AM Event created <coroutine object sleep at 0x00000212D7D358C8>
+06/12/2019 11:58:33 AM received None
+06/12/2019 11:58:33 AM orderbook received
+06/12/2019 11:58:33 AM Order found is True
+06/12/2019 11:58:33 AM order found
+06/12/2019 11:58:33 AM observing open order......
+06/12/2019 11:58:33 AM Event created <coroutine object sleep at 0x00000212D7D661C8>
+06/12/2019 11:58:33 AM orderbook received
+06/12/2019 11:58:34 AM Order found is True
+06/12/2019 11:58:34 AM order found
+06/12/2019 11:58:34 AM observing open order......
+06/12/2019 11:58:34 AM Event created <coroutine object sleep at 0x00000212D7D35948>
+06/12/2019 11:58:34 AM orderbook received
+06/12/2019 11:58:34 AM Order found is False
+06/12/2019 11:58:34 AM order not found, so it has been filled or is gone
+06/12/2019 11:58:36 AM Couldnt cancel order in BRIDGE.GIN:BRIDGE.BTC
+06/12/2019 11:58:36 AM Event created <coroutine object sleep at 0x00000212D7D353C8>
+06/12/2019 11:58:36 AM received None
+06/12/2019 11:58:36 AM orderbook received
+06/12/2019 11:58:36 AM orderbook received
+06/12/2019 11:58:36 AM balance for BRIDGE.BTC is 12.698978112692258 
+06/12/2019 11:58:36 AM Event created <coroutine object sleep at 0x00000212D6C98DC8>
+06/12/2019 11:58:36 AM orderbook received
+06/12/2019 11:58:37 AM orderbook received
+06/12/2019 11:58:37 AM balance for BRIDGE.BTC is 12.698978112692258 
+06/12/2019 11:58:37 AM spread met condition
+06/12/2019 11:58:40 AM order placed for 12.68897811 @ 0.00003054
+06/12/2019 11:58:40 AM Order placed for 0.00003054 12.68897811
+06/12/2019 11:58:40 AM Event created <coroutine object sleep at 0x00000212D7D359C8>
+06/12/2019 11:58:40 AM received None
+06/12/2019 11:58:40 AM orderbook received
+06/12/2019 11:58:41 AM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 11:58:41 AM Order found is True
+06/12/2019 11:58:41 AM order found
+06/12/2019 11:58:41 AM observing open order......
+06/12/2019 11:58:41 AM Event created <coroutine object sleep at 0x00000212D7D35A48>
+06/12/2019 11:58:41 AM orderbook received
+06/12/2019 11:58:41 AM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 11:58:41 AM Order found is True
+06/12/2019 11:58:41 AM order found
+06/12/2019 11:58:41 AM observing open order......
+06/12/2019 11:58:41 AM Event created <coroutine object sleep at 0x00000212D7D35048>
+06/12/2019 11:58:41 AM orderbook received
+06/12/2019 11:58:42 AM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 11:58:42 AM Order found is True
+06/12/2019 11:58:42 AM order found
+06/12/2019 11:58:42 AM observing open order......
+06/12/2019 11:58:42 AM Event created <coroutine object sleep at 0x00000212D7D667C8>
+06/12/2019 11:58:42 AM received None
+06/12/2019 11:58:42 AM orderbook received
+06/12/2019 11:58:42 AM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 11:58:42 AM Order found is True
+06/12/2019 11:58:42 AM order found
+06/12/2019 11:58:42 AM observing open order......
+06/12/2019 11:58:42 AM Event created <coroutine object sleep at 0x00000212D7D665C8>
+06/12/2019 11:58:42 AM orderbook received
+06/12/2019 11:58:42 AM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 11:58:42 AM Order found is True
+06/12/2019 11:58:43 AM order found
+06/12/2019 11:58:43 AM observing open order......
+06/12/2019 11:58:43 AM Event created <coroutine object sleep at 0x00000212D7D35AC8>
+06/12/2019 11:58:43 AM orderbook received
+06/12/2019 11:58:43 AM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 11:58:43 AM Order found is True
+06/12/2019 11:58:43 AM order found
+06/12/2019 11:58:43 AM observing open order......
+06/12/2019 11:58:43 AM Event created <coroutine object sleep at 0x00000212D7D668C8>
+06/12/2019 11:58:43 AM received None
+06/12/2019 11:58:43 AM orderbook received
+06/12/2019 11:58:43 AM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 11:58:43 AM Order found is True
+06/12/2019 11:58:43 AM order found
+06/12/2019 11:58:43 AM observing open order......
+06/12/2019 11:58:43 AM Event created <coroutine object sleep at 0x00000212D7D66848>
+06/12/2019 11:58:43 AM orderbook received
+06/12/2019 11:58:44 AM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 11:58:44 AM Order found is True
+06/12/2019 11:58:44 AM order found
+06/12/2019 11:58:44 AM observing open order......
+06/12/2019 11:58:44 AM Event created <coroutine object sleep at 0x00000212D7D35B48>
+06/12/2019 11:58:44 AM orderbook received
+06/12/2019 11:58:44 AM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 11:58:44 AM Order found is True
+06/12/2019 11:58:44 AM order found
+06/12/2019 11:58:44 AM observing open order......
+06/12/2019 11:58:44 AM Event created <coroutine object sleep at 0x00000212D7D666C8>
+06/12/2019 11:58:44 AM received None
+06/12/2019 11:58:44 AM orderbook received
+06/12/2019 11:58:44 AM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 11:58:45 AM Order found is True
+06/12/2019 11:58:45 AM order found
+06/12/2019 11:58:45 AM observing open order......
+06/12/2019 11:58:45 AM Event created <coroutine object sleep at 0x00000212D7D66A48>
+06/12/2019 11:58:45 AM orderbook received
+06/12/2019 11:58:45 AM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 11:58:45 AM Order found is True
+06/12/2019 11:58:45 AM order found
+06/12/2019 11:58:45 AM observing open order......
+06/12/2019 11:58:45 AM Event created <coroutine object sleep at 0x00000212D7D35BC8>
+06/12/2019 11:58:45 AM orderbook received
+06/12/2019 11:58:46 AM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 11:58:46 AM Order found is True
+06/12/2019 11:58:46 AM order found
+06/12/2019 11:58:46 AM observing open order......
+06/12/2019 11:58:46 AM Event created <coroutine object sleep at 0x00000212D7D66548>
+06/12/2019 11:58:46 AM received None
+06/12/2019 11:58:46 AM orderbook received
+06/12/2019 11:58:46 AM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 11:58:46 AM Order found is True
+06/12/2019 11:58:46 AM order found
+06/12/2019 11:58:46 AM observing open order......
+06/12/2019 11:58:46 AM Event created <coroutine object sleep at 0x00000212D7D66B48>
+06/12/2019 11:58:46 AM orderbook received
+06/12/2019 11:58:47 AM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 11:58:47 AM Order found is True
+06/12/2019 11:58:47 AM order found
+06/12/2019 11:58:47 AM observing open order......
+06/12/2019 11:58:47 AM Event created <coroutine object sleep at 0x00000212D7D35C48>
+06/12/2019 11:58:47 AM orderbook received
+06/12/2019 11:58:47 AM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 11:58:47 AM Order found is True
+06/12/2019 11:58:47 AM order found
+06/12/2019 11:58:47 AM observing open order......
+06/12/2019 11:58:47 AM Event created <coroutine object sleep at 0x00000212D7D66348>
+06/12/2019 11:58:47 AM received None
+06/12/2019 11:58:47 AM orderbook received
+06/12/2019 11:58:47 AM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 11:58:48 AM Order found is True
+06/12/2019 11:58:48 AM order found
+06/12/2019 11:58:48 AM observing open order......
+06/12/2019 11:58:48 AM Event created <coroutine object sleep at 0x00000212D7D66C48>
+06/12/2019 11:58:48 AM orderbook received
+06/12/2019 11:58:48 AM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 11:58:48 AM Order found is True
+06/12/2019 11:58:48 AM order found
+06/12/2019 11:58:48 AM observing open order......
+06/12/2019 11:58:48 AM Event created <coroutine object sleep at 0x00000212D7D35CC8>
+06/12/2019 11:58:48 AM orderbook received
+06/12/2019 11:58:48 AM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 11:58:49 AM Order found is True
+06/12/2019 11:58:49 AM order found
+06/12/2019 11:58:49 AM observing open order......
+06/12/2019 11:58:49 AM Event created <coroutine object sleep at 0x00000212D7D66BC8>
+06/12/2019 11:58:49 AM received None
+06/12/2019 11:58:49 AM orderbook received
+06/12/2019 11:58:49 AM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 11:58:49 AM Order found is True
+06/12/2019 11:58:49 AM order found
+06/12/2019 11:58:49 AM observing open order......
+06/12/2019 11:58:49 AM Event created <coroutine object sleep at 0x00000212D7D66048>
+06/12/2019 11:58:49 AM orderbook received
+06/12/2019 11:58:49 AM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 11:58:49 AM Order found is True
+06/12/2019 11:58:49 AM order found
+06/12/2019 11:58:49 AM observing open order......
+06/12/2019 11:58:49 AM Event created <coroutine object sleep at 0x00000212D7D66D48>
+06/12/2019 11:58:50 AM orderbook received
+06/12/2019 11:58:50 AM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 11:58:50 AM Order found is True
+06/12/2019 11:58:50 AM order found
+06/12/2019 11:58:50 AM observing open order......
+06/12/2019 11:58:50 AM Event created <coroutine object sleep at 0x00000212D6C98E48>
+06/12/2019 11:58:50 AM received None
+06/12/2019 11:58:50 AM orderbook received
+06/12/2019 11:58:50 AM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 11:58:50 AM Order found is True
+06/12/2019 11:58:50 AM order found
+06/12/2019 11:58:50 AM observing open order......
+06/12/2019 11:58:50 AM Event created <coroutine object sleep at 0x00000212D7D66DC8>
+06/12/2019 11:58:50 AM orderbook received
+06/12/2019 11:58:51 AM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 11:58:51 AM Order found is True
+06/12/2019 11:58:51 AM order found
+06/12/2019 11:58:51 AM observing open order......
+06/12/2019 11:58:51 AM Event created <coroutine object sleep at 0x00000212D7D35D48>
+06/12/2019 11:58:51 AM orderbook received
+06/12/2019 11:58:51 AM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 11:58:51 AM Order found is True
+06/12/2019 11:58:51 AM order found
+06/12/2019 11:58:51 AM observing open order......
+06/12/2019 11:58:51 AM Event created <coroutine object sleep at 0x00000212D7D66748>
+06/12/2019 11:58:51 AM received None
+06/12/2019 11:58:51 AM orderbook received
+06/12/2019 11:59:26 AM Major Coin: BRIDGE.BTC
+06/12/2019 11:59:26 AM Major Balance: 0.00000097 BRIDGE.BTC
+06/12/2019 11:59:26 AM Welcome !
+06/12/2019 11:59:26 AM Selling BRIDGE.GIN owning 38.00742989 BRIDGE.GIN
+06/12/2019 11:59:26 AM Created worker sell on BRIDGE.GIN:BRIDGE.BTC
+06/12/2019 11:59:27 AM length of asks is 25
+06/12/2019 11:59:28 AM Buying BRIDGE.GIN owning 0.00000097 BRIDGE.BTC
+06/12/2019 11:59:28 AM Created worker buy on BRIDGE.GIN:BRIDGE.BTC
+06/12/2019 11:59:29 AM length of asks is 25
+06/12/2019 11:59:32 AM Worker starts on GIN:BTC
+06/12/2019 11:59:32 AM Worker starts on GIN:BTC
+06/12/2019 11:59:32 AM orderbook received
+06/12/2019 11:59:32 AM orderbook received
+06/12/2019 11:59:46 AM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 11:59:46 AM balance for BRIDGE.BTC is 37.99742989 
+06/12/2019 11:59:46 AM Event created <coroutine object sleep at 0x00000145D27F8D48>
+06/12/2019 11:59:54 AM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 11:59:54 AM orderbook received
+06/12/2019 11:59:54 AM balance for BRIDGE.BTC is 0.005880869073467179 
+06/12/2019 11:59:54 AM Event created <coroutine object sleep at 0x00000145D27F8BC8>
+06/12/2019 11:59:54 AM orderbook received
+06/12/2019 11:59:57 AM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 11:59:58 AM balance for BRIDGE.BTC is 37.99742989 
+06/12/2019 11:59:58 AM spread met condition
+06/12/2019 12:00:11 PM order placed for 37.98742989 @ 0.00003209
+06/12/2019 12:00:11 PM Order placed for 0.00003209 37.98742989
+06/12/2019 12:00:11 PM Event created <coroutine object sleep at 0x00000145D38756C8>
+06/12/2019 12:00:11 PM orderbook received
+06/12/2019 12:00:28 PM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 12:00:28 PM orderbook received
+06/12/2019 12:00:28 PM balance for BRIDGE.BTC is 37.993310759073466 
+06/12/2019 12:00:28 PM spread met condition
+06/12/2019 12:00:30 PM  Error in setting order ('Order failed!', UnhandledRPCError('Assert Exception: d.get_balance( *_seller, *_sell_asset ) >= op.amount_to_sell: insufficient balance'))
+06/12/2019 12:00:30 PM Event created <coroutine object sleep at 0x00000145D38751C8>
+06/12/2019 12:00:30 PM received None
+06/12/2019 12:00:30 PM received None
+06/12/2019 12:00:31 PM orderbook received
+06/12/2019 12:00:37 PM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 12:00:37 PM Order found is True
+06/12/2019 12:00:37 PM order found
+06/12/2019 12:00:37 PM deviation  -3E-8 too large
+06/12/2019 12:00:40 PM Canceled order in BRIDGE.GIN:BRIDGE.BTC
+06/12/2019 12:00:40 PM Event created <coroutine object sleep at 0x00000145D3875348>
+06/12/2019 12:00:40 PM orderbook received
+06/12/2019 12:02:09 PM Connection is already closed.
+06/12/2019 12:02:09 PM Reconnecting ...
+06/12/2019 12:02:10 PM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 12:02:10 PM Order already deleted
+06/12/2019 12:02:10 PM Event created <coroutine object sleep at 0x00000145D39C7A48>
+06/12/2019 12:02:10 PM received None
+06/12/2019 12:02:10 PM received None
+06/12/2019 12:02:10 PM orderbook received
+06/12/2019 12:02:14 PM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 12:02:14 PM Connection is already closed.
+06/12/2019 12:02:14 PM Reconnecting ...
+06/12/2019 12:02:14 PM balance for BRIDGE.BTC is 37.99742989 
+06/12/2019 12:02:14 PM spread met condition
+06/12/2019 12:02:41 PM Major Coin: BRIDGE.BTC
+06/12/2019 12:02:41 PM Major Balance: 0.00000097 BRIDGE.BTC
+06/12/2019 12:02:41 PM Welcome !
+06/12/2019 12:02:41 PM Selling BRIDGE.GIN owning 38.00742989 BRIDGE.GIN
+06/12/2019 12:02:41 PM Created worker sell on BRIDGE.GIN:BRIDGE.BTC
+06/12/2019 12:02:42 PM length of asks is 25
+06/12/2019 12:02:43 PM Buying BRIDGE.GIN owning 0.00000097 BRIDGE.BTC
+06/12/2019 12:02:43 PM Created worker buy on BRIDGE.GIN:BRIDGE.BTC
+06/12/2019 12:02:43 PM length of asks is 25
+06/12/2019 12:02:46 PM Worker starts on GIN:BTC
+06/12/2019 12:02:46 PM Worker starts on GIN:BTC
+06/12/2019 12:02:46 PM orderbook received
+06/12/2019 12:02:46 PM orderbook received
+06/12/2019 12:02:47 PM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 12:02:47 PM balance for BRIDGE.BTC is 37.99742989 
+06/12/2019 12:02:47 PM Event created <coroutine object sleep at 0x000002E5FFF28D48>
+06/12/2019 12:02:47 PM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 12:02:48 PM orderbook received
+06/12/2019 12:02:48 PM balance for BRIDGE.BTC is 0.005880869073467179 
+06/12/2019 12:02:48 PM Event created <coroutine object sleep at 0x000002E5FFF28BC8>
+06/12/2019 12:02:48 PM orderbook received
+06/12/2019 12:02:48 PM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 12:02:48 PM balance for BRIDGE.BTC is 37.99742989 
+06/12/2019 12:02:48 PM spread met condition
+06/12/2019 12:03:43 PM order placed for 37.98742989 @ 0.00003200
+06/12/2019 12:03:43 PM Order placed for 0.00003200 37.98742989
+06/12/2019 12:03:44 PM Event created <coroutine object sleep at 0x000002E588FD7848>
+06/12/2019 12:03:44 PM orderbook received
+06/12/2019 12:03:44 PM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 12:03:44 PM orderbook received
+06/12/2019 12:03:44 PM balance for BRIDGE.BTC is 37.993310759073466 
+06/12/2019 12:03:44 PM spread met condition
+06/12/2019 12:03:47 PM  Error in setting order ('Order failed!', UnhandledRPCError('Assert Exception: d.get_balance( *_seller, *_sell_asset ) >= op.amount_to_sell: insufficient balance'))
+06/12/2019 12:03:47 PM Event created <coroutine object sleep at 0x000002E588FD76C8>
+06/12/2019 12:03:47 PM orderbook received
+06/12/2019 12:03:47 PM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 12:03:47 PM Order found is True
+06/12/2019 12:03:47 PM order found
+06/12/2019 12:03:47 PM deviation  9E-8 too large
+06/12/2019 12:03:52 PM Canceled order in BRIDGE.GIN:BRIDGE.BTC
+06/12/2019 12:03:52 PM Event created <coroutine object sleep at 0x000002E5890A8348>
+06/12/2019 12:03:53 PM orderbook received
+06/12/2019 12:03:53 PM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 12:03:53 PM Order already deleted
+06/12/2019 12:03:53 PM Event created <coroutine object sleep at 0x000002E588FD7548>
+06/12/2019 12:03:53 PM received None
+06/12/2019 12:03:53 PM received None
+06/12/2019 12:03:53 PM orderbook received
+06/12/2019 12:03:53 PM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 12:03:53 PM balance for BRIDGE.BTC is 37.99742989 
+06/12/2019 12:03:53 PM spread met condition
+06/12/2019 12:03:59 PM order placed for 37.98742989 @ 0.00003209
+06/12/2019 12:03:59 PM Order placed for 0.00003209 37.98742989
+06/12/2019 12:03:59 PM Event created <coroutine object sleep at 0x000002E588FD7448>
+06/12/2019 12:03:59 PM orderbook received
+06/12/2019 12:03:59 PM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 12:04:00 PM orderbook received
+06/12/2019 12:04:00 PM received None
+06/12/2019 12:04:00 PM received None
+06/12/2019 12:04:00 PM balance for BRIDGE.BTC is 37.993310759073466 
+06/12/2019 12:04:00 PM Event created <coroutine object sleep at 0x000002E588FD7648>
+06/12/2019 12:04:00 PM orderbook received
+06/12/2019 12:04:00 PM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 12:04:00 PM Order found is True
+06/12/2019 12:04:00 PM order found
+06/12/2019 12:04:00 PM observing open order......
+06/12/2019 12:04:00 PM Event created <coroutine object sleep at 0x000002E5FFF28D48>
+06/12/2019 12:04:00 PM received None
+06/12/2019 12:04:00 PM received None
+06/12/2019 12:04:00 PM orderbook received
+06/12/2019 12:04:00 PM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 12:04:01 PM orderbook received
+06/12/2019 12:04:01 PM balance for BRIDGE.BTC is 37.993310759073466 
+06/12/2019 12:04:01 PM spread met condition
+06/12/2019 12:04:03 PM  Error in setting order ('Order failed!', UnhandledRPCError('Assert Exception: d.get_balance( *_seller, *_sell_asset ) >= op.amount_to_sell: insufficient balance'))
+06/12/2019 12:04:03 PM Event created <coroutine object sleep at 0x000002E588FD74C8>
+06/12/2019 12:04:03 PM orderbook received
+06/12/2019 12:04:03 PM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 12:04:03 PM Order found is True
+06/12/2019 12:04:03 PM order found
+06/12/2019 12:04:03 PM observing open order......
+06/12/2019 12:04:03 PM Event created <coroutine object sleep at 0x000002E5890A83C8>
+06/12/2019 12:04:03 PM received None
+06/12/2019 12:04:03 PM orderbook received
+06/12/2019 12:04:03 PM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 12:04:03 PM Order already deleted
+06/12/2019 12:04:03 PM Event created <coroutine object sleep at 0x000002E588FD72C8>
+06/12/2019 12:04:03 PM orderbook received
+06/12/2019 12:04:04 PM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 12:04:04 PM Order found is True
+06/12/2019 12:04:04 PM order found
+06/12/2019 12:04:04 PM observing open order......
+06/12/2019 12:04:04 PM Event created <coroutine object sleep at 0x000002E588FD7848>
+06/12/2019 12:04:04 PM orderbook received
+06/12/2019 12:04:04 PM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 12:04:04 PM orderbook received
+06/12/2019 12:04:04 PM orderbook received
+06/12/2019 12:04:04 PM balance for BRIDGE.BTC is 37.993310759073466 
+06/12/2019 12:04:04 PM Event created <coroutine object sleep at 0x000002E588FD73C8>
+06/12/2019 12:04:05 PM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 12:04:05 PM Order found is True
+06/12/2019 12:04:05 PM order found
+06/12/2019 12:04:05 PM observing open order......
+06/12/2019 12:04:05 PM Event created <coroutine object sleep at 0x000002E588FD71C8>
+06/12/2019 12:04:05 PM received None
+06/12/2019 12:04:05 PM orderbook received
+06/12/2019 12:04:05 PM orderbook received
+06/12/2019 12:04:05 PM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 12:04:06 PM orderbook received
+06/12/2019 12:04:06 PM Found trades [sell 0.00077530 BRIDGE.BTC 25.39464613 BRIDGE.GIN @ 32754.6061266606484423 BRIDGE.GIN/BRIDGE.BTC, sell 0.00038752 BRIDGE.BTC 12.68895095 BRIDGE.GIN @ 32743.9898585879491293 BRIDGE.GIN/BRIDGE.BTC]
+06/12/2019 12:07:32 PM Major Coin: BRIDGE.BTC
+06/12/2019 12:07:32 PM Major Balance: 0.01912483 BRIDGE.BTC
+06/12/2019 12:07:32 PM Welcome !
+06/12/2019 12:07:32 PM Selling BRIDGE.SINS owning 13.5626780 BRIDGE.SINS
+06/12/2019 12:07:32 PM Created worker sell on BRIDGE.SINS:BRIDGE.BTC
+06/12/2019 12:07:33 PM length of asks is 25
+06/12/2019 12:07:34 PM Buying BRIDGE.SINS owning 0.01912483 BRIDGE.BTC
+06/12/2019 12:07:34 PM Created worker buy on BRIDGE.SINS:BRIDGE.BTC
+06/12/2019 12:07:34 PM length of asks is 25
+06/12/2019 12:07:37 PM Worker starts on SINS:BTC
+06/12/2019 12:07:37 PM Worker starts on SINS:BTC
+06/12/2019 12:07:37 PM orderbook received
+06/12/2019 12:07:37 PM orderbook received
+06/12/2019 12:07:38 PM Found trades [sell 0.00321921 BRIDGE.BTC 6.9418452 BRIDGE.SINS @ 2156.381596727147553 BRIDGE.SINS/BRIDGE.BTC, sell 0.00312590 BRIDGE.BTC 6.6480124 BRIDGE.SINS @ 2126.751463578489165 BRIDGE.SINS/BRIDGE.BTC]
+06/12/2019 12:08:16 PM balance for BRIDGE.BTC is 13.552678 
+06/12/2019 12:08:16 PM Event created <coroutine object sleep at 0x00000240043BE3C8>
+06/12/2019 12:08:16 PM Found trades [sell 0.00321921 BRIDGE.BTC 6.9418452 BRIDGE.SINS @ 2156.381596727147553 BRIDGE.SINS/BRIDGE.BTC, sell 0.00312590 BRIDGE.BTC 6.6480124 BRIDGE.SINS @ 2126.751463578489165 BRIDGE.SINS/BRIDGE.BTC]
+06/12/2019 12:08:17 PM orderbook received
+06/12/2019 12:08:17 PM balance for BRIDGE.BTC is 20.769118466462267 
+06/12/2019 12:08:17 PM Event created <coroutine object sleep at 0x00000240032F8E48>
+06/12/2019 12:08:17 PM orderbook received
+06/12/2019 12:08:17 PM Found trades [sell 0.00321921 BRIDGE.BTC 6.9418452 BRIDGE.SINS @ 2156.381596727147553 BRIDGE.SINS/BRIDGE.BTC, sell 0.00312590 BRIDGE.BTC 6.6480124 BRIDGE.SINS @ 2126.751463578489165 BRIDGE.SINS/BRIDGE.BTC]
+06/12/2019 12:08:24 PM balance for BRIDGE.BTC is 13.552678 
+06/12/2019 12:08:24 PM orderbook received
+06/12/2019 12:08:24 PM Found trades [sell 0.00321921 BRIDGE.BTC 6.9418452 BRIDGE.SINS @ 2156.381596727147553 BRIDGE.SINS/BRIDGE.BTC, sell 0.00312590 BRIDGE.BTC 6.6480124 BRIDGE.SINS @ 2126.751463578489165 BRIDGE.SINS/BRIDGE.BTC]
+06/12/2019 12:08:25 PM orderbook received
+06/12/2019 12:08:25 PM balance for BRIDGE.BTC is 20.769118466462267 
+06/12/2019 12:08:25 PM received None
+06/12/2019 12:08:25 PM received None
+06/12/2019 12:14:48 PM Major Coin: BRIDGE.BTC
+06/12/2019 12:14:48 PM Major Balance: 0.01912483 BRIDGE.BTC
+06/12/2019 12:14:48 PM Welcome !
+06/12/2019 12:14:48 PM Selling BRIDGE.SINS owning 13.5626780 BRIDGE.SINS
+06/12/2019 12:14:48 PM Created worker sell on BRIDGE.SINS:BRIDGE.BTC
+06/12/2019 12:14:49 PM length of asks is 25
+06/12/2019 12:14:50 PM Buying BRIDGE.SINS owning 0.01912483 BRIDGE.BTC
+06/12/2019 12:14:50 PM Created worker buy on BRIDGE.SINS:BRIDGE.BTC
+06/12/2019 12:14:50 PM length of asks is 25
+06/12/2019 12:14:53 PM Worker starts on SINS:BTC
+06/12/2019 12:14:53 PM Worker starts on SINS:BTC
+06/12/2019 12:14:53 PM orderbook received
+06/12/2019 12:14:53 PM orderbook received
+06/12/2019 12:14:54 PM Found trades [sell 0.00321921 BRIDGE.BTC 6.9418452 BRIDGE.SINS @ 2156.381596727147553 BRIDGE.SINS/BRIDGE.BTC, sell 0.00312590 BRIDGE.BTC 6.6480124 BRIDGE.SINS @ 2126.751463578489165 BRIDGE.SINS/BRIDGE.BTC]
+06/12/2019 12:14:57 PM balance for BRIDGE.BTC is 13.552678 
+06/12/2019 12:14:57 PM Event created <coroutine object sleep at 0x00000236B054DE48>
+06/12/2019 12:14:57 PM Found trades [sell 0.00321921 BRIDGE.BTC 6.9418452 BRIDGE.SINS @ 2156.381596727147553 BRIDGE.SINS/BRIDGE.BTC, sell 0.00312590 BRIDGE.BTC 6.6480124 BRIDGE.SINS @ 2126.751463578489165 BRIDGE.SINS/BRIDGE.BTC]
+06/12/2019 12:14:58 PM orderbook received
+06/12/2019 12:14:58 PM balance for BRIDGE.BTC is 20.769118466462267 
+06/12/2019 12:14:58 PM Event created <coroutine object sleep at 0x00000236B160D0C8>
+06/12/2019 12:14:58 PM orderbook received
+06/12/2019 12:14:58 PM Found trades [sell 0.00321921 BRIDGE.BTC 6.9418452 BRIDGE.SINS @ 2156.381596727147553 BRIDGE.SINS/BRIDGE.BTC, sell 0.00312590 BRIDGE.BTC 6.6480124 BRIDGE.SINS @ 2126.751463578489165 BRIDGE.SINS/BRIDGE.BTC]
+06/12/2019 12:14:59 PM balance for BRIDGE.BTC is 13.552678 
+06/12/2019 12:15:00 PM orderbook received
+06/12/2019 12:15:00 PM Found trades [sell 0.00321921 BRIDGE.BTC 6.9418452 BRIDGE.SINS @ 2156.381596727147553 BRIDGE.SINS/BRIDGE.BTC, sell 0.00312590 BRIDGE.BTC 6.6480124 BRIDGE.SINS @ 2126.751463578489165 BRIDGE.SINS/BRIDGE.BTC]
+06/12/2019 12:15:00 PM orderbook received
+06/12/2019 12:15:00 PM balance for BRIDGE.BTC is 20.769118466462267 
+06/12/2019 12:15:42 PM Major Coin: BRIDGE.BTC
+06/12/2019 12:15:42 PM Major Balance: 0.01912483 BRIDGE.BTC
+06/12/2019 12:15:42 PM Welcome !
+06/12/2019 12:15:42 PM Selling BRIDGE.SINS owning 13.5626780 BRIDGE.SINS
+06/12/2019 12:15:42 PM Created worker sell on BRIDGE.SINS:BRIDGE.BTC
+06/12/2019 12:15:43 PM length of asks is 25
+06/12/2019 12:15:44 PM Buying BRIDGE.SINS owning 0.01912483 BRIDGE.BTC
+06/12/2019 12:15:44 PM Created worker buy on BRIDGE.SINS:BRIDGE.BTC
+06/12/2019 12:15:44 PM length of asks is 25
+06/12/2019 12:15:47 PM Worker starts on SINS:BTC
+06/12/2019 12:15:47 PM Worker starts on SINS:BTC
+06/12/2019 12:15:47 PM orderbook received
+06/12/2019 12:15:47 PM orderbook received
+06/12/2019 12:15:48 PM Found trades [sell 0.00321921 BRIDGE.BTC 6.9418452 BRIDGE.SINS @ 2156.381596727147553 BRIDGE.SINS/BRIDGE.BTC, sell 0.00312590 BRIDGE.BTC 6.6480124 BRIDGE.SINS @ 2126.751463578489165 BRIDGE.SINS/BRIDGE.BTC]
+06/12/2019 12:15:52 PM balance for BRIDGE.BTC is 13.552678 
+06/12/2019 12:15:52 PM Event created <coroutine object sleep at 0x0000019954BC53C8>
+06/12/2019 12:15:52 PM Found trades [sell 0.00321921 BRIDGE.BTC 6.9418452 BRIDGE.SINS @ 2156.381596727147553 BRIDGE.SINS/BRIDGE.BTC, sell 0.00312590 BRIDGE.BTC 6.6480124 BRIDGE.SINS @ 2126.751463578489165 BRIDGE.SINS/BRIDGE.BTC]
+06/12/2019 12:15:53 PM orderbook received
+06/12/2019 12:15:53 PM balance for BRIDGE.BTC is 20.767763906882774 
+06/12/2019 12:15:53 PM Event created <coroutine object sleep at 0x0000019953B2BE48>
+06/12/2019 12:15:53 PM orderbook received
+06/12/2019 12:15:53 PM Found trades [sell 0.00321921 BRIDGE.BTC 6.9418452 BRIDGE.SINS @ 2156.381596727147553 BRIDGE.SINS/BRIDGE.BTC, sell 0.00312590 BRIDGE.BTC 6.6480124 BRIDGE.SINS @ 2126.751463578489165 BRIDGE.SINS/BRIDGE.BTC]
+06/12/2019 12:15:54 PM balance for BRIDGE.BTC is 13.552678 
+06/12/2019 12:16:26 PM orderbook received
+06/12/2019 12:16:40 PM Found trades [sell 0.00321921 BRIDGE.BTC 6.9418452 BRIDGE.SINS @ 2156.381596727147553 BRIDGE.SINS/BRIDGE.BTC, sell 0.00312590 BRIDGE.BTC 6.6480124 BRIDGE.SINS @ 2126.751463578489165 BRIDGE.SINS/BRIDGE.BTC]
+06/12/2019 12:16:40 PM orderbook received
+06/12/2019 12:16:40 PM balance for BRIDGE.BTC is 20.767763906882774 
+06/17/2019 04:32:27 PM Connection is already closed.
+06/17/2019 04:32:27 PM Reconnecting ...
+06/17/2019 04:32:28 PM Connection is already closed.
+06/17/2019 04:32:28 PM Reconnecting ...
+06/17/2019 04:32:38 PM  Error in setting order ('Order failed!', MissingKeyError())
+06/17/2019 04:32:38 PM Connection is already closed.
+06/17/2019 04:32:38 PM Reconnecting ...
+06/17/2019 04:42:51 PM Connection is already closed.
+06/17/2019 04:42:51 PM Reconnecting ...
+06/17/2019 04:42:59 PM  Error in setting order ('Order failed!', MissingKeyError())
+06/17/2019 05:02:54 PM  Error in setting order ('Order failed!', MissingKeyError())
+06/17/2019 05:03:26 PM  Error in setting order ('Order failed!', MissingKeyError())
+06/17/2019 05:04:26 PM  Error in setting order ('Order failed!', MissingKeyError())
+06/17/2019 05:04:42 PM  Error in setting order ('Order failed!', MissingKeyError())
+06/17/2019 05:06:19 PM Connection is already closed.
+06/17/2019 05:06:19 PM Reconnecting ...
+06/17/2019 05:06:19 PM  Error in setting order ('Order failed!', MissingKeyError())
+06/17/2019 05:06:19 PM Connection is already closed.
+06/17/2019 05:06:19 PM Reconnecting ...
+06/17/2019 05:06:53 PM  Error in setting order ('Order failed!', MissingKeyError())
+06/17/2019 05:06:53 PM Connection is already closed.
+06/17/2019 05:06:53 PM Reconnecting ...
+06/17/2019 05:07:00 PM  Error in setting order ('Order failed!', MissingKeyError())
+06/17/2019 05:07:12 PM  Error in setting order ('Order failed!', MissingKeyError())
+06/17/2019 05:08:23 PM  Error in setting order ('Order failed!', MissingKeyError())
+06/17/2019 05:08:38 PM Connection is already closed.
+06/17/2019 05:08:38 PM Reconnecting ...
+06/17/2019 05:15:06 PM  Error in setting order ('Order failed!', MissingKeyError())
+06/17/2019 05:15:07 PM  Error in setting order ('Order failed!', MissingKeyError())
+06/17/2019 05:15:09 PM  Error in setting order ('Order failed!', MissingKeyError())
+06/17/2019 05:15:10 PM  Error in setting order ('Order failed!', MissingKeyError())
+06/17/2019 05:15:12 PM  Error in setting order ('Order failed!', MissingKeyError())
+06/17/2019 05:15:13 PM  Error in setting order ('Order failed!', MissingKeyError())
+06/17/2019 05:15:23 PM  Error in setting order ('Order failed!', MissingKeyError())
+06/18/2019 11:52:36 AM Connection is already closed.
+06/18/2019 11:52:36 AM Reconnecting ...
+06/19/2019 09:48:37 PM Connection is already closed.
+06/19/2019 09:48:37 PM Reconnecting ...
+06/19/2019 09:48:38 PM Connection is already closed.
+06/19/2019 09:48:38 PM Reconnecting ...
+06/19/2019 09:48:43 PM Connection is already closed.
+06/19/2019 09:48:43 PM Reconnecting ...
+06/19/2019 09:48:55 PM Connection is already closed.
+06/19/2019 09:48:55 PM Reconnecting ...
+06/19/2019 09:48:56 PM Connection is already closed.
+06/19/2019 09:48:56 PM Reconnecting ...
+06/19/2019 09:48:57 PM Connection is already closed.
+06/19/2019 09:48:57 PM Reconnecting ...
+06/19/2019 09:48:58 PM Connection is already closed.
+06/19/2019 09:48:58 PM Reconnecting ...
+06/20/2019 09:51:52 AM Connection was closed remotely.
+06/20/2019 09:51:52 AM Reconnecting ...
+06/20/2019 09:52:33 AM Connection was closed remotely.
+06/20/2019 09:52:33 AM Reconnecting ...
+06/20/2019 09:58:48 AM Connection is already closed.
+06/20/2019 09:58:48 AM Reconnecting ...
+06/20/2019 10:00:51 AM Connection is already closed.
+06/20/2019 10:00:51 AM Reconnecting ...
+06/20/2019 10:01:59 AM Connection is already closed.
+06/20/2019 10:01:59 AM Reconnecting ...
+06/20/2019 10:03:09 AM Connection is already closed.
+06/20/2019 10:03:09 AM Reconnecting ...
+06/20/2019 10:58:32 AM Connection was closed remotely.
+06/20/2019 10:58:32 AM Reconnecting ...
+06/20/2019 10:59:15 AM Connection was closed remotely.
+06/20/2019 10:59:15 AM Reconnecting ...
+06/20/2019 11:00:05 AM Connection was closed remotely.
+06/20/2019 11:00:05 AM Reconnecting ...
+06/20/2019 11:00:29 AM [WinError 10054] An existing connection was forcibly closed by the remote host
+06/20/2019 11:00:29 AM Connection was closed remotely.
+06/20/2019 11:00:29 AM Reconnecting ...
+06/20/2019 11:00:30 AM Connection was closed remotely.
+06/20/2019 11:00:30 AM Reconnecting ...
+06/20/2019 11:00:31 AM Connection was closed remotely.
+06/20/2019 11:00:31 AM Reconnecting ...
+06/20/2019 11:00:31 AM Connection was closed remotely.
+06/20/2019 11:00:31 AM Reconnecting ...
+06/20/2019 11:00:32 AM Connection was closed remotely.
+06/20/2019 11:00:32 AM Reconnecting ...
+06/20/2019 11:00:33 AM Connection was closed remotely.
+06/20/2019 11:00:33 AM Reconnecting ...
+06/20/2019 11:00:34 AM Connection was closed remotely.
+06/20/2019 11:00:34 AM Reconnecting ...
+06/20/2019 11:00:35 AM Connection was closed remotely.
+06/20/2019 11:00:35 AM Reconnecting ...
+06/20/2019 11:00:35 AM Connection was closed remotely.
+06/20/2019 11:00:35 AM Reconnecting ...
+06/20/2019 11:01:00 AM Connection is already closed.
+06/20/2019 11:01:00 AM Reconnecting ...
+06/20/2019 11:01:05 AM Connection is already closed.
+06/20/2019 11:01:05 AM Reconnecting ...
+06/25/2019 08:44:23 AM Connection is already closed.
+06/25/2019 08:44:23 AM Reconnecting ...
+06/25/2019 08:44:27 AM Connection is already closed.
+06/25/2019 08:44:27 AM Reconnecting ...
+06/25/2019 08:44:28 AM Connection is already closed.
+06/25/2019 08:44:28 AM Reconnecting ...
+06/30/2019 11:49:20 PM Connection is already closed.
+06/30/2019 11:49:20 PM Reconnecting ...
+07/01/2019 12:06:32 AM Connection is already closed.
+07/01/2019 12:06:32 AM Reconnecting ...
+07/01/2019 12:07:40 AM Connection was closed remotely.
+07/01/2019 12:07:40 AM Reconnecting ...
+07/01/2019 12:08:39 AM Connection was closed remotely.
+07/01/2019 12:08:39 AM Reconnecting ...
+07/01/2019 12:09:11 AM Connection was closed remotely.
+07/01/2019 12:09:11 AM Reconnecting ...
+07/01/2019 12:10:01 AM Connection was closed remotely.
+07/01/2019 12:10:01 AM Reconnecting ...
+07/01/2019 12:10:36 AM Connection was closed remotely.
+07/01/2019 12:10:36 AM Reconnecting ...
+07/01/2019 12:11:42 AM Connection is already closed.
+07/01/2019 12:11:42 AM Reconnecting ...
+07/01/2019 12:12:50 AM Connection was closed remotely.
+07/01/2019 12:12:50 AM Reconnecting ...
+07/01/2019 12:13:35 AM Connection was closed remotely.
+07/01/2019 12:13:35 AM Reconnecting ...
+07/01/2019 12:14:19 AM Connection was closed remotely.
+07/01/2019 12:14:19 AM Reconnecting ...
+07/01/2019 12:14:50 AM Connection was closed remotely.
+07/01/2019 12:14:50 AM Reconnecting ...
+07/01/2019 12:15:40 AM Connection was closed remotely.
+07/01/2019 12:15:40 AM Reconnecting ...
+07/01/2019 12:16:35 AM Connection was closed remotely.
+07/01/2019 12:16:35 AM Reconnecting ...
+07/01/2019 12:17:39 AM Connection is already closed.
+07/01/2019 12:17:39 AM Reconnecting ...
+07/01/2019 12:18:40 AM Connection was closed remotely.
+07/01/2019 12:18:40 AM Reconnecting ...
+07/10/2019 12:18:23 PM Connection is already closed.
+07/10/2019 12:18:23 PM Reconnecting ...
+07/10/2019 12:28:05 PM Connection was closed remotely.
+07/10/2019 12:28:05 PM Reconnecting ...
+07/10/2019 12:28:06 PM Connection was closed remotely.
+07/10/2019 12:28:06 PM Reconnecting ...
+07/10/2019 12:28:07 PM Connection was closed remotely.
+07/10/2019 12:28:07 PM Reconnecting ...
+07/10/2019 12:39:54 PM Connection was closed remotely.
+07/10/2019 12:39:54 PM Reconnecting ...
+07/10/2019 12:39:54 PM Connection was closed remotely.
+07/10/2019 12:39:54 PM Reconnecting ...
+07/10/2019 12:39:56 PM Connection was closed remotely.
+07/10/2019 12:39:56 PM Reconnecting ...
+07/10/2019 12:41:45 PM Connection is already closed.
+07/10/2019 12:41:45 PM Reconnecting ...
+07/10/2019 12:42:28 PM Connection is already closed.
+07/10/2019 12:42:28 PM Reconnecting ...
+07/10/2019 12:42:29 PM Connection is already closed.
+07/10/2019 12:42:29 PM Reconnecting ...
+07/11/2019 07:37:53 PM [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond
+07/11/2019 07:38:18 PM [WinError 10054] An existing connection was forcibly closed by the remote host
+07/11/2019 07:41:16 PM [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond
+07/11/2019 07:42:23 PM [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond
+07/11/2019 07:42:44 PM [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond
+07/11/2019 07:44:33 PM [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond
+07/11/2019 07:45:54 PM [WinError 10054] An existing connection was forcibly closed by the remote host
+07/11/2019 07:46:11 PM Connection is already closed.
+07/11/2019 07:46:11 PM Reconnecting ...
+07/11/2019 07:46:32 PM [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond
+07/11/2019 07:51:50 PM [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond
+07/11/2019 07:52:11 PM [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond
+07/11/2019 07:52:35 PM [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond
+07/11/2019 11:37:27 PM Connection is already closed.
+07/11/2019 11:37:27 PM Reconnecting ...
+07/11/2019 11:37:48 PM [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond
+07/11/2019 11:38:09 PM Connection was closed remotely.
+07/11/2019 11:38:09 PM Reconnecting ...
+07/12/2019 12:31:22 AM Connection is already closed.
+07/12/2019 12:31:22 AM Reconnecting ...
+07/12/2019 12:31:43 AM [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond
+07/13/2019 09:45:44 AM Connection is already closed.
+07/13/2019 09:45:44 AM Reconnecting ...
+07/13/2019 09:46:20 AM Connection was closed remotely.
+07/13/2019 09:46:20 AM Reconnecting ...
+07/18/2019 04:36:03 PM Connection is already closed.
+07/18/2019 04:36:03 PM Reconnecting ...
+07/18/2019 04:36:03 PM Connection is already closed.
+07/18/2019 04:36:03 PM Reconnecting ...
+07/18/2019 04:36:15 PM Connection is already closed.
+07/18/2019 04:36:15 PM Reconnecting ...
+07/18/2019 04:46:31 PM Connection is already closed.
+07/18/2019 04:46:31 PM Reconnecting ...
+07/18/2019 04:46:32 PM Connection is already closed.
+07/18/2019 04:46:32 PM Reconnecting ...
+07/18/2019 04:46:33 PM Connection is already closed.
+07/18/2019 04:46:33 PM Reconnecting ...
+07/18/2019 04:47:42 PM Connection is already closed.
+07/18/2019 04:47:42 PM Reconnecting ...
+07/18/2019 04:47:43 PM Connection is already closed.
+07/18/2019 04:47:43 PM Reconnecting ...
+07/18/2019 04:47:44 PM Connection is already closed.
+07/18/2019 04:47:44 PM Reconnecting ...
+07/18/2019 04:50:18 PM Connection is already closed.
+07/18/2019 04:50:18 PM Reconnecting ...
+07/18/2019 04:50:19 PM Connection is already closed.
+07/18/2019 04:50:19 PM Reconnecting ...
+07/18/2019 04:51:49 PM Connection is already closed.
+07/18/2019 04:51:49 PM Reconnecting ...
+07/18/2019 04:51:50 PM Connection was closed remotely.
+07/18/2019 04:51:50 PM Reconnecting ...
+07/18/2019 04:51:55 PM Connection is already closed.
+07/18/2019 04:51:55 PM Reconnecting ...
+07/18/2019 04:53:24 PM Connection is already closed.
+07/18/2019 04:53:24 PM Reconnecting ...
+07/18/2019 04:53:24 PM Connection is already closed.
+07/18/2019 04:53:24 PM Reconnecting ...

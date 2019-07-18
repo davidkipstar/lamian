@@ -1,0 +1,9 @@
+strategie:
+
+auf welcher spread tiefe den bot laufen lassen?
+nimm preise aus dem orderbuch als reellen zahlenstrahl. darauf die mengen im histogramm / kernel density estimator stacken.
+dann wsh. berechnen, dass orders bei einem bestimmter bestimmten tiefe ankommen.
+damit parameter bestimmen.
+sell wenn profit > threshold
+
+anfangs nur bei starkem spread reingehen lassen da liquiditaetsluecke, weil grad das letzte niveau weggedumpt wurde :)

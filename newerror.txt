@@ -1,0 +1,2 @@
+Error in setting order ('Order failed!', UnhandledRPCError('Assert Exception: trx.ref_block_prefix == tapos_block_summary.block_id._hash[1]:',))
+

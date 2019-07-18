@@ -288,6 +288,10 @@ class Agent:
             lista = recent_amount_ele
             listb = recent_rate_ele
 
+            # Test
+            lista = [100]
+            listb = [0.0000132]
+
             if len(lista) == 0:
                 return 0
 
@@ -406,7 +410,9 @@ class CheckSpread(Agent):
             self.logger.info('sleeping, no orderbook')
             return asyncio.sleep(10)
 
-        self.current_trades = self.trades()  
+        self.current_trades = self.trades()
+        # test
+        self.current_trades.append(1)
         if len(self.current_trades) > 0:
             # Fails first time because tsize doesnt exist yet
             # Need this as lower bound for sell price
@@ -473,6 +479,7 @@ class CheckSpread(Agent):
             
     def state0(self, asks, bids, avg_buy_price_lifo):
         #print(self.market, ' : entering state0')
+        #print(self.market, ' : entering state0')
         #asks, bids = entry['asks'], entry['bids']
         #print(self.market_key, ': state0 activated')
         price_bid = find_price(bids, getattr(self, 'ob_th'), getattr(self, '_tsize'), 0, minimum_liquidity=3)
@@ -499,11 +506,11 @@ class CheckSpread(Agent):
             # avg_bid is a little inflated so we can stay below, whereas
             # avg_spread is a little deflated so we can stay above.
             # if we use the lifo min price, then the spread can be pretty damn low. So we need a low self.th for the sell side!
-            self.state = 1
+            self.state = 0
             self.logger.info("spread met condition")
-            return price_bid
+            return price_bid    
         elif self.tradingside == 'sell' and spread_estimated > self.th:
-            self.state = 1
+            self.state = 0
             self.logger.info("spread met condition")
             return price_ask
         else:
