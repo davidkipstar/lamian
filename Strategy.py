@@ -66,6 +66,13 @@ class Agent:
 
             else:
                 try:
+                    asks, bids = await self.orderbook
+                
+                    # Retrieve sell data for comment above
+                    # Added in quote_inventory
+                    sell_orders = list(filter(lambda x: x['for_sale']['symbol'] == self.sell, self.current_open_orders))
+                    self.quote_inventory_in_sells = sum(list(map(lambda x: x['for_sale']['amount'], sell_orders))) # is min 0
+
                     self.inventory = max(self.balance[self.sell].amount - 0.01, 0)
                     self._tsize = self.inventory
                 except:
@@ -79,7 +86,7 @@ class Agent:
             
         finally:
             self.logger.info("balance for {} is {} ".format(self.major_coin, self._tsize))
-            return self._tsize
+            return self._tsize, self.quote_inventory_in_sells, self.balance
 
     #change tsize 
     @tsize.setter
@@ -296,12 +303,11 @@ class Agent:
                 return 0
 
             if type == 'buy' and lifo:
-                print('lifo')
                 if self.tradingside == 'buy':
                     # Which kind of inventory we have depends on tsize!
-                    curr_inv = max(self.balance[self.buy].amount + self.quote_inventory, 0)
+                    curr_inv = max(self.balance[self.buy].amount + self.quote_inventory_in_sells, 0)
                 else:
-                    curr_inv = max(self.balance[self.buy].amount + self.inventory, 0)
+                    curr_inv = max(self.balance[self.sell].amount + self.quote_inventory_in_sells, 0)
                 if curr_inv > 0:
                     lista.reverse()
                     listb.reverse()
@@ -431,8 +437,9 @@ class CheckSpread(Agent):
             # tsize -= amount_spent
             #print('Strategy orders:', self.current_open_orders)
             # self._tsize = await self.tsize
-            await self.tsize
+            tsize, self.quote_inventory_in_sells, self.balance = await self.tsize
             print(self.tradingside, ' : ' ,self._tsize)
+            print(self.quote_inventory_in_sells)
             conf = {
                 'price' : self.state0(asks, bids, avg_buy_price_lifo), # is already Decimal as returned from state0
                 'amount' : self._tsize, # not Decimal yet, to be done when setting order
