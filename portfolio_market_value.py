@@ -5,8 +5,9 @@ account = Account("sxmoli9")
 
 other_balance = []
 iteration = 0
+max_len = int(input('Enter maximum number of disregarded coins!'))
 
-while len(other_balance) != 1:
+while True:
 
     # Query at the same time...
     current_orders = account.openorders
@@ -33,6 +34,9 @@ while len(other_balance) != 1:
     print('trying to catch a clean balance...')
     iteration += 1
     time.sleep(2)
+
+    if len(other_balance) <= max_len:
+        break;
 
 pf_market_value = quote_inventory_in_buys + quote_inventory_in_sells + btc_amount
 print('pf market value: ', pf_market_value)
