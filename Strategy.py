@@ -466,12 +466,14 @@ class CheckSpread(Agent):
 
         if self.tradingside == 'buy' and spread_estimated > self.th and spread_estimated >= avg_spread:
             # if we use the lifo min price, then the spread can be pretty damn low. So we need a low self.th for the sell side!
-            self.state = 1
+            self.state = 0
             self.logger.info("spread met condition")
+            print('would buy here:', price_bid)
             return price_bid
         elif self.tradingside == 'sell' and spread_estimated > self.th:
-            self.state = 1
+            self.state = 0
             self.logger.info("spread met condition")
+            print('would sell here: ', price_ask)
             return price_ask
         else:
             self.logger.info("spread too low currently at {}".format(spread_estimated))
