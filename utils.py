@@ -1,6 +1,6 @@
 
 from decimal import *
-from traceback import print_stack
+import jenkspy
 import pandas as pd
 
 from datetime import date, datetime
@@ -39,17 +39,8 @@ def find_price(orderbook, ob_th, tsize, avg_buy_price_lifo = 0, previous_order =
         quote_v.append(Decimal(q).quantize(satoshi))
         price_v.append(Decimal(p).quantize(satoshi))
 
-        #quote_v.append(Decimal(orderbook.quote[0].amount)).quantize(satoshi)
-        #price_v.append(Decimal(orderbook.price[0])).quantize(satoshi)
-
-    """
-    def p(x): return +Decimal(x.loc['price']).quantize(satoshi)
-    def bal(x): return +Decimal(x.loc['amount']).quantize(satoshi)
-    #
-    quote_v = orderbook['quote'].copy()
-    quote_v = quote_v.apply(bal)
-    price_v = orderbook.apply(p)
-    """
+    data = numpy.array(price_v)
+    breaks = jenkspy.jenks_breaks(data, nb_class=3)
 
     obrevenue_v = [a*b*ob_th for a,b in zip(quote_v, price_v)]  # compensate for threshold
     ownrevenue_v = [tsize * p for p in price_v]
@@ -74,13 +65,17 @@ def find_price(orderbook, ob_th, tsize, avg_buy_price_lifo = 0, previous_order =
         else:
             print('CRITICAL fucking error: Dropidx doesnt exist!')
 
+    #
+
+
     # Get first bound
     df['obrevenue_cumsum'] = df['obrevenue'].cumsum()
-    idx = df.index[df['obrevenue_cumsum'] > df['ownrevenue']].tolist()
+    #idx = df.index[df['obrevenue_cumsum'] > df['ownrevenue']].tolist()
+    idx = df.index[breaks >= df['price']].tolist() # should have max len 4 atm
     if len(idx) == 0:
         #raise ValueError('Market is waaaay too illiquid')
         return None
-    opt_price = df['price'][idx[0]]
+    opt_price = df['price'][idx[0]] # use multiple indices for multiple prices
     opt_price_rounded = opt_price.quantize(satoshi)
 
     # Get second bound if liquidity requirement
