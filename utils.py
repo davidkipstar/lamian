@@ -51,39 +51,19 @@ def find_price(orderbook, ob_th, tsize, avg_buy_price_lifo = 0, previous_order =
     #data = numpy.array((price_v, quote_v))
     #kernel = gaussian_kde(dataset = data)
 
-    values = numpy.vstack([price_v, quote_v, [range(len(price_v))]])
+    values = numpy.vstack([quote_v, price_v])
     kernel = gaussian_kde(values)
     density = kernel(values)
 
 
 
     
-    fig, ax = plt.subplots(subplot_kw=dict(projection='3d'))
-    x, y, z = values
-    ax.scatter(x, y, z, c=density)
-    plt.show()
-
-
-    """
-    pampfactor = 1000000
-    xmin = min(price_v) * pampfactor
-    xmax = max(price_v) * pampfactor
-
-    ymin = min(quote_v)
-    ymax = max(quote_v)
-
-    X, Y = numpy.mgrid[xmin:xmax:100j, ymin:ymax:100j]
-    positions = numpy.vstack([X.ravel(), Y.ravel()])
-
-    Z = numpy.reshape(kernel(positions).T, X.shape)
-
     fig, ax = plt.subplots()
-    ax.imshow(numpy.rot90(Z), cmap=plt.cm.gist_earth_r,
-          extent=[xmin, xmax, ymin, ymax])
-    ax.plot(price_v, quote_v, 'k.', markersize=2)
+    x, y = values
+    ax.scatter(x, y, c=density)
     plt.show()
 
-    """
+
 
     obrevenue_v = [a*b*ob_th for a,b in zip(quote_v, price_v)]  # compensate for threshold
     ownrevenue_v = [tsize * p for p in price_v]
