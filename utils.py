@@ -2,6 +2,7 @@
 from decimal import *
 import jenkspy
 import pandas as pd
+import numpy
 
 from datetime import date, datetime
 
@@ -39,8 +40,7 @@ def find_price(orderbook, ob_th, tsize, avg_buy_price_lifo = 0, previous_order =
         quote_v.append(Decimal(q).quantize(satoshi))
         price_v.append(Decimal(p).quantize(satoshi))
 
-    data = numpy.array(price_v)
-    breaks = jenkspy.jenks_breaks(data, nb_class=3)
+    breaks = jenkspy.jenks_breaks(price_v, nb_class=3)
 
     obrevenue_v = [a*b*ob_th for a,b in zip(quote_v, price_v)]  # compensate for threshold
     ownrevenue_v = [tsize * p for p in price_v]
@@ -71,11 +71,12 @@ def find_price(orderbook, ob_th, tsize, avg_buy_price_lifo = 0, previous_order =
     # Get first bound
     df['obrevenue_cumsum'] = df['obrevenue'].cumsum()
     #idx = df.index[df['obrevenue_cumsum'] > df['ownrevenue']].tolist()
-    idx = df.index[breaks >= df['price']].tolist() # should have max len 4 atm
-    if len(idx) == 0:
+    #idx = df.index[breaks >= df['price']].tolist() # should have max len 4 atm
+
+    if len(breaks) == 0:
         #raise ValueError('Market is waaaay too illiquid')
         return None
-    opt_price = df['price'][idx[0]] # use multiple indices for multiple prices
+    opt_price = Decimal(breaks[2]) #df['price'][idx[1]] # use multiple indices for multiple prices
     opt_price_rounded = opt_price.quantize(satoshi)
 
     # Get second bound if liquidity requirement
