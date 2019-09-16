@@ -1,8 +1,12 @@
 
 from decimal import *
-import jenkspy
+#import jenkspy
 import pandas as pd
 import numpy
+from scipy.stats import gaussian_kde 
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
 
 from datetime import date, datetime
 
@@ -37,10 +41,49 @@ def find_price(orderbook, ob_th, tsize, avg_buy_price_lifo = 0, previous_order =
     for i in range(0, len(orderbook) - 1):
         q = orderbook.quote[i].amount
         p = orderbook.price[i]
-        quote_v.append(Decimal(q).quantize(satoshi))
-        price_v.append(Decimal(p).quantize(satoshi))
+        #quote_v.append(Decimal(q).quantize(satoshi))
+        #price_v.append(Decimal(p).quantize(satoshi))
+        quote_v.append(q)
+        price_v.append(p)
 
-    breaks = jenkspy.jenks_breaks(price_v, nb_class=3)
+   # breaks = jenkspy.jenks_breaks(price_v, nb_class=3)
+
+    #data = numpy.array((price_v, quote_v))
+    #kernel = gaussian_kde(dataset = data)
+
+    values = numpy.vstack([price_v, quote_v, [range(len(price_v))]])
+    kernel = gaussian_kde(values)
+    density = kernel(values)
+
+
+
+    
+    fig, ax = plt.subplots(subplot_kw=dict(projection='3d'))
+    x, y, z = values
+    ax.scatter(x, y, z, c=density)
+    plt.show()
+
+
+    """
+    pampfactor = 1000000
+    xmin = min(price_v) * pampfactor
+    xmax = max(price_v) * pampfactor
+
+    ymin = min(quote_v)
+    ymax = max(quote_v)
+
+    X, Y = numpy.mgrid[xmin:xmax:100j, ymin:ymax:100j]
+    positions = numpy.vstack([X.ravel(), Y.ravel()])
+
+    Z = numpy.reshape(kernel(positions).T, X.shape)
+
+    fig, ax = plt.subplots()
+    ax.imshow(numpy.rot90(Z), cmap=plt.cm.gist_earth_r,
+          extent=[xmin, xmax, ymin, ymax])
+    ax.plot(price_v, quote_v, 'k.', markersize=2)
+    plt.show()
+
+    """
 
     obrevenue_v = [a*b*ob_th for a,b in zip(quote_v, price_v)]  # compensate for threshold
     ownrevenue_v = [tsize * p for p in price_v]
