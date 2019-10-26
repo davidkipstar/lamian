@@ -475,7 +475,7 @@ class CheckSpread(Agent):
         #print(self.market, ' : entering state0')
         #asks, bids = entry['asks'], entry['bids']
         #print(self.market_key, ': state0 activated')
-        price_bid = find_price(bids, getattr(self, 'ob_th'), getattr(self, '_tsize'), 0, minimum_liquidity=3)
+        price_bid = find_price(bids, getattr(self, 'ob_th'), getattr(self, '_tsize'), 0, minimum_liquidity=2)
         price_ask = find_price(asks, getattr(self, 'ob_th'), getattr(self, '_tsize'), avg_buy_price_lifo, minimum_liquidity=0)
         if price_bid is None or price_ask is None:
             # case when too illiquid
@@ -517,7 +517,7 @@ class CheckSpread(Agent):
             max_deviation = Decimal('0.00000001')
             # always 0 for lifo price, as this only concerns the sell value.
             # else the spread becomes reeeally narrow such that we would be unable to trade!
-            estimated_price = find_price(bids, getattr(self, 'ob_th'), getattr(self, '_tsize'), 0, previous_order=order, previous_amount=self._amount, previous_price=self._price, minimum_liquidity = 3) # self.which_order(order['orderid'])
+            estimated_price = find_price(bids, getattr(self, 'ob_th'), getattr(self, '_tsize'), 0, previous_order=order, previous_amount=self._amount, previous_price=self._price, minimum_liquidity = 2) # self.which_order(order['orderid'])
         else:
             max_deviation = Decimal('0.00000001') #Decimal('1')
             # first argument bids is actually asks as input
