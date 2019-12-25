@@ -1,25 +1,51 @@
 # download binance orderbooks and trades for new price calculation, where
 # volume ~ liquidity
 import keyring
+import numpy as np
+import asyncio
+import time 
+import datetime
+import json
+import logging
+
+logger = logging.getLogger()
+logger.setLevel(logging.DEBUG)
+
 from binance.client import Client
 
-# keyring.set_password("system", "username", "password")
-# keyring.get_password("system", "username")
+def scrape(client):
 
-api_key = keyring.get_password('')
-api_secret = keyring.get_password('')
+    try:
+        tickers = client.get_all_tickers()
+        now = datetime.datetime.now()
+        timedelta = now - now
+        rate = datetime.timedelta(seconds = 1)
 
-client = Client(api_key, api_secret)
+        with open('scrape_test.json', 'w') as f:
+            while True:
+                if timedelta < rate:
+                    #sleep for one milisecond
+                    time.sleep(0.001)
+                    timedelta = datetime.datetime.now() - now
 
-# get all symbol prices
-tickers = client.get_all_tickers()
+                else:
+                    old = now
+                    now = datetime.datetime.now()
+                    for ticker in tickers:
+                        j = client.get_order_book(symbol = ticker['symbol'])
+                        json.dump(j, f)
 
-for sym in tickers:
-    symdepth = client.get_order_book(symbol = sym)
-    
+                    logging.info("all scraped after {old-now}")
+                    #update time 
+                    timedelta = now - now
 
-#list(map(client.get_order_book, mylist))
+    except KeyboardInterrupt:
+        print(f"done {now}")
 
-# get market depth
-#depth = client.get_order_book(symbol='BNBBTC')
+if __name__ == '__main__':
+    api_key    = 'qKmOPUFDkIL3eZhLdTKxD5P3cV2rPinqFhnqmpxQrkuWDX4e57Ip86xJWmHak1uF'
+    api_secret =  'L33AiLBGqQwfJXnUU7vyvGuXxS1NklGm6NwyHAH73C98DJAFR5iMSeuQxjkypcOb'
+
+    client = Client(api_key, api_secret)
+    scrape(client)
 
